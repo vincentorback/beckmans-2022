@@ -1,0 +1,9 @@
+.layout {
+  min-height: 100vh;
+  width: calc(100% - (var(--site-spacing) * 2));
+  margin: var(--site-spacing) auto 0;
+}
+
+.main {
+  padding-top: var(--site-spacing);
+}

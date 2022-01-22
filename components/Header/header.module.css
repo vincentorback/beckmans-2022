@@ -1,0 +1,29 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 4rem;
+  text-transform: uppercase;
+  font-family: var(--text-serif);
+  font-style: italic;
+}
+
+
+
+.header nav {
+  display: flex;
+  gap: calc(var(--site-spacing) * 2);
+  line-height: 1.4;
+}
+
+.header nav a {
+  text-decoration: underline;
+  transition: opacity 200ms ease;
+}
+
+.header nav a:hover {
+  opacity: 0.7;
+}

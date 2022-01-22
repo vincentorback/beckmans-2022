@@ -1,0 +1,20 @@
+.filters {
+  display: flex;
+  gap: calc(var(--site-spacing) * 2);
+}
+
+.button {
+  padding: var(--site-spacing) 0;
+  font-size: 1.875em;
+  font-family: var(--text-serif);
+  font-style: italic;
+  transition: opacity 200ms ease;
+}
+
+.button:not(.is-active) {
+  opacity: 0.5;
+}
+
+.button:hover {
+  opacity: 0.75;
+}
