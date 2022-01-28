@@ -6,6 +6,7 @@ const nextConfig = {
     defaultLocale: 'sv',
     localeDetection: false,
   },
+  swcMinify: true,
   images: {
     formats: ['image/avif', 'image/webp'],
   },

@@ -21,7 +21,12 @@ const extraInfo = [
     link: '/om-oss',
   },
   {
-    title: 'Hemsida gjord av Vincent Orback',
+    title: 'Vill du söka till Beckmans 2023?',
+    subtitle: 'Gör det! Sista ansökningsdagen är den 15 maj',
+    link: 'https://beckmans.se',
+  },
+  {
+    title: 'Den här hemsidan är gjord av Vincent Orback',
     subtitle: 'www.vincentorback.se',
     link: 'https://www.vincentorback.se',
   },
@@ -91,7 +96,6 @@ const Grid = ({ filters, items, activeFilter }) => {
   const test = React.useMemo(() => {
     if (!Array.isArray(grid)) return null
     const emptySlots = grid[0] * grid[1] - items.length
-    console.log(321, emptySlots)
     if (emptySlots <= 0) return items
 
     let test = [...items]
@@ -109,8 +113,18 @@ const Grid = ({ filters, items, activeFilter }) => {
     //     uid: index,
     //   }))
 
-    randomItems.forEach((item) => {
-      test.splice(randomBetween(1, test.length - 1), 0, item)
+    randomItems.forEach((item, index) => {
+      test.splice(
+        randomBetween(
+          index * (test.length / extraInfo.length) + 1,
+          Math.min(
+            items.length,
+            (index + 1) * (test.length / extraInfo.length) + 1
+          )
+        ),
+        0,
+        item
+      )
     })
 
     return test.map((item, i) => ({

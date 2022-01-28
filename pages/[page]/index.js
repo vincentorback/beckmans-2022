@@ -1,14 +1,14 @@
-import React from "react"
-import Link from "next/link"
+import React from 'react'
+import Link from 'next/link'
 import { queryRepeatableDocuments } from '../../lib/content'
-import Person from '../../components/Person'
 import Footer from '../../components/Footer'
+import Slices from '../../components/Slices'
 
 export default function Page({ pages, page }) {
   return (
     <div>
       <p>{page.data.title[0].text}</p>
-      {/* <div>{page.body}</div> */}
+      <Slices slices={page.data.body} doc={page} />
       <Footer pages={pages}>
         <p>{page.data.title[0].text}</p>
       </Footer>
@@ -16,26 +16,26 @@ export default function Page({ pages, page }) {
   )
 }
 
-export async function getStaticPaths ({ locales, preview }) {
+export async function getStaticPaths({ locales, preview }) {
   const content = await queryRepeatableDocuments()
-  const pages = content.filter(item => item.type === 'page')
+  const pages = content.filter((item) => item.type === 'page')
 
-  const paths = pages.map(page => ({
+  const paths = pages.map((page) => ({
     params: {
-      page: page.uid
-    }
+      page: page.uid,
+    },
   }))
 
   return {
     paths,
-    fallback: false
+    fallback: false,
   }
 }
 
 export async function getStaticProps({ params, locale, preview }) {
   const content = await queryRepeatableDocuments(locale)
-  const page = content.find(item => item.uid === params.page)
-  const pages = content.filter(item => item.type === 'page')
+  const page = content.find((item) => item.uid === params.page)
+  const pages = content.filter((item) => item.type === 'page')
 
   if (!page) {
     return {

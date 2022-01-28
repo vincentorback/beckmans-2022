@@ -3,13 +3,12 @@ import Link from 'next/link'
 import { queryRepeatableDocuments } from '../../lib/content'
 import { slugify } from '../../lib/utilities'
 import Footer from '../../components/Footer'
-import Person from '../../components/Person'
+import Work from '../../components/Work'
 
 export default function Project({ pages, project }) {
   return (
     <div>
-      {/* <Person data={project} /> */}
-      <h1>{project.data.title[0].text}</h1>
+      <Work project={project} />
       <Footer pages={pages}>
         <p>hej</p>
       </Footer>
@@ -36,12 +35,6 @@ export async function getStaticPaths({ locales, preview }) {
 
 export async function getStaticProps({ params, locale, preview }) {
   const content = await queryRepeatableDocuments(locale)
-
-  console.log(
-    params.name,
-    content.find((item) => item.type === 'project' && item.uid === params.name)
-  )
-
   const project = content.find(
     (item) => item.type === 'project' && item.uid === params.name
   )

@@ -1,18 +1,18 @@
-.person {
+.work {
   max-width: 800px;
   margin: 0 auto;
 }
 
-.person > *:not(:first-child) {
+.work > *:not(:first-child) {
   margin: var(--site-spacing) 0;
 }
 
-.person h1 {
+.work h1 {
   font-size: 2em;
   font-weight: 600;
 }
 
-.person > div {
+.work > div {
   display: grid;
   gap: 1em;
 }

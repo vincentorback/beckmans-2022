@@ -20,6 +20,10 @@ export const Router = {
   routes: [
     {
       type: 'project',
+      path: '/:category/:uid',
+    },
+    {
+      type: 'page',
       path: '/:uid',
     },
   ],

@@ -14,9 +14,9 @@
     "classnames": "^2.3.1",
     "next": "^12.0.8",
     "prismic-reactjs": "^1.3.4",
-    "random-words": "^1.1.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "random-words": "^1.1.2",
+    "react": "^18.0.0-beta-fdc1d617a-20211118",
+    "react-dom": "^18.0.0-beta-fdc1d617a-20211118",
     "react-transition-group": "^4.4.2"
   }
 }

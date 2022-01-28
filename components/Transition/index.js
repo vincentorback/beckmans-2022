@@ -25,14 +25,14 @@ const transitionStyles = {
 }
 
 const Transition = ({ children, location }) => {
-  const test = React.useRef(null)
+  const ref = React.useRef(null)
 
   return (
     <ReactTransitionGroup style={{ position: 'relative' }}>
-      <ReactTransition key={location} timeout={TIMEOUT} nodeRef={test}>
+      <ReactTransition key={location} timeout={TIMEOUT} nodeRef={ref}>
         {(status) => (
           <div
-            ref={test}
+            ref={ref}
             style={{
               ...defaultStyle,
               ...transitionStyles[status],
