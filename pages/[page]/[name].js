@@ -15,12 +15,10 @@ export async function getStaticPaths({ locales }) {
   locales.forEach((locale) => {
     projects.forEach((project) => {
       if (project.lang.includes(locale)) {
-        const split = project.url.split('/')
-
         paths.push({
           params: {
-            page: split[1],
-            name: split[2],
+            page: slugify(project.category),
+            name: slugify(project.name),
           },
           locale,
         })
@@ -28,7 +26,17 @@ export async function getStaticPaths({ locales }) {
     })
   })
 
-  // console.log(paths)
+  const missingPaths = paths.filter(
+    (path) => !projects.find((project) => project.name === path.params.name)
+  )
+
+  console.log(
+    projects.filter((project) =>
+      missingPaths.find((path) => {
+        return path.params.name === slugify(project.name)
+      })
+    )
+  )
 
   return {
     paths,
@@ -37,12 +45,12 @@ export async function getStaticPaths({ locales }) {
 }
 
 export async function getStaticProps({ params, locale }) {
-  console.log(123, params, locale)
-
   const content = await queryRepeatableDocuments(locale)
   const project = fakeProjects.find(
     (item) => slugify(item.name) === params.name
   )
+
+  // console.log(3, project.uid)
 
   // const project = content.find(
   //   (item) => item.type === 'project' && item.uid === params.name
@@ -59,6 +67,8 @@ export async function getStaticProps({ params, locale }) {
       },
     }
   }
+
+  // console.log(4, project.uid)
 
   return {
     props: {

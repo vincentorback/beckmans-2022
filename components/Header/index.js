@@ -4,7 +4,7 @@ import styles from './header.module.css'
 import { useRouter } from 'next/router'
 import { useTranslations } from 'next-intl'
 
-const Header = () => {
+const Header = ({}) => {
   const router = useRouter()
   const otherLocale = router.locales.find((item) => item !== router.locale)
   const t = useTranslations()

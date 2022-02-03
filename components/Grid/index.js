@@ -49,8 +49,6 @@ const Grid = ({ items, activeFilter }) => {
     const changeStart = (foo) => {
       setAnimating(true)
       setActiveItems([foo])
-
-      console.log(123, foo)
     }
 
     router.events.on('routeChangeStart', changeStart)
