@@ -4,7 +4,8 @@
 }
 
 .button {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
+  font-weight: var(--text-bold);
   transition: opacity 200ms ease;
 }
 

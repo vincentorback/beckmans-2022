@@ -22,6 +22,10 @@
   padding-bottom: 100%;
 }
 
+.item:not(.is-visible) {
+  pointer-events: none;
+}
+
 .item.is-visible {
   z-index: 1;
 }
@@ -88,7 +92,7 @@
   z-index: 99;
   left: 0;
   bottom: 0;
-  padding: 1em;
+  padding: var(--site-spacing);
   height: 33.33%;
   opacity: 0;
   display: flex;

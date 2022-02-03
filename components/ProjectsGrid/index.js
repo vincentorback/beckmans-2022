@@ -55,77 +55,81 @@ const Window = ({ item }) => {
 const Grid = ({ activeFilter, items, handleMouseEnter }) => {
   return (
     <div className={styles.grid}>
-      {items.map((item, itemIndex) => (
-        <div
-          key={item.uid || itemIndex}
-          className={classNames(styles.item, {
-            [styles['is-visible']]:
-              !activeFilter ||
-              (!item.name && !activeFilter) ||
-              (item.name && item.category === activeFilter),
-            // [styles['is-active']]: activeItem === item.uid,
-            [styles['is-extra']]: !item.name,
-          })}
-          style={{
-            '--color': item.color,
-          }}
-          onMouseEnter={() => handleMouseEnter(item)}
-        >
-          {item.name ? (
-            <>
-              <Link href={item.url}>
-                <a
-                  className={styles.link}
-                  // disabled={
-                  //   !activeItems.includes(
-                  //     `/${slugify(item.category)}/${item.uid}`
-                  //   )
-                  // }
-                >
+      {items.map((item, itemIndex) => {
+        const isVisible =
+          !activeFilter ||
+          (!item.name && !activeFilter) ||
+          (item.name && item.category === activeFilter)
+
+        return (
+          <div
+            key={item.uid || itemIndex}
+            className={classNames(styles.item, {
+              [styles['is-visible']]: isVisible,
+              // [styles['is-active']]: activeItem === item.uid,
+              [styles['is-extra']]: !item.name,
+            })}
+            style={{
+              '--color': item.color,
+            }}
+            onMouseEnter={() => handleMouseEnter(item)}
+          >
+            {item.name ? (
+              <>
+                <Link href={item.url}>
+                  <a
+                    className={styles.link}
+                    // disabled={
+                    //   !activeItems.includes(
+                    //     `/${slugify(item.category)}/${item.uid}`
+                    //   )
+                    // }
+                  >
+                    <div className={styles.itemInner}>
+                      {/* <div className={styles.content}>
+                        <p>{item.data.title[0].text}</p>
+                        <p>{item.category}</p>
+                      </div> */}
+                      <Image
+                        className={styles.image}
+                        src={item.image}
+                        width={1200}
+                        height={1200}
+                        alt=""
+                        layout="fill"
+                        quality={10}
+                      />
+                    </div>
+                  </a>
+                </Link>
+                <div className={styles.dots}>
+                  {[...Array(9)].map((_, i) => (
+                    <div key={`${itemIndex}_${i}`}></div>
+                  ))}
+                </div>
+              </>
+            ) : item.url ? (
+              <Link href={item?.url}>
+                <a className={styles.link}>
                   <div className={styles.itemInner}>
-                    {/* <div className={styles.content}>
-                      <p>{item.data.title[0].text}</p>
-                      <p>{item.category}</p>
-                    </div> */}
-                    <Image
-                      className={styles.image}
-                      src={item.image}
-                      width={1200}
-                      height={1200}
-                      alt=""
-                      layout="fill"
-                      quality={10}
-                    />
+                    <div className={styles.content}>
+                      <p>{item.title}</p>
+                    </div>
                   </div>
                 </a>
               </Link>
-              <div className={styles.dots}>
-                {[...Array(9)].map((_, i) => (
-                  <div key={`${itemIndex}_${i}`}></div>
-                ))}
-              </div>
-            </>
-          ) : item.url ? (
-            <Link href={item?.url}>
-              <a className={styles.link}>
+            ) : (
+              <div className={styles.link}>
                 <div className={styles.itemInner}>
                   <div className={styles.content}>
                     <p>{item.title}</p>
                   </div>
                 </div>
-              </a>
-            </Link>
-          ) : (
-            <div className={styles.link}>
-              <div className={styles.itemInner}>
-                <div className={styles.content}>
-                  <p>{item.title}</p>
-                </div>
               </div>
-            </div>
-          )}
-        </div>
-      ))}
+            )}
+          </div>
+        )
+      })}
     </div>
   )
 }

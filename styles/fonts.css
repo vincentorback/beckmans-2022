@@ -1,4 +1,26 @@
 @font-face {
-  font-family: 'Maxevile';
-  src: url();
+  font-family: 'Maxeville';
+  src: url('/fonts/Maxeville-Regular.woff') format('woff'),
+    url('/fonts/Maxeville-Regular.woff2') format('woff2');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Maxeville';
+  src: url('/fonts/Maxeville-Bold.woff') format('woff'),
+    url('/fonts/Maxeville-Bold.woff2') format('woff2');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Maxeville Tekst';
+  src: url('/fonts/Maxeville-Tekst.woff') format('woff'),
+    url('/fonts/Maxeville-Tekst.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Affairs';
+  src: url('/fonts/Affairs-Italic.woff') format('woff'),
+    url('/fonts/Affairs-Italic.woff2') format('woff2');
+  font-style: italic;
 }

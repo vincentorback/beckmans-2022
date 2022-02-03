@@ -1,9 +1,10 @@
 :root {
+  --text-display: 'Maxeville Tekst', sans-serif;
   --text-sansserif: 'Maxeville', sans-serif;
   --text-serif: 'Affairs', serif;
 
   --text-normal: 400;
-  --text-bold: 500;
+  --text-bold: 600;
 
   --site-spacing: 32px;
 
