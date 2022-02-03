@@ -1,15 +1,16 @@
 import React from 'react'
-import Transition from '../Transition'
-import Header from '../Header'
+// import Transition from '../Transition'
 import styles from './layout.module.css'
+// import { useRouter } from 'next/router'
 
-const Layout = ({ pages, children, router }) => {
+const Layout = ({ children }) => {
+  // const router = useRouter()
+
   return (
     <div className={styles.layout}>
-      <Header pages={pages} />
-      <Transition location={router.pathname}>
-        <main className={styles.main}>{children}</main>
-      </Transition>
+      {/* <Transition location={router.pathname}> */}
+      <main className={styles.main}>{children}</main>
+      {/* </Transition> */}
       {/* <Footer pages={pages} /> */}
     </div>
   )

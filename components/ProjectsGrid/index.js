@@ -76,7 +76,7 @@ const Grid = ({ activeFilter, items, handleMouseEnter }) => {
           >
             {item.name ? (
               <>
-                <Link href={item.url}>
+                <Link href={item.url} prefetch={false}>
                   <a
                     className={styles.link}
                     // disabled={

@@ -1,14 +1,21 @@
 import React from 'react'
-import { queryRepeatableDocuments, fakeProjects } from '../../lib/content'
+import { queryDocuments, fakeProjects } from '../../lib/content'
 import { slugify } from '../../lib/utilities'
+import Layout from '../../components/Layout'
+import Header from '../../components/Header'
 import Work from '../../components/Work'
 
 export default function Project({ project }) {
-  return <Work project={project} />
+  return (
+    <Layout>
+      <Header />
+      <Work project={project} />
+    </Layout>
+  )
 }
 
 export async function getStaticPaths({ locales }) {
-  // const content = await queryRepeatableDocuments()
+  // const content = await queryDocuments()
   const projects = fakeProjects // content.filter((item) => item.type === 'project')
   const paths = []
 
@@ -26,17 +33,9 @@ export async function getStaticPaths({ locales }) {
     })
   })
 
-  const missingPaths = paths.filter(
-    (path) => !projects.find((project) => project.name === path.params.name)
-  )
-
-  console.log(
-    projects.filter((project) =>
-      missingPaths.find((path) => {
-        return path.params.name === slugify(project.name)
-      })
-    )
-  )
+  // const missingPaths = paths.filter(
+  //   (path) => !projects.find((project) => project.name === path.params.name)
+  // )
 
   return {
     paths,
@@ -45,7 +44,7 @@ export async function getStaticPaths({ locales }) {
 }
 
 export async function getStaticProps({ params, locale }) {
-  const content = await queryRepeatableDocuments(locale)
+  const content = await queryDocuments(locale)
   const project = fakeProjects.find(
     (item) => slugify(item.name) === params.name
   )

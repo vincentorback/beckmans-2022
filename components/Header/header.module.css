@@ -1,17 +1,35 @@
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.filter {
+  flex: 1 0 33%;
+}
+
+.logo {
+  flex: 1 1 33rem;
+  max-width: 33rem;
+  margin: 0 auto;
+}
+
+.logo svg {
+  display: block;
+  width: 100%;
+  max-width: 33rem;
+  height: auto;
 }
 
 .title {
-  font-size: 4rem;
-  text-transform: uppercase;
+  display: none;
 }
 
 .header nav {
-  display: flex;
-  gap: calc(var(--site-spacing) * 2);
+  text-align: right;
+  flex: 1 0 33%;
+  gap: var(--site-spacing);
   line-height: 1.4;
 }
 

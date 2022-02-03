@@ -1,6 +1,5 @@
 import { NextIntlProvider } from 'next-intl'
 import withTranslateRoutes from 'next-translate-routes'
-import Layout from '../components/Layout'
 import '../styles/index.css'
 
 const App = ({ Component, pageProps, router }) => {
@@ -19,9 +18,7 @@ const App = ({ Component, pageProps, router }) => {
         },
       }}
     >
-      <Layout {...pageProps} router={router}>
-        <Component {...pageProps} key={router.route} />
-      </Layout>
+      <Component {...pageProps} key={router.route} />
     </NextIntlProvider>
   )
 }

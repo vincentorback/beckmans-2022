@@ -1,9 +1,11 @@
 .filters {
   display: flex;
-  gap: var(--site-spacing);
+  flex-wrap: wrap;
+  gap: calc(var(--site-spacing) * 0.5) var(--site-spacing);
 }
 
 .button {
+  text-align: left;
   font-size: 1.3rem;
   font-weight: var(--text-bold);
   transition: opacity 200ms ease;

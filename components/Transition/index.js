@@ -4,7 +4,7 @@ import {
   Transition as ReactTransition,
 } from 'react-transition-group'
 
-const TIMEOUT = 300
+const TIMEOUT = 3000
 
 const defaultStyle = {
   transition: `opacity ${TIMEOUT}ms ease`,
@@ -18,9 +18,12 @@ const transitionStyles = {
     bottom: 0,
     width: '100%',
     opacity: 1,
+    zIndex: 999,
   },
   entered: { opacity: 1 },
-  exiting: { opacity: 0 },
+  exiting: {
+    opacity: 0,
+  },
   exited: { opacity: 0 },
 }
 
