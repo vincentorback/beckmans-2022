@@ -1,4 +1,4 @@
-import { slugify } from './lib/utilities'
+// import { slugify } from './lib/utilities'
 
 export const repoName = 'beckmans2022'
 export const apiEndpoint = `https://${repoName}.cdn.prismic.io/api/v2`
@@ -10,7 +10,7 @@ export const linkResolver = (doc) => {
   }
 
   if (doc.type === 'project') {
-    return `/${slugify(doc.data.category)}/${doc.uid}`
+    return doc.url
   }
 
   return '/'
@@ -20,7 +20,7 @@ export const Router = {
   routes: [
     {
       type: 'project',
-      path: '/:category/:uid',
+      path: '/:category/:name',
     },
     {
       type: 'page',

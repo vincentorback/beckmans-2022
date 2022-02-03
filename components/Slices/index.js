@@ -1,12 +1,7 @@
 import { RichText } from 'prismic-reactjs'
 import Image from '../../components/Image'
 import styles from './slices.module.css'
-import {
-  apiEndpoint,
-  accessToken,
-  linkResolver,
-  Router,
-} from '../../prismicConfiguration'
+import { linkResolver } from '../../prismicConfiguration'
 
 const Slices = ({ slices, doc }) => {
   return slices.map((slice, sliceIndex) => {

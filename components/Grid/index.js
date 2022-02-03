@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from 'next/link'
+import Link from 'next-translate-routes/link'
 import { useRouter } from 'next/router'
 import Image from '../Image'
 import classNames from 'classnames'
@@ -34,9 +34,7 @@ const extraInfo = [
 
 const colors = [...Array(100)].fill(0).map(() => randomColor())
 
-const DEFAULT_FILTER = null
-
-const Grid = ({ filters, items, activeFilter }) => {
+const Grid = ({ items, activeFilter }) => {
   const [isAnimating, setAnimating] = React.useState(false)
   const [activeItems, setActiveItems] = React.useState(
     items.map((item) => `/${slugify(item.data.category)}/${item.uid}`)
@@ -45,23 +43,24 @@ const Grid = ({ filters, items, activeFilter }) => {
 
   const router = useRouter()
 
+  const daGrid = React.useMemo(() => `repeat(${grid[0]}, 1fr)`, [grid])
+
   React.useEffect(() => {
     const changeStart = (foo) => {
       setAnimating(true)
       setActiveItems([foo])
+
+      console.log(123, foo)
     }
 
     router.events.on('routeChangeStart', changeStart)
 
     return () => router.events.off('routeChangeStart', changeStart)
-  }, [])
+  }, [router.events])
 
   React.useEffect(() => {
     const calculate = () => {
-      console.log('new calc')
-
       const windowWidth = window.innerWidth
-      const windowHeight = window.innerHeight
 
       const gridRowLength = Math.round(windowWidth / 250)
       const gridColumnLength = Math.ceil(items.length / gridRowLength)
@@ -133,79 +132,81 @@ const Grid = ({ filters, items, activeFilter }) => {
     }))
   }, [items, grid])
 
-  const steps = React.useCallback(() => {
-    setAnimating(true)
-    let iteration = 0
+  // const steps = React.useCallback(() => {
+  //   setAnimating(true)
+  //   let iteration = 0
 
-    let interval = setInterval(() => {
-      const asd = items
-        .filter((item, index) => index === iteration)
-        .map((item) => `/${slugify(item.data.category)}/${item.uid}`)
+  //   let interval = setInterval(() => {
+  //     const asd = items
+  //       .filter((item, index) => index === iteration)
+  //       .map((item) => `/${slugify(item.data.category)}/${item.uid}`)
 
-      setActiveItems(asd)
+  //     setActiveItems(asd)
 
-      if (iteration === items.length) {
-        clearInterval(interval)
-        setAnimating(false)
-      }
+  //     if (iteration === items.length) {
+  //       clearInterval(interval)
+  //       setAnimating(false)
+  //     }
 
-      iteration += 1
-    }, 300)
-  }, [items])
+  //     iteration += 1
+  //   }, 300)
+  // }, [items])
 
-  const blink = React.useCallback(() => {
-    setAnimating(true)
-    let blink = 0
-    let iteration = 0
+  // const blink = React.useCallback(() => {
+  //   setAnimating(true)
+  //   let blink = 0
+  //   let iteration = 0
 
-    let interval = setInterval(() => {
-      const asd = items
-        .filter(
-          (item, index) => blink === (index + Math.floor(index / grid[0])) % 2
-        )
-        .map((item) => `/${slugify(item.data.category)}/${item.uid}`)
+  //   let interval = setInterval(() => {
+  //     const asd = items
+  //       .filter(
+  //         (item, index) => blink === (index + Math.floor(index / grid[0])) % 2
+  //       )
+  //       .map((item) => `/${slugify(item.data.category)}/${item.uid}`)
 
-      if (iteration === 10) {
-        clearInterval(interval)
-        setAnimating(false)
-      }
+  //     if (iteration === 10) {
+  //       clearInterval(interval)
+  //       setAnimating(false)
+  //     }
 
-      blink = blink === 1 ? 0 : 1
-      iteration += 1
+  //     blink = blink === 1 ? 0 : 1
+  //     iteration += 1
 
-      setActiveItems(asd)
-    }, 300)
-  }, [items, grid[0]])
+  //     setActiveItems(asd)
+  //   }, 300)
+  // }, [items, grid])
 
-  const diagonal = React.useCallback(() => {
-    setAnimating(true)
-    let iteration = 0
+  // const diagonal = React.useCallback(() => {
+  //   setAnimating(true)
+  //   let iteration = 0
 
-    let interval = setInterval(() => {
-      const active = items
-        .filter((item, index) => {
-          const row = Math.floor(index / grid[0])
-          return index === row * grid[0] + (iteration - row)
-        })
-        .map((item) => `/${slugify(item.data.category)}/${item.uid}`)
+  //   let interval = setInterval(() => {
+  //     const active = items
+  //       .filter((item, index) => {
+  //         const row = Math.floor(index / grid[0])
+  //         return index === row * grid[0] + (iteration - row)
+  //       })
+  //       .map((item) => `/${slugify(item.data.category)}/${item.uid}`)
 
-      if (iteration === items.length / grid[0] + grid[0]) {
-        clearInterval(interval)
-        setAnimating(false)
-      }
+  //     if (iteration === items.length / grid[0] + grid[0]) {
+  //       clearInterval(interval)
+  //       setAnimating(false)
+  //     }
 
-      iteration += 1
+  //     iteration += 1
 
-      setActiveItems(active)
-    }, 100)
-  }, [items, grid[0]])
+  //     setActiveItems(active)
+  //   }, 100)
+  // }, [items, grid])
 
   return (
     <div className={styles.container}>
       <div
-        className={styles.grid}
+        className={classNames(styles.grid, {
+          [styles['is-animating']]: isAnimating,
+        })}
         style={{
-          gridTemplateColumns: Array(grid[0]).fill('1fr').join(' '),
+          gridTemplateColumns: daGrid,
         }}
       >
         {test &&
@@ -214,15 +215,15 @@ const Grid = ({ filters, items, activeFilter }) => {
               key={item.uid || itemIndex}
               className={classNames(styles.item, {
                 [styles['is-active']]:
-                  !item.data ||
-                  activeItems.includes(
-                    `/${slugify(item.data.category)}/${item.uid}`
-                  ),
-                [styles['is-animating']]: isAnimating,
+                  (!item.data && !activeFilter) ||
+                  (item.data &&
+                    activeItems.includes(
+                      `/${slugify(item.data.category)}/${item.uid}`
+                    )),
                 [styles['is-extra']]: !item.data,
               })}
               style={{
-                backgroundColor: item.color,
+                '--color': item.color,
               }}
             >
               {item.data ? (
@@ -244,14 +245,14 @@ const Grid = ({ filters, items, activeFilter }) => {
                           <p>{item.data.title[0].text}</p>
                           <p>{item.data.category}</p>
                         </div>
-                        {/* <Image
-                        className={styles.image}
-                        src={item.data.main_image.url}
-                        width={item.data.main_image.dimensions.width || 400}
-                        height={item.data.main_image.dimensions.height || 400}
-                        alt={item.data.main_image.alt}
-                        layout="fill"
-                      /> */}
+                        <Image
+                          className={styles.image}
+                          src={item.data.main_image.url}
+                          width={item.data.main_image.dimensions.width || 400}
+                          height={item.data.main_image.dimensions.height || 400}
+                          alt={item.data.main_image.alt}
+                          layout="fill"
+                        />
                       </div>
                     </a>
                   </Link>

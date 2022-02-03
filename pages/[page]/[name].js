@@ -1,31 +1,34 @@
 import React from 'react'
-import Link from 'next/link'
-import { queryRepeatableDocuments } from '../../lib/content'
+import { queryRepeatableDocuments, fakeProjects } from '../../lib/content'
 import { slugify } from '../../lib/utilities'
-import Footer from '../../components/Footer'
 import Work from '../../components/Work'
 
-export default function Project({ pages, project }) {
-  return (
-    <div>
-      <Work project={project} />
-      <Footer pages={pages}>
-        <p>hej</p>
-      </Footer>
-    </div>
-  )
+export default function Project({ project }) {
+  return <Work project={project} />
 }
 
-export async function getStaticPaths({ locales, preview }) {
-  const content = await queryRepeatableDocuments()
-  const projects = content.filter((item) => item.type === 'project')
+export async function getStaticPaths({ locales }) {
+  // const content = await queryRepeatableDocuments()
+  const projects = fakeProjects // content.filter((item) => item.type === 'project')
+  const paths = []
 
-  const paths = projects.map((item) => ({
-    params: {
-      page: slugify(item.data.category),
-      name: item.uid,
-    },
-  }))
+  locales.forEach((locale) => {
+    projects.forEach((project) => {
+      if (project.lang.includes(locale)) {
+        const split = project.url.split('/')
+
+        paths.push({
+          params: {
+            page: split[1],
+            name: split[2],
+          },
+          locale,
+        })
+      }
+    })
+  })
+
+  // console.log(paths)
 
   return {
     paths,
@@ -33,16 +36,27 @@ export async function getStaticPaths({ locales, preview }) {
   }
 }
 
-export async function getStaticProps({ params, locale, preview }) {
+export async function getStaticProps({ params, locale }) {
+  console.log(123, params, locale)
+
   const content = await queryRepeatableDocuments(locale)
-  const project = content.find(
-    (item) => item.type === 'project' && item.uid === params.name
+  const project = fakeProjects.find(
+    (item) => slugify(item.name) === params.name
   )
+
+  // const project = content.find(
+  //   (item) => item.type === 'project' && item.uid === params.name
+  // )
   const pages = content.filter((item) => item.type === 'page')
+  const messages = require(`../../locales/${locale}.json`)
 
   if (!project) {
     return {
       notFound: true,
+      props: {
+        pages,
+        messages,
+      },
     }
   }
 
@@ -50,6 +64,7 @@ export async function getStaticProps({ params, locale, preview }) {
     props: {
       project,
       pages,
+      messages,
     },
   }
 }

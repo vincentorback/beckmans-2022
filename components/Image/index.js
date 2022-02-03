@@ -2,21 +2,33 @@ import React from 'react'
 import classNames from 'classnames'
 import NextImage from 'next/image'
 
-const imageLoader = (props) => {
-  const { src, width, height, quality } = props
+const imageLoader = ({ src, width }) => {
+  const url = new URL(src)
 
-  return `${src}?w=${width}&h=${height}&q=${quality}`
+  url.searchParams.set('auto', 'compress,format')
+  url.searchParams.set('w', width)
+
+  return url.toString()
 }
 
 const Image = (props) => {
-  const { className, objectFit, objectPosition, width, height, alt, quality, layout } =
-    props
+  const {
+    className,
+    objectFit,
+    objectPosition,
+    width,
+    height,
+    alt,
+    quality,
+    layout,
+  } = props
 
   const [isLoaded, setLoaded] = React.useState(false)
 
   return (
-    <div className={classNames(className, {
-      'is-loaded': isLoaded,
+    <div
+      className={classNames(className, {
+        'is-loaded': isLoaded,
       })}
       style={{
         transition: 'opacity 200ms ease 200ms',
@@ -32,7 +44,7 @@ const Image = (props) => {
         alt={alt || ''}
         width={layout === 'cover' || layout === 'fill' ? null : width}
         height={layout === 'cover' || layout === 'fill' ? null : height}
-        quality={quality || 90}
+        quality={quality || 50}
         onLoadingComplete={() => setLoaded(true)}
       />
     </div>

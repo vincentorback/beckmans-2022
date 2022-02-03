@@ -1,4 +1,6 @@
-const nextConfig = {
+const withTranslateRoutes = require('next-translate-routes/plugin')
+
+const nextConfig = withTranslateRoutes({
   generateBuildId: () => 'build',
   reactStrictMode: true,
   i18n: {
@@ -10,6 +12,9 @@ const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
   },
-}
+  translateRoutes: {
+    debug: true,
+  },
+})
 
 module.exports = nextConfig

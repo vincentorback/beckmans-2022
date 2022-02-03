@@ -1,0 +1,249 @@
+.container {
+  padding-top: var(--site-spacing);
+  padding-bottom: var(--site-spacing);
+  display: grid;
+}
+
+@media (min-width: 600px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.item {
+  position: relative;
+  z-index: 0;
+  height: 0;
+  padding-bottom: 100%;
+}
+
+.item.is-visible {
+  z-index: 1;
+}
+
+.item.is-extra .link {
+  color: #fff;
+  background-color: #000;
+}
+
+.link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 120ms ease;
+  background-color: var(--color);
+}
+
+.item:not(.is-visible) .link {
+  opacity: 0;
+}
+
+.itemInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.item a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.item p {
+  line-height: 1.2;
+}
+
+.item p:first-child {
+  font-size: 1.1em;
+}
+
+.item p:not(:first-child) {
+  margin-top: 0.3em;
+  font-size: 0.8em;
+}
+
+.image {
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  transform: scale(2) translateZ(0);
+}
+
+.content {
+  position: absolute;
+  z-index: 99;
+  left: 0;
+  bottom: 0;
+  padding: 1em;
+  height: 33.33%;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  transition: opacity 400ms ease 400ms, transform 400ms ease 400ms;
+  transform: translateY(5%);
+}
+
+.item:hover .content {
+  transition: opacity 300ms ease, transform 300ms ease;
+  transform: translateY(0px);
+  opacity: 1;
+}
+
+.dots {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.dots div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  transition: opacity 300ms ease, transform 300ms ease,
+    background-color 300ms ease;
+}
+
+.item:not(.is-visible) .dots div {
+  opacity: 0.25;
+}
+
+.dots div:nth-child(2),
+.dots div:nth-child(5),
+.dots div:nth-child(8) {
+  left: 50%;
+}
+
+.dots div:nth-child(3),
+.dots div:nth-child(6),
+.dots div:nth-child(9) {
+  left: 100%;
+}
+
+.dots div:nth-child(4),
+.dots div:nth-child(5),
+.dots div:nth-child(6) {
+  top: 50%;
+}
+
+.dots div:nth-child(7),
+.dots div:nth-child(8),
+.dots div:nth-child(9) {
+  top: 100%;
+}
+
+.windowItem {
+  position: relative;
+  height: 0;
+  padding-bottom: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--color, transparent);
+}
+
+@media (min-width: 600px) {
+  .windowItem {
+    height: 100%;
+    padding-bottom: 0;
+  }
+}
+
+.windowItemImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.windowContent {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  right: 0;
+  z-index: 1;
+  margin: auto;
+
+  text-align: center;
+  font-weight: var(--text-bold);
+  color: var(--color-cream);
+  font-size: clamp(2rem, 5vw, 4rem);
+  padding: var(--site-spacing);
+}
+
+.windowContent p + p {
+  margin-top: 1em;
+}
+
+.windowDots {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.windowDots div {
+  position: absolute;
+  top: calc(100% / 6);
+  left: calc(100% / 6);
+  width: 8px;
+  height: 8px;
+  transform: translate(-50%, -50%);
+  color: var(--color-cream);
+  font-size: 3em;
+  line-height: 0.22;
+  transition: opacity 300ms ease, transform 300ms ease,
+    background-color 300ms ease;
+}
+
+.windowDots.is-visible div {
+  background-color: var(--color-cream);
+}
+
+.windowDots div:nth-child(2),
+.windowDots div:nth-child(5),
+.windowDots div:nth-child(8) {
+  left: calc(100% / 2);
+}
+
+.windowDots div:nth-child(3),
+.windowDots div:nth-child(6),
+.windowDots div:nth-child(9) {
+  left: calc(100% / 1.16666);
+}
+
+.windowDots div:nth-child(4),
+.windowDots div:nth-child(5),
+.windowDots div:nth-child(6) {
+  top: calc(100% / 2);
+}
+
+.windowDots div:nth-child(7),
+.windowDots div:nth-child(8),
+.windowDots div:nth-child(9) {
+  top: calc(100% - (100% / 6));
+}

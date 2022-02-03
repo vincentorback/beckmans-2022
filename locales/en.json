@@ -1,0 +1,17 @@
+{
+  "navigation": {
+    "menu": "Menu",
+    "currentLanguage": "English",
+    "otherLanguage": "Svenska",
+    "switchLocale": "Switch to {locale, select, sv {Swedish} en {English}}"
+  },
+  "categories": {
+    "fashion": "Fashion",
+    "form": "Form",
+    "visual-communication": "Visual Communications"
+  },
+  "error": {
+    "title": "Something went wrong",
+    "404": "This page does not exist"
+  }
+}

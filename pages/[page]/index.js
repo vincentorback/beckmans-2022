@@ -1,30 +1,33 @@
 import React from 'react'
-import Link from 'next/link'
 import { queryRepeatableDocuments } from '../../lib/content'
-import Footer from '../../components/Footer'
 import Slices from '../../components/Slices'
 
-export default function Page({ pages, page }) {
+export default function Page({ page }) {
   return (
-    <div>
-      <p>{page.data.title[0].text}</p>
-      <Slices slices={page.data.body} doc={page} />
-      <Footer pages={pages}>
-        <p>{page.data.title[0].text}</p>
-      </Footer>
-    </div>
+    <>
+      <p>{page.name}</p>
+      <Slices slices={page.body} doc={page} />
+    </>
   )
 }
 
-export async function getStaticPaths({ locales, preview }) {
+export async function getStaticPaths({ locales }) {
   const content = await queryRepeatableDocuments()
   const pages = content.filter((item) => item.type === 'page')
+  const paths = []
 
-  const paths = pages.map((page) => ({
-    params: {
-      page: page.uid,
-    },
-  }))
+  locales.forEach((locale) => {
+    pages.forEach((page) => {
+      if (page.lang.includes(locale)) {
+        paths.push({
+          params: {
+            page: page.uid,
+          },
+          locale,
+        })
+      }
+    })
+  })
 
   return {
     paths,
@@ -32,10 +35,11 @@ export async function getStaticPaths({ locales, preview }) {
   }
 }
 
-export async function getStaticProps({ params, locale, preview }) {
+export async function getStaticProps({ params, locale }) {
   const content = await queryRepeatableDocuments(locale)
   const page = content.find((item) => item.uid === params.page)
   const pages = content.filter((item) => item.type === 'page')
+  const messages = require(`../../locales/${locale}.json`)
 
   if (!page) {
     return {
@@ -47,6 +51,7 @@ export async function getStaticProps({ params, locale, preview }) {
     props: {
       page,
       pages,
+      messages,
     },
   }
 }

@@ -1,0 +1,17 @@
+{
+  "navigation": {
+    "menu": "Meny",
+    "currentLanguage": "Svenska",
+    "otherLanguage": "English",
+    "switchLocale": "Byt till {locale, select, sv {Svenska} en {Engelska}}"
+  },
+  "categories": {
+    "fashion": "Mode",
+    "form": "Form",
+    "visual-communication": "Visuell Kommunikation"
+  },
+  "error": {
+    "title": "Något gick fel",
+    "404": "Den här sidan finns inte"
+  }
+}

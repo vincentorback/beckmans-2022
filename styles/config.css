@@ -1,6 +1,14 @@
 :root {
-  --text-sansserif: 'Helvetica Neue', sans-serif;
-  --text-serif: 'Merriweather', serif;
-  --site-spacing: 1vmax;
-  --color-background: #f1f1f1;
+  --text-sansserif: 'Maxeville', sans-serif;
+  --text-serif: 'Affairs', serif;
+
+  --text-normal: 400;
+  --text-bold: 500;
+
+  --site-spacing: 32px;
+
+  --color-black: #000;
+  --color-blue: #a6b7d5;
+  --color-cream: #f5f1e7;
+  --color-red: #dd7550;
 }

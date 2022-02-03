@@ -1,13 +1,10 @@
 .filters {
   display: flex;
-  gap: calc(var(--site-spacing) * 2);
+  gap: var(--site-spacing);
 }
 
 .button {
-  padding: var(--site-spacing) 0;
-  font-size: 1.875em;
-  font-family: var(--text-serif);
-  font-style: italic;
+  font-size: 1.4rem;
   transition: opacity 200ms ease;
 }
 
