@@ -10,15 +10,21 @@
 }
 
 .logo {
-  flex: 1 1 33rem;
-  max-width: 33rem;
+  flex: 1 1 380px;
+  max-width: 380px;
   margin: 0 auto;
+}
+
+@media (min-width: 600px) {
+  .logo {
+    margin: calc(var(--site-spacing) * 0.75) auto;
+  }
 }
 
 .logo svg {
   display: block;
   width: 100%;
-  max-width: 33rem;
+  max-width: 380px;
   height: auto;
 }
 

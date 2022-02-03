@@ -1,5 +1,6 @@
 import React from 'react'
 import ProjectsGrid from '../components/ProjectsGrid'
+import ProjectLists from '../components/ProjectLists'
 import Layout from '../components/Layout'
 import Header from '../components/Header'
 import GridFilters from '../components/GridFilters'
@@ -18,10 +19,17 @@ export default function Home(props) {
     if (a === 'fashion') return 0
     return 1
   })
+
   const [activeFilter, setActiveFilter] = React.useState(DEFAULT_FILTER)
+  const [activeItem, setActiveItem] = React.useState(null)
+
   const onClick = React.useCallback(
     (filter) => {
-      setActiveFilter(activeFilter === filter ? DEFAULT_FILTER : filter)
+      const newFilter = activeFilter === filter ? DEFAULT_FILTER : filter
+      // setActiveItem((item) =>
+      //   !item.category || item.category !== newFilter ? null : item
+      // )
+      setActiveFilter(newFilter)
     },
     [activeFilter]
   )
@@ -39,6 +47,15 @@ export default function Home(props) {
         items={projects}
         activeFilter={activeFilter}
         filters={filters}
+        setActiveItem={setActiveItem}
+        activeItem={activeItem}
+      />
+      <ProjectLists
+        items={projects}
+        activeFilter={activeFilter}
+        filters={filters}
+        setActiveItem={setActiveItem}
+        activeItem={activeItem}
       />
     </Layout>
   )

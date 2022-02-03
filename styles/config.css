@@ -6,7 +6,7 @@
   --text-normal: 400;
   --text-bold: 600;
 
-  --site-spacing: 32px;
+  --site-spacing: clamp(0.5rem, 5vmin, 2rem);
 
   --color-black: #000;
   --color-blue: #a6b7d5;

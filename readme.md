@@ -1,5 +1,5 @@
-# Beckmans examens utställning 2022
+# Beckmans 2022 graduation website
 
-Installera npm dependencies med: `yarn` och kör `yarn dev` för att testa sidan lokalt.
+Install dependencies with: `yarn` and run `yarn dev` to test/develop the site locally.
 
-Fattar du nada av ovan men vill koda på sidan kan du maila [mailto:hello@vincentorback.se](hello@vincentorback.se) och fråga om hjälp :)
+If you dont know what this is but still want to give it a go, you can contact me at [mailto:hello@vincentorback.se](hello@vincentorback.se) and ask away :)

@@ -15,6 +15,12 @@
   grid-template-columns: repeat(6, 7fr);
 }
 
+@media (min-width: 1400px) {
+  .grid {
+    grid-template-columns: repeat(7, 7fr);
+  }
+}
+
 .item {
   position: relative;
   z-index: 0;
@@ -84,7 +90,7 @@
   z-index: 0;
   width: 100%;
   height: 100%;
-  transform: scale(2) translateZ(0);
+  transform: scale(2.5) translateZ(0);
 }
 
 .content {
@@ -183,7 +189,7 @@
 .windowContent {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(calc(-50% - 6px));
   left: 0;
   right: 0;
   z-index: 1;
@@ -193,11 +199,16 @@
   font-weight: var(--text-bold);
   color: var(--color-cream);
   font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.25;
   padding: var(--site-spacing);
 }
 
 .windowContent p + p {
-  margin-top: 1em;
+  margin-top: 10.5rem;
+}
+
+.windowContent p {
+  white-space: pre-line;
 }
 
 .windowDots {

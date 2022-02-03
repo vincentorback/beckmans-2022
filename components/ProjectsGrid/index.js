@@ -5,6 +5,7 @@ import classNames from 'classnames'
 import styles from './index.module.css'
 import { slugify } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
+// import { useRouter } from 'next/router'
 
 const Window = ({ item }) => {
   if (!item) {
@@ -41,11 +42,11 @@ const Window = ({ item }) => {
       )}
       <div
         className={classNames(styles.windowDots, {
-          [styles['is-visible']]: item.name,
+          [styles['is-visible']]: item.title,
         })}
       >
         {[...Array(9)].map((_, i) => (
-          <div key={`${item.uid}_${i}`}>{!item.name && '←'}</div>
+          <div key={`${item.uid}_${i}`}>{!item.title && '←'}</div>
         ))}
       </div>
     </div>
@@ -90,15 +91,17 @@ const Grid = ({ activeFilter, items, handleMouseEnter }) => {
                         <p>{item.data.title[0].text}</p>
                         <p>{item.category}</p>
                       </div> */}
-                      <Image
-                        className={styles.image}
-                        src={item.image}
-                        width={1200}
-                        height={1200}
-                        alt=""
-                        layout="fill"
-                        quality={10}
-                      />
+                      {item?.image && (
+                        <Image
+                          className={styles.image}
+                          src={item.image}
+                          width={100}
+                          height={100}
+                          alt=""
+                          layout="fill"
+                          quality={10}
+                        />
+                      )}
                     </div>
                   </a>
                 </Link>
@@ -112,19 +115,19 @@ const Grid = ({ activeFilter, items, handleMouseEnter }) => {
               <Link href={item?.url}>
                 <a className={styles.link}>
                   <div className={styles.itemInner}>
-                    <div className={styles.content}>
+                    {/* <div className={styles.content}>
                       <p>{item.title}</p>
-                    </div>
+                    </div> */}
                   </div>
                 </a>
               </Link>
             ) : (
               <div className={styles.link}>
-                <div className={styles.itemInner}>
+                {/* <div className={styles.itemInner}>
                   <div className={styles.content}>
                     <p>{item.title}</p>
                   </div>
-                </div>
+                </div> */}
               </div>
             )}
           </div>
@@ -134,18 +137,34 @@ const Grid = ({ activeFilter, items, handleMouseEnter }) => {
   )
 }
 
-const ProjectsGrid = ({ items, activeFilter }) => {
-  const [activeItem, setActiveItem] = React.useState(null)
+const ProjectsGrid = ({ items, activeFilter, setActiveItem, activeItem }) => {
+  // const { locale } = useRouter()
+  // const [activeItem, setActiveItem] = React.useState(null)
 
-  React.useEffect(() => {
-    if (activeFilter && activeItem && activeItem.category !== activeFilter) {
-      setActiveItem(null)
-    }
-  }, [activeItem, activeFilter])
+  // const testItems = React.useMemo(() => {
+  //   return items.concat({
+  //     uid: 'all',
+  //     title:
+  //       locale === 'sv' ? 'Ansök på \nbeckmans.se' : 'Apply on \nbeckmans.se',
+  //     url: 'https://beckmans.se/',
+  //     url: '#/',
+  //   })
+  // }, [items, locale])
 
-  const handleMouseEnter = (item) => {
-    setActiveItem(item)
-  }
+  // console.log(testItems.length)
+
+  // React.useEffect(() => {
+  //   if (activeFilter && activeItem && activeItem.category !== activeFilter) {
+  //     setActiveItem(null)
+  //   }
+  // }, [activeItem, activeFilter, setActiveItem])
+
+  const handleMouseEnter = React.useCallback(
+    (item) => {
+      setActiveItem(item)
+    },
+    [setActiveItem]
+  )
 
   const memoGrid = React.useMemo(
     () => (
@@ -155,7 +174,7 @@ const ProjectsGrid = ({ items, activeFilter }) => {
         handleMouseEnter={handleMouseEnter}
       />
     ),
-    [items, activeFilter]
+    [items, activeFilter, handleMouseEnter]
   )
 
   const memoWindow = React.useMemo(
