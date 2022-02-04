@@ -16,32 +16,49 @@ const Window = ({ item }) => {
 
   const t = useTranslations('categories')
 
+  const LinkWrap = React.useCallback(
+    ({ children }) => {
+      if (item.url) {
+        return (
+          <Link href={item.url}>
+            <a className={styles.windowLink}>{children}</a>
+          </Link>
+        )
+      }
+
+      return children
+    },
+    [item]
+  )
+
   return (
     <div className={styles.windowItem} data-id={item.uid} key={item.uid}>
-      <div className={styles.windowContent}>
-        <p>{item.name ? item.name : item.title}</p>
-        {item.category && <p>{t(slugify(item.category))}</p>}
-      </div>
-      {item?.image && (
-        <Image
-          className={styles.windowItemImage}
-          src={item.image}
-          width={1200}
-          height={1200}
-          alt=""
-          layout="fill"
-          quality={10}
-        />
-      )}
-      <div
-        className={classNames(styles.windowDots, {
-          [styles['is-visible']]: item.title,
-        })}
-      >
-        {[...Array(9)].map((_, i) => (
-          <div key={`${item.uid}_${i}`}>{!item.title && '←'}</div>
-        ))}
-      </div>
+      <LinkWrap>
+        <div className={styles.windowContent}>
+          <p>{item.name ? item.name : item.title}</p>
+          {item.category && <p>{t(slugify(item.category))}</p>}
+        </div>
+        {item?.image && (
+          <Image
+            className={styles.windowItemImage}
+            src={item.image}
+            width={1200}
+            height={1200}
+            alt=""
+            layout="fill"
+            quality={10}
+          />
+        )}
+        <div
+          className={classNames(styles.windowDots, {
+            [styles['is-visible']]: item.title,
+          })}
+        >
+          {[...Array(9)].map((_, i) => (
+            <div key={`${item.uid}_${i}`}>{!item.title && '←'}</div>
+          ))}
+        </div>
+      </LinkWrap>
     </div>
   )
 }

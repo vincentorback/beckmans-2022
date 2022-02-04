@@ -27,6 +27,15 @@
   font-style: italic;
 }
 
+.cell h2 a {
+  display: inline-block;
+  transition: opacity 200ms ease;
+}
+
+.cell h2 a:hover {
+  opacity: 0.6;
+}
+
 .list {
   border-top: 2px solid;
   margin-top: 1em;

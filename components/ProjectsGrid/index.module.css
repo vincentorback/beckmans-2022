@@ -2,6 +2,7 @@
   padding-top: var(--site-spacing);
   padding-bottom: var(--site-spacing);
   display: grid;
+  user-select: none;
 }
 
 @media (min-width: 600px) {
@@ -192,6 +193,7 @@
   object-fit: cover;
 }
 
+.windowLink,
 .windowContent {
   position: absolute;
   top: 0;

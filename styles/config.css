@@ -6,7 +6,7 @@
   --text-normal: 400;
   --text-bold: 600;
 
-  --site-spacing: clamp(0.5rem, 5vmin, 2rem);
+  --site-spacing: clamp(0.5rem, 2.22vw, 2rem);
   --site-width: 1440px;
 
   --color-black: #000;
