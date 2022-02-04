@@ -121,6 +121,10 @@
 }
 
 @media (min-width: 1300px) {
+  .topRight a {
+    font-size: 1.25rem;
+  }
+
   .topLeft p,
   .bottomRight p {
     font-size: 1.3125rem;
