@@ -6,14 +6,10 @@ const nextConfig = withTranslateRoutes({
   i18n: {
     locales: ['sv', 'en'],
     defaultLocale: 'sv',
-    localeDetection: false,
+    localeDetection: true,
   },
-  swcMinify: true,
   images: {
     formats: ['image/avif', 'image/webp'],
-  },
-  translateRoutes: {
-    debug: true,
   },
 })
 

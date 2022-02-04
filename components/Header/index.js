@@ -9,16 +9,6 @@ const Header = ({ children }) => {
   const otherLocale = router.locales.find((item) => item !== router.locale)
   const t = useTranslations()
 
-  // React.useEffect(() => {
-  //   const changeStart = () => {
-  //     console.log('changeStart')
-  //   }
-
-  //   router.events.on('routeChangeStart', changeStart)
-
-  //   return () => router.events.off('routeChangeStart', changeStart)
-  // }, [router.events])
-
   return (
     <header className={styles.header}>
       <Link href="/">

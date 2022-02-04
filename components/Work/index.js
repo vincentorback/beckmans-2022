@@ -8,7 +8,7 @@ import classNames from 'classnames'
 
 const Work = ({ project }) => {
   const router = useRouter()
-  const { category, name, title, body, image, links, video } = project
+  const { category, name, title, image, links, video, thanks } = project
 
   const t = useTranslations('categories')
 
@@ -25,32 +25,57 @@ const Work = ({ project }) => {
           />
         )}
         <div className={classNames(styles.grid, styles.textBlock)}>
-          <div className={styles.text}>
+          <div>
             {name && (
-              <h1>
+              <h1 className={styles.title}>
                 {name} <br />
                 {title[router.locale]}
               </h1>
             )}
-            {body && (
-              <>
-                <p>
-                  Mitt examensarbete är ett självutforskande av identitet ur ett
-                  posthumanistiskt perspektiv. Resultatet är tre självporträtt
-                  där jag gestaltar min mångfacetterade identitet i form av en
-                  avatar.
-                </p>
-                <p>
-                  Mitt examensarbete är ett självutforskande av identitet ur ett
-                  posthumanistiskt perspektiv. Resultatet är tre självporträtt
-                  där jag gestaltar min mångfacetterade identitet i form av en
-                  avatar.
-                </p>
-              </>
-            )}
-            {category && <h2>{t(category)}</h2>}
+            <div className={styles.text}>
+              <p>
+                Mitt <strong>examensarbete</strong> är ett
+                <em>självutforskande</em> av identitet ur ett posthumanistiskt
+                perspektiv. <a href="#/">Resultatet</a> är tre självporträtt där
+                jag gestaltar min mångfacetterade identitet i form av en avatar.
+              </p>
+              <h2>Rubrik 2</h2>
+              <p>
+                Mitt examensarbete är ett självutforskande av identitet ur ett
+                posthumanistiskt perspektiv. Resultatet är tre självporträtt där
+                jag gestaltar min mångfacetterade identitet i form av en avatar.
+              </p>
+              <h3>Rubrik 3</h3>
+              <p>
+                Mitt examensarbete är ett självutforskande av identitet ur ett
+                posthumanistiskt perspektiv. Resultatet är tre självporträtt där
+                jag gestaltar min mångfacetterade identitet i form av en avatar.
+              </p>
+              <ul>
+                <li>Lista med saker</li>
+                <li>Kan vara vadsom</li>
+                <li>helst?</li>
+              </ul>
+              <h4>Rubrik 4</h4>
+              <p>
+                Mitt examensarbete är ett självutforskande av identitet ur ett
+                posthumanistiskt perspektiv. Resultatet är tre självporträtt där
+                jag gestaltar min mångfacetterade identitet i form av en avatar.
+              </p>
+              <ol>
+                <li>Lista med saker</li>
+                <li>Kan vara vadsom</li>
+                <li>helst?</li>
+              </ol>
+              <p>
+                Mitt examensarbete är ett självutforskande av identitet ur ett
+                posthumanistiskt perspektiv. Resultatet är tre självporträtt där
+                jag gestaltar min mångfacetterade identitet i form av en avatar.
+              </p>
+            </div>
+            {category && <h2 className={styles.subtitle}>{t(category)}</h2>}
           </div>
-          <div className={styles.text}>
+          <div>
             <div className={styles.info}>
               <h4>Kontakt</h4>
               {links && (
@@ -75,17 +100,24 @@ const Work = ({ project }) => {
                 </li>
               </ul>
             </div>
-            <div className={styles.info}>
-              <h4>Tack till</h4>
-              <ul>
-                <li>
-                  <Link href={'#/'} prefetch={false}>
-                    <a>Förnamn efternamn</a>
-                  </Link>
-                </li>
-                <li>Förnamn efternamn</li>
-              </ul>
-            </div>
+            {thanks && (
+              <div className={styles.info}>
+                <h4>Tack till</h4>
+                <ul>
+                  {thanks.map((thank, thankIndex) => (
+                    <li key={thankIndex}>
+                      {thank.href ? (
+                        <Link href={'#/'} prefetch={false}>
+                          <a>{thank.label}</a>
+                        </Link>
+                      ) : (
+                        thank.label
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
 

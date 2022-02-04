@@ -38,20 +38,6 @@ const Video = ({ provider, id, poster }) => {
               iosNative: 'force',
               container: null,
             },
-            vimeo: {
-              byline: false,
-              portrait: false,
-              title: false,
-              speed: false,
-              transparent: true,
-            },
-            youtube: {
-              noCookie: false,
-              rel: 0,
-              showinfo: 0,
-              iv_load_policy: 3,
-              modestbranding: 1,
-            },
             controls: [
               'play-large',
               'play',

@@ -61,15 +61,16 @@
 
 .text {
   line-height: 1.25;
+  margin: calc(var(--site-spacing) * 1) 0;
 }
 
-.text h1 {
+.title {
   font-size: 2rem;
   line-height: 1.15;
   font-weight: 600;
 }
 
-.text h2 {
+.subtitle {
   margin-top: var(--site-spacing);
   font-size: 2rem;
   line-height: 1.15;
@@ -77,16 +78,50 @@
   font-family: var(--text-serif);
 }
 
-.text ul {
-  list-style: none;
+.text h2,
+.text h3,
+.text h4 {
+  font-weight: var(--text-bold);
+}
+
+.text h2 {
+  font-size: 1.5rem;
+}
+.text h3 {
+  font-size: 1.3rem;
+}
+.text h4 {
+  font-size: 1.2rem;
+}
+
+.text ul,
+.text ol {
+  list-style-position: inside;
+}
+
+.text strong {
+  font-weight: var(--text-bold);
+}
+
+.text em {
+  font-style: italic;
 }
 
 .text a {
   text-decoration: underline;
+  transition: opacity 150ms ease;
 }
 
 .text a:hover {
   opacity: 0.6;
+}
+
+.info {
+  line-height: 1.25;
+}
+
+.info + .info {
+  margin-top: var(--site-spacing);
 }
 
 .info h4 {
@@ -95,8 +130,17 @@
   line-height: 1.25;
 }
 
+.info ul {
+  list-style: none;
+}
+
 .info a {
   text-decoration: none;
+  transition: opacity 150ms ease;
+}
+
+.info a:hover {
+  opacity: 0.6;
 }
 
 @media (min-width: 1200px) {
