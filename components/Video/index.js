@@ -6,7 +6,7 @@ import Plyr from 'plyr-react'
 import { useInView } from 'react-intersection-observer'
 import 'plyr-react/dist/plyr.css'
 
-const Video = ({ provider, id, poster }) => {
+const Video = ({ provider, id }) => {
   const { ref, inView } = useInView({
     triggerOnce: true,
   })

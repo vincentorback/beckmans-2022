@@ -139,15 +139,22 @@ const Project = ({ project }) => {
             />
           </div>
         )}
-        {video && <Video id="168013411" provider="vimeo" poster={image} />}
+        <Video id="168013411" provider="vimeo" />
         <Image
-          src={image + '2'}
+          src="https://source.unsplash.com/random/558x917?1"
           alt=""
           layout="responsive"
-          width={558}
-          height={917}
+          width={917}
+          height={558}
         />
-        {video && <Video id="RecY5iZn6B0" provider="youtube" poster={image} />}
+        <Image
+          src="https://source.unsplash.com/random/917x1149?2"
+          alt=""
+          layout="responsive"
+          width={917}
+          height={1149}
+        />
+        <Video id="RecY5iZn6B0" provider="youtube" />
       </div>
       <div className={styles.map}>
         <div>
