@@ -1,6 +1,6 @@
 .plyr--video {
   --plyr-color-main: var(--color-cream);
-  --plyr-control-spacing: calc(var(--site-spacing) * 0.25);
+  --plyr-control-spacing: 1em;
   --plyr-video-control-background-hover: transparent;
   --plyr-video-control-color-hover: var(--color-blue);
   --plyr-video-control-color: var(--plyr-color-main);
@@ -8,8 +8,8 @@
   --plyr-tooltip-color: var(--color-black);
   --plyr-range-thumb-background: var(--plyr-color-main);
   --plyr-range-thumb-height: 14px;
-  --plyr-range-track-height: 9px;
-  --plyr-range-thumb-border: 1px solid rgba(0, 0, 0, 0.1);
+  --plyr-range-track-height: 6px;
+  --plyr-range-thumb-border: 0;
 }
 
 /* Video */
@@ -27,7 +27,7 @@
 .plyr--video .plyr__controls {
   background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.5));
   justify-content: space-between;
-  padding: calc(var(--site-spacing) * 1) !important;
+  padding: calc(var(--site-spacing) * 0.5) calc(var(--site-spacing) * 1) !important;
 }
 
 .plyr--video .plyr__control.plyr__tab-focus,
@@ -103,6 +103,11 @@
   }
 }
 
+/* Controls */
+.plyr__controls__item:first-child {
+  margin: 0 !important;
+}
+
 /* Tooltip */
 .plyr--video .plyr__tooltip {
   padding: 0.3em 0.5em;
@@ -111,9 +116,8 @@
 /* Progress */
 
 .plyr__controls .plyr__progress__container {
-  margin: 0 !important;
-  flex: 0 1 60%;
-  max-width: 60%;
+  flex: 0 1 66%;
+  max-width: 66%;
 }
 
 /* Youtube bug: Hide buffer animation on touch devices */

@@ -1,6 +1,14 @@
 .video {
   position: relative;
-  background-color: #000;
+  background-color: var(--color-black);
+}
+
+.youtube {
+  background-color: var(--color-red);
+}
+
+.vimeo {
+  background-color: var(--color-blue);
 }
 
 .inner {
@@ -9,7 +17,7 @@
   overflow: hidden;
   padding-bottom: 50%;
   opacity: 0;
-  transition: opacity 300ms ease 1000ms;
+  transition: opacity 300ms ease 300ms;
 }
 
 .inner.inView {

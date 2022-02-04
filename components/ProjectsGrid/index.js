@@ -17,14 +17,7 @@ const Window = ({ item }) => {
   const t = useTranslations('categories')
 
   return (
-    <div
-      className={styles.windowItem}
-      data-id={item.uid}
-      key={item.uid}
-      style={{
-        '--color': item.name ? 'var(--color-red)' : 'var(--color-red)',
-      }}
-    >
+    <div className={styles.windowItem} data-id={item.uid} key={item.uid}>
       <div className={styles.windowContent}>
         <p>{item.name ? item.name : item.title}</p>
         {item.category && <p>{t(slugify(item.category))}</p>}

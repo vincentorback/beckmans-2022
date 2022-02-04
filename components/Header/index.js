@@ -21,7 +21,6 @@ const Header = ({ children }) => {
 
   return (
     <header className={styles.header}>
-      <div className={styles.filter}>{children}</div>
       <Link href="/">
         <a className={styles.logo}>
           <h1 className={styles.title}>Formation</h1>
@@ -90,6 +89,7 @@ const Header = ({ children }) => {
           </p>
         </div>
       </nav>
+      <div className={styles.filter}>{children}</div>
     </header>
   )
 }

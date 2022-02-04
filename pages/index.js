@@ -57,6 +57,18 @@ export default function Home(props) {
         setActiveItem={setActiveItem}
         activeItem={activeItem}
       />
+      <div
+        style={{
+          backgroundColor: 'var(--color-blue)',
+          minHeight: '120vh',
+          marginBottom: 'var(--site-spacing)',
+        }}
+      />
+      <div
+        style={{
+          minHeight: '1px',
+        }}
+      />
     </Layout>
   )
 }

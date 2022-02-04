@@ -16,7 +16,11 @@
 }
 
 .text > * + * {
-  margin-top: var(--site-spacing);
+  margin-top: 1.25em;
+}
+
+.textBlock {
+  margin: calc(var(--site-spacing) * 2) 0;
 }
 
 .text {
@@ -24,8 +28,17 @@
 }
 
 .text h1 {
-  font-size: 2em;
+  font-size: 2rem;
+  line-height: 1.15;
   font-weight: 600;
+}
+
+.text h2 {
+  margin-top: var(--site-spacing);
+  font-size: 2rem;
+  line-height: 1.15;
+  font-style: italic;
+  font-family: var(--text-serif);
 }
 
 .text ul {

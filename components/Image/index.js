@@ -27,13 +27,13 @@ const Image = (props) => {
 
   return (
     <div
-      className={classNames(className, {
-        'is-loaded': isLoaded,
-      })}
-      style={{
-        transition: 'opacity 200ms ease 200ms',
-        opacity: isLoaded ? 1 : 0,
-      }}
+    // className={classNames(className, {
+    //   'is-loaded': isLoaded,
+    // })}
+    // style={{
+    //   transition: 'opacity 200ms ease 200ms',
+    //   opacity: isLoaded ? 1 : 0,
+    // }}
     >
       <NextImage
         {...props}
@@ -45,7 +45,7 @@ const Image = (props) => {
         width={layout === 'cover' || layout === 'fill' ? null : width}
         height={layout === 'cover' || layout === 'fill' ? null : height}
         quality={quality || 50}
-        onLoadingComplete={() => setLoaded(true)}
+        // onLoadingComplete={() => setLoaded(true)}
       />
     </div>
   )

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from '../../components/Image'
 import Video from '../../components/Video'
 import styles from './work.module.css'
+import classNames from 'classnames'
 
 const Work = ({ project }) => {
   const router = useRouter()
@@ -24,18 +25,31 @@ const Work = ({ project }) => {
             height={560}
           />
         )}
-        <div className={styles.grid}>
+        <div className={classNames(styles.grid, styles.textBlock)}>
           <div className={styles.text}>
-            {name && <h1>{name}</h1>}
-            {category && <p>{t(category)}</p>}
-            {title && <p>{title[router.locale]}</p>}
-            {body && (
-              <p>
-                Mitt examensarbete är ett självutforskande av identitet ur ett
-                posthumanistiskt perspektiv. Resultatet är tre självporträtt där
-                jag gestaltar min mångfacetterade identitet i form av en avatar.
-              </p>
+            {name && (
+              <h1>
+                {name} <br />
+                {title[router.locale]}
+              </h1>
             )}
+            {body && (
+              <>
+                <p>
+                  Mitt examensarbete är ett självutforskande av identitet ur ett
+                  posthumanistiskt perspektiv. Resultatet är tre självporträtt
+                  där jag gestaltar min mångfacetterade identitet i form av en
+                  avatar.
+                </p>
+                <p>
+                  Mitt examensarbete är ett självutforskande av identitet ur ett
+                  posthumanistiskt perspektiv. Resultatet är tre självporträtt
+                  där jag gestaltar min mångfacetterade identitet i form av en
+                  avatar.
+                </p>
+              </>
+            )}
+            {category && <h2>{t(category)}</h2>}
           </div>
           <div className={styles.text}>
             <div className={styles.info}>
@@ -95,6 +109,13 @@ const Work = ({ project }) => {
           </div>
         )}
         {video && <Video id="168013411" provider="vimeo" poster={image} />}
+        <Image
+          src={image + '2'}
+          alt=""
+          layout="responsive"
+          width={558}
+          height={917}
+        />
         {video && <Video id="RecY5iZn6B0" provider="youtube" poster={image} />}
       </div>
     </div>

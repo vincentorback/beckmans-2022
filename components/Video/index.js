@@ -12,7 +12,7 @@ const Video = ({ provider, id, poster }) => {
   })
 
   return (
-    <div ref={ref} className={classNames(styles.video)}>
+    <div ref={ref} className={classNames(styles.video, styles.provider)}>
       <div
         className={classNames(styles.inner, {
           [styles.inView]: inView,
@@ -21,14 +21,6 @@ const Video = ({ provider, id, poster }) => {
           paddingBottom: `${(360 / 640) * 100}%`,
         }}
       >
-        {poster && (
-          <Image
-            className={styles.poster}
-            src={poster}
-            layout="fill"
-            alt={id}
-          />
-        )}
         <Plyr
           source={{
             type: 'video',
@@ -42,6 +34,7 @@ const Video = ({ provider, id, poster }) => {
           options={{
             controls: [
               'play-large',
+              'play',
               'progress',
               'duration',
               'mute',
