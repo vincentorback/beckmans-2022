@@ -14,7 +14,6 @@ const Work = ({ project }) => {
 
   return (
     <div className={styles.work}>
-      <div />
       <div className={styles.inner}>
         {image && (
           <Image
@@ -117,6 +116,13 @@ const Work = ({ project }) => {
           height={917}
         />
         {video && <Video id="RecY5iZn6B0" provider="youtube" poster={image} />}
+      </div>
+      <div className={styles.map}>
+        <div>
+          <div>
+            <p>karta</p>
+          </div>
+        </div>
       </div>
     </div>
   )
