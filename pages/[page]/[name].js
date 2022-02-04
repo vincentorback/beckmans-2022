@@ -3,13 +3,13 @@ import { queryDocuments, fakeProjects } from '../../lib/content'
 import { slugify } from '../../lib/utilities'
 import Layout from '../../components/Layout'
 import Header from '../../components/Header'
-import Work from '../../components/Work'
+import Project from '../../components/Project'
 
-export default function Project({ project }) {
+export default function ProjectPage({ project }) {
   return (
     <Layout>
       <Header />
-      <Work project={project} />
+      <Project project={project} />
     </Layout>
   )
 }

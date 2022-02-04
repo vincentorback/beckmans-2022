@@ -3,13 +3,13 @@ import ProjectsGrid from '../components/ProjectsGrid'
 import ProjectLists from '../components/ProjectLists'
 import Layout from '../components/Layout'
 import Header from '../components/Header'
-import GridFilters from '../components/GridFilters'
+import Filters from '../components/Filters'
 import { queryDocuments, fakeProjects } from '../lib/content'
 import { randomColor } from '../lib/utilities'
 
 const DEFAULT_FILTER = null
 
-export default function Home(props) {
+export default function HomePage(props) {
   const { projects } = props
 
   const filters = Array.from(
@@ -37,7 +37,7 @@ export default function Home(props) {
   return (
     <Layout {...props}>
       <Header>
-        <GridFilters
+        <Filters
           activeFilter={activeFilter}
           filters={filters}
           onClick={onClick}

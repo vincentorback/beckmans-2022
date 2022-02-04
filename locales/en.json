@@ -2,8 +2,7 @@
   "navigation": {
     "menu": "Menu",
     "currentLanguage": "English",
-    "otherLanguage": "Svenska",
-    "switchLocale": "Switch to {locale, select, sv {Swedish} en {English}}"
+    "otherLanguage": "Svenska"
   },
   "categories": {
     "fashion": "Fashion",

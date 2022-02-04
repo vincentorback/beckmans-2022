@@ -1,27 +1,2 @@
 .footer {
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  background-color: var(--color-background);
-  text-align: right;
-
-  white-space: nowrap;
-}
-
-.footerInner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.footer nav {
-  display: flex;
-  gap: var(--site-spacing);
-}
-
-.footer nav a {
-  padding: var(--site-spacing) 0;
-  display: inline-block;
 }

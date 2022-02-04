@@ -1,9 +1,9 @@
 import classNames from 'classnames'
-import styles from './gridfilters.module.css'
+import styles from './filters.module.css'
 import { slugify } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
 
-const GridFilters = ({ filters, activeFilter, onClick }) => {
+const Filters = ({ filters, activeFilter, onClick }) => {
   const t = useTranslations()
 
   return (
@@ -23,4 +23,4 @@ const GridFilters = ({ filters, activeFilter, onClick }) => {
   )
 }
 
-export default GridFilters
+export default Filters

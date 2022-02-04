@@ -1,4 +1,4 @@
-.work {
+.project {
   padding-top: var(--site-spacing);
   padding-bottom: var(--site-spacing);
   display: grid;
@@ -6,7 +6,7 @@
 }
 
 @media (min-width: 1200px) {
-  .work {
+  .project {
     display: grid;
     gap: var(--site-spacing);
     grid-template-columns: repeat(12, 1fr);

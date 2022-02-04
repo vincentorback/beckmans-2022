@@ -1,4 +1,4 @@
-function FourOFour() {
+export default function FourOFourPage() {
   return (
     <>
       <p>404 - Something went wrong</p>
@@ -6,5 +6,3 @@ function FourOFour() {
     </>
   )
 }
-
-export default FourOFour

@@ -1,19 +1,19 @@
 import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import Image from '../../components/Image'
-import Video from '../../components/Video'
-import styles from './work.module.css'
+import Image from '../Image'
+import Video from '../Video'
+import styles from './project.module.css'
 import classNames from 'classnames'
 
-const Work = ({ project }) => {
+const Project = ({ project }) => {
   const router = useRouter()
   const { category, name, title, image, links, video, thanks } = project
 
   const t = useTranslations('categories')
 
   return (
-    <div className={styles.work}>
+    <div className={styles.project}>
       <div className={styles.inner}>
         {image && (
           <Image
@@ -160,4 +160,4 @@ const Work = ({ project }) => {
   )
 }
 
-export default Work
+export default Project

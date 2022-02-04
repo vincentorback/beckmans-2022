@@ -2,8 +2,7 @@
   "navigation": {
     "menu": "Meny",
     "currentLanguage": "Svenska",
-    "otherLanguage": "English",
-    "switchLocale": "Byt till {locale, select, sv {Svenska} en {Engelska}}"
+    "otherLanguage": "English"
   },
   "categories": {
     "fashion": "Mode",

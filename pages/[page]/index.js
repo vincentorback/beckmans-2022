@@ -3,15 +3,12 @@ import { queryDocuments } from '../../lib/content'
 import { localeStrings } from '../../lib/constants'
 import Layout from '../../components/Layout'
 import Header from '../../components/Header'
-// import Slices from '../../components/Slices'
-// import Slices from '../../components/Slices'
 
 export default function Page({ page }) {
   return (
     <Layout>
       <Header />
       <p>{page.data.title[0].text}</p>
-      {/* <Slices slices={page.body} doc={page} /> */}
     </Layout>
   )
 }

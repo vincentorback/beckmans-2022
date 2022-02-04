@@ -1,4 +1,4 @@
-function Error({ statusCode, statusMessage }) {
+export default function ErrorPage({ statusCode, statusMessage }) {
   return (
     <>
       <p>{statusCode} Something went wrong</p>
@@ -15,5 +15,3 @@ export async function getServerSideProps(props) {
     },
   }
 }
-
-export default Error

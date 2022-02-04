@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next-translate-routes/link'
 import classNames from 'classnames'
-import styles from './index.module.css'
+import styles from './projectLists.module.css'
 import { useTranslations } from 'next-intl'
 
 const ProjectLists = ({ items, setActiveItem, activeItem }) => {
