@@ -31,6 +31,7 @@ const Image = (props) => {
       //   'is-loaded': isLoaded,
       // })}
       style={{
+        backgroundColor: layout !== 'fill' && 'var(--color-blue)',
         position: 'relative',
         width: layout === 'fill' && '100%',
         height: layout === 'fill' && '100%',
