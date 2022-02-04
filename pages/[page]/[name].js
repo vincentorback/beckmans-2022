@@ -40,10 +40,6 @@ export async function getStaticPaths({ locales }) {
     })
   })
 
-  // const missingPaths = paths.filter(
-  //   (path) => !projects.find((project) => project.name === path.params.name)
-  // )
-
   return {
     paths,
     fallback: false,
@@ -55,12 +51,10 @@ export async function getStaticProps({ params, locale }) {
   const project = fakeProjects.find(
     (item) => slugify(item.name) === params.name
   )
-
-  // console.log(3, project.uid)
-
-  // const project = content.find(
+  // const project content.find(
   //   (item) => item.type === 'project' && item.uid === params.name
   // )
+
   const pages = content.filter((item) => item.type === 'page')
   const messages = require(`../../locales/${locale}.json`)
 
@@ -73,8 +67,6 @@ export async function getStaticProps({ params, locale }) {
       },
     }
   }
-
-  // console.log(4, project.uid)
 
   return {
     props: {

@@ -1,14 +1,19 @@
 .filters {
   display: flex;
   flex-wrap: wrap;
-  gap: calc(var(--site-spacing) * 0.5) calc(var(--site-spacing) * 1);
+  gap: calc(var(--site-spacing) * 0.5) calc(var(--site-spacing) * 0.5);
 }
 
 .button {
   text-align: left;
-  font-size: 1.3rem;
   font-weight: var(--text-bold);
   transition: opacity 200ms ease;
+}
+
+@media (min-width: 1300px) {
+  .button {
+    font-size: 1.3125rem;
+  }
 }
 
 .button:not(.is-active) {

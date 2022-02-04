@@ -54,6 +54,16 @@ const Header = ({ children }) => {
         </Link>
       </div>
       <div className={styles.topRight}>
+        <Link
+          href={{
+            pathname: router.asPath,
+            query: router.query,
+          }}
+          locale={otherLocale}
+        >
+          <a>{t('navigation.otherLanguage')}</a>
+        </Link>
+
         <button type="button">
           <svg
             width="20"

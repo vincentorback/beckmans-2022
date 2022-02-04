@@ -30,7 +30,7 @@
 
 @media (max-width: 1300px) {
   .header {
-    gap: var(--site-spacing);
+    gap: 0 var(--site-spacing);
   }
 
   .mid {
@@ -67,13 +67,32 @@
 
 .mid svg {
   display: block;
-  max-width: 380px;
+  max-width: 440px;
   height: auto;
   margin: 0 auto;
 }
 
+@media (max-width: 1300px) {
+  .mid svg {
+    max-width: 380px;
+  }
+}
+
+.topRight {
+  display: flex;
+  justify-content: flex-end;
+  gap: calc(var(--site-spacing) * 2);
+}
+
+.topRight a {
+  transition: opacity 150ms ease;
+}
+
+.topRight a:hover {
+  opacity: 0.6;
+}
+
 .topRight button {
-  margin-left: auto;
   width: 22px;
   height: 22px;
   transition: color 150ms ease;
@@ -91,19 +110,29 @@
 }
 
 .topLeft p {
-  font-size: 1.3125rem;
   line-height: 1.15;
   font-weight: var(--text-bold);
 }
 
 .bottomRight p {
-  font-size: 1.3125rem;
   line-height: 1.15;
   font-family: var(--text-serif);
   font-style: italic;
 }
 
+@media (min-width: 1300px) {
+  .topLeft p,
+  .bottomRight p {
+    font-size: 1.3125rem;
+  }
+}
+
 @media (max-width: 800px) {
+  .header {
+    gap: var(--site-spacing);
+  }
+
+  .topRight a,
   .topLeft,
   .bottomRight {
     display: none;
@@ -117,74 +146,3 @@
     margin: 0;
   }
 }
-
-/* .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-@media (max-width: 1200px) {
-  .header {
-    display: block;
-  }
-}
-
-.logo {
-  flex: 1 0 auto;
-  max-width: 380px;
-  margin: 0 auto;
-}
-
-@media (min-width: 1200px) {
-  .logo {
-    order: 1;
-    flex: 1 0 380px;
-    margin: calc(var(--site-spacing) * 0.75) auto;
-  }
-}
-
-.logo svg {
-  display: block;
-  width: 100%;
-  max-width: 380px;
-  height: auto;
-}
-
-.title {
-  display: none;
-}
-
-.filter {
-  flex: 1 0 auto;
-}
-
-@media (min-width: 1200px) {
-  .filter {
-    order: 0;
-    flex: 1 0 33%;
-  }
-}
-
-.header nav {
-  text-align: right;
-  flex: 1 0 33%;
-  gap: var(--site-spacing);
-  line-height: 1.4;
-}
-@media (min-width: 600px) {
-  .header nav {
-    order: 2;
-  }
-}
-
-.header nav a {
-  text-decoration: underline;
-  transition: opacity 200ms ease;
-}
-
-.header nav a:hover {
-  opacity: 0.7;
-} */

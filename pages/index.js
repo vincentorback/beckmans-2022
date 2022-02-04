@@ -26,6 +26,8 @@ export default function HomePage(props) {
   const onClick = React.useCallback(
     (filter) => {
       const newFilter = activeFilter === filter ? DEFAULT_FILTER : filter
+
+      // TODO: Reset activeItem if category does not match newFilter
       // setActiveItem((item) =>
       //   !item.category || item.category !== newFilter ? null : item
       // )
