@@ -1,14 +1,21 @@
 import React from 'react'
 import { queryDocuments, fakeProjects } from '../../lib/content'
+import { useTranslations } from 'next-intl'
 import { slugify } from '../../lib/utilities'
 import Layout from '../../components/Layout'
 import Header from '../../components/Header'
 import Project from '../../components/Project'
 
 export default function ProjectPage({ project }) {
+  const t = useTranslations('categories')
+
   return (
     <Layout>
-      <Header />
+      <Header>
+        <p>
+          {project.name} - {t(project.category)}
+        </p>
+      </Header>
       <Project project={project} />
     </Layout>
   )

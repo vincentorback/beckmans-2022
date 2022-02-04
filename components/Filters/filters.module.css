@@ -1,7 +1,7 @@
 .filters {
   display: flex;
   flex-wrap: wrap;
-  gap: calc(var(--site-spacing) * 0.5) var(--site-spacing);
+  gap: calc(var(--site-spacing) * 0.5) calc(var(--site-spacing) * 1);
 }
 
 .button {
