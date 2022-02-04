@@ -66,6 +66,13 @@ export default function Home(props) {
       />
       <div
         style={{
+          backgroundColor: 'var(--color-red)',
+          minHeight: '80vh',
+          marginBottom: 'var(--site-spacing)',
+        }}
+      />
+      <div
+        style={{
           minHeight: '1px',
         }}
       />

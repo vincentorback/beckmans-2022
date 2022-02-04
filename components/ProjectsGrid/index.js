@@ -46,7 +46,7 @@ const Window = ({ item }) => {
   )
 }
 
-const Grid = ({ activeFilter, items, handleMouseEnter }) => {
+const Grid = ({ isLoaded, activeFilter, items, handleMouseEnter }) => {
   return (
     <div className={styles.grid}>
       {items.map((item, itemIndex) => {
@@ -60,12 +60,9 @@ const Grid = ({ activeFilter, items, handleMouseEnter }) => {
             key={item.uid || itemIndex}
             className={classNames(styles.item, {
               [styles['is-visible']]: isVisible,
-              // [styles['is-active']]: activeItem === item.uid,
+              [styles['is-loaded']]: isLoaded,
               [styles['is-extra']]: !item.name,
             })}
-            style={{
-              '--color': item.color,
-            }}
             onMouseEnter={() => handleMouseEnter(item)}
           >
             {item.name ? (
@@ -132,7 +129,7 @@ const Grid = ({ activeFilter, items, handleMouseEnter }) => {
 
 const ProjectsGrid = ({ items, activeFilter, setActiveItem, activeItem }) => {
   // const { locale } = useRouter()
-  // const [activeItem, setActiveItem] = React.useState(null)
+  const [isLoaded, setIsLoaded] = React.useState(true)
 
   // const testItems = React.useMemo(() => {
   //   return items.concat({
@@ -147,10 +144,12 @@ const ProjectsGrid = ({ items, activeFilter, setActiveItem, activeItem }) => {
   // console.log(testItems.length)
 
   // React.useEffect(() => {
-  //   if (activeFilter && activeItem && activeItem.category !== activeFilter) {
-  //     setActiveItem(null)
-  //   }
-  // }, [activeItem, activeFilter, setActiveItem])
+  //   let timout = setTimeout(() => {
+  //     setIsLoaded(true)
+  //   }, 3000)
+
+  //   return () => clearTimeout(timout)
+  // }, [])
 
   const handleMouseEnter = React.useCallback(
     (item) => {
@@ -165,9 +164,10 @@ const ProjectsGrid = ({ items, activeFilter, setActiveItem, activeItem }) => {
         items={items}
         activeFilter={activeFilter}
         handleMouseEnter={handleMouseEnter}
+        isLoaded={isLoaded}
       />
     ),
-    [items, activeFilter, handleMouseEnter]
+    [items, activeFilter, handleMouseEnter, isLoaded]
   )
 
   const memoWindow = React.useMemo(

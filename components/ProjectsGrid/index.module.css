@@ -28,6 +28,7 @@
   padding-bottom: 100%;
 }
 
+.item:not(.is-loaded),
 .item:not(.is-visible) {
   pointer-events: none;
 }
@@ -49,10 +50,11 @@
   height: 100%;
   z-index: 1;
   opacity: 1;
-  transition: opacity 120ms ease;
+  transition: opacity 200ms ease;
   background-color: var(--color);
 }
 
+.item:not(.is-loaded) .link,
 .item:not(.is-visible) .link {
   opacity: 0;
 }
@@ -131,14 +133,18 @@
   width: 4px;
   height: 4px;
   transform: translate(-50%, -50%);
-  background-color: #fff;
+  background-color: var(--color-cream);
   transition: opacity 300ms ease, transform 300ms ease,
     background-color 300ms ease;
 }
 
-.item:not(.is-visible) .dots div {
-  opacity: 0.25;
+.item:not(.is-loaded) .dots div {
+  background-color: var(--color-black);
 }
+
+/* .item:not(.is-visible) .dots div {
+  opacity: 0.25;
+} */
 
 .dots div:nth-child(2),
 .dots div:nth-child(5),
