@@ -1,0 +1,67 @@
+.entry {
+  line-height: 1.25;
+}
+
+.entry > * + * {
+  margin-top: 1.25em;
+}
+
+.title {
+  font-size: 2rem;
+  line-height: 1.15;
+  font-weight: 600;
+}
+
+.subtitle {
+  font-size: 2rem;
+  line-height: 1.15;
+}
+
+.entry h2,
+.entry h3,
+.entry h4 {
+  font-weight: var(--text-bold);
+}
+
+.entry h2 {
+  font-size: 1.5rem;
+}
+.entry h3 {
+  font-size: 1.3125rem;
+}
+.entry h4 {
+  font-size: 1.2rem;
+}
+
+.entry ul,
+.entry ol {
+  list-style-position: inside;
+}
+
+.entry strong {
+  font-weight: var(--text-bold);
+}
+
+.entry em {
+  font-style: italic;
+}
+
+.entry a {
+  text-decoration: underline;
+  transition: opacity 150ms ease;
+}
+
+.entry a:hover {
+  opacity: 0.6;
+}
+
+.grid {
+  display: grid;
+  gap: var(--site-spacing);
+}
+
+@media (min-width: 800px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

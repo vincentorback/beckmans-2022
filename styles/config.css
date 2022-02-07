@@ -6,8 +6,8 @@
   --text-normal: 400;
   --text-bold: 600;
 
-  --site-spacing: clamp(0.5rem, 2.22vw, 2rem);
-  --site-width: 1440px;
+  --site-spacing: clamp(1rem, 2.22vw, 2rem);
+  --site-width: calc(1440px - (var(--site-spacing) * 2));
 
   --color-black: #000;
   --color-blue: #a6b7d5;

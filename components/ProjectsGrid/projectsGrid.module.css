@@ -12,13 +12,15 @@
 }
 
 .grid {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: repeat(6, 7fr);
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 2200px) {
   .grid {
-    grid-template-columns: repeat(6, 7fr);
+    grid-template-columns: repeat(7, 7fr);
   }
 }
 
@@ -173,6 +175,7 @@
 
 .windowItem {
   position: relative;
+  z-index: 1;
   height: 0;
   padding-bottom: 100%;
   width: 100%;
@@ -214,6 +217,8 @@
   color: var(--color-cream);
   font-size: clamp(2rem, 5vw, 4rem);
   line-height: 1.25;
+
+  white-space: pre-line;
 }
 
 .windowContent p:first-child {
@@ -222,10 +227,6 @@
 
 .windowContent p:last-child {
   top: calc(100% / 1.5);
-}
-
-.windowContent p {
-  white-space: pre-line;
 }
 
 .windowDots {
@@ -240,8 +241,8 @@
 
 .windowDots div {
   position: absolute;
-  top: calc(100% / 6);
-  left: calc(100% / 6);
+  top: calc(100% / 7);
+  left: calc(100% / 7);
   width: 8px;
   height: 8px;
   transform: translate(-50%, -50%);
@@ -254,6 +255,10 @@
 
 .windowDots.is-visible div {
   background-color: var(--color-cream);
+}
+
+.windowDots svg {
+  transform: translate(-4px, -12px);
 }
 
 .windowDots div:nth-child(2),
@@ -277,5 +282,5 @@
 .windowDots div:nth-child(7),
 .windowDots div:nth-child(8),
 .windowDots div:nth-child(9) {
-  top: calc(100% - (100% / 6));
+  top: calc(100% - (100% / 7));
 }

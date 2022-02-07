@@ -42,8 +42,8 @@ const Window = ({ item }) => {
           <Image
             className={styles.windowItemImage}
             src={item.image}
-            width={1200}
-            height={1200}
+            width={400}
+            height={400}
             alt=""
             layout="fill"
             quality={10}
@@ -55,7 +55,22 @@ const Window = ({ item }) => {
           })}
         >
           {[...Array(9)].map((_, i) => (
-            <div key={`${item.uid}_${i}`}>{!item.title && '←'}</div>
+            <div key={`${item.uid}_${i}`}>
+              {!item.title && (
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16 7H3.83L9.42 1.41L8 0L0 8L8 16L9.41 14.59L3.83 9H16V7Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              )}
+            </div>
           ))}
         </div>
       </LinkWrap>
@@ -102,11 +117,11 @@ const Grid = ({ isLoaded, activeFilter, items, handleMouseEnter }) => {
                         <Image
                           className={styles.image}
                           src={item.image}
-                          width={100}
-                          height={100}
+                          width={1080}
+                          height={1350}
                           alt=""
                           layout="fill"
-                          quality={10}
+                          quality={50}
                         />
                       )}
                     </div>

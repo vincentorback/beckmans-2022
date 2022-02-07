@@ -3,79 +3,50 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Image from '../Image'
 import Video from '../Video'
+import Pagination from '../Pagination'
+import Entry from '../Entry'
 import styles from './project.module.css'
 import classNames from 'classnames'
 
-const Project = ({ project }) => {
+const Project = ({ project, nextProject, prevProject }) => {
   const router = useRouter()
   const { category, name, title, image, links, video, thanks } = project
 
   const t = useTranslations('categories')
 
   return (
-    <div className={styles.project}>
+    <article className={styles.project}>
       <div className={styles.inner}>
         {image && (
           <Image
-            src={image + '1'}
+            className={styles.mainImage}
+            src={image}
             alt=""
             layout="responsive"
-            width={447}
-            height={560}
+            width={803}
+            height={928}
           />
         )}
-        <div className={classNames(styles.grid, styles.textBlock)}>
-          <div>
-            {name && (
-              <h1 className={styles.title}>
-                {name} <br />
-                {title[router.locale]}
-              </h1>
-            )}
+        <div className={styles.content}>
+          <div className={styles.mainText}>
+            <header className={styles.header}>
+              {name && (
+                <h1 className={styles.title}>
+                  {name} <br />
+                  {title[router.locale]}
+                </h1>
+              )}
+            </header>
             <div className={styles.text}>
-              <p>
-                Mitt <strong>examensarbete</strong> är ett
-                <em>självutforskande</em> av identitet ur ett posthumanistiskt
-                perspektiv. <a href="#/">Resultatet</a> är tre självporträtt där
-                jag gestaltar min mångfacetterade identitet i form av en avatar.
-              </p>
-              <h2>Rubrik 2</h2>
-              <p>
-                Mitt examensarbete är ett självutforskande av identitet ur ett
-                posthumanistiskt perspektiv. Resultatet är tre självporträtt där
-                jag gestaltar min mångfacetterade identitet i form av en avatar.
-              </p>
-              <h3>Rubrik 3</h3>
-              <p>
-                Mitt examensarbete är ett självutforskande av identitet ur ett
-                posthumanistiskt perspektiv. Resultatet är tre självporträtt där
-                jag gestaltar min mångfacetterade identitet i form av en avatar.
-              </p>
-              <ul>
-                <li>Lista med saker</li>
-                <li>Kan vara vadsom</li>
-                <li>helst?</li>
-              </ul>
-              <h4>Rubrik 4</h4>
-              <p>
-                Mitt examensarbete är ett självutforskande av identitet ur ett
-                posthumanistiskt perspektiv. Resultatet är tre självporträtt där
-                jag gestaltar min mångfacetterade identitet i form av en avatar.
-              </p>
-              <ol>
-                <li>Lista med saker</li>
-                <li>Kan vara vadsom</li>
-                <li>helst?</li>
-              </ol>
-              <p>
-                Mitt examensarbete är ett självutforskande av identitet ur ett
-                posthumanistiskt perspektiv. Resultatet är tre självporträtt där
-                jag gestaltar min mångfacetterade identitet i form av en avatar.
-              </p>
+              <Entry />
             </div>
-            {category && <h2 className={styles.subtitle}>{t(category)}</h2>}
           </div>
-          <div>
+
+          <div className={styles.projectInfo}>
+            <div className={styles.info}>
+              <h4>Progam</h4>
+              <p>{t(category)}</p>
+            </div>
             <div className={styles.info}>
               <h4>Kontakt</h4>
               {links && (
@@ -89,16 +60,6 @@ const Project = ({ project }) => {
                   ))}
                 </ul>
               )}
-            </div>
-            <div className={styles.info}>
-              <h4>Pressbilder</h4>
-              <ul>
-                <li>
-                  <Link href={'#/'} prefetch={false}>
-                    <a>Ladda ner</a>
-                  </Link>
-                </li>
-              </ul>
             </div>
             {thanks && (
               <div className={styles.info}>
@@ -118,43 +79,56 @@ const Project = ({ project }) => {
                 </ul>
               </div>
             )}
+            <div className={styles.info}>
+              <h4>Pressbilder</h4>
+              <ul>
+                <li>
+                  <Link href={'#/'} prefetch={false}>
+                    <a>Ladda ner</a>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className={styles.media}>
+            {image && (
+              <div className={styles.mediaGrid}>
+                <Image
+                  src={image + '1'}
+                  alt=""
+                  layout="responsive"
+                  width={447}
+                  height={560}
+                />
+                <Image
+                  src={image}
+                  alt=""
+                  layout="responsive"
+                  width={447}
+                  height={560}
+                />
+              </div>
+            )}
+            <Video id="168013411" provider="vimeo" />
+            {/* <Video id="RecY5iZn6B0" provider="youtube" /> */}
+            {/* <Image
+              src="https://source.unsplash.com/random/558x917?1"
+              alt=""
+              layout="responsive"
+              width={917}
+              height={558}
+            />
+            <Image
+              src="https://source.unsplash.com/random/917x1149?2"
+              alt=""
+              layout="responsive"
+              width={803}
+              height={928}
+            /> */}
           </div>
         </div>
-
-        {image && (
-          <div className={styles.grid}>
-            <Image
-              src={image + '1'}
-              alt=""
-              layout="responsive"
-              width={447}
-              height={560}
-            />
-            <Image
-              src={image}
-              alt=""
-              layout="responsive"
-              width={447}
-              height={560}
-            />
-          </div>
-        )}
-        <Video id="168013411" provider="vimeo" />
-        <Image
-          src="https://source.unsplash.com/random/558x917?1"
-          alt=""
-          layout="responsive"
-          width={917}
-          height={558}
-        />
-        <Image
-          src="https://source.unsplash.com/random/917x1149?2"
-          alt=""
-          layout="responsive"
-          width={917}
-          height={1149}
-        />
-        <Video id="RecY5iZn6B0" provider="youtube" />
+        <Pagination next={nextProject} prev={prevProject} />
       </div>
       <div className={styles.map}>
         <div>
@@ -163,7 +137,7 @@ const Project = ({ project }) => {
           </div>
         </div>
       </div>
-    </div>
+    </article>
   )
 }
 

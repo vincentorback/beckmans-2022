@@ -20,6 +20,13 @@ const ProjectLists = ({ items, setActiveItem, activeItem }) => {
     [items]
   )
 
+  const handleMouseEnter = React.useCallback(
+    (item) => {
+      setActiveItem(item)
+    },
+    [setActiveItem]
+  )
+
   return (
     <div className={styles.container}>
       {lists &&
@@ -33,12 +40,12 @@ const ProjectLists = ({ items, setActiveItem, activeItem }) => {
             <div className={styles.list}>
               {list.items.map((item, itemIndex) => (
                 <p
-                  className={classNames({
-                    [styles['is-active']]:
-                      activeItem && activeItem.uid === item.uid,
-                  })}
+                  // className={classNames({
+                  //   [styles['is-active']]:
+                  //     activeItem && activeItem.uid === item.uid,
+                  // })}
                   key={itemIndex}
-                  onMouseEnter={() => setActiveItem(item)}
+                  onMouseEnter={() => handleMouseEnter(item)}
                 >
                   <Link href={item.url} prefetch={false}>
                     <a>

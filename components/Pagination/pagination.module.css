@@ -1,0 +1,39 @@
+.pagination {
+  margin-top: var(--site-spacing);
+  padding: var(--site-spacing) 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--site-spacing);
+
+  font-weight: var(--text-bold);
+  line-height: 1.25;
+}
+
+.pagination a {
+  display: block;
+  transition: opacity 150ms ease;
+}
+
+.pagination a:hover {
+  opacity: 0.6;
+}
+
+.pagination span,
+.pagination svg {
+  display: inline-block;
+}
+
+.pagination svg {
+  width: 1em;
+  height: 1em;
+  transform: translateY(2px);
+}
+
+.pagination span + svg {
+  margin-left: 1rem;
+}
+
+.pagination svg + span {
+  margin-left: 1rem;
+}

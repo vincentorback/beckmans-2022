@@ -6,7 +6,7 @@ import Layout from '../../components/Layout'
 import Header from '../../components/Header'
 import Project from '../../components/Project'
 
-export default function ProjectPage({ project }) {
+export default function ProjectPage({ project, nextProject, prevProject }) {
   const t = useTranslations('categories')
 
   return (
@@ -16,7 +16,11 @@ export default function ProjectPage({ project }) {
           {project.name} - {t(project.category)}
         </p>
       </Header>
-      <Project project={project} />
+      <Project
+        project={project}
+        nextProject={nextProject}
+        prevProject={prevProject}
+      />
     </Layout>
   )
 }
@@ -51,6 +55,11 @@ export async function getStaticProps({ params, locale }) {
   const project = fakeProjects.find(
     (item) => slugify(item.name) === params.name
   )
+  const currentIndex = fakeProjects.findIndex(
+    (item) => slugify(item.name) === params.name
+  )
+  const nextProject = fakeProjects[currentIndex + 1]
+  const prevProject = fakeProjects[currentIndex - 1]
   // const project content.find(
   //   (item) => item.type === 'project' && item.uid === params.name
   // )
@@ -73,6 +82,8 @@ export async function getStaticProps({ params, locale }) {
       project,
       pages,
       messages,
+      prevProject,
+      nextProject,
     },
   }
 }

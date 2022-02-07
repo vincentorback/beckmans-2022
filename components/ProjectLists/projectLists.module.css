@@ -19,9 +19,8 @@
 
 .cell h2 {
   display: block;
-  font-size: 1.3rem;
-  font-family: var(--text-serif);
-  font-style: italic;
+  font-size: 1.3125rem;
+  font-weight: var(--text-bold);
 }
 
 .cell h2 a {
@@ -34,7 +33,7 @@
 }
 
 .list {
-  border-top: 2px solid;
+  border-top: 1px solid;
   margin-top: 1em;
   padding-top: 1em;
   column-gap: 1em;
@@ -49,7 +48,7 @@
 }
 
 .list a {
-  display: block;
+  display: inline-block;
 }
 
 .list a span {

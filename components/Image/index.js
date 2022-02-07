@@ -33,8 +33,8 @@ const Image = (props) => {
       style={{
         backgroundColor: layout !== 'fill' && 'var(--color-blue)',
         position: 'relative',
-        width: layout === 'fill' && '100%',
-        height: layout === 'fill' && '100%',
+        width: layout === 'fill' ? '100%' : 'auto',
+        height: layout === 'fill' ? '100%' : 'auto',
         // transition: 'opacity 200ms ease 200ms',
         // opacity: isLoaded ? 1 : 0,
       }}
