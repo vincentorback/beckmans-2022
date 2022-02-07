@@ -1,3 +1,7 @@
+.credits {
+  padding: 20vh 0;
+}
+
 .credits h1 {
   font-size: 2rem;
   font-weight: var(--text-bold);
@@ -47,4 +51,12 @@
 
 .subtitle:not(:first-child) {
   margin-top: 1em;
+}
+
+.column a {
+  transition: opacity 150ms ease;
+}
+
+.column a:hover {
+  opacity: 0.4;
 }

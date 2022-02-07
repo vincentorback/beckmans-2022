@@ -4,6 +4,7 @@ import Credits from '../components/Credits'
 import Filters from '../components/Filters'
 import Header from '../components/Header'
 import Layout from '../components/Layout'
+import ProjectAccordions from '../components/ProjectAccordions'
 import ProjectLists from '../components/ProjectLists'
 import ProjectsGrid from '../components/ProjectsGrid'
 import Text from '../components/Text'
@@ -37,24 +38,48 @@ export const fakeCredits = [
 const DEFAULT_FILTER = null
 
 const Projects = ({ projects, filters, activeFilter }) => {
+  const containerRef = React.useRef(null)
   const [activeItem, setActiveItem] = React.useState(null)
+  const [windowWidth, setWindowWidth] = React.useState(0)
+
+  const onResize = React.useCallback((e) => {
+    setWindowWidth(window.innerWidth)
+  }, [])
+
+  React.useEffect(() => {
+    window.addEventListener('resize', onResize)
+
+    onResize()
+
+    return () => {
+      window.addEventListener('resize', onResize)
+    }
+  }, [onResize])
+
+  if (!windowWidth) return null
 
   return (
     <Container size="lg">
-      <ProjectsGrid
-        items={projects}
-        activeFilter={activeFilter}
-        filters={filters}
-        setActiveItem={setActiveItem}
-        activeItem={activeItem}
-      />
-      <ProjectLists
-        items={projects}
-        activeFilter={activeFilter}
-        filters={filters}
-        setActiveItem={setActiveItem}
-        activeItem={activeItem}
-      />
+      {windowWidth > 800 ? (
+        <>
+          <ProjectsGrid
+            items={projects}
+            activeFilter={activeFilter}
+            filters={filters}
+            setActiveItem={setActiveItem}
+            activeItem={activeItem}
+          />
+          <ProjectLists
+            items={projects}
+            activeFilter={activeFilter}
+            filters={filters}
+            setActiveItem={setActiveItem}
+            activeItem={activeItem}
+          />
+        </>
+      ) : (
+        <ProjectAccordions items={projects} />
+      )}
     </Container>
   )
 }
@@ -62,13 +87,9 @@ const Projects = ({ projects, filters, activeFilter }) => {
 export default function HomePage(props) {
   const { projects } = props
 
-  const filters = Array.from(new Set(projects.map((item) => item.category)))
-    .filter((category) => category)
-    .sort((a) => {
-      if (a === 'form') return -1
-      if (a === 'fashion') return 0
-      return 1
-    })
+  const filters = Array.from(
+    new Set(projects.map((item) => item.category))
+  ).filter((category) => category)
 
   const [activeFilter, setActiveFilter] = React.useState(DEFAULT_FILTER)
 
@@ -128,7 +149,14 @@ export async function getStaticProps({ locale }) {
     Array.isArray(projects) &&
     projects.some((item) => item.uid === 'apply') === false
   ) {
-    projects.push({
+    projects.splice(36, 0, {
+      uid: 'fashion',
+      title: locale === 'sv' ? 'Modevisning' : 'Fashion show',
+      subtitle: locale === 'sv' ? '17 maj' : 'May 17',
+      color: '#000',
+    })
+
+    projects.splice(projects.length, 0, {
       uid: 'apply',
       title: locale === 'sv' ? 'Sök nu' : 'Apply now',
       subtitle: 'beckmans.se',

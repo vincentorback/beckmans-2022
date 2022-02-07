@@ -147,10 +147,10 @@
   }
 
   .mid {
-    grid-column: 1 / 8;
+    grid-column: 1 / 13;
   }
 
   .mid svg {
-    margin: 0;
+    margin: 0 auto;
   }
 }

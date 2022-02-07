@@ -1,9 +1,11 @@
 import styles from './container.module.css'
 import classNames from 'classnames'
 
-const Container = ({ children, size }) => {
+const Container = ({ ref, children, size }) => {
   return (
-    <div className={classNames(styles.container, styles[size])}>{children}</div>
+    <div ref={ref} className={classNames(styles.container, styles[size])}>
+      {children}
+    </div>
   )
 }
 

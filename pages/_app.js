@@ -1,3 +1,4 @@
+import React from 'react'
 import { NextIntlProvider } from 'next-intl'
 import withTranslateRoutes from 'next-translate-routes'
 import '../styles/index.css'

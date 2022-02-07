@@ -93,16 +93,19 @@ const Window = ({ isLoaded, item }) => {
 
 const Grid = ({ isLoaded, activeFilter, items, handleMouseEnter, onLoad }) => {
   const [loadedImages, setLoadedImages] = React.useState(0)
-
+  const realProjectsLength = React.useMemo(
+    () => items.filter((item) => item.category).length,
+    [items]
+  )
   const handleImageLoad = React.useCallback(() => {
     setLoadedImages((i) => i + 1)
   }, [])
 
   React.useEffect(() => {
-    if (loadedImages >= items.length - 1) {
+    if (loadedImages >= realProjectsLength) {
       onLoad()
     }
-  }, [loadedImages, items.length, onLoad])
+  }, [loadedImages, realProjectsLength, onLoad])
 
   return (
     <div className={styles.grid}>

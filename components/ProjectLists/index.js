@@ -10,9 +10,9 @@ const ProjectLists = ({ items, setActiveItem, activeItem }) => {
   const lists = React.useMemo(
     () =>
       [
-        items.filter((item) => item.category === 'fashion'),
         items.filter((item) => item.category === 'form'),
         items.filter((item) => item.category === 'visual-communication'),
+        items.filter((item) => item.category === 'fashion'),
       ].map((items) => ({
         items,
         id: items[0].category,

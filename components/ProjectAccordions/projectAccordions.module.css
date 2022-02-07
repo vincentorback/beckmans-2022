@@ -1,0 +1,77 @@
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.list:not(:last-child) {
+  border-bottom: 1px solid;
+}
+
+.list button {
+  font-weight: var(--text-bold);
+  display: block;
+  padding: var(--site-spacing) 0;
+}
+
+.list:not(.is-active) .listContent {
+  display: none;
+}
+
+.list button {
+  font-size: 1.3125rem;
+  font-weight: var(--text-bold);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.list button span {
+  display: block;
+}
+
+.list button svg {
+  display: block;
+  transform: rotateZ(0);
+  transition: transform 750ms ease;
+}
+
+.list.is-active button svg {
+  transform: rotateZ(135deg);
+}
+
+.item {
+  border-top: 1px solid;
+  padding: calc(var(--site-spacing) * 1) 0;
+}
+
+.item a {
+  display: flex;
+  justify-content: space-between;
+}
+
+.item .content {
+  flex: 1 1 auto;
+  font-size: 0.875em;
+  line-height: 1.25;
+}
+
+.item .content p:first-child {
+  font-weight: var(--text-bold);
+}
+
+.item .imageWrap {
+  flex: 0 0 110px;
+  position: relative;
+}
+
+.dots div {
+  position: absolute;
+  top: calc((100% / 2) * var(--row));
+  left: calc((100% / 2) * var(--cell));
+  width: 3px;
+  height: 3px;
+  transform: translate(-50%, -50%);
+  background-color: var(--color-cream);
+  transition: opacity 150ms ease, transform 150ms ease,
+    background-color 150ms ease;
+}
