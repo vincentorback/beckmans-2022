@@ -7,7 +7,7 @@
 .button {
   text-align: left;
   font-weight: var(--text-bold);
-  transition: opacity 200ms ease;
+  transition: opacity 150ms ease;
 }
 
 .button:not(.is-active) {

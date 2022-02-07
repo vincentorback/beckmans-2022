@@ -15,9 +15,8 @@
   position: relative;
   height: 0;
   overflow: hidden;
-  padding-bottom: 50%;
   opacity: 0;
-  transition: opacity 300ms ease 300ms;
+  transition: opacity 150ms ease 150ms;
 }
 
 .inner.inView {

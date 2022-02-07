@@ -31,7 +31,7 @@ const ProjectLists = ({ items, setActiveItem, activeItem }) => {
     <div className={styles.container}>
       {lists &&
         lists.map((list, listIndex) => (
-          <div className={styles.cell} key={listIndex}>
+          <div className={styles.cell} key={list.id}>
             <h2 className={styles.title}>
               <Link href={`/${list.id}`} prefetch={false}>
                 <a>{t(`categories.${list.id}`)}</a>
@@ -44,7 +44,7 @@ const ProjectLists = ({ items, setActiveItem, activeItem }) => {
                   //   [styles['is-active']]:
                   //     activeItem && activeItem.uid === item.uid,
                   // })}
-                  key={itemIndex}
+                  key={item.uid}
                   onMouseEnter={() => handleMouseEnter(item)}
                 >
                   <Link href={item.url} prefetch={false}>

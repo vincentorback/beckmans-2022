@@ -15,7 +15,8 @@
 }
 
 .mid {
-  grid-column: 5 / 9;
+  grid-column: 6 / 8;
+  /* grid-column: 5 / 9; */
   /* grid-row: 1 / span 2; */
   display: flex;
   justify-content: center;
@@ -67,7 +68,7 @@
 
 .mid svg {
   display: block;
-  max-width: 285px;
+  max-width: 230px;
   height: auto;
   margin: 0 auto;
 }
@@ -79,11 +80,12 @@
   gap: calc(var(--site-spacing) * 2);
 }
 
-.topRight a {
+.languagleLink {
+  opacity: 1;
   transition: opacity 150ms ease;
 }
 
-.topRight a:hover {
+.languagleLink:hover {
   opacity: 0.6;
 }
 

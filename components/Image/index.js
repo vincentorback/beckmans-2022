@@ -35,7 +35,7 @@ const Image = (props) => {
         position: 'relative',
         width: layout === 'fill' ? '100%' : 'auto',
         height: layout === 'fill' ? '100%' : 'auto',
-        // transition: 'opacity 200ms ease 200ms',
+        // transition: 'opacity 150ms ease 150ms',
         // opacity: isLoaded ? 1 : 0,
       }}
     >

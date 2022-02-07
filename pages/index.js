@@ -1,50 +1,46 @@
 import React from 'react'
-import ProjectsGrid from '../components/ProjectsGrid'
-import ProjectLists from '../components/ProjectLists'
-import Layout from '../components/Layout'
-import Header from '../components/Header'
+import Container from '../components/Container'
+import Credits from '../components/Credits'
 import Filters from '../components/Filters'
+import Header from '../components/Header'
+import Layout from '../components/Layout'
+import ProjectLists from '../components/ProjectLists'
+import ProjectsGrid from '../components/ProjectsGrid'
+import Text from '../components/Text'
 import { queryDocuments, fakeProjects } from '../lib/content'
-import { randomColor } from '../lib/utilities'
+import { randomColor, randomFromArray } from '../lib/utilities'
+
+export const fakeCredits = [
+  {
+    title: 'Utställning',
+  },
+  {
+    title: 'Produktion',
+  },
+  {
+    title: 'Modevisning',
+  },
+  {
+    title: 'Form',
+  },
+  {
+    title: 'Visuell Kommunikation',
+  },
+  {
+    title: 'Mode',
+  },
+  {
+    title: 'Tack till',
+  },
+]
 
 const DEFAULT_FILTER = null
 
-export default function HomePage(props) {
-  const { projects } = props
-
-  const filters = Array.from(
-    new Set(projects.map((item) => item.category))
-  ).sort((a) => {
-    if (a === 'form') return -1
-    if (a === 'fashion') return 0
-    return 1
-  })
-
-  const [activeFilter, setActiveFilter] = React.useState(DEFAULT_FILTER)
+const Projects = ({ projects, filters, activeFilter }) => {
   const [activeItem, setActiveItem] = React.useState(null)
 
-  const onClick = React.useCallback(
-    (filter) => {
-      const newFilter = activeFilter === filter ? DEFAULT_FILTER : filter
-
-      // TODO: Reset activeItem if category does not match newFilter
-      // setActiveItem((item) =>
-      //   !item.category || item.category !== newFilter ? null : item
-      // )
-      setActiveFilter(newFilter)
-    },
-    [activeFilter]
-  )
-
   return (
-    <Layout {...props}>
-      <Header>
-        <Filters
-          activeFilter={activeFilter}
-          filters={filters}
-          onClick={onClick}
-        />
-      </Header>
+    <Container size="lg">
       <ProjectsGrid
         items={projects}
         activeFilter={activeFilter}
@@ -59,20 +55,60 @@ export default function HomePage(props) {
         setActiveItem={setActiveItem}
         activeItem={activeItem}
       />
-      <div
-        style={{
-          backgroundColor: 'var(--color-blue)',
-          minHeight: '120vh',
-          marginBottom: 'var(--site-spacing)',
-        }}
+    </Container>
+  )
+}
+
+export default function HomePage(props) {
+  const { projects } = props
+
+  const filters = Array.from(new Set(projects.map((item) => item.category)))
+    .filter((category) => category)
+    .sort((a) => {
+      if (a === 'form') return -1
+      if (a === 'fashion') return 0
+      return 1
+    })
+
+  const [activeFilter, setActiveFilter] = React.useState(DEFAULT_FILTER)
+
+  const onClick = React.useCallback(
+    (filter) => {
+      const newFilter = activeFilter === filter ? DEFAULT_FILTER : filter
+      setActiveFilter(newFilter)
+    },
+    [activeFilter]
+  )
+
+  return (
+    <Layout {...props}>
+      <Header>
+        <Filters
+          activeFilter={activeFilter}
+          filters={filters}
+          onClick={onClick}
+        />
+      </Header>
+      <Projects
+        projects={projects}
+        filters={filters}
+        activeFilter={activeFilter}
       />
       <div
         style={{
           backgroundColor: 'var(--color-red)',
-          minHeight: '80vh',
-          marginBottom: 'var(--site-spacing)',
         }}
-      />
+      >
+        <Credits data={fakeCredits} />
+      </div>
+      <div
+        style={{
+          backgroundColor: 'var(--color-blue)',
+        }}
+      >
+        <Text />
+      </div>
+
       <div
         style={{
           minHeight: '1px',
@@ -88,14 +124,27 @@ export async function getStaticProps({ locale }) {
   const messages = require(`../locales/${locale}.json`)
   const projects = fakeProjects
 
+  if (
+    Array.isArray(projects) &&
+    projects.some((item) => item.uid === 'apply') === false
+  ) {
+    projects.push({
+      uid: 'apply',
+      title: locale === 'sv' ? 'Sök nu' : 'Apply now',
+      subtitle: 'beckmans.se',
+      color: '#000',
+      url:
+        locale === 'sv'
+          ? 'https://beckmans.se/ansok/'
+          : 'https://beckmans.se/en/ansok/',
+    })
+  }
+
   return {
     props: {
       locale,
       pages,
-      projects: projects.map((item) => ({
-        ...item,
-        color: randomColor(),
-      })),
+      projects,
       messages,
     },
   }

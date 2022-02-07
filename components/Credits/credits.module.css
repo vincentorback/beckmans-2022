@@ -1,0 +1,50 @@
+.credits h1 {
+  font-size: 2rem;
+  font-weight: var(--text-bold);
+  line-height: 1.15;
+  padding: calc(var(--site-spacing) * 1) 0;
+}
+
+.columns {
+  font-size: 0.875rem;
+  gap: calc(var(--site-spacing) * 3);
+}
+
+@media (min-width: 400px) {
+  .columns {
+    columns: 2;
+  }
+}
+
+@media (min-width: 800px) {
+  .columns {
+    font-size: 1rem;
+    columns: 3;
+  }
+}
+
+@media (min-width: 1400px) {
+  .columns {
+    columns: 4;
+  }
+}
+
+.column {
+  border-top: 1px solid;
+  padding: var(--site-spacing) 0;
+  break-inside: avoid-column;
+  line-height: 1.25;
+}
+
+.column h2 {
+  font-weight: var(--text-bold);
+  margin-bottom: calc(var(--site-spacing) * 0.5);
+}
+
+.subtitle {
+  font-weight: var(--text-bold);
+}
+
+.subtitle:not(:first-child) {
+  margin-top: 1em;
+}

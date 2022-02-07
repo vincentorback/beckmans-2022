@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from 'next-translate-routes/link'
 import styles from './pagination.module.css'
 
 const Pagination = ({ prev, next }) => {

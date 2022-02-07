@@ -65,8 +65,8 @@
   z-index: 3;
   opacity: 0;
   transform: translate(-50%, -50%) scale(1);
-  transition: opacity 300ms ease, transform 300ms ease,
-    visibility 0s linear 300ms;
+  transition: opacity 150ms ease, transform 150ms ease,
+    visibility 0s linear 150ms;
 }
 
 @media (min-width: 1200px) {
@@ -83,7 +83,7 @@
 .plyr--video:not(.plyr--playing) .plyr__control--overlaid {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
-  transition: opacity 300ms ease, transform 300ms ease, visibility 0s linear 0s;
+  transition: opacity 150ms ease, transform 150ms ease, visibility 0s linear 0s;
 }
 
 @media (min-width: 1200px) {

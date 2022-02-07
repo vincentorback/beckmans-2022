@@ -1,0 +1,9 @@
+.container {
+  width: calc(100% - (var(--site-spacing) * 2));
+  max-width: var(--site-width);
+  margin: 0 auto;
+}
+
+.container.lg {
+  max-width: 3000px;
+}

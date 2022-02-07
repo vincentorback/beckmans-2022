@@ -1,0 +1,42 @@
+.text {
+  padding: var(--site-spacing) 0;
+}
+
+.grid {
+  display: grid;
+  gap: var(--site-spacing);
+}
+
+.text h1 {
+  font-size: 2rem;
+  line-height: 1.15;
+  font-weight: var(--text-bold);
+}
+
+@media (min-width: 800px) {
+  .grid {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  .left {
+    grid-row: 1;
+    grid-column: 1 / 6;
+  }
+
+  .right {
+    grid-row: 1;
+    grid-column: 6 / 13;
+  }
+}
+
+@media (min-width: 1400px) {
+  .left {
+    grid-row: 1;
+    grid-column: 1 / 7;
+  }
+
+  .right {
+    grid-row: 1;
+    grid-column: 7 / 12;
+  }
+}

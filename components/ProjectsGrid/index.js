@@ -7,7 +7,7 @@ import { slugify } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
 // import { useRouter } from 'next/router'
 
-const Window = ({ item }) => {
+const Window = ({ isLoaded, item }) => {
   if (!item) {
     item = {
       uid: 123,
@@ -32,11 +32,22 @@ const Window = ({ item }) => {
   )
 
   return (
-    <div className={styles.windowItem} data-id={item.uid} key={item.uid}>
+    <div
+      className={classNames(styles.windowItem, {
+        [styles['is-active']]: item.uid !== 123,
+        [styles['is-loaded']]: isLoaded,
+      })}
+      style={{
+        backgroundColor: item.color ?? null,
+      }}
+      data-id={item.uid}
+      key={item.uid}
+    >
       <LinkWrap>
         <div className={styles.windowContent}>
           <p>{item.name ? item.name : item.title}</p>
           {item.category && <p>{t(slugify(item.category))}</p>}
+          {item.subtitle && <p>{item.subtitle}</p>}
         </div>
         {item?.image && (
           <Image
@@ -49,14 +60,16 @@ const Window = ({ item }) => {
             quality={10}
           />
         )}
-        <div
-          className={classNames(styles.windowDots, {
-            [styles['is-visible']]: item.title,
-          })}
-        >
-          {[...Array(9)].map((_, i) => (
-            <div key={`${item.uid}_${i}`}>
-              {!item.title && (
+        <div className={styles.windowDots}>
+          {[...Array(210)].map((_, i) => (
+            <div
+              style={{
+                '--row': Math.floor(i / 14),
+                '--cell': i % 14,
+              }}
+              key={`${item.uid}_${i}`}
+            >
+              {/* {!item.title ? (
                 <svg
                   width="16"
                   height="16"
@@ -69,7 +82,7 @@ const Window = ({ item }) => {
                     fill="currentColor"
                   />
                 </svg>
-              )}
+              ) : null} */}
             </div>
           ))}
         </div>
@@ -78,7 +91,19 @@ const Window = ({ item }) => {
   )
 }
 
-const Grid = ({ isLoaded, activeFilter, items, handleMouseEnter }) => {
+const Grid = ({ isLoaded, activeFilter, items, handleMouseEnter, onLoad }) => {
+  const [loadedImages, setLoadedImages] = React.useState(0)
+
+  const handleImageLoad = React.useCallback(() => {
+    setLoadedImages((i) => i + 1)
+  }, [])
+
+  React.useEffect(() => {
+    if (loadedImages >= items.length - 1) {
+      onLoad()
+    }
+  }, [loadedImages, items.length, onLoad])
+
   return (
     <div className={styles.grid}>
       {items.map((item, itemIndex) => {
@@ -91,7 +116,7 @@ const Grid = ({ isLoaded, activeFilter, items, handleMouseEnter }) => {
           <div
             key={item.uid || itemIndex}
             className={classNames(styles.item, {
-              [styles['is-visible']]: isVisible,
+              [styles['is-visible']]: loadedImages && isVisible,
               [styles['is-loaded']]: isLoaded,
               [styles['is-extra']]: !item.name,
             })}
@@ -122,6 +147,9 @@ const Grid = ({ isLoaded, activeFilter, items, handleMouseEnter }) => {
                           alt=""
                           layout="fill"
                           quality={50}
+                          onLoadingComplete={() => {
+                            handleImageLoad(item.uid)
+                          }}
                         />
                       )}
                     </div>
@@ -134,23 +162,37 @@ const Grid = ({ isLoaded, activeFilter, items, handleMouseEnter }) => {
                 </div>
               </>
             ) : item.url ? (
-              <Link href={item?.url} prefetch={false}>
-                <a className={styles.link}>
-                  <div className={styles.itemInner}>
-                    {/* <div className={styles.content}>
-                      <p>{item.title}</p>
-                    </div> */}
-                  </div>
-                </a>
-              </Link>
+              <>
+                <Link href={item?.url} prefetch={false}>
+                  <a className={styles.link}>
+                    <div className={styles.itemInner}>
+                      {/* <div className={styles.content}>
+                        <p>{item.title}</p>
+                      </div> */}
+                    </div>
+                  </a>
+                </Link>
+                <div className={styles.dots}>
+                  {[...Array(9)].map((_, i) => (
+                    <div key={`${itemIndex}_${i}`}></div>
+                  ))}
+                </div>
+              </>
             ) : (
-              <div className={styles.link}>
-                {/* <div className={styles.itemInner}>
+              <>
+                <div className={styles.link}>
+                  {/* <div className={styles.itemInner}>
                   <div className={styles.content}>
                     <p>{item.title}</p>
                   </div>
                 </div> */}
-              </div>
+                </div>
+                <div className={styles.dots}>
+                  {[...Array(9)].map((_, i) => (
+                    <div key={`${itemIndex}_${i}`}></div>
+                  ))}
+                </div>
+              </>
             )}
           </div>
         )
@@ -160,57 +202,43 @@ const Grid = ({ isLoaded, activeFilter, items, handleMouseEnter }) => {
 }
 
 const ProjectsGrid = ({ items, activeFilter, setActiveItem, activeItem }) => {
-  // const { locale } = useRouter()
-  const [isLoaded, setIsLoaded] = React.useState(true)
-
-  // const testItems = React.useMemo(() => {
-  //   return items.concat({
-  //     uid: 'all',
-  //     title:
-  //       locale === 'sv' ? 'Ansök på \nbeckmans.se' : 'Apply on \nbeckmans.se',
-  //     url: 'https://beckmans.se/',
-  //     url: '#/',
-  //   })
-  // }, [items, locale])
-
-  // console.log(testItems.length)
-
-  // React.useEffect(() => {
-  //   let timout = setTimeout(() => {
-  //     setIsLoaded(true)
-  //   }, 3000)
-
-  //   return () => clearTimeout(timout)
-  // }, [])
+  const [isLoaded, setIsLoaded] = React.useState(false)
 
   const handleMouseEnter = React.useCallback(
     (item) => {
-      setActiveItem(item)
+      if (isLoaded) {
+        setActiveItem(item)
+      }
     },
-    [setActiveItem]
+    [isLoaded, setActiveItem]
   )
 
   const memoGrid = React.useMemo(
     () => (
       <Grid
+        onLoad={() => {
+          setIsLoaded(true)
+        }}
+        isLoaded={isLoaded}
         items={items}
         activeFilter={activeFilter}
         handleMouseEnter={handleMouseEnter}
-        isLoaded={isLoaded}
       />
     ),
     [items, activeFilter, handleMouseEnter, isLoaded]
   )
 
   const memoWindow = React.useMemo(
-    () => <Window item={activeItem} />,
-    [activeItem]
+    () => <Window isLoaded={isLoaded} item={activeItem} />,
+    [isLoaded, activeItem]
   )
 
   return (
     <div className={styles.container}>
-      {memoGrid}
-      {memoWindow}
+      <div className={styles.inner}>
+        {memoGrid}
+        {memoWindow}
+      </div>
     </div>
   )
 }

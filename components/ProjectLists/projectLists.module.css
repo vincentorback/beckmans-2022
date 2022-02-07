@@ -3,6 +3,9 @@
   padding-bottom: calc(var(--site-spacing) * 2);
   display: grid;
   gap: var(--site-spacing);
+
+  max-width: 1800px;
+  margin: 0 auto;
 }
 
 @media (min-width: 600px) {
@@ -25,7 +28,7 @@
 
 .cell h2 a {
   display: inline-block;
-  transition: opacity 200ms ease;
+  transition: opacity 150ms ease;
 }
 
 .cell h2 a:hover {
@@ -53,7 +56,7 @@
 
 .list a span {
   display: inline-block;
-  transition: opacity 200ms ease;
+  transition: opacity 150ms ease;
 }
 
 .list .is-active,
