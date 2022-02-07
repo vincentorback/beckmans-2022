@@ -10,7 +10,12 @@
   line-height: 1.25;
 }
 
+.next {
+  text-align: right;
+}
+
 .pagination a {
+  flex: 1 0 auto;
   display: block;
   transition: opacity 150ms ease;
 }

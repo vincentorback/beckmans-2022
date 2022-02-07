@@ -33,7 +33,7 @@ const ProjectLists = ({ items, setActiveItem, activeItem }) => {
         lists.map((list, listIndex) => (
           <div className={styles.cell} key={listIndex}>
             <h2 className={styles.title}>
-              <Link href={`/${list.id}`}>
+              <Link href={`/${list.id}`} prefetch={false}>
                 <a>{t(`categories.${list.id}`)}</a>
               </Link>
             </h2>

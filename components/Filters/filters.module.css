@@ -10,12 +10,6 @@
   transition: opacity 200ms ease;
 }
 
-@media (min-width: 1300px) {
-  .button {
-    font-size: 1.3125rem;
-  }
-}
-
 .button:not(.is-active) {
   opacity: 0.5;
 }

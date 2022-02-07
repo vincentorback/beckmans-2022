@@ -12,9 +12,9 @@ export default function ProjectPage({ project, nextProject, prevProject }) {
   return (
     <Layout>
       <Header>
-        <p>
+        {/* <p>
           {project.name} - {t(project.category)}
-        </p>
+        </p> */}
       </Header>
       <Project
         project={project}
@@ -58,8 +58,10 @@ export async function getStaticProps({ params, locale }) {
   const currentIndex = fakeProjects.findIndex(
     (item) => slugify(item.name) === params.name
   )
-  const nextProject = fakeProjects[currentIndex + 1]
-  const prevProject = fakeProjects[currentIndex - 1]
+
+  const nextProject = fakeProjects[currentIndex + 1] ?? false
+  const prevProject = fakeProjects[currentIndex - 1] ?? false
+
   // const project content.find(
   //   (item) => item.type === 'project' && item.uid === params.name
   // )

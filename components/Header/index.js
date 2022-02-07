@@ -18,9 +18,11 @@ const Header = ({ children }) => {
           19.05–24.05.2022
         </p>
       </div>
-      <div className={styles.bottomLeft}>
-        <div>{children}</div>
-      </div>
+      {children && (
+        <div className={styles.bottomLeft}>
+          <div>{children}</div>
+        </div>
+      )}
       <div className={styles.mid}>
         <Link href="/">
           <a>
@@ -81,7 +83,12 @@ const Header = ({ children }) => {
             </a>
           </Link>
 
-          <button type="button">
+          <p className={styles.beckmans}>
+            Beckmans <br />
+            {router.locale === 'sv' ? 'Designhögskola' : 'College of Design'}
+          </p>
+
+          {/* <button type="button">
             <svg
               width="20"
               height="20"
@@ -159,14 +166,8 @@ const Header = ({ children }) => {
                 fill="currentColor"
               />
             </svg>
-          </button>
+          </button> */}
         </div>
-      </div>
-      <div className={styles.bottomRight}>
-        <p>
-          Beckmans <br />
-          {router.locale === 'sv' ? 'Designhögskola' : 'College of Design'}
-        </p>
       </div>
     </header>
   )

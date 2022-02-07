@@ -20,7 +20,7 @@ const Window = ({ item }) => {
     ({ children }) => {
       if (item.url) {
         return (
-          <Link href={item.url}>
+          <Link href={item.url} prefetch={false}>
             <a className={styles.windowLink}>{children}</a>
           </Link>
         )
@@ -134,7 +134,7 @@ const Grid = ({ isLoaded, activeFilter, items, handleMouseEnter }) => {
                 </div>
               </>
             ) : item.url ? (
-              <Link href={item?.url}>
+              <Link href={item?.url} prefetch={false}>
                 <a className={styles.link}>
                   <div className={styles.itemInner}>
                     {/* <div className={styles.content}>

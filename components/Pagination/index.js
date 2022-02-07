@@ -2,14 +2,13 @@ import Link from 'next/link'
 import styles from './pagination.module.css'
 
 const Pagination = ({ prev, next }) => {
-  if (!prev || !next) return null
-  console.log(prev, next)
+  if (!prev && !next) return null
 
   return (
-    <div className={styles.pagination}>
+    <nav className={styles.pagination}>
       {prev && (
-        <Link href={prev.url}>
-          <a>
+        <Link href={prev.url} prefetch={false}>
+          <a className={styles.prev}>
             <svg
               width="16"
               height="16"
@@ -27,8 +26,8 @@ const Pagination = ({ prev, next }) => {
         </Link>
       )}
       {next && (
-        <Link href={next.url}>
-          <a>
+        <Link href={next.url} prefetch={false}>
+          <a className={styles.next}>
             <span>Nästa student</span>
             <svg
               width="16"
@@ -45,7 +44,7 @@ const Pagination = ({ prev, next }) => {
           </a>
         </Link>
       )}
-    </div>
+    </nav>
   )
 }
 
