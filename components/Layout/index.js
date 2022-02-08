@@ -6,13 +6,12 @@ import styles from './layout.module.css'
 const Layout = ({ children, background, pages, otherLocalePage }) => {
   const backgroundColor = background ? background.toLowerCase() : 'white'
 
+  React.useEffect(() => {
+    document.body.style.backgroundColor = `var(--color-${backgroundColor})`
+  }, [backgroundColor])
+
   return (
-    <div
-      className={styles.layout}
-      style={{
-        backgroundColor: `var(--color-${backgroundColor})`,
-      }}
-    >
+    <div className={styles.layout}>
       <Meta>
         <meta content={`var(--color-${backgroundColor})`} name="theme-color" />
       </Meta>
