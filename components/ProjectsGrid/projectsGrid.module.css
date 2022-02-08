@@ -179,7 +179,7 @@
   width: 100%;
 }
 
-.windowItem.is-loaded {
+.windowItem.is-loaded.is-active {
   background-color: var(--color-red);
 }
 
@@ -273,6 +273,7 @@
 
 .windowItem.is-loaded .windowDots div {
   background-color: var(--color-white);
+  opacity: 0;
 }
 
 .windowItem.is-loaded .windowDots div {
