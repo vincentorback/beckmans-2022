@@ -35,8 +35,7 @@ const Header = ({ children }) => {
       <header ref={headerRef} className={styles.header}>
         <div className={styles.topLeft}>
           <p>
-            {router.locale === 'sv' ? 'Examensutställning' : 'Graduation Show'}
-            <br />
+            {t('school-subtitle')} <br />
             19.05–24.05.2022
           </p>
         </div>
@@ -107,7 +106,7 @@ const Header = ({ children }) => {
 
             <p className={styles.beckmans}>
               Beckmans <br />
-              {router.locale === 'sv' ? 'Designhögskola' : 'College of Design'}
+              {t('school-subtitle')}
             </p>
 
             {/* <button type="button">

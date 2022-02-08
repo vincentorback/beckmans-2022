@@ -1,10 +1,11 @@
-import Link from 'next/link'
+import Link from 'next-translate-routes/link'
 import Container from '../Container'
 import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/router'
+import { localeStrings } from '../../lib/constants'
 import styles from './footer.module.css'
 
-const Footer = ({ pages }) => {
+const Footer = ({ pages, otherLocalePage }) => {
   const t = useTranslations()
   const router = useRouter()
   const otherLocale = router.locales.find((item) => item !== router.locale)
@@ -18,7 +19,9 @@ const Footer = ({ pages }) => {
               <li>
                 <Link
                   href={{
-                    pathname: router.asPath,
+                    pathname: otherLocalePage
+                      ? otherLocalePage.uid
+                      : router.asPath,
                     query: router.query,
                   }}
                   locale={otherLocale}
@@ -30,6 +33,10 @@ const Footer = ({ pages }) => {
               </li>
               {pages &&
                 pages
+                  .filter(
+                    (item) =>
+                      item.lang === localeStrings[router.locale].prismicCode
+                  )
                   .sort((a, b) => {
                     if (a.uid > b.uid) return 1
                     if (a.uid < b.uid) return -1
@@ -46,7 +53,8 @@ const Footer = ({ pages }) => {
           </div>
           <div className={styles.item}>
             <p>
-              Beckmans Designhögskola <br />
+              Beckmans {t('school-subtitle')}
+              <br />
               <Link
                 href={`https://www.google.se/maps?q=${encodeURIComponent(
                   'Brahegatan 10 114 37 Stockholm'
@@ -60,14 +68,15 @@ const Footer = ({ pages }) => {
           </div>
           <div className={styles.item}>
             <p>
-              Examensutställning 2022 <br />
-              19 - 24 maj
+              {t('show')} <br />
+              2022 <br />
+              19 - 24 {t('may')}
             </p>
           </div>
           <div className={styles.item}>
             <p>
-              Modevisning <br />
-              17 maj
+              {t('fashion-show')} <br />
+              17 {t('may')}
             </p>
           </div>
         </div>

@@ -48,7 +48,7 @@ export async function getStaticPaths({ locales }) {
 }
 
 export async function getStaticProps({ params, locale }) {
-  const content = await queryDocuments(locale)
+  const content = await queryDocuments()
   const project = fakeProjects.find(
     (item) => slugify(item.name) === params.name
   )

@@ -95,7 +95,7 @@ export default function HomePage(props) {
 }
 
 export async function getStaticProps({ locale }) {
-  const content = await queryDocuments(locale)
+  const content = await queryDocuments()
   const pages = content.filter((item) => item.type === 'page')
   const messages = require(`../locales/${locale}.json`)
   const projects = fakeProjects.sort((a, b) => {

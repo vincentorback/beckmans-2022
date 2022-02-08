@@ -1,50 +1,26 @@
 import React from 'react'
 import { queryDocuments } from '../../lib/content'
 import { localeStrings } from '../../lib/constants'
-import Layout from '../../components/Layout'
-import Header from '../../components/Header'
+import Container from '../../components/Container'
 import Credits from '../../components/Credits'
+import Header from '../../components/Header'
+import Layout from '../../components/Layout'
+import Slices from '../../components/Slices'
 import Text from '../../components/Text'
-
-export const fakeCredits = [
-  {
-    title: 'Utställning',
-  },
-  {
-    title: 'Produktion',
-  },
-  {
-    title: 'Modevisning',
-  },
-  {
-    title: 'Form',
-  },
-  {
-    title: 'Visuell Kommunikation',
-  },
-  {
-    title: 'Mode',
-  },
-  {
-    title: 'Tack till',
-  },
-]
 
 export default function Page(props) {
   const { page } = props
 
-  console.log(page)
-
-  const isCredits = page.uid === 'credits' || page.uid === 'medverkande'
-
   return (
     <Layout {...props} background={page.data.background_color}>
       <Header />
-      {isCredits ? (
-        <Credits data={fakeCredits} />
-      ) : (
-        <Text title={page.data.title[0].text} />
-      )}
+      <Container>
+        {page.data.body ? (
+          <Slices body={page.data.body} />
+        ) : (
+          <Text title="no content yet" />
+        )}
+      </Container>
     </Layout>
   )
 }
@@ -67,8 +43,6 @@ export async function getStaticPaths({ locales }) {
     })
   })
 
-  console.log(paths)
-
   return {
     paths,
     fallback: false,
@@ -76,10 +50,18 @@ export async function getStaticPaths({ locales }) {
 }
 
 export async function getStaticProps({ params, locale }) {
-  const content = await queryDocuments(locale)
-  const page = content.find((item) => item.uid === params.page)
+  const content = await queryDocuments()
   const pages = content.filter((item) => item.type === 'page')
+  const page = pages.find(
+    (item) =>
+      item.uid === params.page &&
+      item.lang === localeStrings[locale].prismicCode
+  )
   const messages = require(`../../locales/${locale}.json`)
+
+  const otherLocalePage = pages.find(
+    (item) => item.uid === page.alternate_languages[0].uid
+  )
 
   if (!page) {
     return {
@@ -91,13 +73,12 @@ export async function getStaticProps({ params, locale }) {
     }
   }
 
-  console.log(321, page)
-
   return {
     props: {
       page,
       pages,
       messages,
+      otherLocalePage,
     },
   }
 }
