@@ -4,9 +4,7 @@ import Footer from '../Footer'
 import styles from './layout.module.css'
 
 const Layout = ({ children, background, pages, otherLocalePage }) => {
-  const backgroundColor = background
-    ? background.toLowerCase()
-    : 'var(--color-white)'
+  const backgroundColor = background ? background.toLowerCase() : 'white'
 
   return (
     <div
@@ -16,7 +14,7 @@ const Layout = ({ children, background, pages, otherLocalePage }) => {
       }}
     >
       <Meta>
-        <meta content={`var(--color-${backgroundColor}`} name="theme-color" />
+        <meta content={`var(--color-${backgroundColor})`} name="theme-color" />
       </Meta>
       <main className={styles.main}>{children}</main>
       <Footer pages={pages} otherLocalePage={otherLocalePage} />
