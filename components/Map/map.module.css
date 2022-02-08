@@ -1,6 +1,5 @@
 .map {
   width: 100%;
-  max-width: 230px;
 }
 
 .activeItem {
@@ -12,8 +11,9 @@
 }
 
 .grid {
+  max-width: 230px;
   display: grid;
-  grid-template-columns: repeat(7, 7fr);
+  grid-template-columns: repeat(6, 7fr);
 }
 
 .item {

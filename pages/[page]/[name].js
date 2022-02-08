@@ -50,19 +50,19 @@ export async function getStaticPaths({ locales }) {
 
 export async function getStaticProps({ params, locale }) {
   const content = await queryDocuments()
-  const project = fakeProjects.find(
-    (item) => slugify(item.name) === params.name
-  )
-  const currentIndex = fakeProjects.findIndex(
+  const projects = fakeProjects.sort((a, b) => {
+    if (a.name < b.name) return -1
+    if (a.name > b.name) return 1
+    return 0
+  })
+
+  const project = projects.find((item) => slugify(item.name) === params.name)
+  const currentIndex = projects.findIndex(
     (item) => slugify(item.name) === params.name
   )
 
-  const nextProject = fakeProjects[currentIndex + 1] ?? false
-  const prevProject = fakeProjects[currentIndex - 1] ?? false
-
-  // const project content.find(
-  //   (item) => item.type === 'project' && item.uid === params.name
-  // )
+  const nextProject = projects[currentIndex + 1] ?? false
+  const prevProject = projects[currentIndex - 1] ?? false
 
   const pages = content.filter((item) => item.type === 'page')
   const messages = require(`../../locales/${locale}.json`)
@@ -80,7 +80,7 @@ export async function getStaticProps({ params, locale }) {
   return {
     props: {
       project,
-      projects: fakeProjects,
+      projects,
       pages,
       messages,
       prevProject,
