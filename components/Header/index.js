@@ -28,7 +28,7 @@ const Header = ({ children }) => {
     return () => {
       window.addEventListener('resize', onResize)
     }
-  })
+  }, [])
 
   return (
     <Container>
