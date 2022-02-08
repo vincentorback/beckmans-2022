@@ -35,8 +35,10 @@ const Header = ({ children }) => {
       <header ref={headerRef} className={styles.header}>
         <div className={styles.topLeft}>
           <p>
-            {t('school-subtitle')} <br />
-            19.05–24.05.2022
+            {t('show')} <br />
+            {/* 2022-05-24P4D ? */}
+            <time dateTime="2022-05-19">19.05</time>–
+            <time dateTime="2022-05-24">24.05.2022</time>
           </p>
         </div>
         {children && (

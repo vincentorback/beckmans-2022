@@ -61,7 +61,8 @@ const Footer = ({ pages, otherLocalePage }) => {
                 )}`}
               >
                 <a target="_blank">
-                  Brahegatan 10 <br /> 114 37 Stockholm
+                  Brahegatan 10 <br />
+                  114 37 Stockholm
                 </a>
               </Link>
             </p>
@@ -75,7 +76,7 @@ const Footer = ({ pages, otherLocalePage }) => {
           <div className={styles.item}>
             <p>
               {t('fashion-show')} <br />
-              17 {t('may')}
+              <time dateTime="2022-05-17">17 {t('may')}</time>
             </p>
           </div>
         </div>
