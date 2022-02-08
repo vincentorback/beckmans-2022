@@ -12,7 +12,11 @@ export default function Page(props) {
   const { page } = props
 
   return (
-    <Layout {...props} background={page.data.background_color}>
+    <Layout
+      {...props}
+      title={page.data.title[0].text}
+      background={page?.data?.background_color}
+    >
       <Header />
       <Container>
         {page.data.body ? (

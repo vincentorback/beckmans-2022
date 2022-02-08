@@ -11,7 +11,7 @@ export default function ProjectPage(props) {
   const t = useTranslations('categories')
 
   return (
-    <Layout {...props}>
+    <Layout title={project.name} {...props}>
       <Header />
       <Project
         project={project}

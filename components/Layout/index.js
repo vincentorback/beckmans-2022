@@ -3,7 +3,7 @@ import Meta from '../Meta'
 import Footer from '../Footer'
 import styles from './layout.module.css'
 
-const Layout = ({ children, background, pages, otherLocalePage }) => {
+const Layout = ({ title, children, background, pages, otherLocalePage }) => {
   const backgroundColor = background ? background.toLowerCase() : 'white'
 
   React.useEffect(() => {
@@ -12,7 +12,7 @@ const Layout = ({ children, background, pages, otherLocalePage }) => {
 
   return (
     <div className={styles.layout}>
-      <Meta>
+      <Meta title={title}>
         <meta content={`var(--color-${backgroundColor})`} name="theme-color" />
       </Meta>
       <main className={styles.main}>{children}</main>

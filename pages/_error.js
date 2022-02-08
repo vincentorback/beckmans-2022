@@ -10,7 +10,7 @@ export default function ErrorPage(props) {
   const t = useTranslations('error')
 
   return (
-    <Layout {...props}>
+    <Layout title={t('title')} {...props}>
       <Header />
       <Container>
         <Text title={t('title')}>
