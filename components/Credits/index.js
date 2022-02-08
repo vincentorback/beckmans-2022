@@ -1,8 +1,8 @@
 import Container from '../Container'
 import Entry from '../Entry'
 import { useTranslations } from 'next-intl'
-import { RichText } from 'prismic-reactjs'
-import { linkResolver } from '../../lib/prismic'
+import { PrismicRichText } from '@prismicio/react'
+import { internalLink, externalLink } from '../../lib/prismic'
 import styles from './credits.module.css'
 
 const Credits = ({ columns }) => {
@@ -13,7 +13,13 @@ const Credits = ({ columns }) => {
           <div className={styles.column} key={`column_${columnIndex}`}>
             {column.column_title && <h2>{column.column_title}</h2>}
             {column.column_text && (
-              <Entry>{RichText.render(column.column_text, linkResolver)}</Entry>
+              <Entry>
+                <PrismicRichText
+                  field={column.column_text}
+                  internalLinkComponent={internalLink}
+                  externalLinkComponent={externalLink}
+                />
+              </Entry>
             )}
           </div>
         ))}
