@@ -4,12 +4,15 @@ import { RichText } from 'prismic-reactjs'
 import { linkResolver } from '../../lib/prismic'
 import styles from './text.module.css'
 
-const Text = ({ title, body }) => {
+const Text = ({ title, body, children }) => {
   return (
     <div className={styles.text}>
-      <div className={styles.title}>{title && <h1>{title[0].text}</h1>}</div>
+      <div className={styles.title}>
+        {title && <h1>{Array.isArray(title) ? title[0].text : title}</h1>}
+      </div>
       <div className={styles.body}>
         {body && <Entry>{RichText.render(body, linkResolver)}</Entry>}
+        {children && <Entry>{children}</Entry>}
       </div>
     </div>
   )
