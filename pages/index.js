@@ -8,6 +8,7 @@ import ProjectAccordions from '../components/ProjectAccordions'
 import ProjectLists from '../components/ProjectLists'
 import ProjectsGrid from '../components/ProjectsGrid'
 import { queryDocuments, fakeProjects } from '../lib/content'
+import { categories } from '../lib/constants'
 import { randomColor, randomFromArray } from '../lib/utilities'
 
 const DEFAULT_FILTER = null
@@ -16,6 +17,15 @@ const Projects = ({ projects, filters, activeFilter }) => {
   const containerRef = React.useRef(null)
   const [activeItem, setActiveItem] = React.useState(null)
   const [windowWidth, setWindowWidth] = React.useState(0)
+
+  const lists = React.useMemo(
+    () =>
+      filters.map((filter) => ({
+        id: filter,
+        items: projects.filter((item) => filter === item.category),
+      })),
+    [projects, filters]
+  )
 
   const onResize = React.useCallback((e) => {
     setWindowWidth(window.innerWidth)
@@ -48,23 +58,20 @@ const Projects = ({ projects, filters, activeFilter }) => {
             items={projects}
             activeFilter={activeFilter}
             filters={filters}
+            lists={lists}
             // setActiveItem={setActiveItem}
             // activeItem={activeItem}
           />
         </>
       ) : (
-        <ProjectAccordions items={projects} />
+        <ProjectAccordions items={projects} lists={lists} />
       )}
     </Container>
   )
 }
 
 export default function HomePage(props) {
-  const { projects } = props
-
-  const filters = Array.from(
-    new Set(projects.map((item) => item.category))
-  ).filter((category) => category)
+  const { projects, filters } = props
 
   const [activeFilter, setActiveFilter] = React.useState(DEFAULT_FILTER)
 
@@ -129,6 +136,7 @@ export async function getStaticProps({ locale }) {
 
   return {
     props: {
+      filters: categories,
       locale,
       pages,
       projects,

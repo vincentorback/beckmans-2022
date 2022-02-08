@@ -5,21 +5,8 @@ import styles from './projectLists.module.css'
 import { slugify } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
 
-const ProjectLists = ({ items, setActiveItem, activeItem }) => {
-  const t = useTranslations()
-
-  const lists = React.useMemo(
-    () =>
-      [
-        items.filter((item) => item.category === 'form'),
-        items.filter((item) => item.category === 'visual-communication'),
-        items.filter((item) => item.category === 'fashion'),
-      ].map((items) => ({
-        items,
-        id: items[0].category,
-      })),
-    [items]
-  )
+const ProjectLists = ({ lists, items, setActiveItem, activeItem }) => {
+  const t = useTranslations('categories')
 
   // const handleMouseEnter = React.useCallback(
   //   (item) => {
@@ -34,8 +21,8 @@ const ProjectLists = ({ items, setActiveItem, activeItem }) => {
         lists.map((list, listIndex) => (
           <div className={styles.cell} key={list.id}>
             <h2 className={styles.title}>
-              <Link href={slugify(t(`categories.${list.id}`))}>
-                <a>{t(`categories.${list.id}`)}</a>
+              <Link href={slugify(t(list.id))}>
+                <a>{t(list.id)}</a>
               </Link>
             </h2>
             <div className={styles.list}>

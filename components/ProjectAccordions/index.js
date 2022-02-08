@@ -6,24 +6,11 @@ import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/router'
 import styles from './projectAccordions.module.css'
 
-const ProjectAccordions = ({ items }) => {
+const ProjectAccordions = ({ lists, items }) => {
   const { locale } = useRouter()
   const t = useTranslations()
 
   const [activeAccordion, setAccordion] = React.useState(null)
-
-  const lists = React.useMemo(
-    () =>
-      [
-        items.filter((item) => item.category === 'form'),
-        items.filter((item) => item.category === 'visual-communication'),
-        items.filter((item) => item.category === 'fashion'),
-      ].map((items) => ({
-        items,
-        id: items[0].category,
-      })),
-    [items]
-  )
 
   return (
     <div className={styles.container}>
