@@ -1,41 +1,38 @@
 .text {
   padding: calc(var(--site-spacing) * 2) 0;
-}
-
-.grid {
   display: grid;
   gap: var(--site-spacing);
 }
 
-.text h1 {
+.title h1 {
   font-size: 2rem;
   line-height: 1.15;
   font-weight: var(--text-bold);
 }
 
 @media (min-width: 800px) {
-  .grid {
+  .text {
     grid-template-columns: repeat(12, 1fr);
   }
 
-  .left {
+  .title {
     grid-row: 1;
     grid-column: 1 / 6;
   }
 
-  .right {
+  .body {
     grid-row: 1;
     grid-column: 6 / 13;
   }
 }
 
 @media (min-width: 1400px) {
-  .left {
+  .title {
     grid-row: 1;
     grid-column: 1 / 7;
   }
 
-  .right {
+  .body {
     grid-row: 1;
     grid-column: 7 / 12;
   }

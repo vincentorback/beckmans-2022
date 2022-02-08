@@ -1,14 +1,3 @@
-.credits {
-  padding: calc(var(--site-spacing) * 2) 0;
-}
-
-.credits h1 {
-  font-size: 2rem;
-  font-weight: var(--text-bold);
-  line-height: 1.15;
-  padding: calc(var(--site-spacing) * 1) 0;
-}
-
 .columns {
   gap: calc(var(--site-spacing) * 3);
 }
@@ -53,6 +42,7 @@
 }
 
 .column a {
+  text-decoration: none;
   transition: opacity 150ms ease;
 }
 
