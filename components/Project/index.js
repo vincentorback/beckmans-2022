@@ -13,7 +13,7 @@ const Project = ({ project, nextProject, prevProject }) => {
   const router = useRouter()
   const { category, name, title, image, links, video, thanks } = project
 
-  const t = useTranslations('categories')
+  const t = useTranslations()
 
   return (
     <Container>
@@ -85,11 +85,11 @@ const Project = ({ project, nextProject, prevProject }) => {
 
             <div className={styles.projectInfo}>
               <div className={styles.info}>
-                <h4>Progam</h4>
-                <p>{t(category)}</p>
+                <h4>Program</h4>
+                <p>{t(`categories.${category}`)}</p>
               </div>
               <div className={styles.info}>
-                <h4>Kontakt</h4>
+                <h4>{t('project.contact')}</h4>
                 {links && (
                   <ul>
                     {links.map((link, linkIndex) => (
@@ -104,7 +104,7 @@ const Project = ({ project, nextProject, prevProject }) => {
               </div>
               {thanks && (
                 <div className={styles.info}>
-                  <h4>Tack till</h4>
+                  <h4>{t('project.thanks-to')}</h4>
                   <ul>
                     {thanks.map((thank, thankIndex) => (
                       <li key={thank.label}>
@@ -121,11 +121,11 @@ const Project = ({ project, nextProject, prevProject }) => {
                 </div>
               )}
               <div className={styles.info}>
-                <h4>Pressbilder</h4>
+                <h4>{t('project.press-images')}</h4>
                 <ul>
                   <li>
                     <Link href={'#/'}>
-                      <a>Ladda ner</a>
+                      <a>{t('project.download')}</a>
                     </Link>
                   </li>
                 </ul>

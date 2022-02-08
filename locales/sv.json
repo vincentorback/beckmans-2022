@@ -4,9 +4,17 @@
   "credits": "Medverkande",
   "school-subtitle": "Designhögskola",
   "fashion-show": "Modevisning",
+  "project": {
+    "thanks-to": "Tack till",
+    "contact": "Kontakt",
+    "press-images": "Pressbilder",
+    "download": "Ladda ner"
+  },
   "navigation": {
     "menu": "Meny",
-    "otherLanguage": "English"
+    "otherLanguage": "English",
+    "previous": "Föregående",
+    "next": "Nästa"
   },
   "categories": {
     "fashion": "Mode",

@@ -4,9 +4,17 @@
   "credits": "Credits",
   "school-subtitle": "College of Design",
   "fashion-show": "Fashion Show",
+  "project": {
+    "thanks-to": "Thanks to",
+    "contact": "Contact",
+    "press-images": "Press images",
+    "download": "Download"
+  },
   "navigation": {
     "menu": "Menu",
-    "otherLanguage": "Svenska"
+    "otherLanguage": "Svenska",
+    "previous": "Previous",
+    "next": "Next"
   },
   "categories": {
     "fashion": "Fashion",

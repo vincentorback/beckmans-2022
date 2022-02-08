@@ -1,7 +1,10 @@
+import { useTranslations } from 'next-intl'
 import Link from 'next-translate-routes/link'
 import styles from './pagination.module.css'
 
 const Pagination = ({ prev, next }) => {
+  const t = useTranslations('navigation')
+
   if (!prev && !next) return null
 
   return (
@@ -21,14 +24,14 @@ const Pagination = ({ prev, next }) => {
                 fill="black"
               />
             </svg>
-            <span>Föregående student</span>
+            <span>{t('previous')} student</span>
           </a>
         </Link>
       )}
       {next && (
         <Link href={next.url}>
           <a className={styles.next}>
-            <span>Nästa student</span>
+            <span>{t('next')} student</span>
             <svg
               width="16"
               height="16"
