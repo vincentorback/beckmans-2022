@@ -68,8 +68,7 @@ const Footer = ({ pages, otherLocalePage }) => {
           </div>
           <div className={styles.item}>
             <p>
-              {t('show')} <br />
-              2022 <br />
+              {t('show')} 2022 <br />
               19 - 24 {t('may')}
             </p>
           </div>

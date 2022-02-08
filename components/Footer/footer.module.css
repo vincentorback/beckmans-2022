@@ -1,10 +1,10 @@
 .footer {
-  padding: calc(var(--site-spacing) * 8) 0 calc(var(--site-spacing) * 2);
+  padding: calc(var(--site-spacing) * 2) 0 calc(var(--site-spacing) * 2);
 }
 
 @media (min-width: 600px) {
   .footer {
-    padding: calc(var(--site-spacing) * 8) 0 calc(var(--site-spacing) * 1);
+    padding: calc(var(--site-spacing) * 1) 0 calc(var(--site-spacing) * 1);
   }
 }
 

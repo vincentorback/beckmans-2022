@@ -5,4 +5,5 @@
 
 .main {
   padding-top: var(--site-spacing);
+  min-height: calc(100vh - (var(--header-height) * 3));
 }
