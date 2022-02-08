@@ -1,5 +1,5 @@
 .entry {
-  line-height: 1.25;
+  line-height: var(--lineheight-lg);
 }
 
 .entry > * + * {
@@ -8,13 +8,13 @@
 
 .title {
   font-size: 2rem;
-  line-height: 1.15;
-  font-weight: 600;
+  line-height: var(--lineheight-md);
+  font-weight: var(--text-bold);
 }
 
 .subtitle {
   font-size: 2rem;
-  line-height: 1.15;
+  line-height: var(--lineheight-md);
 }
 
 .entry h2,

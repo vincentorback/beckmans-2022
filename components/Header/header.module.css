@@ -106,8 +106,9 @@
 }
 
 .topLeft p {
-  line-height: 1.15;
+  line-height: var(--lineheight-md);
   font-weight: var(--text-bold);
+  cursor: default;
 }
 
 .topRight a {
@@ -122,9 +123,10 @@
 }
 
 .beckmans {
-  line-height: 1.15;
+  line-height: var(--lineheight-md);
   font-family: var(--text-serif);
   font-style: italic;
+  cursor: default;
 }
 
 @media (min-width: 1300px) {

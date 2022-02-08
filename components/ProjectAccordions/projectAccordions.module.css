@@ -56,7 +56,7 @@
 
 .item .content {
   flex: 1 1 auto;
-  line-height: 1.25;
+  line-height: var(--lineheight-lg);
 }
 
 .item .content p:first-child {

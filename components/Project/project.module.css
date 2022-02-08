@@ -117,7 +117,7 @@
 }
 
 .info {
-  line-height: 1.25;
+  line-height: var(--lineheight-lg);
 }
 
 .info + .info {
@@ -125,7 +125,7 @@
 }
 
 .info h4 {
-  line-height: 1.25;
+  line-height: var(--lineheight-lg);
   font-weight: var(--text-bold);
 }
 
@@ -144,6 +144,6 @@
 
 .title {
   font-size: 2rem;
-  line-height: 1.15;
-  font-weight: 600;
+  line-height: var(--lineheight-md);
+  font-weight: var(--text-bold);
 }

@@ -8,7 +8,7 @@
   gap: var(--site-spacing);
 
   font-weight: var(--text-bold);
-  line-height: 1.25;
+  line-height: var(--lineheight-lg);
 }
 
 .next {

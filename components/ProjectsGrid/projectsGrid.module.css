@@ -61,8 +61,7 @@
 }
 
 .item.is-extra .link {
-  color: #fff;
-  background-color: #000;
+  background-color: var(--color-black);
 }
 
 .link {
@@ -218,7 +217,7 @@
   font-weight: var(--text-bold);
   color: var(--color-white);
   font-size: clamp(2rem, 5vw, 4rem);
-  line-height: 1.25;
+  line-height: var(--lineheight-lg);
   text-shadow: rgba(0, 0, 0, 0.15) 1px 1px 20px;
 
   white-space: pre-line;

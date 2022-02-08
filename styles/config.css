@@ -1,10 +1,13 @@
 :root {
-  --text-display: 'Maxeville Tekst', sans-serif;
   --text-sansserif: 'Maxeville', sans-serif;
   --text-serif: 'Affairs', serif;
 
   --text-normal: 400;
   --text-bold: 600;
+
+  --lineheight-sm: 1;
+  --lineheight-md: 1.15;
+  --lineheight-lg: 1.25;
 
   --site-spacing: clamp(1rem, 2.22vw, 2rem);
   --site-width: calc(1440px - (var(--site-spacing) * 2));

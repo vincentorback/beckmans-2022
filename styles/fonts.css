@@ -13,12 +13,6 @@
 }
 
 @font-face {
-  font-family: 'Maxeville Tekst';
-  src: url('/fonts/Maxeville-Tekst.woff2') format('woff2'),
-    url('/fonts/Maxeville-Tekst.woff') format('woff');
-}
-
-@font-face {
   font-family: 'Affairs';
   src: url('/fonts/Affairs-Italic.woff2') format('woff2'),
     url('/fonts/Affairs-Italic.woff') format('woff');
