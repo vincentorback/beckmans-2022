@@ -4,12 +4,13 @@ import classNames from 'classnames'
 import Link from 'next-translate-routes/link'
 import Container from '../Container'
 import Entry from '../Entry'
+import Map from '../Map'
 import Image from '../Image'
 import Pagination from '../Pagination'
 import Video from '../Video'
 import styles from './project.module.css'
 
-const Project = ({ project, nextProject, prevProject }) => {
+const Project = ({ project, projects, nextProject, prevProject }) => {
   const router = useRouter()
   const { category, name, title, image, links, video, thanks } = project
 
@@ -182,11 +183,7 @@ const Project = ({ project, nextProject, prevProject }) => {
           <Pagination next={nextProject} prev={prevProject} />
         </div>
         <div className={styles.map}>
-          <div>
-            <div>
-              <p>karta</p>
-            </div>
-          </div>
+          <Map items={projects} category={project.category} />
         </div>
       </article>
     </Container>

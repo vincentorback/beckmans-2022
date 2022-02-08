@@ -7,7 +7,7 @@ import Header from '../../components/Header'
 import Project from '../../components/Project'
 
 export default function ProjectPage(props) {
-  const { project, nextProject, prevProject } = props
+  const { project, projects, nextProject, prevProject } = props
   const t = useTranslations('categories')
 
   return (
@@ -15,6 +15,7 @@ export default function ProjectPage(props) {
       <Header />
       <Project
         project={project}
+        projects={projects}
         nextProject={nextProject}
         prevProject={prevProject}
       />
@@ -79,6 +80,7 @@ export async function getStaticProps({ params, locale }) {
   return {
     props: {
       project,
+      projects: fakeProjects,
       pages,
       messages,
       prevProject,

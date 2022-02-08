@@ -14,7 +14,6 @@
   .map {
     grid-row: 1;
     grid-column: 1 / 4;
-    display: flex;
     /* align-items: flex-end; */
   }
 
@@ -28,34 +27,12 @@
   .map {
     grid-row: 1;
     grid-column: 1 / 6;
-    display: flex;
-    /* align-items: flex-end; */
+    padding-top: 100%;
   }
 
   .inner {
     grid-row: 1;
     grid-column: 6 / 13;
-  }
-}
-
-.map div {
-  display: none;
-}
-
-.map div div {
-  background-color: var(--color-blue);
-  height: 200px;
-  max-width: 300px;
-  margin-right: auto;
-}
-
-@media (min-width: 1200px) {
-  .map div {
-    flex: 1 0 auto;
-    height: calc(100vh + var(--site-spacing));
-    /* display: flex; */
-    align-items: flex-end;
-    justify-content: flex-end;
   }
 }
 
@@ -86,6 +63,10 @@
 }
 
 @media (max-width: 1200px) {
+  .map {
+    display: none;
+  }
+
   .header {
     grid-row: 1;
     grid-column: 1 / 9;
