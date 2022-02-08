@@ -10,7 +10,7 @@
 
 .grid {
   display: grid;
-  gap: calc(var(--site-spacing) * 2) var(--site-spacing);
+  gap: var(--site-spacing);
 }
 
 @media (min-width: 1200px) {
