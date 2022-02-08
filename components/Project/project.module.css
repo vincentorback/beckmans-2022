@@ -36,6 +36,57 @@
   }
 }
 
+.mainImage {
+  position: relative;
+}
+
+.dots {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.dots div {
+  position: absolute;
+  top: calc(var(--site-spacing) * 4);
+  left: calc(var(--site-spacing) * 2);
+  width: 8px;
+  height: 8px;
+  transform: translate(-50%, -50%);
+  background-color: var(--color-white);
+  transition: opacity 150ms ease, background-color 150ms ease;
+}
+
+.dots div:nth-child(4),
+.dots div:nth-child(5),
+.dots div:nth-child(6) {
+  top: 50%;
+}
+
+.dots div:nth-child(7),
+.dots div:nth-child(8),
+.dots div:nth-child(9) {
+  top: auto;
+  bottom: calc(var(--site-spacing) * 4);
+}
+
+.dots div:nth-child(2),
+.dots div:nth-child(5),
+.dots div:nth-child(8) {
+  left: 50%;
+}
+
+.dots div:nth-child(3),
+.dots div:nth-child(6),
+.dots div:nth-child(9) {
+  left: auto;
+  right: calc(var(--site-spacing) * 2);
+}
+
 .content {
   margin-top: calc(var(--site-spacing) * 2);
   display: grid;

@@ -21,14 +21,26 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
       <article className={styles.project}>
         <div className={styles.inner}>
           {image && (
-            <Image
-              className={styles.mainImage}
-              src={image}
-              alt=""
-              layout="responsive"
-              width={803}
-              height={928}
-            />
+            <div className={styles.mainImage}>
+              <Image
+                src={image}
+                alt=""
+                layout="responsive"
+                width={803}
+                height={928}
+              />
+              <div className={styles.dots}>
+                {[...Array(9)].map((_, i) => (
+                  <div
+                    style={{
+                      '--row': Math.floor(i / 3),
+                      '--cell': i % 3,
+                    }}
+                    key={`dot_${i}`}
+                  />
+                ))}
+              </div>
+            </div>
           )}
           <div className={styles.content}>
             <header className={styles.header}>
