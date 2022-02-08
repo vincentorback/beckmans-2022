@@ -2,7 +2,7 @@
   gap: calc(var(--site-spacing) * 3);
 }
 
-@media (min-width: 400px) {
+@media (min-width: 500px) {
   .columns {
     columns: 2;
   }
@@ -30,7 +30,7 @@
 
 .column h2 {
   font-weight: var(--text-bold);
-  margin-bottom: calc(var(--site-spacing) * 0.5);
+  margin-bottom: max(1em, calc(var(--site-spacing) * 0.5));
 }
 
 .subtitle {
