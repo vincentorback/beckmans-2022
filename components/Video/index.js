@@ -17,9 +17,6 @@ const Video = ({ provider, id }) => {
         className={classNames(styles.inner, {
           [styles.inView]: inView,
         })}
-        style={{
-          paddingBottom: `${(360 / 640) * 100}%`,
-        }}
       >
         <Plyr
           source={{

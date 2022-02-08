@@ -152,7 +152,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                   />
                 </div>
               )}
-              <Video id="168013411" provider="vimeo" />
+              <Video key={project.uid} id="168013411" provider="vimeo" />
               {image && (
                 <div className={styles.mediaGrid}>
                   <Image
