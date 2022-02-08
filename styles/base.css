@@ -18,19 +18,9 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: transparent;
-}
 
-::-webkit-scrollbar {
-  width: calc(var(--site-spacing) * 0.5);
-}
-
-::-webkit-scrollbar-thumb {
-  width: calc(var(--site-spacing) * 0.5);
-  background-color: var(--color-red);
-}
-
-::-webkit-scrollbar-thumb:window-inactive {
-  background-color: rgba(100, 100, 100, 0.4);
+  scrollbar-color: #dd7550 transparent;
+  scrollbar-width: auto;
 }
 
 a {
