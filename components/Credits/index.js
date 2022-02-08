@@ -10,8 +10,8 @@ const Credits = ({ columns }) => {
     <div className={styles.credits}>
       <div className={styles.columns}>
         {columns.map((column, columnIndex) => (
-          <div className={styles.column} key={columnIndex}>
-            <h2>{column.column_title}</h2>
+          <div className={styles.column} key={`column_${columnIndex}`}>
+            {column.column_title && <h2>{column.column_title}</h2>}
             {column.column_text && (
               <Entry>{RichText.render(column.column_text, linkResolver)}</Entry>
             )}
