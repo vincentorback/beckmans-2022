@@ -80,7 +80,7 @@ const Header = ({ children }) => {
         </div>
         <div className={styles.topRight}>
           <div>
-            <Link
+            {/* <Link
               href={{
                 pathname: router.asPath,
                 query: router.query,
@@ -103,7 +103,7 @@ const Header = ({ children }) => {
                 </svg>
                 <span>{t('navigation.otherLanguage')}</span>
               </a>
-            </Link>
+            </Link> */}
 
             <p className={styles.beckmans}>
               Beckmans <br />

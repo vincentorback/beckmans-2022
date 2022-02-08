@@ -62,11 +62,14 @@
 }
 
 .mid a {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex: 1 0 auto;
 }
 
 .mid svg {
+  flex: 1 0 auto;
   display: block;
   max-width: 230px;
   height: auto;

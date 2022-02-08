@@ -3,12 +3,48 @@ import { queryDocuments } from '../../lib/content'
 import { localeStrings } from '../../lib/constants'
 import Layout from '../../components/Layout'
 import Header from '../../components/Header'
+import Credits from '../../components/Credits'
+import Text from '../../components/Text'
 
-export default function Page({ page }) {
+export const fakeCredits = [
+  {
+    title: 'Utställning',
+  },
+  {
+    title: 'Produktion',
+  },
+  {
+    title: 'Modevisning',
+  },
+  {
+    title: 'Form',
+  },
+  {
+    title: 'Visuell Kommunikation',
+  },
+  {
+    title: 'Mode',
+  },
+  {
+    title: 'Tack till',
+  },
+]
+
+export default function Page(props) {
+  const { page } = props
+
+  console.log(page)
+
+  const isCredits = page.uid === 'credits' || page.uid === 'medverkande'
+
   return (
-    <Layout>
+    <Layout {...props} background={page.data.background_color}>
       <Header />
-      <p>{page.data.title[0].text}</p>
+      {isCredits ? (
+        <Credits data={fakeCredits} />
+      ) : (
+        <Text title={page.data.title[0].text} />
+      )}
     </Layout>
   )
 }
@@ -20,7 +56,7 @@ export async function getStaticPaths({ locales }) {
 
   locales.forEach((locale) => {
     pages.forEach((page) => {
-      if (page.lang === localeStrings[locale].prismicCode) {
+      if (page.lang.includes(locale)) {
         paths.push({
           params: {
             page: page.uid,
@@ -30,6 +66,8 @@ export async function getStaticPaths({ locales }) {
       }
     })
   })
+
+  console.log(paths)
 
   return {
     paths,
@@ -52,6 +90,8 @@ export async function getStaticProps({ params, locale }) {
       },
     }
   }
+
+  console.log(321, page)
 
   return {
     props: {

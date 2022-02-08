@@ -47,11 +47,15 @@
 .item a {
   display: flex;
   justify-content: space-between;
+  transition: opacity 150ms ease;
+}
+
+.item a:hover {
+  opacity: 0.6;
 }
 
 .item .content {
   flex: 1 1 auto;
-  font-size: 0.875em;
   line-height: 1.25;
 }
 
@@ -71,7 +75,7 @@
   width: 3px;
   height: 3px;
   transform: translate(-50%, -50%);
-  background-color: var(--color-cream);
+  background-color: var(--color-white);
   transition: opacity 150ms ease, transform 150ms ease,
     background-color 150ms ease;
 }

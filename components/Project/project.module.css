@@ -1,6 +1,5 @@
 .project {
   padding-top: var(--site-spacing);
-  padding-bottom: var(--site-spacing);
   display: grid;
   gap: var(--site-spacing);
 }
@@ -108,8 +107,13 @@
 
 .mediaGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   gap: var(--site-spacing);
+}
+
+@media (min-width: 800px) {
+  .mediaGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .info {

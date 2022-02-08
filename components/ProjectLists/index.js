@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next-translate-routes/link'
 import classNames from 'classnames'
 import styles from './projectLists.module.css'
+import { slugify } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
 
 const ProjectLists = ({ items, setActiveItem, activeItem }) => {
@@ -20,12 +21,12 @@ const ProjectLists = ({ items, setActiveItem, activeItem }) => {
     [items]
   )
 
-  const handleMouseEnter = React.useCallback(
-    (item) => {
-      setActiveItem(item)
-    },
-    [setActiveItem]
-  )
+  // const handleMouseEnter = React.useCallback(
+  //   (item) => {
+  //     setActiveItem(item)
+  //   },
+  //   [setActiveItem]
+  // )
 
   return (
     <div className={styles.container}>
@@ -33,7 +34,7 @@ const ProjectLists = ({ items, setActiveItem, activeItem }) => {
         lists.map((list, listIndex) => (
           <div className={styles.cell} key={list.id}>
             <h2 className={styles.title}>
-              <Link href={`/${list.id}`} prefetch={false}>
+              <Link href={slugify(t(`categories.${list.id}`))} prefetch={false}>
                 <a>{t(`categories.${list.id}`)}</a>
               </Link>
             </h2>
@@ -45,7 +46,7 @@ const ProjectLists = ({ items, setActiveItem, activeItem }) => {
                   //     activeItem && activeItem.uid === item.uid,
                   // })}
                   key={item.uid}
-                  onMouseEnter={() => handleMouseEnter(item)}
+                  // onMouseEnter={() => handleMouseEnter(item)}
                 >
                   <Link href={item.url} prefetch={false}>
                     <a>

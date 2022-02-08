@@ -1,10 +1,10 @@
 .plyr--video {
-  --plyr-color-main: var(--color-cream);
+  --plyr-color-main: var(--color-white);
   --plyr-control-spacing: 1em;
   --plyr-video-control-background-hover: transparent;
   --plyr-video-control-color-hover: var(--color-blue);
   --plyr-video-control-color: var(--plyr-color-main);
-  --plyr-tooltip-background: var(--color-cream);
+  --plyr-tooltip-background: var(--color-white);
   --plyr-tooltip-color: var(--color-black);
   --plyr-range-thumb-background: var(--plyr-color-main);
   --plyr-range-thumb-height: 14px;

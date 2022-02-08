@@ -98,19 +98,6 @@
   height: 100%;
 }
 
-.item p {
-  line-height: 1.2;
-}
-
-.item p:first-child {
-  font-size: 1.1em;
-}
-
-.item p:not(:first-child) {
-  margin-top: 0.3em;
-  font-size: 0.8em;
-}
-
 .image {
   z-index: 0;
   width: 100%;
@@ -128,6 +115,22 @@
   pointer-events: none;
 }
 
+.item:not(.is-loaded) .dots {
+  animation: pulse 2000ms ease infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 .dots div {
   position: absolute;
   top: 0;
@@ -135,9 +138,9 @@
   width: 4px;
   height: 4px;
   transform: translate(-50%, -50%);
-  background-color: var(--color-cream);
+  background-color: var(--color-white);
   transition: opacity 150ms ease, transform 150ms ease,
-    background-color 150ms ease;
+    background-color 900ms ease;
 }
 
 .item:not(.is-loaded) .dots div {
@@ -213,7 +216,7 @@
 
   text-align: center;
   font-weight: var(--text-bold);
-  color: var(--color-cream);
+  color: var(--color-white);
   font-size: clamp(2rem, 5vw, 4rem);
   line-height: 1.25;
   text-shadow: rgba(0, 0, 0, 0.15) 1px 1px 20px;
@@ -239,6 +242,22 @@
   pointer-events: none;
 }
 
+.windowItem:not(.is-loaded) .windowDots {
+  animation: pulse 2000ms ease infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 .windowDots div {
   position: absolute;
   top: calc((100% / 14) * var(--row));
@@ -253,11 +272,11 @@
 }
 
 .windowItem.is-loaded .windowDots div {
-  background-color: var(--color-cream);
+  background-color: var(--color-white);
 }
 
 .windowItem.is-loaded .windowDots div {
-  background-color: var(--color-cream);
+  background-color: var(--color-white);
 }
 
 /*

@@ -2,16 +2,21 @@ import Container from '../Container'
 import Entry from '../Entry'
 import styles from './text.module.css'
 
-const Text = () => {
+const Text = ({ title }) => {
   return (
     <div className={styles.text}>
-      <Container size="lg">
+      <Container>
         <div className={styles.grid}>
           <div className={styles.left}>
-            <h1>Om utställningen</h1>
+            <h1>{title}</h1>
           </div>
           <div className={styles.right}>
             <Entry>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                euismod, nisi vel consectetur
+              </p>
+
               <p>
                 Vid Beckmans Designhögskola vet vi att design kan vara nyckeln
                 till lösningen på olika problem. Från hur vi förvarar,

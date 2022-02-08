@@ -7,29 +7,24 @@ import { slugify } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
 // import { useRouter } from 'next/router'
 
+const LinkWrap = ({ item, children }) => {
+  if (item.url) {
+    return (
+      <Link href={item.url} prefetch={false}>
+        <a className={styles.windowLink}>{children}</a>
+      </Link>
+    )
+  }
+
+  return children
+}
+
 const Window = ({ isLoaded, item }) => {
   if (!item) {
     item = {
       uid: 123,
     }
   }
-
-  const t = useTranslations('categories')
-
-  const LinkWrap = React.useCallback(
-    ({ children }) => {
-      if (item.url) {
-        return (
-          <Link href={item.url} prefetch={false}>
-            <a className={styles.windowLink}>{children}</a>
-          </Link>
-        )
-      }
-
-      return children
-    },
-    [item]
-  )
 
   return (
     <div
@@ -40,13 +35,12 @@ const Window = ({ isLoaded, item }) => {
       style={{
         backgroundColor: item.color ?? null,
       }}
-      data-id={item.uid}
       key={item.uid}
     >
-      <LinkWrap>
+      <LinkWrap item={item}>
         <div className={styles.windowContent}>
           <p>{item.name ? item.name : item.title}</p>
-          {item.category && <p>{t(slugify(item.category))}</p>}
+          {item.categoryName && <p>{item.categoryName}</p>}
           {item.subtitle && <p>{item.subtitle}</p>}
         </div>
         {item?.image && (

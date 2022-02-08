@@ -7,7 +7,7 @@ const Credits = ({ data }) => {
 
   return (
     <div className={styles.credits}>
-      <Container size="lg">
+      <Container>
         <h1>{t('credits')}</h1>
         <div className={styles.columns}>
           {data.map((column, columnIndex) =>

@@ -1,5 +1,5 @@
 .credits {
-  padding: 20vh 0;
+  padding: calc(var(--site-spacing) * 2) 0;
 }
 
 .credits h1 {
@@ -10,7 +10,6 @@
 }
 
 .columns {
-  font-size: 0.875rem;
   gap: calc(var(--site-spacing) * 3);
 }
 

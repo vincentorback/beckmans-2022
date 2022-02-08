@@ -6,11 +6,12 @@ import Layout from '../../components/Layout'
 import Header from '../../components/Header'
 import Project from '../../components/Project'
 
-export default function ProjectPage({ project, nextProject, prevProject }) {
+export default function ProjectPage(props) {
+  const { project, nextProject, prevProject } = props
   const t = useTranslations('categories')
 
   return (
-    <Layout>
+    <Layout {...props}>
       <Header>
         {/* <p>
           {project.name} - {t(project.category)}

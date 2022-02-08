@@ -15,7 +15,7 @@ html {
   font-size: 100%;
   line-height: 1;
   font-weight: 400;
-  background-color: var(--color-cream);
+  background-color: var(--color-white);
   color: var(--color-black);
   -webkit-text-size-adjust: none;
   -webkit-font-smoothing: antialiased;

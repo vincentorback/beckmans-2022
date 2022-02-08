@@ -7,33 +7,8 @@ import Layout from '../components/Layout'
 import ProjectAccordions from '../components/ProjectAccordions'
 import ProjectLists from '../components/ProjectLists'
 import ProjectsGrid from '../components/ProjectsGrid'
-import Text from '../components/Text'
 import { queryDocuments, fakeProjects } from '../lib/content'
 import { randomColor, randomFromArray } from '../lib/utilities'
-
-export const fakeCredits = [
-  {
-    title: 'Utställning',
-  },
-  {
-    title: 'Produktion',
-  },
-  {
-    title: 'Modevisning',
-  },
-  {
-    title: 'Form',
-  },
-  {
-    title: 'Visuell Kommunikation',
-  },
-  {
-    title: 'Mode',
-  },
-  {
-    title: 'Tack till',
-  },
-]
 
 const DEFAULT_FILTER = null
 
@@ -73,8 +48,8 @@ const Projects = ({ projects, filters, activeFilter }) => {
             items={projects}
             activeFilter={activeFilter}
             filters={filters}
-            setActiveItem={setActiveItem}
-            activeItem={activeItem}
+            // setActiveItem={setActiveItem}
+            // activeItem={activeItem}
           />
         </>
       ) : (
@@ -115,26 +90,6 @@ export default function HomePage(props) {
         filters={filters}
         activeFilter={activeFilter}
       />
-      <div
-        style={{
-          backgroundColor: 'var(--color-red)',
-        }}
-      >
-        <Credits data={fakeCredits} />
-      </div>
-      <div
-        style={{
-          backgroundColor: 'var(--color-blue)',
-        }}
-      >
-        <Text />
-      </div>
-
-      <div
-        style={{
-          minHeight: '1px',
-        }}
-      />
     </Layout>
   )
 }
@@ -144,6 +99,15 @@ export async function getStaticProps({ locale }) {
   const pages = content.filter((item) => item.type === 'page')
   const messages = require(`../locales/${locale}.json`)
   const projects = fakeProjects
+    .map((project) => ({
+      ...project,
+      categoryName: 'Mode',
+    }))
+    .sort((a, b) => {
+      if (a.name < b.name) return -1
+      if (a.name > b.name) return 1
+      return 0
+    })
 
   if (
     Array.isArray(projects) &&
