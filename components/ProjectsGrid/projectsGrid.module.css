@@ -278,8 +278,3 @@
 .windowItem.is-loaded .windowDots div {
   background-color: var(--color-white);
 }
-
-/*
-.windowDots svg {
-  transform: translate(-4px, -12px);
-} */

@@ -5,12 +5,11 @@ import classNames from 'classnames'
 import styles from './projectsGrid.module.css'
 import { slugify } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
-// import { useRouter } from 'next/router'
 
-const LinkWrap = ({ item, children }) => {
+const WindowLinkWrap = ({ item, children }) => {
   if (item.url) {
     return (
-      <Link href={item.url} prefetch={false}>
+      <Link href={item.url}>
         <a className={styles.windowLink}>{children}</a>
       </Link>
     )
@@ -26,6 +25,8 @@ const Window = ({ isLoaded, item }) => {
     }
   }
 
+  const t = useTranslations('categories')
+
   return (
     <div
       className={classNames(styles.windowItem, {
@@ -37,10 +38,10 @@ const Window = ({ isLoaded, item }) => {
       }}
       key={item.uid}
     >
-      <LinkWrap item={item}>
+      <WindowLinkWrap item={item}>
         <div className={styles.windowContent}>
           <p>{item.name ? item.name : item.title}</p>
-          {item.categoryName && <p>{item.categoryName}</p>}
+          {item.category && <p>{t(item.category)}</p>}
           {item.subtitle && <p>{item.subtitle}</p>}
         </div>
         {item?.image && (
@@ -52,6 +53,7 @@ const Window = ({ isLoaded, item }) => {
             alt=""
             layout="fill"
             quality={10}
+            priority
           />
         )}
         <div className={styles.windowDots}>
@@ -62,25 +64,10 @@ const Window = ({ isLoaded, item }) => {
                 '--cell': i % 14,
               }}
               key={`${item.uid}_${i}`}
-            >
-              {/* {!item.title ? (
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M16 7H3.83L9.42 1.41L8 0L0 8L8 16L9.41 14.59L3.83 9H16V7Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              ) : null} */}
-            </div>
+            />
           ))}
         </div>
-      </LinkWrap>
+      </WindowLinkWrap>
     </div>
   )
 }
@@ -121,7 +108,7 @@ const Grid = ({ isLoaded, activeFilter, items, handleMouseEnter, onLoad }) => {
           >
             {item.name ? (
               <>
-                <Link href={item.url} prefetch={false}>
+                <Link href={item.url}>
                   <a
                     className={styles.link}
                     // disabled={
@@ -144,6 +131,7 @@ const Grid = ({ isLoaded, activeFilter, items, handleMouseEnter, onLoad }) => {
                           alt=""
                           layout="fill"
                           quality={50}
+                          priority
                           onLoadingComplete={() => {
                             handleImageLoad(item.uid)
                           }}
@@ -160,13 +148,9 @@ const Grid = ({ isLoaded, activeFilter, items, handleMouseEnter, onLoad }) => {
               </>
             ) : item.url ? (
               <>
-                <Link href={item?.url} prefetch={false}>
+                <Link href={item?.url}>
                   <a className={styles.link}>
-                    <div className={styles.itemInner}>
-                      {/* <div className={styles.content}>
-                        <p>{item.title}</p>
-                      </div> */}
-                    </div>
+                    <div className={styles.itemInner} />
                   </a>
                 </Link>
                 <div className={styles.dots}>
@@ -178,11 +162,7 @@ const Grid = ({ isLoaded, activeFilter, items, handleMouseEnter, onLoad }) => {
             ) : (
               <>
                 <div className={styles.link}>
-                  {/* <div className={styles.itemInner}>
-                  <div className={styles.content}>
-                    <p>{item.title}</p>
-                  </div>
-                </div> */}
+                  <div className={styles.itemInner} />
                 </div>
                 <div className={styles.dots}>
                   {[...Array(9)].map((_, i) => (

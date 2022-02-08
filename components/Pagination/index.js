@@ -7,7 +7,7 @@ const Pagination = ({ prev, next }) => {
   return (
     <nav className={styles.pagination}>
       {prev && (
-        <Link href={prev.url} prefetch={false}>
+        <Link href={prev.url}>
           <a className={styles.prev}>
             <svg
               width="16"
@@ -26,7 +26,7 @@ const Pagination = ({ prev, next }) => {
         </Link>
       )}
       {next && (
-        <Link href={next.url} prefetch={false}>
+        <Link href={next.url}>
           <a className={styles.next}>
             <span>Nästa student</span>
             <svg

@@ -98,16 +98,11 @@ export async function getStaticProps({ locale }) {
   const content = await queryDocuments(locale)
   const pages = content.filter((item) => item.type === 'page')
   const messages = require(`../locales/${locale}.json`)
-  const projects = fakeProjects
-    .map((project) => ({
-      ...project,
-      categoryName: 'Mode',
-    }))
-    .sort((a, b) => {
-      if (a.name < b.name) return -1
-      if (a.name > b.name) return 1
-      return 0
-    })
+  const projects = fakeProjects.sort((a, b) => {
+    if (a.name < b.name) return -1
+    if (a.name > b.name) return 1
+    return 0
+  })
 
   if (
     Array.isArray(projects) &&

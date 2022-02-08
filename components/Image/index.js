@@ -27,16 +27,11 @@ const Image = (props) => {
 
   return (
     <div
-      // className={classNames(className, {
-      //   'is-loaded': isLoaded,
-      // })}
       style={{
         backgroundColor: layout !== 'fill' && 'var(--color-blue)',
         position: 'relative',
         width: layout === 'fill' ? '100%' : 'auto',
         height: layout === 'fill' ? '100%' : 'auto',
-        // transition: 'opacity 150ms ease 150ms',
-        // opacity: isLoaded ? 1 : 0,
       }}
     >
       <NextImage
@@ -49,7 +44,6 @@ const Image = (props) => {
         width={layout === 'cover' || layout === 'fill' ? null : width}
         height={layout === 'cover' || layout === 'fill' ? null : height}
         quality={quality || 50}
-        // onLoadingComplete={() => setLoaded(true)}
       />
     </div>
   )

@@ -34,7 +34,7 @@ const ProjectLists = ({ items, setActiveItem, activeItem }) => {
         lists.map((list, listIndex) => (
           <div className={styles.cell} key={list.id}>
             <h2 className={styles.title}>
-              <Link href={slugify(t(`categories.${list.id}`))} prefetch={false}>
+              <Link href={slugify(t(`categories.${list.id}`))}>
                 <a>{t(`categories.${list.id}`)}</a>
               </Link>
             </h2>
@@ -48,7 +48,7 @@ const ProjectLists = ({ items, setActiveItem, activeItem }) => {
                   key={item.uid}
                   // onMouseEnter={() => handleMouseEnter(item)}
                 >
-                  <Link href={item.url} prefetch={false}>
+                  <Link href={item.url}>
                     <a>
                       <span>{item.name}</span>
                     </a>

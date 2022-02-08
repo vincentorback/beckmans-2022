@@ -12,11 +12,7 @@ export default function ProjectPage(props) {
 
   return (
     <Layout {...props}>
-      <Header>
-        {/* <p>
-          {project.name} - {t(project.category)}
-        </p> */}
-      </Header>
+      <Header />
       <Project
         project={project}
         nextProject={nextProject}

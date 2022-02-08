@@ -94,7 +94,7 @@ const Project = ({ project, nextProject, prevProject }) => {
                   <ul>
                     {links.map((link, linkIndex) => (
                       <li key={link.label}>
-                        <Link href={link.href} prefetch={false}>
+                        <Link href={link.href}>
                           <a>{link.label}</a>
                         </Link>
                       </li>
@@ -109,7 +109,7 @@ const Project = ({ project, nextProject, prevProject }) => {
                     {thanks.map((thank, thankIndex) => (
                       <li key={thank.label}>
                         {thank.href ? (
-                          <Link href={'#/'} prefetch={false}>
+                          <Link href={'#/'}>
                             <a>{thank.label}</a>
                           </Link>
                         ) : (
@@ -124,7 +124,7 @@ const Project = ({ project, nextProject, prevProject }) => {
                 <h4>Pressbilder</h4>
                 <ul>
                   <li>
-                    <Link href={'#/'} prefetch={false}>
+                    <Link href={'#/'}>
                       <a>Ladda ner</a>
                     </Link>
                   </li>
