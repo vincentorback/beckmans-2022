@@ -23,6 +23,8 @@ const ProjectAccordions = ({ lists, items }) => {
             key={list.id}
           >
             <button
+              aria-expanded={activeAccordion === list.id}
+              className={styles.button}
               onClick={() =>
                 setAccordion((activeId) =>
                   activeId === list.id ? null : list.id
@@ -36,6 +38,7 @@ const ProjectAccordions = ({ lists, items }) => {
                 viewBox="0 0 20 20"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
               >
                 <line
                   x1="10"
@@ -54,11 +57,11 @@ const ProjectAccordions = ({ lists, items }) => {
                 />
               </svg>
             </button>
-            <div className={styles.listContent}>
+            <div hidden={list.id !== activeAccordion}>
               {list.items.map((item, itemIndex) => (
                 <div className={styles.item} key={item.uid}>
                   <Link href={item.url}>
-                    <a>
+                    <a className={styles.link}>
                       <div className={styles.content}>
                         <p>{item.name}</p>
                         <p>{item.title[locale]}</p>
