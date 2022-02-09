@@ -23,15 +23,15 @@ export default function ErrorPage(props) {
   )
 }
 
-export async function getServerSideProps(props) {
+export async function getServerSideProps({ res, locale }) {
   const content = await queryDocuments()
   const pages = content.filter((item) => item.type === 'page')
-  const messages = require(`../locales/${locale}.json`)
+  const messages = require(`../locales/${locale || 'sv'}.json`)
 
   return {
     props: {
-      statusCode: props?.res?.statusCode ?? 500,
-      statusMessage: props.res.statusMessage ?? 'Something went wrong',
+      statusCode: res?.statusCode ?? 500,
+      statusMessage: res?.statusMessage ?? 'Something went wrong',
       pages,
       messages,
     },
