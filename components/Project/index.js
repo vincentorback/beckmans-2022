@@ -12,7 +12,7 @@ import styles from './project.module.css'
 
 const Project = ({ project, projects, nextProject, prevProject }) => {
   const router = useRouter()
-  const { category, name, title, image, links, video, thanks } = project
+  const { category, name, title, image, links, thanks } = project
 
   const t = useTranslations()
 
@@ -107,7 +107,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                   <ul>
                     {links.map((link, linkIndex) => (
                       <li key={link.label}>
-                        <Link href={link.href}>
+                        <Link href={link.url}>
                           <a>{link.label}</a>
                         </Link>
                       </li>
@@ -121,7 +121,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                   <ul>
                     {thanks.map((thank, thankIndex) => (
                       <li key={thank.label}>
-                        {thank.href ? (
+                        {thank.url ? (
                           <Link href={'#/'}>
                             <a>{thank.label}</a>
                           </Link>
