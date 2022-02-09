@@ -57,9 +57,7 @@ export async function getStaticProps({ params, locale }) {
   const content = await queryDocuments()
   const pages = content.filter((item) => item.type === 'page')
   const page = pages.find(
-    (item) =>
-      item.uid === params.page &&
-      item.lang === localeStrings[locale].prismicCode
+    (item) => item.uid === params.page && item.lang === localeStrings[locale]
   )
   const messages = require(`../../locales/${locale}.json`)
 

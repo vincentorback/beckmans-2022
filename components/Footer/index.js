@@ -33,10 +33,7 @@ const Footer = ({ pages, otherLocalePage }) => {
               </li>
               {pages &&
                 pages
-                  .filter(
-                    (item) =>
-                      item.lang === localeStrings[router.locale].prismicCode
-                  )
+                  .filter((item) => item.lang === localeStrings[router.locale])
                   .sort((a, b) => {
                     if (a.uid > b.uid) return 1
                     if (a.uid < b.uid) return -1
