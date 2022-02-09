@@ -2,13 +2,24 @@ import React from 'react'
 import classNames from 'classnames'
 import NextImage from 'next/image'
 
-const imageLoader = ({ src, width }) => {
-  const url = new URL(src)
+const imageLoader = ({ src, width, height }) => {
+  if (src.startsWith('/')) {
+    return src
+  } else {
+    const url = new URL(src)
 
-  url.searchParams.set('auto', 'compress,format')
-  url.searchParams.set('w', width)
+    url.searchParams.set('auto', 'compress,format')
 
-  return url.toString()
+    if (width) {
+      url.searchParams.set('w', width)
+    }
+
+    if (height) {
+      url.searchParams.set('h', height)
+    }
+
+    return url.toString()
+  }
 }
 
 const Image = (props) => {
