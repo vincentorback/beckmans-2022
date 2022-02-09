@@ -1,10 +1,13 @@
 .columns {
-  gap: calc(var(--site-spacing) * 3);
+  display: grid;
+  gap: calc(var(--site-spacing) * 1);
 }
 
 @media (min-width: 500px) {
   .columns {
+    display: block;
     columns: 2;
+    gap: calc(var(--site-spacing) * 3);
   }
 }
 
@@ -22,10 +25,16 @@
 }
 
 .column {
-  border-top: 1px solid;
+  border-top: 2px solid;
   padding: var(--site-spacing) 0;
   break-inside: avoid-column;
   line-height: var(--lineheight-lg);
+}
+
+@media (min-width: 500px) {
+  .columns {
+    border-top-width: 1px;
+  }
 }
 
 .column h2 {
@@ -47,5 +56,6 @@
 }
 
 .column a:hover {
-  opacity: 0.4;
+  opacity: 0.7;
+  text-decoration: underline;
 }
