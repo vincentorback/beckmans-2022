@@ -28,7 +28,7 @@
 
 @media (max-width: 1300px) {
   .header {
-    gap: 0 var(--site-spacing);
+    gap: var(--site-spacing);
   }
 
   .mid {

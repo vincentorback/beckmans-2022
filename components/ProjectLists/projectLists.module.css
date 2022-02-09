@@ -20,6 +20,11 @@
   }
 }
 
+.cell {
+  display: flex;
+  flex-direction: column;
+}
+
 .cell h2 {
   display: block;
   font-size: 1.3125rem;
@@ -36,11 +41,12 @@
 }
 
 .list {
+  flex: 1 0 auto;
   border-top: 1px solid;
   margin-top: 1em;
   padding-top: 1em;
   column-gap: 1em;
-
+  column-fill: auto;
   line-height: var(--lineheight-lg);
 }
 

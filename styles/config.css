@@ -1,5 +1,6 @@
 :root {
-  --text-sansserif: 'Maxeville', sans-serif;
+  --text-sansserif: 'Maxeville', -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica, Arial, sans-serif;
   --text-serif: 'Affairs', serif;
 
   --text-normal: 400;

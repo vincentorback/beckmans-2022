@@ -1,11 +1,11 @@
 .text {
   padding: calc(var(--site-spacing) * 2) 0;
   display: grid;
-  gap: var(--site-spacing);
+  gap: calc(var(--site-spacing) * 2) var(--site-spacing);
 }
 
 .title h1 {
-  font-size: 2rem;
+  font-size: clamp(1.3rem, 2.22vw, 2rem);
   line-height: var(--lineheight-md);
   font-weight: var(--text-bold);
 }
