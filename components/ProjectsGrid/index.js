@@ -48,8 +48,8 @@ const Window = ({ isLoaded, item }) => {
           <Image
             className={styles.windowItemImage}
             src={item.image}
-            width={400}
-            height={400}
+            width={1158}
+            height={1352}
             alt=""
             layout="fill"
             quality={10}
@@ -126,10 +126,10 @@ const Grid = ({ isLoaded, activeFilter, items, handleMouseEnter, onLoad }) => {
                         <Image
                           className={styles.image}
                           src={item.image}
-                          width={1080}
-                          height={1350}
+                          width={150}
+                          height={150}
                           alt=""
-                          layout="fill"
+                          layout="fixed"
                           quality={50}
                           priority
                           onLoadingComplete={() => {
