@@ -24,12 +24,12 @@
 }
 
 .item a {
-  text-decoration: underline;
   transition: opacity 150ms ease;
 }
 
 .item a:hover {
-  opacity: 0.6;
+  opacity: 0.8;
+  text-decoration: underline;
 }
 
 .item ul {
