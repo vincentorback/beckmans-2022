@@ -29,7 +29,7 @@ const Projects = ({ setReady, projects, filters, activeFilter }) => {
 
   React.useEffect(() => {
     setActiveItem((prev) =>
-      prev && prev.category === activeFilter ? prev : null
+      !activeFilter || prev.category === activeFilter ? prev : null
     )
   }, [activeFilter])
 
@@ -66,8 +66,6 @@ const Projects = ({ setReady, projects, filters, activeFilter }) => {
             activeFilter={activeFilter}
             filters={filters}
             lists={lists}
-            // setActiveItem={setActiveItem}
-            // activeItem={activeItem}
           />
         </>
       ) : (
