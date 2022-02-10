@@ -15,14 +15,12 @@ export default function ProjectPage(props) {
     <Layout title={project.name} {...props}>
       <Header {...props} />
       <Container>
-        <div className="MainContent">
-          <Project
-            project={project}
-            projects={projects}
-            nextProject={nextProject}
-            prevProject={prevProject}
-          />
-        </div>
+        <Project
+          project={project}
+          projects={projects}
+          nextProject={nextProject}
+          prevProject={prevProject}
+        />
       </Container>
     </Layout>
   )

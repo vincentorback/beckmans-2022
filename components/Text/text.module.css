@@ -5,7 +5,7 @@
 
 .title {
   position: relative;
-  margin-bottom: calc(var(--site-spacing) * 1);
+  margin-bottom: calc(var(--site-spacing) * 2);
 }
 
 .title h1 {

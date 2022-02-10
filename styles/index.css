@@ -4,5 +4,5 @@
 @import 'vendor/plyr.css';
 
 .MainContent {
-  padding-top: calc(var(--site-spacing) * 1);
+  padding: calc(var(--site-spacing) * 3) 0;
 }

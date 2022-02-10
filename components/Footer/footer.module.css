@@ -1,5 +1,5 @@
 .footer {
-  padding: calc(var(--site-spacing) * 2) 0 calc(var(--site-spacing) * 2);
+  padding: calc(var(--site-spacing) * 2) 0 calc(var(--site-spacing) * 1);
 }
 
 @media (min-width: 600px) {
@@ -34,12 +34,16 @@
 
 .item ul {
   list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1em;
+  display: grid;
+  gap: 0 1em;
 }
 
 @media (min-width: 600px) {
+  .item ul {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   .item:nth-child(2) {
     grid-column: 1 / 4;
   }
