@@ -6,7 +6,7 @@ import { isEmpty } from '../../lib/utilities'
 import styles from './map.module.css'
 
 const Map = ({ items, category }) => {
-  const [activeItem, setActiveItem] = React.useState()
+  const [activeItem, setActiveItem] = React.useState(null)
 
   const handleMouse = React.useCallback((name) => {
     setActiveItem(name)

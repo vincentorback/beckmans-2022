@@ -6,7 +6,7 @@ import Plyr from 'plyr-react'
 import { useInView } from 'react-intersection-observer'
 import 'plyr-react/dist/plyr.css'
 
-const Video = ({ provider, id }) => {
+const Video = ({ id, provider }) => {
   const { ref, inView } = useInView({
     triggerOnce: true,
   })
@@ -24,7 +24,7 @@ const Video = ({ provider, id }) => {
             sources: [
               {
                 src: id,
-                provider,
+                provider: provider.toLowerCase(),
               },
             ],
           }}

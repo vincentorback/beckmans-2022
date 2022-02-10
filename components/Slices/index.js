@@ -1,5 +1,6 @@
 import Credits from '../Credits'
 import Text from '../Text'
+import { isEmpty } from '../../lib/utilities'
 
 const Slices = ({ body }) => {
   return (
@@ -8,6 +9,7 @@ const Slices = ({ body }) => {
         if (slice.slice_type === 'text') {
           if (!slice?.primary?.text_title && !slice?.primary?.text_body)
             return null
+
           return (
             <Text
               key={`slice_${sliceIndex}`}
@@ -18,7 +20,8 @@ const Slices = ({ body }) => {
         }
 
         if (slice.slice_type === 'credits') {
-          if (!slice.items || !slice.items.length) return null
+          if (isEmpty(slice?.items)) return null
+
           return <Credits key={`slice_${sliceIndex}`} columns={slice.items} />
         }
       })}
