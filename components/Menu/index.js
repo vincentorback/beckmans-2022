@@ -11,13 +11,13 @@ const Menu = ({ isActive, toggleMenu, pages }) => {
     >
       <div className={styles.inner}>
         <Container>
-          <ul>
+          {/* <ul>
             {pages.map((page) => (
-              <li key={page.uid}>
+              <li key={page.uid} id={page.uid}>
                 <a href={`/${page.uid}`}>{page.data.title[0].text}</a>
               </li>
             ))}
-          </ul>
+          </ul> */}
           <button onClick={toggleMenu} className={styles.closeButton}>
             <svg
               width="20"

@@ -132,7 +132,7 @@ const Grid = ({ isLoaded, activeFilter, items, handleMouseEnter, onLoad }) => {
           isLoaded &&
           (!activeFilter ||
             (!item.name && !activeFilter) ||
-            (item.name && item.category === activeFilter))
+            (item.category && item.category === activeFilter))
 
         return (
           <div
