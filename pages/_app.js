@@ -11,20 +11,7 @@ import '../styles/index.css'
 const App = ({ Component, pageProps, router }) => {
   return (
     <>
-      <NextIntlProvider
-        messages={pageProps.messages}
-        now={new Date(pageProps.now)}
-        timeZone="Europe/Stockholm"
-        formats={{
-          dateTime: {
-            short: {
-              day: 'numeric',
-              month: 'short',
-              year: 'numeric',
-            },
-          },
-        }}
-      >
+      <NextIntlProvider messages={pageProps.messages}>
         <Component {...pageProps} key={router.route} />
       </NextIntlProvider>
       {/* <AnimatedCursor
