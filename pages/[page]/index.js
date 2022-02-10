@@ -17,7 +17,7 @@ export default function Page(props) {
       title={page.data.title[0].text}
       background={page?.data?.background_color}
     >
-      <Header />
+      <Header {...props} />
       <Container>
         <div className="MainContent">
           {page.data.body ? (

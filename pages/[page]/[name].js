@@ -13,7 +13,7 @@ export default function ProjectPage(props) {
 
   return (
     <Layout title={project.name} {...props}>
-      <Header />
+      <Header {...props} />
       <Container>
         <div className="MainContent">
           <Project
@@ -29,7 +29,6 @@ export default function ProjectPage(props) {
 }
 
 export async function getStaticPaths({ locales }) {
-  // const content = await queryDocuments()
   const projects = fakeProjects // content.filter((item) => item.type === 'project')
   const paths = []
 
@@ -55,6 +54,7 @@ export async function getStaticPaths({ locales }) {
 
 export async function getStaticProps({ params, locale }) {
   const content = await queryDocuments()
+  const pages = content.filter((item) => item.type === 'page')
   const projects = fakeProjects.sort((a, b) => {
     if (a.name < b.name) return -1
     if (a.name > b.name) return 1
@@ -69,7 +69,6 @@ export async function getStaticProps({ params, locale }) {
   const nextProject = projects[currentIndex + 1] ?? false
   const prevProject = projects[currentIndex - 1] ?? false
 
-  const pages = content.filter((item) => item.type === 'page')
   const messages = require(`../../locales/${locale}.json`)
 
   if (!project) {

@@ -11,7 +11,7 @@ export default function ErrorPage(props) {
 
   return (
     <Layout title={t('title')} {...props}>
-      <Header />
+      <Header {...props} />
       <Container>
         <div className="MainContent">
           <Text title={t('title')}>

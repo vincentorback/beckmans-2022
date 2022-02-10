@@ -102,7 +102,7 @@ export default function HomePage(props) {
 
   return (
     <Layout {...props}>
-      <Header>
+      <Header {...props}>
         <Filters
           activeFilter={activeFilter}
           filters={filters}
