@@ -2,3 +2,7 @@
 @import 'fonts.css';
 @import 'base.css';
 @import 'vendor/plyr.css';
+
+.MainContent {
+  padding-top: calc(var(--site-spacing) * 1);
+}

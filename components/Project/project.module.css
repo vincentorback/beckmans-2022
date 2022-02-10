@@ -1,5 +1,4 @@
 .project {
-  padding-top: var(--site-spacing);
   display: grid;
   gap: var(--site-spacing);
 }

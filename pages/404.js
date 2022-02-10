@@ -20,6 +20,8 @@ export default function Error404Page(props) {
         <Text title={pageTitle}>
           <p>{t('404')}</p>
         </Text>
+        <div className="MainContent">
+        </div>
       </Container>
     </Layout>
   )

@@ -5,6 +5,7 @@ import { slugify } from '../../lib/utilities'
 import Layout from '../../components/Layout'
 import Header from '../../components/Header'
 import Project from '../../components/Project'
+import Container from '../../components/Container'
 
 export default function ProjectPage(props) {
   const { project, projects, nextProject, prevProject } = props
@@ -13,12 +14,16 @@ export default function ProjectPage(props) {
   return (
     <Layout title={project.name} {...props}>
       <Header />
-      <Project
-        project={project}
-        projects={projects}
-        nextProject={nextProject}
-        prevProject={prevProject}
-      />
+      <Container>
+        <div className="MainContent">
+          <Project
+            project={project}
+            projects={projects}
+            nextProject={nextProject}
+            prevProject={prevProject}
+          />
+        </div>
+      </Container>
     </Layout>
   )
 }

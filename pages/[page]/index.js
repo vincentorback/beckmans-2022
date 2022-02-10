@@ -19,11 +19,13 @@ export default function Page(props) {
     >
       <Header />
       <Container>
-        {page.data.body ? (
-          <Slices body={page.data.body} />
-        ) : (
-          <Text title="no content yet" />
-        )}
+        <div className="MainContent">
+          {page.data.body ? (
+            <Slices body={page.data.body} />
+          ) : (
+            <Text title="no content yet" />
+          )}
+        </div>
       </Container>
     </Layout>
   )

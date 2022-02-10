@@ -1,9 +1,11 @@
 .layout {
   min-height: 100vh;
   margin: 0 auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .main {
-  padding-top: var(--site-spacing);
-  min-height: 50vh;
+  flex: 1 0 auto;
 }

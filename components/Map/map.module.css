@@ -3,7 +3,7 @@
 }
 
 .activeItem {
-  margin-top: 1em;
+  margin-bottom: 1rem;
   font-weight: var(--text-bold);
   line-height: var(--lineheight-lg);
   display: block;

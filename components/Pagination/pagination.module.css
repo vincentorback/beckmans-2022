@@ -1,10 +1,11 @@
 .pagination {
   margin-top: var(--site-spacing);
-  padding: calc(var(--site-spacing) * 1) 0;
+  padding: calc(var(--site-spacing) * 2) 0;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   gap: var(--site-spacing);
 
   font-weight: var(--text-bold);

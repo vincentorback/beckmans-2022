@@ -1,13 +1,15 @@
 .columns {
   display: grid;
-  gap: calc(var(--site-spacing) * 1);
+  gap: calc(var(--site-spacing) * 2) var(--site-spacing);
+  margin-bottom: calc(var(--site-spacing) * -1);
 }
 
 @media (min-width: 500px) {
   .columns {
     display: block;
     columns: 2;
-    gap: calc(var(--site-spacing) * 3);
+    gap: 0;
+    column-gap: calc(var(--site-spacing) * 3);
   }
 }
 

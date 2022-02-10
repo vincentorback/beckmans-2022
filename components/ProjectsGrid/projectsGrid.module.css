@@ -1,6 +1,5 @@
 .container {
-  padding-top: var(--site-spacing);
-  padding-bottom: var(--site-spacing);
+  padding: var(--site-spacing) 0;
   user-select: none;
   max-width: var(--site-width);
   margin: 0 auto;
