@@ -20,6 +20,7 @@
 }
 
 .inner {
+  position: relative;
   margin: 0 auto;
   display: grid;
 }
@@ -31,8 +32,6 @@
 }
 
 .grid {
-  position: relative;
-  z-index: 2;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
 }
@@ -53,8 +52,9 @@
   z-index: 1;
 }
 
-.item.is-extra .link {
+.item.is-extra .itemInner {
   background-color: var(--color-black);
+  padding-bottom: 100%;
 }
 
 .link {
@@ -73,10 +73,11 @@
   filter: contrast(1.2);
 }
 
+/*
 .item:not(.is-loaded) .link,
 .item:not(.is-visible) .link {
   opacity: 0;
-}
+} */
 
 .itemInner {
   position: relative;
@@ -111,60 +112,37 @@
   pointer-events: none;
 }
 
-.item:not(.is-loaded) .dots {
-  animation: pulse 2000ms ease infinite;
-}
-
-@keyframes pulse {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
 .dots div {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: calc(var(--row) * (100% / 21));
+  left: calc(var(--cell) * (100% / 24));
   width: 4px;
   height: 4px;
-  transform: translate(-50%, -50%);
-  background-color: var(--color-white);
-  transition: opacity 150ms ease, transform 150ms ease,
-    background-color 900ms ease;
-}
-
-.item:not(.is-loaded) .dots div {
+  transform: translate3d(-50%, -50%, 0);
   background-color: var(--color-black);
+  transition: background-color 900ms ease, opacity 900ms ease;
+  backface-visibility: hidden;
+  will-change: transform;
 }
 
-.dots div:nth-child(2),
-.dots div:nth-child(5),
-.dots div:nth-child(8) {
-  left: 50%;
+/* .dots:not(.is-loaded) div {
+  background-color: var(--color-black);
+  animation: loading 2000ms calc((var(--cell) * 100ms) + (var(--row) * 100ms))
+    ease infinite alternate;
 }
 
-.dots div:nth-child(3),
-.dots div:nth-child(6),
-.dots div:nth-child(9) {
-  left: 100%;
-}
+@keyframes loading {
+  0% {
+    transform: translate3d(-50%, -50%, 0) scale(0.25);
+  }
 
-.dots div:nth-child(4),
-.dots div:nth-child(5),
-.dots div:nth-child(6) {
-  top: 50%;
-}
+  100% {
+    transform: translate3d(-50%, -50%, 0) scale(1);
+  }
+} */
 
-.dots div:nth-child(7),
-.dots div:nth-child(8),
-.dots div:nth-child(9) {
-  top: 100%;
+.dots.is-loaded div {
+  background-color: var(--color-white);
 }
 
 .windowItem {
@@ -175,7 +153,7 @@
   width: 100%;
 }
 
-.windowItem.is-loaded.is-active {
+.windowItem.is-loaded {
   background-color: var(--color-red);
 }
 
@@ -238,33 +216,15 @@
   pointer-events: none;
 }
 
-.windowItem:not(.is-loaded) .windowDots {
-  animation: pulse 2000ms ease infinite;
-}
-
-@keyframes pulse {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
 .windowDots div {
   position: absolute;
   top: calc((100% / 14) * var(--row));
   left: calc((100% / 14) * (var(--cell) + 1));
   width: 4px;
   height: 4px;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(var(--special));
   background-color: var(--color-black);
-  line-height: 0.22;
-  transition: opacity 150ms ease, transform 150ms ease,
-    background-color 150ms ease;
+  transition: opacity 150ms ease, background-color 150ms ease;
 }
 
 .windowItem.is-loaded .windowDots div {

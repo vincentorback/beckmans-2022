@@ -9,11 +9,11 @@ import ProjectLists from '../components/ProjectLists'
 import ProjectsGrid from '../components/ProjectsGrid'
 import { queryDocuments, fakeProjects } from '../lib/content'
 import { categories } from '../lib/constants'
-import { randomColor, randomFromArray } from '../lib/utilities'
+import debounce from 'lodash.debounce'
 
 const DEFAULT_FILTER = null
 
-const Projects = ({ projects, filters, activeFilter }) => {
+const Projects = ({ setReady, projects, filters, activeFilter }) => {
   const containerRef = React.useRef(null)
   const [activeItem, setActiveItem] = React.useState(null)
   const [windowWidth, setWindowWidth] = React.useState(0)
@@ -27,19 +27,25 @@ const Projects = ({ projects, filters, activeFilter }) => {
     [projects, filters]
   )
 
-  const onResize = React.useCallback((e) => {
-    setWindowWidth(window.innerWidth)
-  }, [])
+  React.useEffect(() => {
+    setActiveItem((prev) =>
+      prev && prev.category === activeFilter ? prev : null
+    )
+  }, [activeFilter])
 
   React.useEffect(() => {
-    window.addEventListener('resize', onResize)
+    const handleResize = debounce(() => {
+      setWindowWidth(window.innerWidth)
+    }, 200)
 
-    onResize()
+    window.addEventListener('resize', handleResize)
+
+    handleResize()
 
     return () => {
-      window.addEventListener('resize', onResize)
+      window.addEventListener('resize', handleResize)
     }
-  }, [onResize])
+  }, [])
 
   if (!windowWidth) return null
 
@@ -53,6 +59,7 @@ const Projects = ({ projects, filters, activeFilter }) => {
             filters={filters}
             setActiveItem={setActiveItem}
             activeItem={activeItem}
+            setReady={setReady}
           />
           <ProjectLists
             items={projects}
@@ -74,11 +81,21 @@ export default function HomePage(props) {
   const { projects, filters } = props
 
   const [activeFilter, setActiveFilter] = React.useState(DEFAULT_FILTER)
+  const [isReady, setReady] = React.useState(false)
+
+  React.useEffect(() => {
+    if (localStorage.filter) {
+      setActiveFilter(
+        localStorage.filter === 'null' ? null : localStorage.filter
+      )
+    }
+  }, [])
 
   const onClick = React.useCallback(
     (filter) => {
       const newFilter = activeFilter === filter ? DEFAULT_FILTER : filter
       setActiveFilter(newFilter)
+      localStorage.filter = newFilter
     },
     [activeFilter]
   )
@@ -90,12 +107,14 @@ export default function HomePage(props) {
           activeFilter={activeFilter}
           filters={filters}
           onClick={onClick}
+          isReady={isReady}
         />
       </Header>
       <Projects
         projects={projects}
         filters={filters}
         activeFilter={activeFilter}
+        setReady={setReady}
       />
     </Layout>
   )
@@ -110,6 +129,11 @@ export async function getStaticProps({ locale }) {
     if (a.name > b.name) return 1
     return 0
   })
+  // .map((project) => ({
+  //   ...project,
+  //   image:
+  //     'https://images.prismic.io/beckmans2022/082e8cb8-5b75-48a4-a296-3db070cf7ae8_chantalanderson_airbnbmag-16.jpg?auto=compress,format',
+  // }))
 
   if (
     Array.isArray(projects) &&

@@ -5,6 +5,36 @@ import classNames from 'classnames'
 import styles from './projectsGrid.module.css'
 import { slugify } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
+import { motion } from 'framer-motion'
+
+const AnimatedItem = ({ isActive, children, index }) => (
+  <motion.div
+    initial={{
+      opacity: 0,
+      scale: 0.8,
+    }}
+    animate={isActive ? 'active' : 'notActive'}
+    variants={{
+      active: {
+        opacity: 1,
+        scale: 1,
+        transition: { duration: 0.1, delay: index * 0.01 },
+      },
+      notActive: {
+        opacity: 0,
+        scale: 0.8,
+        transition: { duration: 0.1, delay: index * 0.01 },
+      },
+    }}
+    // variants={variants} // Pass the variant object into Framer Motion
+    // initial="hidden" // Set the initial state to variants.hidden
+    // animate="enter" // Animated state to variants.enter
+    // exit="exit" // Exit state (used later) to variants.exit
+    // transition={{ type: 'ease' }} // Set the transition to linear
+  >
+    {children}
+  </motion.div>
+)
 
 const WindowLinkWrap = ({ item, children }) => {
   if (item.url) {
@@ -26,6 +56,23 @@ const Window = ({ isLoaded, item }) => {
   }
 
   const t = useTranslations('categories')
+
+  // const [test, setTest] = React.useState(0)
+  // React.useEffect(() => {
+  //   let i = 0
+  //   const foo = setInterval(() => {
+  //     i += 1
+
+  //     if (i > 100) {
+  //       return clearInterval(foo)
+  //       setTest(1 * 28)
+  //     }
+
+  //     setTest((v) => (v < 210 ? v + 1 : -1))
+  //   }, 100)
+
+  //   return () => clearInterval(foo)
+  // }, [])
 
   return (
     <div
@@ -56,17 +103,6 @@ const Window = ({ isLoaded, item }) => {
             priority
           />
         )}
-        <div className={styles.windowDots}>
-          {[...Array(210)].map((_, i) => (
-            <div
-              style={{
-                '--row': Math.floor(i / 14),
-                '--cell': i % 14,
-              }}
-              key={`${item.uid}_${i}`}
-            />
-          ))}
-        </div>
       </WindowLinkWrap>
     </div>
   )
@@ -92,36 +128,33 @@ const Grid = ({ isLoaded, activeFilter, items, handleMouseEnter, onLoad }) => {
     <div className={styles.grid}>
       {items.map((item, itemIndex) => {
         const isVisible =
-          !activeFilter ||
-          (!item.name && !activeFilter) ||
-          (item.name && item.category === activeFilter)
+          isLoaded &&
+          (!activeFilter ||
+            (!item.name && !activeFilter) ||
+            (item.name && item.category === activeFilter))
 
         return (
           <div
             key={item.uid || itemIndex}
             className={classNames(styles.item, {
-              [styles['is-visible']]: loadedImages && isVisible,
+              [styles['is-visible']]: isVisible,
               [styles['is-loaded']]: isLoaded,
               [styles['is-extra']]: !item.name,
             })}
             onMouseEnter={() => handleMouseEnter(item)}
           >
             {item.name ? (
-              <>
-                <Link href={item.url}>
-                  <a
-                    className={styles.link}
-                    // disabled={
-                    //   !activeItems.includes(
-                    //     `/${slugify(item.category)}/${item.uid}`
-                    //   )
-                    // }
-                  >
-                    <div className={styles.itemInner}>
-                      {/* <div className={styles.content}>
-                        <p>{item.data.title[0].text}</p>
-                        <p>{item.category}</p>
-                      </div> */}
+              <Link href={item.url}>
+                <a
+                  className={styles.link}
+                  // disabled={
+                  //   !activeItems.includes(
+                  //     `/${slugify(item.category)}/${item.uid}`
+                  //   )
+                  // }
+                >
+                  <div className={styles.itemInner}>
+                    <AnimatedItem isActive={isVisible} index={itemIndex}>
                       {item?.image && (
                         <Image
                           className={styles.image}
@@ -137,39 +170,24 @@ const Grid = ({ isLoaded, activeFilter, items, handleMouseEnter, onLoad }) => {
                           }}
                         />
                       )}
-                    </div>
-                  </a>
-                </Link>
-                <div className={styles.dots}>
-                  {[...Array(9)].map((_, i) => (
-                    <div key={`${itemIndex}_${i}`}></div>
-                  ))}
-                </div>
-              </>
+                    </AnimatedItem>
+                  </div>
+                </a>
+              </Link>
             ) : item.url ? (
-              <>
-                <Link href={item?.url}>
-                  <a className={styles.link}>
+              <Link href={item?.url}>
+                <a className={styles.link}>
+                  <AnimatedItem isActive={isVisible} index={itemIndex}>
                     <div className={styles.itemInner} />
-                  </a>
-                </Link>
-                <div className={styles.dots}>
-                  {[...Array(9)].map((_, i) => (
-                    <div key={`${itemIndex}_${i}`}></div>
-                  ))}
-                </div>
-              </>
+                  </AnimatedItem>
+                </a>
+              </Link>
             ) : (
-              <>
-                <div className={styles.link}>
+              <div className={styles.link}>
+                <AnimatedItem isActive={isVisible} index={itemIndex}>
                   <div className={styles.itemInner} />
-                </div>
-                <div className={styles.dots}>
-                  {[...Array(9)].map((_, i) => (
-                    <div key={`${itemIndex}_${i}`}></div>
-                  ))}
-                </div>
-              </>
+                </AnimatedItem>
+              </div>
             )}
           </div>
         )
@@ -178,7 +196,13 @@ const Grid = ({ isLoaded, activeFilter, items, handleMouseEnter, onLoad }) => {
   )
 }
 
-const ProjectsGrid = ({ items, activeFilter, setActiveItem, activeItem }) => {
+const ProjectsGrid = ({
+  setReady,
+  items,
+  activeFilter,
+  setActiveItem,
+  activeItem,
+}) => {
   const [isLoaded, setIsLoaded] = React.useState(false)
 
   const handleMouseEnter = React.useCallback(
@@ -195,6 +219,7 @@ const ProjectsGrid = ({ items, activeFilter, setActiveItem, activeItem }) => {
       <Grid
         onLoad={() => {
           setIsLoaded(true)
+          setReady(true)
         }}
         isLoaded={isLoaded}
         items={items}
@@ -202,7 +227,7 @@ const ProjectsGrid = ({ items, activeFilter, setActiveItem, activeItem }) => {
         handleMouseEnter={handleMouseEnter}
       />
     ),
-    [items, activeFilter, handleMouseEnter, isLoaded]
+    [items, activeFilter, setReady, handleMouseEnter, isLoaded]
   )
 
   const memoWindow = React.useMemo(
@@ -215,6 +240,23 @@ const ProjectsGrid = ({ items, activeFilter, setActiveItem, activeItem }) => {
       <div className={styles.inner}>
         {memoGrid}
         {memoWindow}
+        <div
+          className={classNames(styles.dots, {
+            [styles['is-loaded']]: isLoaded,
+          })}
+        >
+          {[...Array(594)].map((_, i) => (
+            <div
+              style={{
+                '--row': Math.floor(i / 27),
+                '--cell': Math.floor(i % 25),
+                opacity:
+                  !isLoaded || (isLoaded && Math.floor(i % 25) < 13) ? 1 : 0,
+              }}
+              key={`dot_${i}`}
+            />
+          ))}
+        </div>
       </div>
     </div>
   )
