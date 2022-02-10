@@ -142,7 +142,7 @@
 } */
 
 .dots.is-loaded div {
-  background-color: var(--color-black);
+  background-color: var(--color-white);
 }
 
 .windowItem {
