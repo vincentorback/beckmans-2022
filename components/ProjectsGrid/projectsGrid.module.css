@@ -38,6 +38,7 @@
 
 .item {
   position: relative;
+  overflow: hidden;
   z-index: 0;
   height: 0;
   padding-bottom: 100%;
@@ -57,7 +58,7 @@
   padding-bottom: 100%;
 }
 
-.link {
+.item a {
   position: absolute;
   top: 0;
   left: 0;
@@ -69,13 +70,17 @@
   background-color: var(--color);
 }
 
-.link:hover {
+.item a:hover {
   filter: contrast(1.2);
 }
 
+.item a > div {
+  height: 100%;
+}
+
 /*
-.item:not(.is-loaded) .link,
-.item:not(.is-visible) .link {
+.item:not(.is-loaded) a,
+.item:not(.is-visible) a {
   opacity: 0;
 } */
 
@@ -99,7 +104,7 @@
   z-index: 0;
   width: 100%;
   height: 100%;
-  transform: scale(4) translateZ(0);
+  transform: scale(3) translateZ(0);
 }
 
 .dots {
@@ -170,7 +175,7 @@
   object-fit: cover;
 }
 
-.windowLink,
+.windowItem a,
 .windowContent {
   position: absolute;
   top: 0;

@@ -7,8 +7,9 @@ import { slugify } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
 import { motion } from 'framer-motion'
 
-const AnimatedItem = ({ isActive, children, index }) => (
+const AnimatedItem = ({ className, isActive, children, index }) => (
   <motion.div
+    className={className}
     initial={{
       opacity: 0,
       scale: 0.8,
@@ -36,11 +37,11 @@ const AnimatedItem = ({ isActive, children, index }) => (
   </motion.div>
 )
 
-const WindowLinkWrap = ({ item, children }) => {
-  if (item.url) {
+const LinkWrap = ({ url, children }) => {
+  if (url) {
     return (
-      <Link href={item.url}>
-        <a className={styles.windowLink}>{children}</a>
+      <Link href={url}>
+        <a>{children}</a>
       </Link>
     )
   }
@@ -85,7 +86,7 @@ const Window = ({ isLoaded, item }) => {
       }}
       key={item.uid}
     >
-      <WindowLinkWrap item={item}>
+      <LinkWrap url={item.url}>
         <div className={styles.windowContent}>
           <p>{item.name ? item.name : item.title}</p>
           {item.category && <p>{t(item.category)}</p>}
@@ -103,7 +104,7 @@ const Window = ({ isLoaded, item }) => {
             priority
           />
         )}
-      </WindowLinkWrap>
+      </LinkWrap>
     </div>
   )
 }
@@ -143,52 +144,29 @@ const Grid = ({ isLoaded, activeFilter, items, handleMouseEnter, onLoad }) => {
             })}
             onMouseEnter={() => handleMouseEnter(item)}
           >
-            {item.name ? (
-              <Link href={item.url}>
-                <a
-                  className={styles.link}
-                  // disabled={
-                  //   !activeItems.includes(
-                  //     `/${slugify(item.category)}/${item.uid}`
-                  //   )
-                  // }
-                >
-                  <div className={styles.itemInner}>
-                    <AnimatedItem isActive={isVisible} index={itemIndex}>
-                      {item?.image && (
-                        <Image
-                          className={styles.image}
-                          src={item.image}
-                          width={150}
-                          height={150}
-                          alt=""
-                          layout="fixed"
-                          quality={50}
-                          priority
-                          onLoadingComplete={() => {
-                            handleImageLoad(item.uid)
-                          }}
-                        />
-                      )}
-                    </AnimatedItem>
-                  </div>
-                </a>
-              </Link>
-            ) : item.url ? (
-              <Link href={item?.url}>
-                <a className={styles.link}>
-                  <AnimatedItem isActive={isVisible} index={itemIndex}>
-                    <div className={styles.itemInner} />
-                  </AnimatedItem>
-                </a>
-              </Link>
-            ) : (
-              <div className={styles.link}>
-                <AnimatedItem isActive={isVisible} index={itemIndex}>
-                  <div className={styles.itemInner} />
-                </AnimatedItem>
-              </div>
-            )}
+            <LinkWrap url={item.url}>
+              <AnimatedItem
+                className={styles.itemInner}
+                isActive={isVisible}
+                index={itemIndex}
+              >
+                {item?.image && (
+                  <Image
+                    className={styles.image}
+                    src={item.image}
+                    width={150}
+                    height={150}
+                    alt=""
+                    layout="fixed"
+                    quality={50}
+                    priority
+                    onLoadingComplete={() => {
+                      handleImageLoad(item.uid)
+                    }}
+                  />
+                )}
+              </AnimatedItem>
+            </LinkWrap>
           </div>
         )
       })}
