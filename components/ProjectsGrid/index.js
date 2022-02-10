@@ -245,10 +245,10 @@ const ProjectsGrid = ({
             [styles['is-loaded']]: isLoaded,
           })}
         >
-          {[...Array(594)].map((_, i) => (
+          {[...Array(375)].map((_, i) => (
             <div
               style={{
-                '--row': Math.floor(i / 27),
+                '--row': Math.floor(i / 25),
                 '--cell': Math.floor(i % 25),
                 opacity:
                   !isLoaded || (isLoaded && Math.floor(i % 25) < 13) ? 1 : 0,
