@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl'
 import { motion } from 'framer-motion'
 
 const Filters = ({ isReady, filters, activeFilter, onClick }) => {
-  const t = useTranslations()
+  const t = useTranslations('categories')
 
   return (
     <div className={styles.filters}>
@@ -40,7 +40,7 @@ const Filters = ({ isReady, filters, activeFilter, onClick }) => {
             exit="exit"
             transition={{ type: 'ease', delay: 0.5 + 0.1 * filterIndex }}
           >
-            {t(`categories.${slugify(filter)}`)}
+            {t(slugify(filter))}
           </motion.div>
         </button>
       ))}

@@ -5,15 +5,8 @@ import styles from './projectLists.module.css'
 import { slugify } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
 
-const ProjectLists = ({ lists, items, setActiveItem, activeItem }) => {
+const ProjectLists = ({ lists, items }) => {
   const t = useTranslations('categories')
-
-  // const handleMouseEnter = React.useCallback(
-  //   (item) => {
-  //     setActiveItem(item)
-  //   },
-  //   [setActiveItem]
-  // )
 
   return (
     <div className={styles.container}>
@@ -27,14 +20,7 @@ const ProjectLists = ({ lists, items, setActiveItem, activeItem }) => {
             </h2>
             <div className={styles.list}>
               {list.items.map((item, itemIndex) => (
-                <p
-                  // className={classNames({
-                  //   [styles['is-active']]:
-                  //     activeItem && activeItem.uid === item.uid,
-                  // })}
-                  key={item.uid}
-                  // onMouseEnter={() => handleMouseEnter(item)}
-                >
+                <p key={item.uid}>
                   <Link href={item.url}>
                     <a>
                       <span>{item.name}</span>

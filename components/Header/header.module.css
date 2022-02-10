@@ -80,15 +80,6 @@
   gap: calc(var(--site-spacing) * 2);
 }
 
-.languagleLink {
-  opacity: 1;
-  transition: opacity 150ms ease;
-}
-
-.languagleLink:hover {
-  opacity: 0.6;
-}
-
 .topRight button {
   width: 22px;
   height: 22px;

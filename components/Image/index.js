@@ -39,7 +39,7 @@ const Image = (props) => {
   return (
     <div
       style={{
-        backgroundColor: layout !== 'fill' && 'var(--color-blue)',
+        backgroundColor: layout !== 'fill' && 'rgba(0, 0, 0, 0.05)',
         position: 'relative',
         width: layout === 'fill' ? '100%' : 'auto',
         height: layout === 'fill' ? '100%' : 'auto',

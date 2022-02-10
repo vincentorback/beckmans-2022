@@ -8,7 +8,7 @@ import styles from './projectAccordions.module.css'
 
 const ProjectAccordions = ({ lists, items }) => {
   const { locale } = useRouter()
-  const t = useTranslations()
+  const t = useTranslations('categories')
 
   const [activeAccordion, setAccordion] = React.useState(null)
 
@@ -31,7 +31,7 @@ const ProjectAccordions = ({ lists, items }) => {
                 )
               }
             >
-              <span>{t(`categories.${list.id}`)}</span>
+              <span>{t(list.id)}</span>
               <svg
                 width="20"
                 height="20"

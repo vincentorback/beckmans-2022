@@ -7,7 +7,7 @@ const Layout = ({ title, children, background, pages, otherLocalePage }) => {
   const backgroundColor = background ? background.toLowerCase() : 'white'
 
   React.useEffect(() => {
-    document.body.style.backgroundColor = `var(--color-${backgroundColor})`
+    document.documentElement.style.backgroundColor = `var(--color-${backgroundColor})`
   }, [backgroundColor])
 
   return (
