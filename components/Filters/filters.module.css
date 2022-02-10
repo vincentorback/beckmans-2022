@@ -13,13 +13,17 @@
 .button {
   text-align: left;
   font-weight: var(--text-bold);
-  transition: opacity 150ms ease;
+  transition: color 150ms ease, opacity 150ms ease;
 }
 
-.button:not(.is-active) {
-  opacity: 0.5;
+.button.is-active {
+  color: var(--color-red);
 }
 
 .button:hover {
   opacity: 0.6;
+}
+
+.button.is-active:hover {
+  opacity: 0.9;
 }
