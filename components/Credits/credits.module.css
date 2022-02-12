@@ -28,20 +28,21 @@
 
 .column {
   border-top: 2px solid;
-  padding: var(--site-spacing) 0;
+  padding: 1rem 0;
   break-inside: avoid-column;
   line-height: var(--lineheight-lg);
 }
 
 @media (min-width: 500px) {
-  .columns {
+  .column {
     border-top-width: 1px;
+    padding: 1rem 0 2rem;
   }
 }
 
 .column h2 {
   font-weight: var(--text-bold);
-  margin-bottom: max(1em, calc(var(--site-spacing) * 0.5));
+  margin-bottom: 1rem;
 }
 
 .subtitle {
