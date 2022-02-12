@@ -13,9 +13,8 @@ import debounce from 'lodash.debounce'
 
 const DEFAULT_FILTER = null
 
-const Projects = ({ setReady, projects, filters, activeFilter }) => {
+const Projects = ({ setReady, isReady, projects, filters, activeFilter }) => {
   const containerRef = React.useRef(null)
-  const [activeItem, setActiveItem] = React.useState(null)
   const [windowWidth, setWindowWidth] = React.useState(0)
 
   const lists = React.useMemo(
@@ -26,12 +25,6 @@ const Projects = ({ setReady, projects, filters, activeFilter }) => {
       })),
     [projects, filters]
   )
-
-  React.useEffect(() => {
-    setActiveItem((prev) =>
-      !activeFilter || prev?.category === activeFilter ? prev : null
-    )
-  }, [activeFilter])
 
   React.useEffect(() => {
     const handleResize = debounce(() => {
@@ -54,17 +47,16 @@ const Projects = ({ setReady, projects, filters, activeFilter }) => {
       {windowWidth > 800 ? (
         <>
           <ProjectsGrid
-            items={projects}
             activeFilter={activeFilter}
             filters={filters}
-            setActiveItem={setActiveItem}
-            activeItem={activeItem}
+            isReady={isReady}
+            items={projects}
             setReady={setReady}
           />
           <ProjectLists
-            items={projects}
             activeFilter={activeFilter}
             filters={filters}
+            items={projects}
             lists={lists}
           />
         </>
@@ -104,14 +96,15 @@ export default function HomePage(props) {
         <Filters
           activeFilter={activeFilter}
           filters={filters}
-          onClick={onClick}
           isReady={isReady}
+          onClick={onClick}
         />
       </Header>
       <Projects
-        projects={projects}
-        filters={filters}
         activeFilter={activeFilter}
+        filters={filters}
+        isReady={isReady}
+        projects={projects}
         setReady={setReady}
       />
     </Layout>

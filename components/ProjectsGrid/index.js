@@ -1,11 +1,11 @@
 import React from 'react'
+import classNames from 'classnames'
 import Link from 'next-translate-routes/link'
 import Image from '../Image'
-import classNames from 'classnames'
-import styles from './projectsGrid.module.css'
 import { slugify } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
 import { motion } from 'framer-motion'
+import styles from './projectsGrid.module.css'
 
 const AnimatedItem = ({ className, isActive, children, index }) => (
   <motion.div
@@ -27,11 +27,6 @@ const AnimatedItem = ({ className, isActive, children, index }) => (
         transition: { duration: 0.1, delay: index * 0.01 },
       },
     }}
-    // variants={variants} // Pass the variant object into Framer Motion
-    // initial="hidden" // Set the initial state to variants.hidden
-    // animate="enter" // Animated state to variants.enter
-    // exit="exit" // Exit state (used later) to variants.exit
-    // transition={{ type: 'ease' }} // Set the transition to linear
   >
     {children}
   </motion.div>
@@ -49,7 +44,7 @@ const LinkWrap = ({ url, children }) => {
   return children
 }
 
-const Window = ({ isLoaded, item }) => {
+const Window = ({ item }) => {
   if (!item) {
     item = {
       uid: 123,
@@ -60,10 +55,7 @@ const Window = ({ isLoaded, item }) => {
 
   return (
     <div
-      className={classNames(styles.windowItem, {
-        [styles['is-active']]: item.uid !== 123,
-        [styles['is-loaded']]: isLoaded,
-      })}
+      className={styles.windowItem}
       style={{
         backgroundColor: item.color ?? null,
       }}
@@ -77,15 +69,14 @@ const Window = ({ isLoaded, item }) => {
         </div>
         {item?.image && (
           <Image
-            className={styles.windowItemImage}
-            src={item.image}
-            width={686}
-            height={800}
-            sizes="50vw"
             alt=""
+            className={styles.windowItemImage}
+            height={800}
             layout="fill"
             quality={10}
-            priority
+            sizes="(max-width: 1400px) 50vw, 686px"
+            src={item.image}
+            width={686}
           />
         )}
       </LinkWrap>
@@ -93,8 +84,9 @@ const Window = ({ isLoaded, item }) => {
   )
 }
 
-const Grid = ({ isLoaded, activeFilter, items, handleMouseEnter, onLoad }) => {
+const Grid = ({ isReady, activeFilter, items, handleMouseEnter, onLoad }) => {
   const [loadedImages, setLoadedImages] = React.useState(0)
+
   const realProjectsLength = React.useMemo(
     () => items.filter((item) => item.category).length,
     [items]
@@ -109,124 +101,170 @@ const Grid = ({ isLoaded, activeFilter, items, handleMouseEnter, onLoad }) => {
     }
   }, [loadedImages, realProjectsLength, onLoad])
 
-  return (
-    <div className={styles.grid}>
-      {items.map((item, itemIndex) => {
-        const isVisible =
-          isLoaded &&
-          (!activeFilter ||
-            (!item.name && !activeFilter) ||
-            (item.category && item.category === activeFilter))
+  const Item = React.useCallback(
+    ({
+      item,
+      itemIndex,
+      isReady,
+      activeFilter,
+      handleMouseEnter,
+      handleImageLoad,
+    }) => {
+      const isVisible =
+        isReady &&
+        (!activeFilter ||
+          (!item.name && !activeFilter) ||
+          (item.category && item.category === activeFilter))
 
-        const imageOriginalWidth = 686
-        const imageOriginalHeight = 800
-        const imageWidth = 115
-        const imageHeight = 115
+      const imageOriginalWidth = 686
+      const imageOriginalHeight = 800
+      const imageWidth = 115
+      const imageHeight = 115
 
-        const imagePosition =
-          item.imagePosition &&
-          item.imagePosition.match('([0-9]{1,3}%) ([0-9]{1,3}%)')
+      const imagePosition =
+        item.imagePosition &&
+        item.imagePosition.match('([0-9]{1,3}%) ([0-9]{1,3}%)')
 
-        const imagePositionX = imagePosition ? imagePosition[1] : '50%'
-        const imagePositionY = imagePosition ? imagePosition[2] : '50%'
-        const rectX = Math.floor(
-          imageOriginalWidth * (imagePositionX.replace('%', '') / 100)
-        )
-        const rectY = Math.floor(
-          imageOriginalHeight * (imagePositionY.replace('%', '') / 100)
-        )
+      const imagePositionX = imagePosition ? imagePosition[1] : '50%'
+      const imagePositionY = imagePosition ? imagePosition[2] : '50%'
+      const rectX = Math.floor(
+        imageOriginalWidth * (imagePositionX.replace('%', '') / 100)
+      )
+      const rectY = Math.floor(
+        imageOriginalHeight * (imagePositionY.replace('%', '') / 100)
+      )
 
-        return (
-          <div
-            key={item.uid || itemIndex}
-            className={classNames(styles.item, {
-              [styles['is-visible']]: isVisible,
-              [styles['is-loaded']]: isLoaded,
-              [styles['is-extra']]: !item.name,
-            })}
-            onMouseEnter={() => handleMouseEnter(item)}
-          >
-            <LinkWrap url={item.url}>
-              <AnimatedItem
-                className={styles.itemInner}
-                isActive={isVisible}
-                index={itemIndex}
-              >
-                {item?.image && (
-                  <Image
-                    className={styles.image}
-                    src={item.image}
-                    width={imageWidth}
-                    height={imageHeight}
-                    alt=""
-                    layout="fixed"
-                    quality={10}
-                    priority
-                    rect={`${rectX},${rectY},${imageOriginalWidth},${imageOriginalHeight}`}
-                    onLoadingComplete={() => {
-                      handleImageLoad(item.uid)
-                    }}
-                  />
-                )}
-              </AnimatedItem>
-            </LinkWrap>
-            {item?.image && (
-              <Image
-                hidden
-                src={item.image}
-                width={686}
-                height={800}
-                sizes="50vw"
-                alt=""
-                layout="fill"
-                quality={10}
-                priority
-              />
-            )}
-          </div>
-        )
-      })}
-    </div>
+      return (
+        <div
+          key={item.uid || itemIndex}
+          className={classNames(styles.item, {
+            [styles['is-visible']]: isVisible,
+            [styles['is-loaded']]: isReady,
+            [styles['is-extra']]: !item.name,
+          })}
+          onMouseEnter={() => handleMouseEnter(item)}
+        >
+          <LinkWrap url={item.url}>
+            <AnimatedItem
+              className={styles.itemInner}
+              isActive={isVisible}
+              index={itemIndex}
+            >
+              {item?.image && (
+                <Image
+                  alt={item.name}
+                  className={styles.image}
+                  height={imageHeight}
+                  layout="fixed"
+                  onLoadingComplete={() => {
+                    handleImageLoad(item.uid)
+                  }}
+                  priority
+                  quality={10}
+                  rect={`${rectX},${rectY},${imageOriginalWidth},${imageOriginalHeight}`}
+                  src={item.image}
+                  width={imageWidth}
+                />
+              )}
+            </AnimatedItem>
+          </LinkWrap>
+          {item?.image && (
+            <Image
+              alt=""
+              height={800}
+              hidden
+              layout="fill"
+              priority
+              quality={10}
+              sizes="(max-width: 1400px) 50vw, 686px"
+              src={item.image}
+              width={686}
+            />
+          )}
+        </div>
+      )
+    },
+    []
   )
+
+  const DaGrid = React.useMemo(
+    () => (
+      <div className={styles.grid}>
+        {items.map((item, itemIndex) => (
+          <Item
+            item={item}
+            isReady={isReady}
+            itemIndex={itemIndex}
+            key={item.uid}
+            activeFilter={activeFilter}
+            handleMouseEnter={handleMouseEnter}
+            handleImageLoad={handleImageLoad}
+          />
+        ))}
+      </div>
+    ),
+    [items, isReady, activeFilter, handleMouseEnter, handleImageLoad]
+  )
+
+  return DaGrid
 }
 
-const ProjectsGrid = ({
-  setReady,
-  items,
-  activeFilter,
-  setActiveItem,
-  activeItem,
-}) => {
-  const [isLoaded, setIsLoaded] = React.useState(false)
+const ProjectsGrid = ({ activeFilter, isReady, items, setReady }) => {
+  const [activeItem, setActiveItem] = React.useState(null)
+
+  React.useEffect(() => {
+    setActiveItem((prev) =>
+      !activeFilter || prev?.category === activeFilter ? prev : null
+    )
+  }, [activeFilter])
 
   const handleMouseEnter = React.useCallback(
     (item) => {
-      if (isLoaded) {
-        setActiveItem(item)
-      }
+      isReady && setActiveItem(item)
     },
-    [isLoaded, setActiveItem]
+    [isReady, setActiveItem]
   )
 
   const memoGrid = React.useMemo(
     () => (
       <Grid
-        onLoad={() => {
-          setIsLoaded(true)
-          setReady(true)
-        }}
-        isLoaded={isLoaded}
-        items={items}
         activeFilter={activeFilter}
         handleMouseEnter={handleMouseEnter}
+        isReady={isReady}
+        items={items}
+        onLoad={() => {
+          setReady(true)
+        }}
       />
     ),
-    [items, activeFilter, setReady, handleMouseEnter, isLoaded]
+    [items, activeFilter, setReady, handleMouseEnter, isReady]
   )
 
   const memoWindow = React.useMemo(
-    () => <Window isLoaded={isLoaded} item={activeItem} />,
-    [isLoaded, activeItem]
+    () => isReady && <Window item={activeItem} />,
+    [isReady, activeItem]
+  )
+
+  const memoDots = React.useMemo(
+    () => (
+      <div
+        className={classNames(styles.dots, {
+          [styles['is-loaded']]: isReady,
+        })}
+      >
+        {[...Array(375)].map((_, i) => (
+          <div
+            style={{
+              '--row': Math.floor(i / 25),
+              '--cell': Math.floor(i % 25),
+              opacity: !isReady || (isReady && Math.floor(i % 25) < 13) ? 1 : 0,
+            }}
+            key={`dot_${i}`}
+          />
+        ))}
+      </div>
+    ),
+    [isReady]
   )
 
   return (
@@ -234,23 +272,7 @@ const ProjectsGrid = ({
       <div className={styles.inner}>
         {memoGrid}
         {memoWindow}
-        <div
-          className={classNames(styles.dots, {
-            [styles['is-loaded']]: isLoaded,
-          })}
-        >
-          {[...Array(375)].map((_, i) => (
-            <div
-              style={{
-                '--row': Math.floor(i / 25),
-                '--cell': Math.floor(i % 25),
-                opacity:
-                  !isLoaded || (isLoaded && Math.floor(i % 25) < 13) ? 1 : 0,
-              }}
-              key={`dot_${i}`}
-            />
-          ))}
-        </div>
+        {memoDots}
       </div>
     </div>
   )
