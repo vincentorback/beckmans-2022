@@ -1,6 +1,5 @@
 .text {
   display: grid;
-  gap: 0 var(--site-spacing);
 }
 
 .title {
@@ -22,6 +21,7 @@
   .title {
     grid-row: 1;
     grid-column: 1 / 6;
+    padding-right: var(--site-spacing);
   }
 
   .body {
