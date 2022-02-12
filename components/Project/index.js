@@ -15,6 +15,55 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
 
   const t = useTranslations()
 
+  const ExampleParagraph = () =>
+    router.locale === 'sv' ? (
+      <p>
+        Mitt <strong>examensarbete</strong> är ett <em>självutforskande</em> av
+        identitet ur ett posthumanistiskt perspektiv.{' '}
+        <a href="#/">Resultatet</a> är tre självporträtt där jag gestaltar min
+        mångfacetterade identitet i form av en avatar.
+      </p>
+    ) : (
+      <p>
+        My <strong>graduation project</strong> is a{' '}
+        <em>personal investigation</em> of identity from a post-humanist
+        perspective. <a href="#/">This has resulted</a> in three self-portraits
+        in which I give expression to my multifaceted identity in the form of an
+        avatar.
+      </p>
+    )
+
+  const ExampleLists = () =>
+    router.locale === 'sv' ? (
+      <>
+        <ul>
+          <li>Lista med saker</li>
+          <li>Kan vara vadsom</li>
+          <li>helst?</li>
+        </ul>
+
+        <ol>
+          <li>Lista med saker</li>
+          <li>Kan vara vadsom</li>
+          <li>helst?</li>
+        </ol>
+      </>
+    ) : (
+      <>
+        <ul>
+          <li>List with things</li>
+          <li>Can be</li>
+          <li>anything?</li>
+        </ul>
+
+        <ol>
+          <li>List with things</li>
+          <li>Can be</li>
+          <li>anything?</li>
+        </ol>
+      </>
+    )
+
   return (
     <article className={styles.project}>
       <div className={styles.inner}>
@@ -52,31 +101,9 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
 
           <div className={styles.mainText}>
             <Entry>
-              <p>
-                Mitt <strong>examensarbete</strong> är ett
-                <em>självutforskande</em> av identitet ur ett posthumanistiskt
-                perspektiv. <a href="#/">Resultatet</a> är tre självporträtt där
-                jag gestaltar min mångfacetterade identitet i form av en avatar.
-              </p>
-              <ul>
-                <li>Lista med saker</li>
-                <li>Kan vara vadsom</li>
-                <li>helst?</li>
-              </ul>
-
-              <ol>
-                <li>Lista med saker</li>
-                <li>Kan vara vadsom</li>
-                <li>helst?</li>
-              </ol>
-              <p>
-                Mitt examensarbete är ett självutforskande av identitet ur ett
-                posthumanistiskt perspektiv. Resultatet är tre självporträtt där
-                jag gestaltar min mångfacetterade identitet i form av en avatar.
-                Mitt examensarbete är ett självutforskande av identitet ur ett
-                posthumanistiskt perspektiv. Resultatet är tre självporträtt där
-                jag gestaltar min mångfacetterade identitet i form av en avatar.
-              </p>
+              <ExampleParagraph />
+              <ExampleLists />
+              <ExampleParagraph />
             </Entry>
           </div>
 
