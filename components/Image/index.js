@@ -2,7 +2,9 @@ import React from 'react'
 import classNames from 'classnames'
 import NextImage from 'next/image'
 
-const imageLoader = ({ src, width, height }) => {
+const imageLoader = (props) => {
+  const { src, width, height, rect } = props
+
   if (src.startsWith('/')) {
     return src
   } else {
@@ -18,12 +20,19 @@ const imageLoader = ({ src, width, height }) => {
       url.searchParams.set('h', height)
     }
 
-    return url.toString()
+    const newSrc = url.toString()
+
+    if (rect) {
+      newSrc += `&rect=${rect}`
+    }
+
+    return newSrc
   }
 }
 
 const Image = (props) => {
   const {
+    hidden,
     className,
     objectFit,
     objectPosition,
@@ -32,6 +41,7 @@ const Image = (props) => {
     alt,
     quality,
     layout,
+    rect,
   } = props
 
   const [isLoaded, setLoaded] = React.useState(false)
@@ -39,6 +49,7 @@ const Image = (props) => {
   return (
     <div
       style={{
+        display: hidden ? 'none' : 'block',
         backgroundColor: layout !== 'fill' && 'rgba(0, 0, 0, 0.05)',
         position: 'relative',
         width: layout === 'fill' ? '100%' : 'auto',
@@ -47,7 +58,7 @@ const Image = (props) => {
     >
       <NextImage
         {...props}
-        loader={imageLoader}
+        loader={() => imageLoader(props)}
         layout={layout || 'intrinsic'}
         objectFit={objectFit || 'cover'}
         objectPosition={objectPosition || '50% 50%'}

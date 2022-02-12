@@ -58,23 +58,6 @@ const Window = ({ isLoaded, item }) => {
 
   const t = useTranslations('categories')
 
-  // const [test, setTest] = React.useState(0)
-  // React.useEffect(() => {
-  //   let i = 0
-  //   const foo = setInterval(() => {
-  //     i += 1
-
-  //     if (i > 100) {
-  //       return clearInterval(foo)
-  //       setTest(1 * 28)
-  //     }
-
-  //     setTest((v) => (v < 210 ? v + 1 : -1))
-  //   }, 100)
-
-  //   return () => clearInterval(foo)
-  // }, [])
-
   return (
     <div
       className={classNames(styles.windowItem, {
@@ -96,8 +79,9 @@ const Window = ({ isLoaded, item }) => {
           <Image
             className={styles.windowItemImage}
             src={item.image}
-            width={1158}
-            height={1352}
+            width={686}
+            height={800}
+            sizes="50vw"
             alt=""
             layout="fill"
             quality={10}
@@ -134,6 +118,24 @@ const Grid = ({ isLoaded, activeFilter, items, handleMouseEnter, onLoad }) => {
             (!item.name && !activeFilter) ||
             (item.category && item.category === activeFilter))
 
+        const imageOriginalWidth = 686
+        const imageOriginalHeight = 800
+        const imageWidth = 115
+        const imageHeight = 115
+
+        const imagePosition =
+          item.imagePosition &&
+          item.imagePosition.match('([0-9]{1,3}%) ([0-9]{1,3}%)')
+
+        const imagePositionX = imagePosition ? imagePosition[1] : '50%'
+        const imagePositionY = imagePosition ? imagePosition[2] : '50%'
+        const rectX = Math.floor(
+          imageOriginalWidth * (imagePositionX.replace('%', '') / 100)
+        )
+        const rectY = Math.floor(
+          imageOriginalHeight * (imagePositionY.replace('%', '') / 100)
+        )
+
         return (
           <div
             key={item.uid || itemIndex}
@@ -154,12 +156,13 @@ const Grid = ({ isLoaded, activeFilter, items, handleMouseEnter, onLoad }) => {
                   <Image
                     className={styles.image}
                     src={item.image}
-                    width={150}
-                    height={150}
+                    width={imageWidth}
+                    height={imageHeight}
                     alt=""
                     layout="fixed"
-                    quality={50}
+                    quality={10}
                     priority
+                    rect={`${rectX},${rectY},${imageOriginalWidth},${imageOriginalHeight}`}
                     onLoadingComplete={() => {
                       handleImageLoad(item.uid)
                     }}
@@ -167,6 +170,19 @@ const Grid = ({ isLoaded, activeFilter, items, handleMouseEnter, onLoad }) => {
                 )}
               </AnimatedItem>
             </LinkWrap>
+            {item?.image && (
+              <Image
+                hidden
+                src={item.image}
+                width={686}
+                height={800}
+                sizes="50vw"
+                alt=""
+                layout="fill"
+                quality={10}
+                priority
+              />
+            )}
           </div>
         )
       })}
