@@ -12,11 +12,11 @@ const Footer = ({ pages, otherLocalePage }) => {
 
   return (
     <footer className={styles.footer}>
-      <Container size="lg">
+      <Container>
         <div className={styles.grid}>
           <div className={styles.item}>
             <ul>
-              <li>
+              <li key={otherLocale}>
                 <Link
                   href={{
                     pathname: otherLocalePage

@@ -8,7 +8,7 @@
 @media (min-height: 760px) and (max-height: 2000px) {
   .container {
     max-width: calc(
-      (1376 / 802 * 100vh) - var(--header-height) - var(--site-spacing) * 7.5
+      (1376 / 802 * 100vh) - var(--header-height) - var(--site-spacing) * 7
     );
   }
 }

@@ -50,7 +50,7 @@ const Projects = ({ setReady, projects, filters, activeFilter }) => {
   if (!windowWidth) return null
 
   return (
-    <Container size="lg">
+    <Container>
       {windowWidth > 800 ? (
         <>
           <ProjectsGrid
