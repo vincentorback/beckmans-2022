@@ -82,9 +82,9 @@ export default function HomePage(props) {
   const [isReady, setReady] = React.useState(false)
 
   React.useEffect(() => {
-    if (localStorage.filter) {
+    if (sessionStorage.filter) {
       setActiveFilter(
-        localStorage.filter === 'null' ? null : localStorage.filter
+        sessionStorage.filter === 'null' ? null : sessionStorage.filter
       )
     }
   }, [])
@@ -93,7 +93,7 @@ export default function HomePage(props) {
     (filter) => {
       const newFilter = activeFilter === filter ? DEFAULT_FILTER : filter
       setActiveFilter(newFilter)
-      localStorage.filter = newFilter
+      sessionStorage.filter = newFilter
     },
     [activeFilter]
   )
