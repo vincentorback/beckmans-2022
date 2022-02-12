@@ -14,14 +14,14 @@ html {
   font-weight: var(--text-normal);
   background-color: var(--color-white);
   color: var(--color-black);
-  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
   -webkit-tap-highlight-color: transparent;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: geometricPrecision;
 
-  scrollbar-color: #dd7550 transparent;
-  scrollbar-width: thin;
+  /* scrollbar-color: #dd7550 transparent;
+  scrollbar-width: thin; */
 }
 
 html.no-scroll,
