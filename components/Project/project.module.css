@@ -14,7 +14,6 @@
   .map {
     grid-row: 1;
     grid-column: 1 / 4;
-    /* align-items: flex-end; */
   }
 
   .inner {
@@ -54,11 +53,18 @@
   position: absolute;
   top: calc(var(--site-spacing) * 4);
   left: calc(var(--site-spacing) * 2);
-  width: 8px;
-  height: 8px;
+  width: 4px;
+  height: 4px;
   transform: translate(-50%, -50%);
   background-color: var(--color-white);
   transition: opacity 150ms ease, background-color 150ms ease;
+}
+
+@media (min-width: 800px) {
+  .dots div {
+    width: 8px;
+    height: 8px;
+  }
 }
 
 .dots div:nth-child(4),
@@ -90,7 +96,6 @@
 .content {
   margin-top: calc(var(--site-spacing) * 2);
   display: grid;
-  /* grid-template-rows: repeat(3, auto); */
   grid-template-columns: repeat(8, 1fr);
   gap: var(--site-spacing);
 }
