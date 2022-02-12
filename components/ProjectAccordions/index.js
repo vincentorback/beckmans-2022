@@ -10,7 +10,24 @@ const ProjectAccordions = ({ lists, items }) => {
   const { locale } = useRouter()
   const t = useTranslations('categories')
 
-  const [activeAccordion, setAccordion] = React.useState(null)
+  const [activeAccordion, setActiveAccordion] = React.useState(null)
+
+  const handleToggleAccordion = React.useCallback(
+    (accordionID) => {
+      const newAccordion = activeAccordion === accordionID ? null : accordionID
+      setActiveAccordion(newAccordion)
+      sessionStorage.accordion = newAccordion
+    },
+    [activeAccordion]
+  )
+
+  React.useEffect(() => {
+    if (sessionStorage.accordion) {
+      setActiveAccordion(
+        sessionStorage.accordion === 'null' ? null : sessionStorage.accordion
+      )
+    }
+  }, [])
 
   return (
     <div className={styles.container}>
@@ -25,11 +42,7 @@ const ProjectAccordions = ({ lists, items }) => {
             <button
               aria-expanded={activeAccordion === list.id}
               className={styles.button}
-              onClick={() =>
-                setAccordion((activeId) =>
-                  activeId === list.id ? null : list.id
-                )
-              }
+              onClick={() => handleToggleAccordion(list.id)}
             >
               <span>{t(list.id)}</span>
               <svg
