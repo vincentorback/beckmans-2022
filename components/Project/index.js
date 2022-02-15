@@ -118,8 +118,8 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                 <ul>
                   {links.map((link, linkIndex) => (
                     <li key={link.label}>
-                      <Link href={link.url}>
-                        <a>{link.label}</a>
+                      <Link href={link.url} prefetch={false}>
+                        <a target="_blank">{link.label}</a>
                       </Link>
                     </li>
                   ))}
@@ -133,8 +133,8 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                   {thanks.map((thank, thankIndex) => (
                     <li key={thank.label}>
                       {thank.url ? (
-                        <Link href={'#/'}>
-                          <a>{thank.label}</a>
+                        <Link href={'#/'} prefetch={false}>
+                          <a target="_blank">{thank.label}</a>
                         </Link>
                       ) : (
                         thank.label
@@ -148,7 +148,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
               <h4>{t('project.press-images')}</h4>
               <ul>
                 <li>
-                  <Link href={'#/'}>
+                  <Link href={'#/'} prefetch={false}>
                     <a>{t('project.download')}</a>
                   </Link>
                 </li>

@@ -25,6 +25,7 @@ const Footer = ({ pages, otherLocalePage }) => {
                     query: router.query,
                   }}
                   locale={otherLocale}
+                  prefetch={false}
                 >
                   <a className={styles.languagleLink}>
                     <span>{t('navigation.otherLanguage')}</span>
@@ -57,7 +58,7 @@ const Footer = ({ pages, otherLocalePage }) => {
                   'Brahegatan 10 114 37 Stockholm'
                 )}`}
               >
-                <a target="_blank">
+                <a target="_blank" rel="noopener noreferrer">
                   Brahegatan 10 <br />
                   114 37 Stockholm
                 </a>

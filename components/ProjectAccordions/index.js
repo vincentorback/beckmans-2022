@@ -105,7 +105,7 @@ const ProjectAccordions = ({ lists, items }) => {
             >
               {list.items.map((item, itemIndex) => (
                 <div className={styles.item} key={item.uid}>
-                  <Link href={item.url}>
+                  <Link href={item.url} prefetch={false}>
                     <a className={styles.link}>
                       <div className={styles.content}>
                         <p>{item.name}</p>

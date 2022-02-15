@@ -8,8 +8,8 @@ import styles from './map.module.css'
 const Map = ({ items, category }) => {
   const [activeItem, setActiveItem] = React.useState(null)
 
-  const handleMouse = React.useCallback((name) => {
-    setActiveItem(name)
+  const handleMouse = React.useCallback((value) => {
+    setActiveItem(value)
   }, [])
 
   if (isEmpty(items)) return null
@@ -28,11 +28,11 @@ const Map = ({ items, category }) => {
                 [styles['is-visible']]: isVisible,
               })}
               onMouseEnter={() => isVisible && handleMouse(item.name)}
-              onMouseLeave={() => isVisible && handleMouse('')}
+              onMouseLeave={() => isVisible && handleMouse(null)}
             >
               {isVisible && (
                 <Link href={item.url}>
-                  <a className={styles.link}>
+                  <a className={styles.link} prefetch={false}>
                     <div className={styles.itemInner}>
                       <Image
                         className={styles.image}
