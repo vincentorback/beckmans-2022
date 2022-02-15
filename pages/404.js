@@ -11,7 +11,7 @@ import { useTranslations } from 'next-intl'
 export default function Error404Page(props) {
   const t = useTranslations('error')
 
-  const pageTitle = `404 eller "${t('title')}"`
+  const pageTitle = '404'
 
   return (
     <Layout title={pageTitle} {...props}>
