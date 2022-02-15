@@ -40,7 +40,7 @@ const Header = ({ pages, otherLocalePage, children }) => {
     return () => {
       window.addEventListener('resize', handleResize)
     }
-  }, [])
+  }, [handleResize])
 
   return (
     <>
