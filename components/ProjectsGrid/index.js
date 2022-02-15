@@ -333,7 +333,7 @@ const ProjectsGrid = ({ activeFilter, isReady, items, setReady }) => {
             }}
             initial={{
               opacity: 1,
-              scale: 1,
+              scale: 0,
               y: '-50%',
               x: '-50%',
               backgroundColor: 'var(--color-black)',
