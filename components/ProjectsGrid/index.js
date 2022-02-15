@@ -4,18 +4,20 @@ import Link from 'next-translate-routes/link'
 import Image from '../Image'
 import { slugify } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
-import { motion } from 'framer-motion'
+import { MotionConfig, AnimatePresence, m } from 'framer-motion'
 import styles from './projectsGrid.module.css'
 
 const AnimatedItem = ({ className, isActive, children, index }) => (
-  <motion.div
+  <m.div
     className={className}
-    initial={{
-      opacity: 0,
-      scale: 0.8,
-    }}
+    initial="notActive"
     animate={isActive ? 'active' : 'notActive'}
     variants={{
+      // fadeIn: {
+      //   opacity: 1,
+      //   scale: 1,
+      //   transition: { duration: 0.3, delay: index * 0.01 },
+      // },
       active: {
         opacity: 1,
         scale: 1,
@@ -29,13 +31,13 @@ const AnimatedItem = ({ className, isActive, children, index }) => (
     }}
   >
     {children}
-  </motion.div>
+  </m.div>
 )
 
 const LinkWrap = ({ url, children }) => {
   if (url) {
     return (
-      <Link href={url}>
+      <Link href={url} prefetch={false}>
         <a>{children}</a>
       </Link>
     )
@@ -45,15 +47,13 @@ const LinkWrap = ({ url, children }) => {
 }
 
 const Window = ({ item, previousItem }) => {
-  if (!item) {
-    item = {
-      uid: 123,
-    }
-  }
-
   const [isLoaded, setIsLoaded] = React.useState(false)
 
   const t = useTranslations('categories')
+
+  if (!item) {
+    return null
+  }
 
   return (
     <div className={styles.window}>
@@ -65,15 +65,7 @@ const Window = ({ item, previousItem }) => {
           }}
           key={previousItem.uid}
         >
-          <motion.div
-            layout
-            initial={{
-              position: 'absolute',
-              width: '100%',
-              height: '100%',
-              opacity: 1,
-            }}
-          >
+          <div className={styles.windowItemInner}>
             <div className={styles.windowContent}>
               <p>
                 {previousItem.name ? previousItem.name : previousItem.title}
@@ -93,7 +85,7 @@ const Window = ({ item, previousItem }) => {
                 width={686}
               />
             )}
-          </motion.div>
+          </div>
         </div>
       )}
       <div
@@ -104,20 +96,15 @@ const Window = ({ item, previousItem }) => {
         key={item.uid}
       >
         <LinkWrap url={item.url}>
-          <motion.div
+          <m.div
+            className={styles.windowItemInner}
             layout
-            initial={{
-              position: 'absolute',
-              width: '100%',
-              height: '100%',
-              opacity: 0,
-              scale: 0.98,
-            }}
+            initial="loading"
             animate={isLoaded ? 'complete' : 'loading'}
             variants={{
               loading: { opacity: 0, scale: 0.98 },
               complete: {
-                transition: { duration: 0.05, delay: 0.05 },
+                transition: { duration: 0.1, delay: 0.05 },
                 opacity: 1,
                 scale: 1,
               },
@@ -143,7 +130,7 @@ const Window = ({ item, previousItem }) => {
                 }}
               />
             )}
-          </motion.div>
+          </m.div>
         </LinkWrap>
       </div>
     </div>
@@ -325,7 +312,7 @@ const ProjectsGrid = ({ activeFilter, isReady, items, setReady }) => {
         })}
       >
         {[...Array(375)].map((_, dotIndex) => (
-          <motion.div
+          <m.div
             key={`dot_${dotIndex}`}
             style={{
               '--row': Math.floor(dotIndex / 25),
@@ -349,19 +336,26 @@ const ProjectsGrid = ({ activeFilter, isReady, items, setReady }) => {
               loading: {
                 opacity: 1,
                 scale: 1,
-                transition: { duration: 0.3, delay: dotIndex * 0.005 },
+                transition: {
+                  duration: 0.3,
+                  delay: (dotIndex % (25 * 1.3)) * 0.05,
+                },
                 backgroundColor: 'var(--color-black)',
               },
               active: {
                 opacity: 1,
                 scale: 1,
-                transition: { duration: 0.3, delay: dotIndex * 0.005 },
+                transition: {
+                  duration: 0.2,
+                },
                 backgroundColor: 'var(--color-white)',
               },
               hidden: {
                 opacity: 0,
                 scale: 0,
-                transition: { duration: 0.3, delay: dotIndex * 0.005 },
+                transition: {
+                  duration: 0.2,
+                },
               },
             }}
           />

@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import styles from './filters.module.css'
 import { slugify } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 
 const Filters = ({ isReady, filters, activeFilter, onClick }) => {
   const t = useTranslations('categories')
@@ -18,7 +18,7 @@ const Filters = ({ isReady, filters, activeFilter, onClick }) => {
             [styles['is-active']]: activeFilter === filter,
           })}
         >
-          <motion.div
+          <m.div
             variants={{
               hidden: {
                 opacity: 0,
@@ -33,15 +33,13 @@ const Filters = ({ isReady, filters, activeFilter, onClick }) => {
                 y: '-50%',
               },
             }}
-            initial={{
-              opacity: 0,
-            }}
+            initial="hidden"
             animate={isReady ? 'enter' : 'hidden'}
             exit="exit"
             transition={{ type: 'ease', delay: 0.5 + 0.1 * filterIndex }}
           >
             {t(slugify(filter))}
-          </motion.div>
+          </m.div>
         </button>
       ))}
     </div>
