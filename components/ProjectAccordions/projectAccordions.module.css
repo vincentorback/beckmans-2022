@@ -30,11 +30,16 @@
 .button svg {
   display: block;
   transform: rotateZ(0);
-  transition: transform 750ms ease;
+  transition: transform 1000ms ease;
 }
 
 .list.is-active .button svg {
   transform: rotateZ(135deg);
+}
+
+.content {
+  transition: max-height 1000ms ease;
+  overflow: hidden;
 }
 
 .item {

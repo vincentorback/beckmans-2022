@@ -10,16 +10,38 @@ const ProjectAccordions = ({ lists, items }) => {
   const { locale } = useRouter()
   const t = useTranslations('categories')
 
+  const listRefs = React.useRef([])
+  const [maxHeight, setMaxHeight] = React.useState(0)
+
   const [activeAccordion, setActiveAccordion] = React.useState(null)
 
+  React.useEffect(() => {
+    listRefs.current.forEach((el) => {
+      if (el) {
+        setMaxHeight((prev) => Math.max(prev, el.clientHeight))
+      }
+    })
+  }, [listRefs])
+
   const handleToggleAccordion = React.useCallback(
-    (accordionID) => {
-      const newAccordion = activeAccordion === accordionID ? null : accordionID
+    (index) => {
+      const newAccordion = activeAccordion === index ? null : index
       setActiveAccordion(newAccordion)
       sessionStorage.accordion = newAccordion
     },
     [activeAccordion]
   )
+
+  React.useEffect(() => {
+    if (listRefs?.current[activeAccordion]) {
+      setTimeout(() => {
+        listRefs?.current[Math.max(0, activeAccordion - 1)].scrollIntoView({
+          block: 'start',
+          behavior: 'smooth',
+        })
+      })
+    }
+  }, [listRefs, activeAccordion])
 
   React.useEffect(() => {
     if (sessionStorage.accordion) {
@@ -35,14 +57,17 @@ const ProjectAccordions = ({ lists, items }) => {
         lists.map((list, listIndex) => (
           <div
             className={classNames(styles.list, {
-              [styles['is-active']]: list.id === activeAccordion,
+              [styles['is-active']]: listIndex === activeAccordion,
             })}
+            ref={(el) =>
+              el && !listRefs.current.includes(el) && listRefs.current.push(el)
+            }
             key={list.id}
           >
             <button
-              aria-expanded={activeAccordion === list.id}
               className={styles.button}
-              onClick={() => handleToggleAccordion(list.id)}
+              aria-expanded={listIndex === list.id}
+              onClick={() => handleToggleAccordion(listIndex)}
             >
               <span>{t(list.id)}</span>
               <svg
@@ -70,7 +95,16 @@ const ProjectAccordions = ({ lists, items }) => {
                 />
               </svg>
             </button>
-            <div hidden={list.id !== activeAccordion}>
+            <div
+              className={styles.content}
+              style={{
+                maxHeight: maxHeight
+                  ? listIndex === activeAccordion
+                    ? maxHeight
+                    : 0
+                  : null,
+              }}
+            >
               {list.items.map((item, itemIndex) => (
                 <div className={styles.item} key={item.uid}>
                   <Link href={item.url}>
@@ -84,9 +118,10 @@ const ProjectAccordions = ({ lists, items }) => {
                           src={item.image}
                           width={110}
                           height={110}
-                          alt=""
+                          alt={item.name}
                           className={styles.image}
                           layout="responsive"
+                          priority={itemIndex <= 3}
                         />
                         <div className={styles.dots}>
                           {[...Array(9)].map((_, i) => (
