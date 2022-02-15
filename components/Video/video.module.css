@@ -1,6 +1,7 @@
 .video {
   position: relative;
   background-color: var(--color-black);
+  user-select: none;
 }
 
 .youtube {
