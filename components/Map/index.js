@@ -39,7 +39,7 @@ const Map = ({ items, category }) => {
                         src={item.image}
                         width={40}
                         height={40}
-                        alt=""
+                        alt={item.name}
                         layout="fixed"
                         quality={10}
                       />

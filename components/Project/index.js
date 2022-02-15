@@ -71,7 +71,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
           <div className={styles.mainImage}>
             <Image
               src={image}
-              alt=""
+              alt={title}
               layout="responsive"
               width={803}
               height={928}
@@ -161,14 +161,14 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
               <div className={styles.mediaGrid}>
                 <Image
                   src={image + '1'}
-                  alt=""
+                  alt={image?.alt}
                   layout="responsive"
                   width={447}
                   height={560}
                 />
                 <Image
                   src={image + '2'}
-                  alt=""
+                  alt={image?.alt}
                   layout="responsive"
                   width={447}
                   height={560}
@@ -180,14 +180,14 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
               <div className={styles.mediaGrid}>
                 <Image
                   src={image + '3'}
-                  alt=""
+                  alt={image?.alt}
                   layout="responsive"
                   width={447}
                   height={560}
                 />
                 <Image
                   src={image + '4'}
-                  alt=""
+                  alt={image?.alt}
                   layout="responsive"
                   width={447}
                   height={560}
@@ -196,7 +196,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
             )}
             <Image
               src={image + '5'}
-              alt=""
+              alt={image?.alt}
               layout="responsive"
               width={917}
               height={558}
