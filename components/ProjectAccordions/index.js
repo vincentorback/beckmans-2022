@@ -28,20 +28,18 @@ const ProjectAccordions = ({ lists, items }) => {
       const newAccordion = activeAccordion === index ? null : index
       setActiveAccordion(newAccordion)
       sessionStorage.accordion = newAccordion
+
+      if (activeAccordion !== null && newAccordion > activeAccordion) {
+        if (listRefs?.current?.length) {
+          listRefs.current[0].scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          })
+        }
+      }
     },
     [activeAccordion]
   )
-
-  React.useEffect(() => {
-    if (listRefs?.current[activeAccordion]) {
-      setTimeout(() => {
-        listRefs?.current[Math.max(0, activeAccordion - 1)].scrollIntoView({
-          block: 'start',
-          behavior: 'smooth',
-        })
-      })
-    }
-  }, [listRefs, activeAccordion])
 
   React.useEffect(() => {
     if (sessionStorage.accordion) {
