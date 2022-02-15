@@ -42,7 +42,7 @@ const Footer = ({ pages, otherLocalePage }) => {
                   .map((page) => (
                     <li key={page.uid}>
                       <Link href={`/${page.uid}`}>
-                        {page.data.title[0].text}
+                        <a>{page.data.title[0].text}</a>
                       </Link>
                     </li>
                   ))}
