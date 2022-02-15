@@ -33,7 +33,7 @@ export async function getServerSideProps({ res, locale }) {
   return {
     props: {
       statusCode: res?.statusCode ?? 500,
-      statusMessage: res?.statusMessage ?? 'Something went wrong',
+      statusMessage: res?.statusMessage ?? messages?.error?.title,
       pages,
       messages,
     },
