@@ -44,42 +44,108 @@ const LinkWrap = ({ url, children }) => {
   return children
 }
 
-const Window = ({ item }) => {
+const Window = ({ item, previousItem }) => {
   if (!item) {
     item = {
       uid: 123,
     }
   }
 
+  const [isLoaded, setIsLoaded] = React.useState(false)
+
   const t = useTranslations('categories')
 
   return (
-    <div
-      className={styles.windowItem}
-      style={{
-        backgroundColor: item.color ?? null,
-      }}
-      key={item.uid}
-    >
-      <LinkWrap url={item.url}>
-        <div className={styles.windowContent}>
-          <p>{item.name ? item.name : item.title}</p>
-          {item.category && <p>{t(item.category)}</p>}
-          {item.subtitle && <p>{item.subtitle}</p>}
+    <div className={styles.window}>
+      {previousItem && previousItem !== item.uid && (
+        <div
+          className={styles.windowItem}
+          style={{
+            backgroundColor: previousItem.color ?? null,
+          }}
+          key={previousItem.uid}
+        >
+          <motion.div
+            layout
+            initial={{
+              position: 'absolute',
+              width: '100%',
+              height: '100%',
+              opacity: 1,
+            }}
+          >
+            <div className={styles.windowContent}>
+              <p>
+                {previousItem.name ? previousItem.name : previousItem.title}
+              </p>
+              {previousItem.category && <p>{t(previousItem.category)}</p>}
+              {previousItem.subtitle && <p>{previousItem.subtitle}</p>}
+            </div>
+            {previousItem?.image && (
+              <Image
+                alt=""
+                className={styles.windowItemImage}
+                height={800}
+                layout="fill"
+                quality={10}
+                sizes="(max-width: 1400px) 50vw, 686px"
+                src={previousItem.image}
+                width={686}
+              />
+            )}
+          </motion.div>
         </div>
-        {item?.image && (
-          <Image
-            alt=""
-            className={styles.windowItemImage}
-            height={800}
-            layout="fill"
-            quality={10}
-            sizes="(max-width: 1400px) 50vw, 686px"
-            src={item.image}
-            width={686}
-          />
-        )}
-      </LinkWrap>
+      )}
+      <div
+        className={styles.windowItem}
+        style={{
+          backgroundColor: item.color ?? null,
+        }}
+        key={item.uid}
+      >
+        <LinkWrap url={item.url}>
+          <motion.div
+            layout
+            initial={{
+              position: 'absolute',
+              width: '100%',
+              height: '100%',
+              opacity: 0,
+              scale: 0.98,
+            }}
+            animate={isLoaded ? 'complete' : 'loading'}
+            variants={{
+              loading: { opacity: 0, scale: 0.98 },
+              complete: {
+                transition: { duration: 0.05, delay: 0.05 },
+                opacity: 1,
+                scale: 1,
+              },
+            }}
+          >
+            <div className={styles.windowContent}>
+              <p>{item.name ? item.name : item.title}</p>
+              {item.category && <p>{t(item.category)}</p>}
+              {item.subtitle && <p>{item.subtitle}</p>}
+            </div>
+            {item?.image && (
+              <Image
+                alt=""
+                className={styles.windowItemImage}
+                height={800}
+                layout="fill"
+                quality={10}
+                sizes="(max-width: 1400px) 50vw, 686px"
+                src={item.image}
+                width={686}
+                onLoadingComplete={() => {
+                  setIsLoaded(true)
+                }}
+              />
+            )}
+          </motion.div>
+        </LinkWrap>
+      </div>
     </div>
   )
 }
@@ -211,6 +277,7 @@ const Grid = ({ isReady, activeFilter, items, handleMouseEnter, onLoad }) => {
 
 const ProjectsGrid = ({ activeFilter, isReady, items, setReady }) => {
   const [activeItem, setActiveItem] = React.useState(null)
+  const [previousActiveItem, setPreviousActiveItem] = React.useState(null)
 
   React.useEffect(() => {
     setActiveItem((prev) =>
@@ -220,7 +287,11 @@ const ProjectsGrid = ({ activeFilter, isReady, items, setReady }) => {
 
   const handleMouseEnter = React.useCallback(
     (item) => {
-      isReady && setActiveItem(item)
+      isReady &&
+        setActiveItem((prev) => {
+          setPreviousActiveItem(prev)
+          return item
+        })
     },
     [isReady, setActiveItem]
   )
@@ -241,8 +312,9 @@ const ProjectsGrid = ({ activeFilter, isReady, items, setReady }) => {
   )
 
   const memoWindow = React.useMemo(
-    () => isReady && <Window item={activeItem} />,
-    [isReady, activeItem]
+    () =>
+      isReady && <Window item={activeItem} previousItem={previousActiveItem} />,
+    [isReady, activeItem, previousActiveItem]
   )
 
   const memoDots = React.useMemo(
@@ -252,14 +324,46 @@ const ProjectsGrid = ({ activeFilter, isReady, items, setReady }) => {
           [styles['is-loaded']]: isReady,
         })}
       >
-        {[...Array(375)].map((_, i) => (
-          <div
+        {[...Array(375)].map((_, dotIndex) => (
+          <motion.div
+            key={`dot_${dotIndex}`}
             style={{
-              '--row': Math.floor(i / 25),
-              '--cell': Math.floor(i % 25),
-              opacity: !isReady || (isReady && Math.floor(i % 25) < 13) ? 1 : 0,
+              '--row': Math.floor(dotIndex / 25),
+              '--cell': Math.floor(dotIndex % 25),
             }}
-            key={`dot_${i}`}
+            initial={{
+              opacity: 1,
+              scale: 1,
+              y: '-50%',
+              x: '-50%',
+              backgroundColor: 'var(--color-black)',
+            }}
+            animate={
+              !isReady
+                ? 'loading'
+                : isReady && Math.floor(dotIndex % 25) < 13
+                ? 'active'
+                : 'hidden'
+            }
+            variants={{
+              loading: {
+                opacity: 1,
+                scale: 1,
+                transition: { duration: 0.3, delay: dotIndex * 0.005 },
+                backgroundColor: 'var(--color-black)',
+              },
+              active: {
+                opacity: 1,
+                scale: 1,
+                transition: { duration: 0.3, delay: dotIndex * 0.005 },
+                backgroundColor: 'var(--color-white)',
+              },
+              hidden: {
+                opacity: 0,
+                scale: 0,
+                transition: { duration: 0.3, delay: dotIndex * 0.005 },
+              },
+            }}
           />
         ))}
       </div>

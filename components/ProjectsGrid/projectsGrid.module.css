@@ -78,12 +78,6 @@
   height: 100%;
 }
 
-/*
-.item:not(.is-loaded) a,
-.item:not(.is-visible) a {
-  opacity: 0;
-} */
-
 .itemInner {
   position: relative;
   width: 100%;
@@ -123,47 +117,28 @@
   left: calc(var(--cell) * (100% / 24));
   width: 4px;
   height: 4px;
-  transform: translate3d(-50%, -50%, 0);
   background-color: var(--color-black);
-  transition: background-color 900ms ease, opacity 900ms ease;
   backface-visibility: hidden;
-  will-change: transform;
 }
 
-/* .dots:not(.is-loaded) div {
-  background-color: var(--color-black);
-  animation: loading 2000ms calc((var(--cell) * 100ms) + (var(--row) * 100ms))
-    ease infinite alternate;
-}
-
-@keyframes loading {
-  0% {
-    transform: translate3d(-50%, -50%, 0) scale(0.25);
-  }
-
-  100% {
-    transform: translate3d(-50%, -50%, 0) scale(1);
-  }
-} */
-
-.dots.is-loaded div {
-  background-color: var(--color-white);
+.window {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
 }
 
 .windowItem {
-  position: relative;
-  z-index: 1;
-  height: 0;
-  padding-bottom: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  /* background-color: var(--color-red); */
+  height: 100%;
+  transition: opacity 300ms ease 300ms;
 }
 
-@media (min-width: 600px) {
-  .windowItem {
-    height: 100%;
-    padding-bottom: 0;
-  }
+.windowItem:last-child {
+  z-index: 2;
 }
 
 .windowItemImage {
