@@ -6,6 +6,12 @@
   color: inherit;
 }
 
+html,
+body,
+#__next {
+  height: 100%;
+}
+
 html {
   box-sizing: border-box;
   font-family: var(--text-sansserif);
