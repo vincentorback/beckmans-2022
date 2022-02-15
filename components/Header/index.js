@@ -76,14 +76,14 @@ const Header = ({ pages, otherLocalePage, children }) => {
                   <defs>
                     <clipPath id="a">
                       <path
-                        fill="#fff"
+                        fill="#f5f1e7"
                         transform="translate(.06)"
                         d="M0 0h379.87v64H0z"
                       />
                     </clipPath>
                     <clipPath id="b">
                       <path
-                        fill="#fff"
+                        fill="#f5f1e7"
                         transform="translate(2.38 .98)"
                         d="M0 0h376.16v63.02H0z"
                       />
