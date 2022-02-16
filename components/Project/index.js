@@ -78,13 +78,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
             />
             <div className={styles.dots}>
               {[...Array(9)].map((_, i) => (
-                <div
-                  style={{
-                    '--row': Math.floor(i / 3),
-                    '--cell': i % 3,
-                  }}
-                  key={`dot_${i}`}
-                />
+                <div key={`dot_${i}`} />
               ))}
             </div>
           </div>

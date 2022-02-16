@@ -51,19 +51,19 @@ const Window = ({ item, previousItem }) => {
 
   const t = useTranslations('categories')
 
-  if (!item) {
+  if (!item?.uid) {
     return null
   }
 
   return (
     <div className={styles.window}>
-      {previousItem && previousItem !== item.uid && (
+      {previousItem?.uid && previousItem.uid !== item.uid && (
         <div
+          key={previousItem.uid}
           className={styles.windowItem}
           style={{
             backgroundColor: previousItem.color ?? null,
           }}
-          key={previousItem.uid}
         >
           <div className={styles.windowItemInner}>
             <div className={styles.windowContent}>
@@ -132,6 +132,11 @@ const Window = ({ item, previousItem }) => {
             )}
           </m.div>
         </LinkWrap>
+      </div>
+      <div className={styles.windowDots}>
+        {[...Array(9)].map((_, dotIndex) => (
+          <div key={`dot_${dotIndex}`} />
+        ))}
       </div>
     </div>
   )
@@ -318,13 +323,7 @@ const ProjectsGrid = ({ activeFilter, isReady, items, setReady }) => {
               '--row': Math.floor(dotIndex / 25),
               '--cell': Math.floor(dotIndex % 25),
             }}
-            initial={{
-              opacity: 1,
-              scale: 0,
-              y: '-50%',
-              x: '-50%',
-              backgroundColor: 'var(--color-black)',
-            }}
+            initial="hidden"
             animate={
               !isReady
                 ? 'loading'
@@ -336,6 +335,8 @@ const ProjectsGrid = ({ activeFilter, isReady, items, setReady }) => {
               loading: {
                 opacity: 1,
                 scale: 1,
+                x: '-50%',
+                y: '-50%',
                 transition: {
                   duration: 0.3,
                   delay: (dotIndex % (25 * 1.3)) * 0.05,
@@ -345,6 +346,8 @@ const ProjectsGrid = ({ activeFilter, isReady, items, setReady }) => {
               active: {
                 opacity: 1,
                 scale: 1,
+                x: '-50%',
+                y: '-50%',
                 transition: {
                   duration: 0.2,
                 },
@@ -353,6 +356,8 @@ const ProjectsGrid = ({ activeFilter, isReady, items, setReady }) => {
               hidden: {
                 opacity: 0,
                 scale: 0,
+                x: '-50%',
+                y: '-50%',
                 transition: {
                   duration: 0.2,
                 },

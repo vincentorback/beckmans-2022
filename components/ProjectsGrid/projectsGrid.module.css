@@ -115,6 +115,7 @@
   position: absolute;
   top: calc(var(--row) * (100% / 14));
   left: calc(var(--cell) * (100% / 24));
+  transform: translate3d(-50%, -50%, 0);
   width: 4px;
   height: 4px;
   background-color: var(--color-black);
@@ -130,6 +131,7 @@
 
 .windowItem {
   position: absolute;
+  z-index: 1;
   top: 0;
   left: 0;
   width: 100%;
@@ -137,8 +139,8 @@
   transition: opacity 300ms ease 300ms;
 }
 
-.windowItem:last-child {
-  z-index: 2;
+.windowItem:first-child {
+  z-index: 0;
 }
 
 .windowItemInner {
@@ -203,20 +205,54 @@
 
 .windowDots div {
   position: absolute;
-  top: calc((100% / 14) * var(--row));
-  left: calc((100% / 14) * (var(--cell) + 1));
+  top: calc(100% / 7);
+  left: calc(100% / 12);
   width: 4px;
   height: 4px;
-  transform: translate(-50%, -50%) scale(var(--special));
-  background-color: var(--color-black);
-  transition: opacity 150ms ease, background-color 150ms ease;
+  transform: translate(-50%, -50%);
+  background-color: var(--color-white);
+  transition: opacity 150ms ease 150ms;
+}
+
+@media (min-width: 800px) {
+  .windowDots div {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+.windowDots div:nth-child(4),
+.windowDots div:nth-child(5),
+.windowDots div:nth-child(6) {
+  top: 50%;
+}
+
+.windowDots div:nth-child(2),
+.windowDots div:nth-child(5),
+.windowDots div:nth-child(8) {
+  left: 50%;
+}
+
+.windowDots div:nth-child(3),
+.windowDots div:nth-child(6),
+.windowDots div:nth-child(9) {
+  left: auto;
+  right: calc(100% / 12);
+  transform: translate(50%, -50%);
+}
+
+.windowDots div:nth-child(7),
+.windowDots div:nth-child(8),
+.windowDots div:nth-child(9) {
+  top: auto;
+  bottom: calc(100% / 7);
+  transform: translate(-50%, 50%);
+}
+
+.windowDots div:nth-child(9) {
+  transform: translate(50%, 50%);
 }
 
 .windowItem.is-loaded .windowDots div {
-  background-color: var(--color-white);
-  opacity: 0;
-}
-
-.windowItem.is-loaded .windowDots div {
-  background-color: var(--color-white);
+  opacity: 1;
 }
