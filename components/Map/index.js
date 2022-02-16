@@ -31,8 +31,8 @@ const Map = ({ items, category }) => {
               onMouseLeave={() => isVisible && handleMouse(null)}
             >
               {isVisible && (
-                <Link href={item.url}>
-                  <a className={styles.link} prefetch={false}>
+                <Link href={item.url} prefetch={false}>
+                  <a className={styles.link}>
                     <div className={styles.itemInner}>
                       <Image
                         className={styles.image}
