@@ -179,18 +179,18 @@
   font-weight: var(--text-bold);
   color: var(--color-white);
   font-size: clamp(2rem, 5vw, 4rem);
-  line-height: var(--lineheight-lg);
+  line-height: var(--lineheight-md);
   text-shadow: rgba(0, 0, 0, 0.15) 1px 1px 20px;
 
   white-space: pre-line;
 }
 
 .windowContent p:first-child {
-  top: calc(100% / 3);
+  top: calc(100% / 3.15);
 }
 
 .windowContent p:last-child {
-  top: calc(100% / 1.5);
+  top: calc(100% / 1.48);
 }
 
 .windowDots {
