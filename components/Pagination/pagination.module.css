@@ -1,5 +1,5 @@
 .pagination {
-  margin-top: var(--site-spacing);
+  margin-top: calc(var(--site-spacing) * 2);
   padding: calc(var(--site-spacing) * 2) 0;
 
   display: flex;
@@ -10,6 +10,12 @@
 
   font-weight: var(--text-bold);
   line-height: var(--lineheight-lg);
+}
+
+@media (min-width: 800px) {
+  .pagination {
+    margin-top: calc(var(--site-spacing) * 1);
+  }
 }
 
 .next {
