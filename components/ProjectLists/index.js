@@ -14,7 +14,7 @@ const ProjectLists = ({ lists, items }) => {
         lists.map((list, listIndex) => (
           <div className={styles.cell} key={list.id}>
             <h2 className={styles.title}>
-              <Link href={slugify(t(list.id))}>
+              <Link href={`/${list.id}`}>
                 <a>{t(list.id)}</a>
               </Link>
             </h2>
