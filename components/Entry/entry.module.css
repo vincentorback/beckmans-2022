@@ -26,9 +26,11 @@
 .entry h2 {
   font-size: 1.5rem;
 }
+
 .entry h3 {
   font-size: 1.3125rem;
 }
+
 .entry h4 {
   font-size: 1.2rem;
 }
@@ -51,8 +53,14 @@
   transition: opacity 150ms ease;
 }
 
-.entry a:hover {
+.entry a:active {
   opacity: 0.8;
+}
+
+@media (pointer: fine) {
+  .entry a:hover {
+    opacity: 0.8;
+  }
 }
 
 .grid {

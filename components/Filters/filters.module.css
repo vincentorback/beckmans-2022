@@ -20,10 +20,20 @@
   color: var(--color-red);
 }
 
-.button:hover {
+.button:active {
   opacity: 0.6;
 }
 
-.button.is-active:hover {
+.button.is-active:active {
   opacity: 0.9;
+}
+
+@media (pointer: fine) {
+  .button:hover {
+    opacity: 0.6;
+  }
+
+  .button.is-active:hover {
+    opacity: 0.9;
+  }
 }
