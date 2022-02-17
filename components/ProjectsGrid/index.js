@@ -2,7 +2,7 @@ import React from 'react'
 import classNames from 'classnames'
 import Link from 'next-translate-routes/link'
 import Image from '../Image'
-import { slugify } from '../../lib/utilities'
+import { slugify, isEmpty } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
 import { MotionConfig, AnimatePresence, m } from 'framer-motion'
 import styles from './projectsGrid.module.css'
@@ -21,12 +21,12 @@ const AnimatedItem = ({ className, isActive, children, index }) => (
       active: {
         opacity: 1,
         scale: 1,
-        transition: { duration: 0.1, delay: index * 0.01 },
+        transition: { duration: 0.1, delay: index * 0.015 },
       },
       notActive: {
         opacity: 0,
         scale: 0.8,
-        transition: { duration: 0.1, delay: index * 0.01 },
+        transition: { duration: 0.1, delay: index * 0.015 },
       },
     }}
   >
@@ -47,7 +47,7 @@ const LinkWrap = ({ url, children }) => {
 }
 
 const Window = ({ item, previousItem }) => {
-  const [isLoaded, setIsLoaded] = React.useState(false)
+  const [isLoaded, setIsLoaded] = React.useState(isEmpty(item?.image))
 
   const t = useTranslations('categories')
 
@@ -58,14 +58,13 @@ const Window = ({ item, previousItem }) => {
   return (
     <div className={styles.window}>
       {previousItem?.uid && previousItem.uid !== item.uid && (
-        <div
-          key={previousItem.uid}
-          className={styles.windowItem}
-          style={{
-            backgroundColor: previousItem.color ?? null,
-          }}
-        >
-          <div className={styles.windowItemInner}>
+        <div key={previousItem.uid} className={styles.windowItem} id="prev">
+          <div
+            className={styles.windowItemInner}
+            style={{
+              backgroundColor: previousItem.color ?? null,
+            }}
+          >
             <div className={styles.windowContent}>
               <p>
                 {previousItem.name ? previousItem.name : previousItem.title}
@@ -88,19 +87,16 @@ const Window = ({ item, previousItem }) => {
           </div>
         </div>
       )}
-      <div
-        className={styles.windowItem}
-        style={{
-          backgroundColor: item.color ?? null,
-        }}
-        key={item.uid}
-      >
+      <div className={styles.windowItem} key={item.uid}>
         <LinkWrap url={item.url}>
           <m.div
             className={styles.windowItemInner}
             layout
             initial="loading"
             animate={isLoaded ? 'complete' : 'loading'}
+            style={{
+              backgroundColor: item.color ?? null,
+            }}
             variants={{
               loading: { opacity: 0, scale: 0.98 },
               complete: {
@@ -143,21 +139,21 @@ const Window = ({ item, previousItem }) => {
 }
 
 const Grid = ({ isReady, activeFilter, items, handleMouseEnter, onLoad }) => {
-  const [loadedImages, setLoadedImages] = React.useState(0)
+  const [imagesLoaded, setImagesLoades] = React.useState(0)
 
   const realProjectsLength = React.useMemo(
     () => items.filter((item) => item.category).length,
     [items]
   )
   const handleImageLoad = React.useCallback(() => {
-    setLoadedImages((i) => i + 1)
+    setImagesLoades((i) => i + 1)
   }, [])
 
   React.useEffect(() => {
-    if (loadedImages >= realProjectsLength) {
+    if (imagesLoaded >= realProjectsLength) {
       onLoad()
     }
-  }, [loadedImages, realProjectsLength, onLoad])
+  }, [imagesLoaded, realProjectsLength, onLoad])
 
   const Item = React.useCallback(
     ({
@@ -196,9 +192,7 @@ const Grid = ({ isReady, activeFilter, items, handleMouseEnter, onLoad }) => {
         <div
           key={item.uid || itemIndex}
           className={classNames(styles.item, {
-            [styles['is-visible']]: isVisible,
-            [styles['is-loaded']]: isReady,
-            [styles['is-extra']]: !item.name,
+            [styles['has-noImage']]: !item?.image,
           })}
           onMouseEnter={() => handleMouseEnter(item)}
         >
@@ -309,13 +303,54 @@ const ProjectsGrid = ({ activeFilter, isReady, items, setReady }) => {
     [isReady, activeItem, previousActiveItem]
   )
 
+  const dotVariants = React.useMemo(
+    () => ({
+      loading: (index) => ({
+        opacity: 1,
+        scale: 1,
+        x: '-50%',
+        y: '-50%',
+        transition: {
+          duration: 0.3,
+          delay: (index % (25 * 1.3)) * 0.05,
+        },
+        backgroundColor: 'var(--color-black)',
+      }),
+      active: (index) => ({
+        opacity: Math.floor(index % 25) < 13 ? 1 : 0,
+        scale: Math.floor(index % 25) < 13 ? 1 : 0,
+        x: '-50%',
+        y: '-50%',
+        transition: {
+          duration: 0.2,
+        },
+        backgroundColor: 'var(--color-white)',
+      }),
+      hidden: {
+        opacity: 0,
+        scale: 0,
+        x: '-50%',
+        y: '-50%',
+        transition: {
+          duration: 0.2,
+        },
+      },
+    }),
+    []
+  )
+
+  const [dotAnimation, setDotAnimation] = React.useState('loading')
+  const [dotsDone, setDotsDone] = React.useState(false)
+
+  React.useEffect(() => {
+    if (dotsDone && isReady) {
+      setDotAnimation('active')
+    }
+  }, [dotsDone, isReady])
+
   const memoDots = React.useMemo(
     () => (
-      <div
-        className={classNames(styles.dots, {
-          [styles['is-loaded']]: isReady,
-        })}
-      >
+      <div className={styles.dots}>
         {[...Array(375)].map((_, dotIndex) => (
           <m.div
             key={`dot_${dotIndex}`}
@@ -323,55 +358,28 @@ const ProjectsGrid = ({ activeFilter, isReady, items, setReady }) => {
               '--row': Math.floor(dotIndex / 25),
               '--cell': Math.floor(dotIndex % 25),
             }}
+            custom={dotIndex}
             initial="hidden"
-            animate={
-              !isReady
-                ? 'loading'
-                : isReady && Math.floor(dotIndex % 25) < 13
-                ? 'active'
-                : 'hidden'
-            }
-            variants={{
-              loading: {
-                opacity: 1,
-                scale: 1,
-                x: '-50%',
-                y: '-50%',
-                transition: {
-                  duration: 0.3,
-                  delay: (dotIndex % (25 * 1.3)) * 0.05,
-                },
-                backgroundColor: 'var(--color-black)',
-              },
-              active: {
-                opacity: 1,
-                scale: 1,
-                x: '-50%',
-                y: '-50%',
-                transition: {
-                  duration: 0.2,
-                },
-                backgroundColor: 'var(--color-white)',
-              },
-              hidden: {
-                opacity: 0,
-                scale: 0,
-                x: '-50%',
-                y: '-50%',
-                transition: {
-                  duration: 0.2,
-                },
-              },
+            variants={dotVariants}
+            animate={dotAnimation}
+            onAnimationComplete={(definition) => {
+              if (definition === 'loading' && dotIndex === 357) {
+                setDotsDone(true)
+              }
             }}
           />
         ))}
       </div>
     ),
-    [isReady]
+    [dotVariants, dotAnimation]
   )
 
   return (
-    <div className={styles.container}>
+    <div
+      className={classNames(styles.container, {
+        [styles['is-ready']]: isReady,
+      })}
+    >
       <div className={styles.inner}>
         {memoGrid}
         {memoWindow}
