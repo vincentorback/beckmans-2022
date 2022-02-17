@@ -15,7 +15,15 @@ const Header = ({ pages, otherLocalePage, children }) => {
   const [menuIsOpen, setMenuOpen] = React.useState(false)
 
   const toggleMenu = React.useCallback(() => {
-    setMenuOpen((prev) => !prev)
+    setMenuOpen((prev) => {
+      if (!prev) {
+        window.scrollTo(0, 0, {
+          behavior: 'smooth',
+        })
+      }
+
+      return !prev
+    })
   }, [])
 
   React.useEffect(() => {
@@ -125,8 +133,7 @@ const Header = ({ pages, otherLocalePage, children }) => {
                 Beckmans <br />
                 {t('school-subtitle')}
               </p>
-
-              {/* <button type="button">
+              {/* <button type="button" onClick={toggleMenu}>
                 <svg
                   width="20"
                   height="20"
