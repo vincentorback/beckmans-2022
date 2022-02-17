@@ -2,7 +2,7 @@
   padding-top: var(--site-spacing);
   padding-bottom: calc(var(--site-spacing) * 2);
   display: grid;
-  gap: var(--site-spacing);
+  gap: var(--site-spacing) calc(var(--site-spacing) * 0.5);
 
   max-width: 1800px;
   margin: 0 auto;
