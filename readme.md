@@ -2,7 +2,7 @@
 [beckmans.college/2022](https://beckmans.college/2022)
 
 ## Requirements
-[Node](https://nodejs.org/en/) and [Yarn](https://yarnpkg.com)
+[Node](https://nodejs.org/en/)
 
 ## Setup
 Install dependencies by running `yarn`  
