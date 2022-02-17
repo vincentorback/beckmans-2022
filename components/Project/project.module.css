@@ -53,17 +53,10 @@
   position: absolute;
   top: calc(100% / 7);
   left: calc(100% / 12);
-  width: 4px;
-  height: 4px;
+  width: clamp(4px, 0.75vw, 8px);
+  height: clamp(4px, 0.75vw, 8px);
   transform: translate(-50%, -50%);
   background-color: var(--color-white);
-}
-
-@media (min-width: 800px) {
-  .dots div {
-    width: 8px;
-    height: 8px;
-  }
 }
 
 .dots div:nth-child(4),
@@ -185,9 +178,16 @@
   transition: opacity 150ms ease;
 }
 
-.info a:hover {
+.info a:active {
   opacity: 0.8;
   text-decoration: underline;
+}
+
+@media (pointer: fine) {
+  .info a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+  }
 }
 
 .title {
