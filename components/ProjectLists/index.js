@@ -13,11 +13,7 @@ const ProjectLists = ({ lists, items }) => {
       {lists &&
         lists.map((list, listIndex) => (
           <div className={styles.cell} key={list.id}>
-            <h2 className={styles.title}>
-              <Link href={`/${list.id}`}>
-                <a>{t(list.id)}</a>
-              </Link>
-            </h2>
+            <h2 className={styles.title}>{t(list.id)}</h2>
             <div className={styles.list}>
               {list.items.map((item, itemIndex) => (
                 <p key={item.uid}>

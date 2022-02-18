@@ -1,6 +1,4 @@
-const isProduction = process.env.NETLIFY
 const withTranslateRoutes = require('next-translate-routes/plugin')
-const categories = ['form', 'visual-communication', 'fashion']
 
 const nextConfig = withTranslateRoutes({
   generateBuildId: () => 'build',
@@ -12,15 +10,6 @@ const nextConfig = withTranslateRoutes({
   },
   images: {
     formats: ['image/avif', 'image/webp'],
-  },
-  async redirects() {
-    return [
-      ...categories.map((category) => ({
-        source: `/${category}`,
-        destination: `/?category=${category}`,
-        permanent: false,
-      })),
-    ]
   },
 })
 
