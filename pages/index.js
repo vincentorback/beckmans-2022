@@ -15,7 +15,7 @@ const DEFAULT_FILTER = null
 
 const Projects = ({ setReady, isReady, projects, filters, activeFilter }) => {
   const containerRef = React.useRef(null)
-  const [windowWidth, setWindowWidth] = React.useState(0)
+  const [windowWidth, setWindowWidth] = React.useState(null)
 
   const lists = React.useMemo(
     () =>
@@ -134,14 +134,14 @@ export async function getStaticProps({ locale }) {
       uid: 'fashion',
       title: locale === 'sv' ? 'Modevisning' : 'Fashion show',
       subtitle: locale === 'sv' ? '17 maj' : 'May 17',
-      color: '#000',
+      color: 'var(--color-black)',
     })
 
     projects.splice(projects.length, 0, {
       uid: 'apply',
       title: locale === 'sv' ? 'Sök nu' : 'Apply now',
       subtitle: 'beckmans.se',
-      color: '#000',
+      color: 'var(--color-black)',
       url:
         locale === 'sv'
           ? 'https://beckmans.se/ansok/'

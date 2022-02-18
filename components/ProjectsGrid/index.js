@@ -239,7 +239,7 @@ const Grid = ({ isReady, activeFilter, items, handleMouseEnter, onLoad }) => {
     []
   )
 
-  const DaGrid = React.useMemo(
+  return React.useMemo(
     () => (
       <div className={styles.grid}>
         {items.map((item, itemIndex) => (
@@ -257,8 +257,6 @@ const Grid = ({ isReady, activeFilter, items, handleMouseEnter, onLoad }) => {
     ),
     [items, isReady, activeFilter, handleMouseEnter, handleImageLoad]
   )
-
-  return DaGrid
 }
 
 const ProjectsGrid = ({ activeFilter, isReady, items, setReady }) => {

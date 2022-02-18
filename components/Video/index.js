@@ -1,10 +1,11 @@
 import React from 'react'
 import Image from '../Image'
 import classNames from 'classnames'
-import styles from './video.module.css'
 import Plyr from 'plyr-react'
 import { useInView } from 'react-intersection-observer'
+
 import 'plyr-react/dist/plyr.css'
+import styles from './video.module.css'
 
 const Video = ({ id, provider }) => {
   const { ref, inView } = useInView({

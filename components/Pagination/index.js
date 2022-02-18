@@ -5,7 +5,7 @@ import styles from './pagination.module.css'
 const Pagination = ({ prev, next }) => {
   const t = useTranslations('navigation')
 
-  if (!prev && !next) return null
+  if (!prev?.url && !next?.url) return null
 
   return (
     <nav className={styles.pagination}>
