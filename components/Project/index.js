@@ -73,8 +73,8 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
               src={image}
               alt={title}
               layout="responsive"
-              width={803}
-              height={928}
+              width={1038}
+              height={1200}
             />
             <div className={styles.dots}>
               {[...Array(9)].map((_, i) => (
@@ -154,18 +154,18 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
             {image && (
               <div className={styles.mediaGrid}>
                 <Image
-                  src={image + '1'}
+                  src={image}
                   alt={image?.alt}
                   layout="responsive"
-                  width={447}
-                  height={560}
+                  width={506}
+                  height={634}
                 />
                 <Image
-                  src={image + '2'}
+                  src={image}
                   alt={image?.alt}
                   layout="responsive"
-                  width={447}
-                  height={560}
+                  width={506}
+                  height={634}
                 />
               </div>
             )}
@@ -173,27 +173,34 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
             {image && (
               <div className={styles.mediaGrid}>
                 <Image
-                  src={image + '3'}
+                  src={image}
                   alt={image?.alt}
                   layout="responsive"
-                  width={447}
-                  height={560}
+                  width={506}
+                  height={634}
                 />
                 <Image
-                  src={image + '4'}
+                  src={image}
                   alt={image?.alt}
                   layout="responsive"
-                  width={447}
-                  height={560}
+                  width={506}
+                  height={634}
                 />
               </div>
             )}
             <Image
-              src={image + '5'}
+              src={image}
               alt={image?.alt}
               layout="responsive"
-              width={917}
-              height={558}
+              width={1038}
+              height={1200}
+            />
+            <Image
+              src={image}
+              alt={image?.alt}
+              layout="responsive"
+              width={1038}
+              height={1200}
             />
           </div>
         </div>

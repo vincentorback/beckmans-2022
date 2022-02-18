@@ -20,7 +20,7 @@ const imageLoader = (props) => {
       url.searchParams.set('h', height)
     }
 
-    const newSrc = url.toString()
+    let newSrc = url.toString()
 
     if (rect) {
       newSrc += `&rect=${rect}`

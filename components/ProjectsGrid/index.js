@@ -76,12 +76,12 @@ const Window = ({ item, previousItem }) => {
               <Image
                 alt=""
                 className={styles.windowItemImage}
-                height={800}
+                width={1038}
+                height={1200}
                 layout="fill"
                 quality={10}
                 sizes="(max-width: 1400px) 50vw, 686px"
                 src={previousItem.image}
-                width={686}
               />
             )}
           </div>
@@ -115,12 +115,12 @@ const Window = ({ item, previousItem }) => {
               <Image
                 alt=""
                 className={styles.windowItemImage}
-                height={800}
+                width={1038}
+                height={1200}
                 layout="fill"
                 quality={10}
                 sizes="(max-width: 1400px) 50vw, 686px"
                 src={item.image}
-                width={686}
                 onLoadingComplete={() => {
                   setIsLoaded(true)
                 }}
@@ -170,8 +170,8 @@ const Grid = ({ isReady, activeFilter, items, handleMouseEnter, onLoad }) => {
           (!item.name && !activeFilter) ||
           (item.category && item.category === activeFilter))
 
-      const imageOriginalWidth = 686
-      const imageOriginalHeight = 800
+      const imageOriginalWidth = 1038
+      const imageOriginalHeight = 1200
       const imageWidth = 115
       const imageHeight = 115
 
@@ -206,6 +206,7 @@ const Grid = ({ isReady, activeFilter, items, handleMouseEnter, onLoad }) => {
                 <Image
                   alt={item.name}
                   className={styles.image}
+                  width={imageWidth}
                   height={imageHeight}
                   layout="fixed"
                   onLoadingComplete={() => {
@@ -215,7 +216,6 @@ const Grid = ({ isReady, activeFilter, items, handleMouseEnter, onLoad }) => {
                   quality={10}
                   rect={`${rectX},${rectY},${imageOriginalWidth},${imageOriginalHeight}`}
                   src={item.image}
-                  width={imageWidth}
                 />
               )}
             </AnimatedItem>
@@ -223,6 +223,7 @@ const Grid = ({ isReady, activeFilter, items, handleMouseEnter, onLoad }) => {
           {item?.image && (
             <Image
               alt=""
+              width={686}
               height={800}
               hidden
               layout="fill"
@@ -230,7 +231,6 @@ const Grid = ({ isReady, activeFilter, items, handleMouseEnter, onLoad }) => {
               quality={10}
               sizes="(max-width: 1400px) 50vw, 686px"
               src={item.image}
-              width={686}
             />
           )}
         </div>

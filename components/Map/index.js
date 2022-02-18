@@ -21,6 +21,24 @@ const Map = ({ items, category }) => {
         {items.map((item, itemIndex) => {
           const isVisible = item.category && item.category === category
 
+          const imageOriginalWidth = 1038
+          const imageOriginalHeight = 1200
+          const imageWidth = 40
+          const imageHeight = 40
+
+          const imagePosition =
+            item.imagePosition &&
+            item.imagePosition.match('([0-9]{1,3}%) ([0-9]{1,3}%)')
+
+          const imagePositionX = imagePosition ? imagePosition[1] : '50%'
+          const imagePositionY = imagePosition ? imagePosition[2] : '50%'
+          const rectX = Math.floor(
+            imageOriginalWidth * (imagePositionX.replace('%', '') / 100)
+          )
+          const rectY = Math.floor(
+            imageOriginalHeight * (imagePositionY.replace('%', '') / 100)
+          )
+
           return (
             <div
               key={item.uid || itemIndex}
@@ -37,11 +55,12 @@ const Map = ({ items, category }) => {
                       <Image
                         className={styles.image}
                         src={item.image}
-                        width={40}
-                        height={40}
-                        alt={item.name}
+                        width={imageWidth}
+                        height={imageWidth}
                         layout="fixed"
+                        rect={`${rectX},${rectY},${imageOriginalWidth},${imageOriginalHeight}`}
                         quality={10}
+                        alt={item.name}
                       />
                     </div>
                   </a>
