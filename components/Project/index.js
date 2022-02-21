@@ -170,30 +170,12 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
               </div>
             )}
             <Video key={project.uid} provider="Vimeo" id="286740784" />
-            {image && (
-              <div className={styles.mediaGrid}>
-                <Image
-                  src={image}
-                  alt={image?.alt}
-                  layout="responsive"
-                  width={506}
-                  height={634}
-                />
-                <Image
-                  src={image}
-                  alt={image?.alt}
-                  layout="responsive"
-                  width={506}
-                  height={634}
-                />
-              </div>
-            )}
             <Image
               src={image}
               alt={image?.alt}
               layout="responsive"
               width={1038}
-              height={1200}
+              height={632}
             />
             <Image
               src={image}
