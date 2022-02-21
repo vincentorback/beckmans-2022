@@ -13,8 +13,13 @@ import debounce from 'lodash.debounce'
 
 const DEFAULT_FILTER = null
 
-const Projects = ({ setReady, isReady, projects, filters, activeFilter }) => {
-  const containerRef = React.useRef(null)
+const Projects = ({
+  activeFilter,
+  filters,
+  isReady,
+  projects,
+  setGridLoaded,
+}) => {
   const [windowWidth, setWindowWidth] = React.useState(null)
 
   const lists = React.useMemo(
@@ -48,10 +53,9 @@ const Projects = ({ setReady, isReady, projects, filters, activeFilter }) => {
         <>
           <ProjectsGrid
             activeFilter={activeFilter}
-            filters={filters}
             isReady={isReady}
             items={projects}
-            setReady={setReady}
+            setGridLoaded={setGridLoaded}
           />
           <ProjectLists
             activeFilter={activeFilter}
@@ -72,6 +76,13 @@ export default function HomePage(props) {
 
   const [activeFilter, setActiveFilter] = React.useState(DEFAULT_FILTER)
   const [isReady, setReady] = React.useState(false)
+  const [gridLoaded, setGridLoaded] = React.useState(false)
+
+  React.useEffect(() => {
+    if (gridLoaded) {
+      setReady(true)
+    }
+  }, [gridLoaded])
 
   React.useEffect(() => {
     if (sessionStorage.filter) {
@@ -105,7 +116,7 @@ export default function HomePage(props) {
         filters={filters}
         isReady={isReady}
         projects={projects}
-        setReady={setReady}
+        setGridLoaded={setGridLoaded}
       />
     </Layout>
   )
@@ -120,11 +131,6 @@ export async function getStaticProps({ locale }) {
     if (a.name > b.name) return 1
     return 0
   })
-  // .map((project) => ({
-  //   ...project,
-  //   image:
-  //     'https://images.prismic.io/beckmans2022/082e8cb8-5b75-48a4-a296-3db070cf7ae8_chantalanderson_airbnbmag-16.jpg?auto=compress,format',
-  // }))
 
   if (
     Array.isArray(projects) &&

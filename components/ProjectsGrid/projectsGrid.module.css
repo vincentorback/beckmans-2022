@@ -48,6 +48,10 @@
   padding-bottom: 100%;
 }
 
+.item:not(.is-visible) {
+  pointer-events: none;
+}
+
 .item.has-noImage .itemInner {
   background-color: var(--color-black);
   padding-bottom: 100%;
