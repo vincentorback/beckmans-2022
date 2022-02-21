@@ -48,11 +48,13 @@
   column-gap: 1em;
   column-fill: auto;
   line-height: var(--lineheight-lg);
+  height: auto;
 }
 
 @media (min-width: 1300px) {
   .list {
     columns: 2;
+    height: 11.1em;
   }
 }
 
