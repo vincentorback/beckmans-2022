@@ -26,6 +26,7 @@ const Footer = ({ pages, otherLocalePage }) => {
                   }}
                   locale={otherLocale}
                   prefetch={false}
+                  scroll={false}
                 >
                   <a className={styles.languagleLink}>
                     <span>{t('navigation.otherLanguage')}</span>
