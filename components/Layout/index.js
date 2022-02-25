@@ -12,7 +12,7 @@ const Layout = ({ title, children, background, pages, otherLocalePage }) => {
 
   return (
     <div className={styles.layout}>
-      <Meta title={title}>
+      <Meta title={title} otherLocalePage={otherLocalePage}>
         <meta content={`var(--color-${backgroundColor})`} name="theme-color" />
       </Meta>
       <main className={styles.main}>{children}</main>

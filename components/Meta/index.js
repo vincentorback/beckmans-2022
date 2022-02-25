@@ -1,8 +1,14 @@
 import { useTranslations } from 'next-intl'
+import { useRouter } from 'next/router'
+import { SITE_URL } from '../../lib/constants'
 import Head from 'next/head'
 
-const Meta = ({ title, children }) => {
+const Meta = ({ title, children, otherLocalePage }) => {
   const t = useTranslations()
+  const router = useRouter()
+  const otherLocale = router.locales.find((item) => item !== router.locale)
+
+  console.log(router)
 
   return (
     <Head>
@@ -14,7 +20,19 @@ const Meta = ({ title, children }) => {
       </title>
       {/* TODO: <meta name="description" content="" />
       <meta property="og:image" content="" />
-      <meta property="og:title" content="Beckmans" /> */}
+      <meta property="og:title" content="Beckmans" />
+    */}
+      <link
+        rel="alternate"
+        hrefLang={otherLocale}
+        href={
+          SITE_URL +
+          (
+            (router.locale === 'en' ? '/' : '/en/') +
+            (otherLocalePage ? otherLocalePage.uid : router.asPath)
+          ).replaceAll('//', '/')
+        }
+      />
       {children}
     </Head>
   )
