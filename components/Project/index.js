@@ -11,9 +11,14 @@ import styles from './project.module.css'
 
 const Project = ({ project, projects, nextProject, prevProject }) => {
   const router = useRouter()
-  const { category, name, title, image, links, thanks } = project
+  const { category, name, title, image, links } = project
 
   const t = useTranslations()
+
+  const thanks =
+    router.locale === 'en'
+      ? `Grandma 'n Granpa \nMy teachers \nThe print house`
+      : `Mormor & Morfar \nMina lärare \nTryckeriet`
 
   const ExampleParagraph = () =>
     router.locale === 'sv' ? (
@@ -123,19 +128,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
             {thanks && (
               <div className={styles.info}>
                 <h4>{t('project.thanks-to')}</h4>
-                <ul>
-                  {thanks.map((thank, thankIndex) => (
-                    <li key={thank.label}>
-                      {thank.url ? (
-                        <Link href={'#/'} prefetch={false}>
-                          <a target="_blank">{thank.label}</a>
-                        </Link>
-                      ) : (
-                        thank.label
-                      )}
-                    </li>
-                  ))}
-                </ul>
+                <p className="u-preLine">{thanks}</p>
               </div>
             )}
             <div className={styles.info}>
