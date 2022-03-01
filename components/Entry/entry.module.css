@@ -40,6 +40,14 @@
   list-style-position: inside;
 }
 
+.entry ul {
+  list-style-type: circle;
+}
+
+.entry ol {
+  list-style-type: decimal;
+}
+
 .entry strong {
   font-weight: var(--text-bold);
 }

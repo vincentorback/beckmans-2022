@@ -25,18 +25,18 @@
   flex-direction: column;
 }
 
-.cell h2 {
+.title {
   display: block;
   font-size: 1.3125rem;
   font-weight: var(--text-bold);
 }
 
-.cell h2 a {
+.title a {
   display: inline-block;
   transition: opacity 150ms ease;
 }
 
-.cell h2 a:hover {
+.title a:hover {
   opacity: 0.6;
 }
 
@@ -58,23 +58,23 @@
   }
 }
 
-.list a {
+.item a {
   display: inline-block;
 }
 
-.list a span {
+.item a span {
   display: inline-block;
   transition: opacity 150ms ease;
 }
 
-.list .is-active,
-.list a:active span {
+.item.is-active,
+.item a:active span {
   opacity: 0.8;
   text-decoration: underline;
 }
 
 @media (pointer: fine) {
-  .list a:hover span {
+  .item a:hover span {
     opacity: 0.8;
     text-decoration: underline;
   }

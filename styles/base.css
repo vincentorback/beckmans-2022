@@ -61,3 +61,12 @@ iframe {
 ::selection {
   background-color: var(--color-blue);
 }
+
+ol,
+ul {
+  list-style: none;
+}
+
+[tabIndex] {
+  outline: 0;
+}

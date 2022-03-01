@@ -9,25 +9,30 @@ const ProjectLists = ({ lists, items }) => {
   const t = useTranslations('categories')
 
   return (
-    <div className={styles.container}>
+    <ul className={styles.container} role="tree" aria-label="Studenter">
       {lists &&
         lists.map((list, listIndex) => (
-          <div className={styles.cell} key={list.id}>
-            <h2 className={styles.title}>{t(list.id)}</h2>
-            <div className={styles.list}>
+          <li key={list.id} role="treeitem" tabIndex="-1">
+            <span className={styles.title}>{t(list.id)}</span>
+            <ul className={styles.list} role="group">
               {list.items.map((item, itemIndex) => (
-                <p key={item.uid}>
+                <li
+                  className={styles.item}
+                  key={item.uid}
+                  role="treeitem"
+                  tabIndex="-1"
+                >
                   <Link href={item.url}>
                     <a>
                       <span>{item.name}</span>
                     </a>
                   </Link>
-                </p>
+                </li>
               ))}
-            </div>
-          </div>
+            </ul>
+          </li>
         ))}
-    </div>
+    </ul>
   )
 }
 
