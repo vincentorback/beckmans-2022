@@ -40,14 +40,11 @@ const Header = ({ pages, otherLocalePage, children }) => {
   }, 200)
 
   React.useEffect(() => {
-    // TODO: debounce
     window.addEventListener('resize', handleResize)
 
     handleResize()
 
-    return () => {
-      window.addEventListener('resize', handleResize)
-    }
+    return () => window.removeEventListener('resize', handleResize)
   }, [handleResize])
 
   return (

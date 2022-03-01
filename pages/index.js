@@ -40,9 +40,7 @@ const Projects = ({
 
     handleResize()
 
-    return () => {
-      window.addEventListener('resize', handleResize)
-    }
+    return () => window.removeEventListener('resize', handleResize)
   }, [])
 
   if (!windowWidth) return null
