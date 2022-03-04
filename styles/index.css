@@ -6,3 +6,7 @@
 .MainContent {
   padding: calc(var(--site-spacing) * 3) 0;
 }
+
+.u-preLine {
+  white-space: pre-line;
+}
