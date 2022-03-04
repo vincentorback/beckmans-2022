@@ -44,7 +44,9 @@ const ProjectAccordions = ({ lists, items }) => {
   React.useEffect(() => {
     if (sessionStorage.accordion) {
       setActiveAccordion(
-        sessionStorage.accordion === 'null' ? null : sessionStorage.accordion
+        sessionStorage.accordion === 'null'
+          ? null
+          : Number(sessionStorage.accordion)
       )
     }
   }, [])
