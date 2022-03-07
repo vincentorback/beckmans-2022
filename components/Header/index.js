@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl'
 import styles from './header.module.css'
 import debounce from 'lodash.debounce'
 import classNames from 'classnames'
+import { IN_SESSION_KEY } from '../../lib/constants'
 
 const Header = ({ pages, otherLocalePage, children }) => {
   const router = useRouter()
@@ -30,6 +31,12 @@ const Header = ({ pages, otherLocalePage, children }) => {
   React.useEffect(() => {
     document.documentElement.classList.toggle('no-scroll', menuIsOpen)
   }, [menuIsOpen])
+
+  React.useEffect(() => {
+    return () => {
+      sessionStorage[IN_SESSION_KEY] = true
+    }
+  }, [])
 
   const handleResize = debounce(() => {
     if (headerRef.current) {

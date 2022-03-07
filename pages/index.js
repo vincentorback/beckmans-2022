@@ -8,7 +8,7 @@ import ProjectAccordions from '../components/ProjectAccordions'
 import ProjectLists from '../components/ProjectLists'
 import ProjectsGrid from '../components/ProjectsGrid'
 import { queryDocuments, fakeProjects } from '../lib/content'
-import { categories } from '../lib/constants'
+import { categories, IN_SESSION_KEY } from '../lib/constants'
 import debounce from 'lodash.debounce'
 
 const DEFAULT_FILTER = null
@@ -30,6 +30,14 @@ const Projects = ({
       })),
     [projects, filters]
   )
+
+  // React.useEffect(() => {
+  //   return () => {
+  //     if (!sessionStorage[SEEN_DOTS]) {
+  //       sessionStorage[SEEN_DOTS] = true
+  //     }
+  //   }
+  // }, [])
 
   React.useEffect(() => {
     const handleResize = debounce(() => {
@@ -81,6 +89,12 @@ export default function HomePage(props) {
       setReady(true)
     }
   }, [gridLoaded])
+
+  React.useEffect(() => {
+    if (sessionStorage[IN_SESSION_KEY]) {
+      setReady(true)
+    }
+  }, [])
 
   React.useEffect(() => {
     if (sessionStorage.filter) {
