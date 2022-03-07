@@ -2,7 +2,8 @@
   padding-top: var(--site-spacing);
   padding-bottom: calc(var(--site-spacing) * 2);
   display: grid;
-  gap: var(--site-spacing) calc(var(--site-spacing) * 0.5);
+  /* gap: var(--site-spacing) calc(var(--site-spacing) * 0.5); */
+  gap: var(--site-spacing) 1rem;
 
   max-width: 1800px;
   margin: 0 auto;
@@ -59,7 +60,7 @@
 }
 
 .item {
-  padding-right: 0.5rem;
+  padding-right: 1rem;
 }
 
 .item a {
