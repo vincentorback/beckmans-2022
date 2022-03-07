@@ -45,7 +45,7 @@
   border-top: 1px solid;
   margin-top: 1em;
   padding-top: 1em;
-  column-gap: 1em;
+  column-gap: 0;
   column-fill: auto;
   line-height: var(--lineheight-lg);
   height: auto;
@@ -56,6 +56,10 @@
     columns: 2;
     height: 11.1em;
   }
+}
+
+.item {
+  padding-right: 0.5rem;
 }
 
 .item a {
