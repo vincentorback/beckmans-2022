@@ -2,7 +2,6 @@
   min-height: 100%;
   height: fit-content;
   margin: 0 auto;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
 }
