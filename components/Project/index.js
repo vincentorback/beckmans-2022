@@ -162,7 +162,14 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                 />
               </div>
             )}
-            <Video key={project.uid} provider="Vimeo" id="286740784" />
+            <Video
+              key={project.uid}
+              provider="Vimeo"
+              id="286740784"
+              width={318}
+              height={240}
+              html={`<iframe src="https://player.vimeo.com/video/286740784?h=944a23271c&amp;app_id=122963" width="318" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="RED LIGHT"></iframe>`}
+            />
             <Image
               src={image}
               alt={image?.alt}

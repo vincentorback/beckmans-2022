@@ -15,7 +15,9 @@
 .inner {
   position: relative;
   opacity: 0;
-  transition: opacity 150ms ease 150ms;
+  transition: opacity 200ms ease 500ms;
+  overflow: hidden;
+  aspect-ratio: var(--width) / var(--height);
 }
 
 .inner.inView {

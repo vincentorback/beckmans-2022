@@ -7,10 +7,12 @@ import { useInView } from 'react-intersection-observer'
 import 'plyr-react/dist/plyr.css'
 import styles from './video.module.css'
 
-const Video = ({ id, provider }) => {
+const Video = ({ id, provider, width, height, html }) => {
   const { ref, inView } = useInView({
     triggerOnce: true,
   })
+
+  // TODO: On error, replace with {html}
 
   return (
     <div ref={ref} className={classNames(styles.video, styles.provider)}>
@@ -18,6 +20,10 @@ const Video = ({ id, provider }) => {
         className={classNames(styles.inner, {
           [styles.inView]: inView,
         })}
+        style={{
+          '--width': `${width}`,
+          '--height': `${height}`,
+        }}
       >
         <Plyr
           source={{
