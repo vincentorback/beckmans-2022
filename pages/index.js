@@ -43,7 +43,7 @@ const Projects = ({
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  if (!windowWidth) return null
+  if (!windowWidth) return <div style={{ height: '100vh' }} />
 
   return (
     <Container>
