@@ -89,7 +89,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
           </div>
         )}
         <div className={styles.content}>
-          <header className={styles.header}>
+          <header className={classNames(styles.header, 'u-showSmall')}>
             {name && (
               <h1 className={styles.title}>
                 {name} <br />
@@ -107,11 +107,11 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
           </div>
 
           <div className={styles.projectInfo}>
-            <div className={styles.info}>
+            <div className={classNames(styles.info, 'u-showSmall')}>
               <h4>Program</h4>
               <p>{t(`categories.${category}`)}</p>
             </div>
-            <div className={styles.info}>
+            <div className={classNames(styles.info, 'u-showSmall')}>
               <h4>{t('project.contact')}</h4>
               {links && (
                 <ul>
@@ -131,7 +131,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                 <p className="u-preLine">{thanks}</p>
               </div>
             )}
-            <div className={styles.info}>
+            <div className={classNames(styles.info, 'u-showSmall')}>
               <h4>{t('project.press-images')}</h4>
               <ul>
                 <li>
@@ -181,8 +181,50 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
         </div>
         <Pagination next={nextProject} prev={prevProject} />
       </div>
-      <div className={styles.map}>
-        <Map items={projects} category={project.category} />
+      <div className={styles.sidebar}>
+        <div className={styles.sidebarInner}>
+          <div className={styles.sidebarUpper}>
+            <header className={styles.header}>
+              {name && (
+                <h1 className={styles.title}>
+                  {name} <br />
+                  {title[router.locale]}
+                </h1>
+              )}
+            </header>
+            <div className={styles.projectInfo}>
+              <div className={styles.info}>
+                <h4>Program</h4>
+                <p>{t(`categories.${category}`)}</p>
+              </div>
+              <div className={styles.info}>
+                <h4>{t('project.contact')}</h4>
+                <ul>
+                  {links.map((link, linkIndex) => (
+                    <li key={link.label}>
+                      <Link href={link.url} prefetch={false}>
+                        <a target="_blank">{link.label}</a>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className={styles.info}>
+                <h4>{t('project.press-images')}</h4>
+                <ul>
+                  <li>
+                    <Link href={'#/'} prefetch={false}>
+                      <a>{t('project.download')}</a>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div className={styles.sidebarLower}>
+            <Map items={projects} category={project.category} />
+          </div>
+        </div>
       </div>
     </article>
   )

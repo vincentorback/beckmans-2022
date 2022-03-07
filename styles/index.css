@@ -10,3 +10,9 @@
 .u-preLine {
   white-space: pre-line;
 }
+
+@media (min-width: 800px) {
+  .u-showSmall {
+    display: none;
+  }
+}

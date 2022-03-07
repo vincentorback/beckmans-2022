@@ -1,5 +1,17 @@
 .header {
+  width: 100%;
+  z-index: 99;
+  top: 0;
   padding-top: var(--site-spacing);
+}
+
+@media (min-width: 800px) and (min-height: 800px) {
+  .header.is-fixed {
+    position: fixed;
+  }
+}
+
+.inner {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: var(--site-spacing) var(--site-spacing);
