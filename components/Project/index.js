@@ -17,7 +17,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
 
   const thanks =
     router.locale === 'en'
-      ? `Grandma 'n Granpa \nMy teachers \nThe print house`
+      ? `Grandma 'n Granpa \nMy teachers \nThe print house \nThe community \nThe future \nAhlgrens Bilar \nBe here nowness \nGodrick the Grafted \nAlbert Einstein \nAdam \nEva`
       : `Mormor & Morfar \nMina lärare \nTryckeriet`
 
   const ExampleParagraph = () =>
@@ -181,7 +181,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
         </div>
         <Pagination next={nextProject} prev={prevProject} />
       </div>
-      <div className={styles.sidebar}>
+      <div className={classNames(styles.sidebar, 'u-hideSmall')}>
         <div className={styles.sidebarInner}>
           <div className={styles.sidebarUpper}>
             <header className={styles.header}>

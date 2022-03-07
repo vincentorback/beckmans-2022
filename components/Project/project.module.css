@@ -146,6 +146,21 @@
   }
 }
 
+@media (max-width: 800px) {
+  .header {
+    grid-row: 1;
+  }
+  .mainText {
+    grid-row: 2;
+  }
+  .media {
+    grid-row: 3;
+  }
+  .projectInfo {
+    grid-row: 4;
+  }
+}
+
 .mediaGrid {
   display: grid;
   gap: calc(var(--site-spacing) * 0.5);
