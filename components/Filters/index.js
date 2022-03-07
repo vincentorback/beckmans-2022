@@ -2,10 +2,12 @@ import classNames from 'classnames'
 import styles from './filters.module.css'
 import { slugify } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
-import { m } from 'framer-motion'
+import { m, useReducedMotion } from 'framer-motion'
 
 const Filters = ({ isReady, filters, activeFilter, onClick }) => {
   const t = useTranslations('categories')
+
+  const reduceMotion = useReducedMotion()
 
   return (
     <div className={styles.filters}>
@@ -36,7 +38,10 @@ const Filters = ({ isReady, filters, activeFilter, onClick }) => {
             initial="hidden"
             animate={isReady ? 'enter' : 'hidden'}
             exit="exit"
-            transition={{ type: 'ease', delay: 0.5 + 0.1 * filterIndex }}
+            transition={{
+              type: 'ease',
+              delay: reduceMotion ? 0 : 0.5 + 0.1 * filterIndex,
+            }}
           >
             {t(slugify(filter))}
           </m.div>

@@ -117,8 +117,6 @@
   transform: translate3d(-50%, -50%, 0);
   width: clamp(2px, 0.33vw, 4px);
   height: clamp(2px, 0.33vw, 4px);
-  background-color: var(--color-black);
-  backface-visibility: hidden;
 }
 
 .window {

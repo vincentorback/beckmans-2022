@@ -6,30 +6,45 @@ import Window from './Window'
 import LinkWrap from '../LinkWrap'
 import { slugify, isEmpty } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
-import { MotionConfig, AnimatePresence, m } from 'framer-motion'
+import {
+  MotionConfig,
+  AnimatePresence,
+  m,
+  useReducedMotion,
+} from 'framer-motion'
 import styles from './projectsGrid.module.css'
 
-const AnimatedItem = ({ className, isActive, children, index }) => (
-  <m.div
-    className={className}
-    initial="notActive"
-    animate={isActive ? 'active' : 'notActive'}
-    variants={{
-      active: {
-        opacity: 1,
-        scale: 1,
-        transition: { duration: 0.1, delay: index * 0.015 },
-      },
-      notActive: {
-        opacity: 0,
-        scale: 0.8,
-        transition: { duration: 0.1, delay: index * 0.015 },
-      },
-    }}
-  >
-    {children}
-  </m.div>
-)
+const AnimatedItem = ({ className, isActive, children, index }) => {
+  const reduceMotion = useReducedMotion()
+
+  return (
+    <m.div
+      className={className}
+      initial="notActive"
+      animate={isActive ? 'active' : 'notActive'}
+      variants={{
+        active: {
+          opacity: 1,
+          scale: 1,
+          transition: {
+            duration: 0.1,
+            delay: reduceMotion ? 0 : index * 0.015,
+          },
+        },
+        notActive: {
+          opacity: 0,
+          scale: 0.8,
+          transition: {
+            duration: 0.1,
+            delay: reduceMotion ? 0 : index * 0.015,
+          },
+        },
+      }}
+    >
+      {children}
+    </m.div>
+  )
+}
 
 const Item = ({
   item,
@@ -96,7 +111,7 @@ const Item = ({
           )}
         </AnimatedItem>
       </LinkWrap>
-      {item?.image && (
+      {/* {item?.image && (
         <Image
           alt=""
           width={686}
@@ -108,7 +123,7 @@ const Item = ({
           sizes="(max-width: 1400px) 50vw, 686px"
           src={item.image}
         />
-      )}
+      )} */}
     </div>
   )
 }

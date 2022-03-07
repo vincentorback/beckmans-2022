@@ -65,8 +65,10 @@ const ProjectAccordions = ({ lists, items }) => {
             key={list.id}
           >
             <button
+              id={`accordion-${list.id}-button`}
               className={styles.button}
               aria-expanded={listIndex === list.id}
+              aria-controls={`accordion-${list.id}-content`}
               onClick={() => handleToggleAccordion(listIndex)}
             >
               <span>{t(list.id)}</span>
@@ -96,6 +98,9 @@ const ProjectAccordions = ({ lists, items }) => {
               </svg>
             </button>
             <div
+              role="region"
+              aria-labelledby={`accordion-${list.id}-button`}
+              id={`accordion-${list.id}-content`}
               className={styles.content}
               style={{
                 maxHeight: maxHeight

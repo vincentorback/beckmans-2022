@@ -7,7 +7,12 @@ import Grid from './Grid'
 import LinkWrap from '../LinkWrap'
 import { slugify, isEmpty } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
-import { MotionConfig, AnimatePresence, m } from 'framer-motion'
+import {
+  MotionConfig,
+  AnimatePresence,
+  m,
+  useReducedMotion,
+} from 'framer-motion'
 import styles from './projectsGrid.module.css'
 
 const ProjectsGrid = ({ activeFilter, isReady, items, setGridLoaded }) => {
@@ -16,6 +21,8 @@ const ProjectsGrid = ({ activeFilter, isReady, items, setGridLoaded }) => {
   const [dotAnimation, setDotAnimation] = React.useState('loading')
   const [dotsDone, setDotsDone] = React.useState(false)
   const [allImagesLoaded, setAllImagesLoades] = React.useState(false)
+
+  const reduceMotion = useReducedMotion()
 
   React.useEffect(() => {
     if (allImagesLoaded && dotsDone) {
@@ -74,9 +81,9 @@ const ProjectsGrid = ({ activeFilter, isReady, items, setGridLoaded }) => {
         y: '-50%',
         transition: {
           duration: 0.3,
-          delay: (index % (25 * 1.3)) * 0.05,
+          delay: reduceMotion ? 0 : (index % (25 * 1.3)) * 0.075,
         },
-        backgroundColor: 'var(--color-black)',
+        backgroundColor: reduceMotion ? null : 'var(--color-black)',
       }),
       active: (index) => ({
         opacity: Math.floor(index % 25) < 13 ? 1 : 0,
@@ -98,7 +105,7 @@ const ProjectsGrid = ({ activeFilter, isReady, items, setGridLoaded }) => {
         },
       },
     }),
-    []
+    [reduceMotion]
   )
 
   const memoDots = React.useMemo(
