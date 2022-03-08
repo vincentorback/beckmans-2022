@@ -76,7 +76,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
           <div className={styles.mainImage}>
             <Image
               src={image}
-              alt={title}
+              alt={title[router.locale]}
               layout="responsive"
               width={1038}
               height={1200}
