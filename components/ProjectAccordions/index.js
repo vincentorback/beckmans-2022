@@ -13,7 +13,9 @@ const ProjectAccordions = ({ lists, items }) => {
   const listRefs = React.useRef([])
   const [maxHeight, setMaxHeight] = React.useState(0)
 
-  const [activeAccordion, setActiveAccordion] = React.useState(null)
+  const [activeAccordion, setActiveAccordion] = React.useState(
+    sessionStorage?.accordion
+  )
 
   React.useEffect(() => {
     listRefs.current.forEach((el) => {
