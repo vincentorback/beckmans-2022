@@ -34,7 +34,7 @@
 }
 
 .list.is-active .button svg {
-  transform: rotateZ(135deg);
+  transform: rotateZ(-135deg);
 }
 
 .content {
