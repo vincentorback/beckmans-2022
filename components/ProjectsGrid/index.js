@@ -6,7 +6,7 @@ import Window from './Window'
 import Grid from './Grid'
 import LinkWrap from '../LinkWrap'
 import { slugify, isEmpty } from '../../lib/utilities'
-import { IN_SESSION_KEY } from '../../lib/constants'
+import { SESSION_STARTED } from '../../lib/constants'
 import { useTranslations } from 'next-intl'
 import {
   MotionConfig,
@@ -120,12 +120,12 @@ const ProjectsGrid = ({ activeFilter, isReady, items, setGridLoaded }) => {
               '--cell': Math.floor(dotIndex % 25),
             }}
             custom={dotIndex}
-            initial={sessionStorage[IN_SESSION_KEY] ? 'active' : 'hidden'}
+            initial={sessionStorage[SESSION_STARTED] ? 'active' : 'hidden'}
             variants={dotVariants}
-            animate={sessionStorage[IN_SESSION_KEY] ? '' : dotAnimation}
+            animate={sessionStorage[SESSION_STARTED] ? '' : dotAnimation}
             onAnimationComplete={(definition) => {
               if (
-                sessionStorage[IN_SESSION_KEY] ||
+                sessionStorage[SESSION_STARTED] ||
                 (definition === 'loading' && dotIndex === 357)
               ) {
                 setDotsDone(true)

@@ -8,7 +8,7 @@ import ProjectAccordions from '../components/ProjectAccordions'
 import ProjectLists from '../components/ProjectLists'
 import ProjectsGrid from '../components/ProjectsGrid'
 import { queryDocuments, fakeProjects } from '../lib/content'
-import { categories, IN_SESSION_KEY } from '../lib/constants'
+import { categories, SESSION_STARTED, SESSION_CATEGORY } from '../lib/constants'
 import debounce from 'lodash.debounce'
 
 const DEFAULT_FILTER = null
@@ -24,8 +24,9 @@ const Projects = ({
 
   const lists = React.useMemo(
     () =>
-      filters.map((filter) => ({
+      filters.map((filter, filterIndex) => ({
         id: filter,
+        index: filterIndex,
         items: projects.filter((item) => filter === item.category),
       })),
     [projects, filters]
@@ -91,27 +92,29 @@ export default function HomePage(props) {
   }, [gridLoaded])
 
   React.useEffect(() => {
-    if (sessionStorage[IN_SESSION_KEY]) {
+    if (sessionStorage[SESSION_STARTED]) {
       setReady(true)
     }
   }, [])
 
   React.useEffect(() => {
-    if (sessionStorage.filter) {
-      setActiveFilter(
-        sessionStorage.filter === 'null' ? null : sessionStorage.filter
-      )
+    if (sessionStorage[SESSION_CATEGORY]) {
+      setActiveFilter(sessionStorage[SESSION_CATEGORY])
     }
   }, [])
 
-  const onClick = React.useCallback(
-    (filter) => {
-      const newFilter = activeFilter === filter ? DEFAULT_FILTER : filter
-      setActiveFilter(newFilter)
-      sessionStorage.filter = newFilter
-    },
-    [activeFilter]
-  )
+  // TODO: Set filter when opening accordions when moving Filters from Header
+  const onClick = React.useCallback((filter) => {
+    setActiveFilter((prev) => {
+      const newFilter = prev === filter ? DEFAULT_FILTER : filter
+
+      if (newFilter) {
+        sessionStorage[SESSION_CATEGORY] = newFilter
+      }
+
+      return newFilter
+    })
+  }, [])
 
   return (
     <Layout {...props}>
@@ -152,14 +155,14 @@ export async function getStaticProps({ locale }) {
       uid: 'fashion',
       title: locale === 'sv' ? 'Modevisning' : 'Fashion show',
       subtitle: locale === 'sv' ? '17 maj' : 'May 17',
-      color: 'var(--color-black)',
+      color: 'var(--color-blue)',
     })
 
     projects.splice(projects.length, 0, {
       uid: 'apply',
       title: locale === 'sv' ? 'Sök nu' : 'Apply now',
       subtitle: 'beckmans.se',
-      color: 'var(--color-black)',
+      color: 'var(--color-red)',
       url:
         locale === 'sv'
           ? 'https://beckmans.se/ansok/'

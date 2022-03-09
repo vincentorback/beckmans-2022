@@ -14,7 +14,7 @@ import {
 } from 'framer-motion'
 import styles from './projectsGrid.module.css'
 
-const AnimatedItem = ({ className, isActive, children, index }) => {
+const AnimatedItem = ({ className, isActive, children, color, index }) => {
   const reduceMotion = useReducedMotion()
 
   return (
@@ -22,6 +22,9 @@ const AnimatedItem = ({ className, isActive, children, index }) => {
       className={className}
       initial="notActive"
       animate={isActive ? 'active' : 'notActive'}
+      style={{
+        backgroundColor: color,
+      }}
       variants={{
         active: {
           opacity: 1,
@@ -92,6 +95,7 @@ const Item = ({
           className={styles.itemInner}
           isActive={isVisible}
           index={itemIndex}
+          color={item.color}
         >
           {item?.image && (
             <Image

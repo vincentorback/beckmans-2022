@@ -4,6 +4,7 @@ import Link from 'next-translate-routes/link'
 import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/router'
+import { SESSION_CATEGORY } from '../../lib/constants'
 import styles from './projectAccordions.module.css'
 
 const ProjectAccordions = ({ lists, items }) => {
@@ -13,9 +14,7 @@ const ProjectAccordions = ({ lists, items }) => {
   const listRefs = React.useRef([])
   const [maxHeight, setMaxHeight] = React.useState(0)
 
-  const [activeAccordion, setActiveAccordion] = React.useState(
-    sessionStorage?.accordion
-  )
+  const [activeAccordion, setActiveAccordion] = React.useState(null)
 
   React.useEffect(() => {
     listRefs.current.forEach((el) => {
@@ -26,40 +25,54 @@ const ProjectAccordions = ({ lists, items }) => {
   }, [listRefs])
 
   const handleToggleAccordion = React.useCallback(
-    (index) => {
-      const newAccordion = activeAccordion === index ? null : index
-      setActiveAccordion(newAccordion)
-      sessionStorage.accordion = newAccordion
+    (id) => {
+      setActiveAccordion((previousList) => {
+        const newActiveList =
+          previousList === id ? null : lists.find((list) => list.id === id)
 
-      if (activeAccordion !== null && newAccordion > activeAccordion) {
-        if (listRefs?.current?.length) {
+        if (newActiveList?.id) {
+          sessionStorage[SESSION_CATEGORY] = newActiveList.id
+        } else {
+          delete sessionStorage[SESSION_CATEGORY]
+        }
+
+        if (
+          previousList &&
+          newActiveList &&
+          newActiveList.index > previousList.index &&
+          listRefs?.current?.length
+        ) {
           listRefs.current[0].scrollIntoView({
             behavior: 'smooth',
             block: 'start',
           })
         }
-      }
+
+        return newActiveList ? newActiveList.id : newActiveList
+      })
     },
-    [activeAccordion]
+    [lists]
   )
 
   React.useEffect(() => {
-    if (sessionStorage.accordion) {
-      setActiveAccordion(
-        sessionStorage.accordion === 'null'
-          ? null
-          : Number(sessionStorage.accordion)
+    if (sessionStorage[SESSION_CATEGORY]) {
+      const savedList = lists.find(
+        (list) => list.id === sessionStorage[SESSION_CATEGORY]
       )
+
+      if (savedList?.id) {
+        setActiveAccordion(savedList.id)
+      }
     }
-  }, [])
+  }, [lists])
 
   return (
     <div className={styles.container}>
       {lists &&
-        lists.map((list, listIndex) => (
+        lists.map((list) => (
           <div
             className={classNames(styles.list, {
-              [styles['is-active']]: listIndex === activeAccordion,
+              [styles['is-active']]: activeAccordion === list.id,
             })}
             ref={(el) =>
               el && !listRefs.current.includes(el) && listRefs.current.push(el)
@@ -69,9 +82,9 @@ const ProjectAccordions = ({ lists, items }) => {
             <button
               id={`accordion-${list.id}-button`}
               className={styles.button}
-              aria-expanded={listIndex === list.id}
+              aria-expanded={activeAccordion === list.id}
               aria-controls={`accordion-${list.id}-content`}
-              onClick={() => handleToggleAccordion(listIndex)}
+              onClick={() => handleToggleAccordion(list.id)}
             >
               <span>{t(list.id)}</span>
               <svg
@@ -106,7 +119,7 @@ const ProjectAccordions = ({ lists, items }) => {
               className={styles.content}
               style={{
                 maxHeight: maxHeight
-                  ? listIndex === activeAccordion
+                  ? activeAccordion === list.id
                     ? maxHeight
                     : 0
                   : null,

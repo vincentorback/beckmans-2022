@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl'
 import styles from './header.module.css'
 import debounce from 'lodash.debounce'
 import classNames from 'classnames'
-import { IN_SESSION_KEY } from '../../lib/constants'
+import { SESSION_STARTED } from '../../lib/constants'
 
 const Header = ({ pages, otherLocalePage, children }) => {
   const router = useRouter()
@@ -34,7 +34,7 @@ const Header = ({ pages, otherLocalePage, children }) => {
 
   React.useEffect(() => {
     return () => {
-      sessionStorage[IN_SESSION_KEY] = true
+      sessionStorage[SESSION_STARTED] = true
     }
   }, [])
 
