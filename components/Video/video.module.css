@@ -15,7 +15,7 @@
 .inner {
   position: relative;
   opacity: 0;
-  transition: opacity 200ms ease 500ms;
+  transition: opacity 200ms ease 1000ms;
   overflow: hidden;
   aspect-ratio: var(--width) / var(--height);
 }
