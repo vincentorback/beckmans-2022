@@ -16,13 +16,12 @@ const Pagination = ({ prev, next }) => {
               width="16"
               height="16"
               viewBox="0 0 16 16"
-              fill="none"
               xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
             >
               <path
-                d="M16 7H3.83L9.42 1.41L8 0L0 8L8 16L9.41 14.59L3.83 9H16V7Z"
-                fill="black"
+                d="M16 7H3.8l5.6-5.6L8 0 0 8l8 8 1.4-1.4L3.8 9H16V7Z"
+                fill="currentColor"
               />
             </svg>
             <span>{t('previous')} student</span>
@@ -37,13 +36,12 @@ const Pagination = ({ prev, next }) => {
               width="16"
               height="16"
               viewBox="0 0 16 16"
-              fill="none"
               xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
             >
               <path
-                d="M-6.11959e-07 9L12.17 9L6.58 14.59L8 16L16 8L8 6.99382e-07L6.59 1.41L12.17 7L-7.86805e-07 7L-6.11959e-07 9Z"
-                fill="black"
+                d="M0 9h12.2l-5.6 5.6L8 16l8-8-8-8-1.4 1.4L12.2 7H0v2Z"
+                fill="currentColor"
               />
             </svg>
           </a>

@@ -91,25 +91,10 @@ const ProjectAccordions = ({ lists, items }) => {
                 width="20"
                 height="20"
                 viewBox="0 0 20 20"
-                fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
               >
-                <line
-                  x1="10"
-                  y1="20"
-                  x2="10"
-                  y2="4.80825e-08"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                />
-                <line
-                  y1="10"
-                  x2="20"
-                  y2="10"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                />
+                <path stroke="currentColor" d="M10 20V0M0 10h20" />
               </svg>
             </button>
             <div
