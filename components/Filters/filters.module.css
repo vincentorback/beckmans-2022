@@ -21,7 +21,7 @@
 }
 
 .button:active {
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 .button.is-active:active {
@@ -30,7 +30,7 @@
 
 @media (pointer: fine) {
   .button:hover {
-    opacity: 0.6;
+    opacity: 0.8;
   }
 
   .button.is-active:hover {
