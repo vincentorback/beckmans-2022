@@ -116,8 +116,16 @@
   font-size: 1rem;
 }
 
-.languageLink:hover span {
+.languageLink:active span {
+  opacity: 0.8;
   text-decoration: underline;
+}
+
+@media (pointer: fine) {
+  .languageLink:hover span {
+    opacity: 0.8;
+    text-decoration: underline;
+  }
 }
 
 .languageLink svg {
