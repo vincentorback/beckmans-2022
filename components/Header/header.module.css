@@ -116,6 +116,10 @@
   font-size: 1rem;
 }
 
+.languageLink:hover span {
+  text-decoration: underline;
+}
+
 .languageLink svg {
   display: inline-block;
   margin-right: 0.375em;
@@ -139,8 +143,12 @@
 
 @media (max-width: 800px) {
   .inner {
-    gap: 0 var(--site-spacing);
+    gap: 0;
     padding-bottom: var(--site-spacing);
+  }
+
+  .mid {
+    padding: calc(var(--site-spacing) * 0.5) 0 0;
   }
 
   .topLeft {
@@ -150,6 +158,11 @@
 
   .mid {
     grid-column: 1 / 13;
+    grid-row: 2;
+  }
+
+  .bottomLeft {
+    display: none;
   }
 
   .topRight,
@@ -158,26 +171,15 @@
   }
 
   .topRight {
-    grid-row: 1;
+    grid-row: 3;
   }
 
   .bottomRight {
-    grid-row: 2;
+    grid-row: 1;
   }
 
   .mid svg {
     margin: 0 auto;
     max-width: 200px;
-  }
-}
-
-@media (max-width: 500px) {
-  .mid {
-    padding: var(--site-spacing) 0 calc(var(--site-spacing) * 0.5);
-    grid-row: 2;
-  }
-
-  .bottomRight {
-    grid-row: 3;
   }
 }
