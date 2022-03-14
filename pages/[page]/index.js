@@ -9,7 +9,17 @@ import Slices from '../../components/Slices'
 import Text from '../../components/Text'
 
 export default function Page(props) {
-  const { page } = props
+  const { page, background } = props
+
+  const backgroundColor = background ? background.toLowerCase() : 'white'
+
+  React.useEffect(() => {
+    document.documentElement.style.backgroundColor = `var(--color-${backgroundColor})`
+
+    return () => {
+      document.documentElement.style.backgroundColor = `var(--color-white)`
+    }
+  }, [backgroundColor])
 
   return (
     <Layout
@@ -79,6 +89,7 @@ export async function getStaticProps({ params, locale }) {
 
   return {
     props: {
+      background: page?.data?.background_color,
       page,
       pages,
       messages,

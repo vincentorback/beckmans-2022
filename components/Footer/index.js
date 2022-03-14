@@ -25,7 +25,6 @@ const Footer = ({ pages, otherLocalePage }) => {
                     query: router.query,
                   }}
                   locale={otherLocale}
-                  prefetch={false}
                   scroll={false}
                 >
                   <a className={styles.languagleLink} hrefLang={otherLocale}>

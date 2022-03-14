@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next-translate-routes/link'
 import Container from '../Container'
-import Menu from '../Menu'
+// import Menu from '../Menu'
 import { useRouter } from 'next/router'
 import { useTranslations } from 'next-intl'
 import styles from './header.module.css'
@@ -36,7 +36,7 @@ const Header = ({ pages, otherLocalePage, children }) => {
     return () => {
       sessionStorage[SESSION_STARTED] = true
     }
-  }, [])
+  }, [router.asPath])
 
   const handleResize = debounce(() => {
     if (headerRef.current) {
@@ -82,23 +82,25 @@ const Header = ({ pages, otherLocalePage, children }) => {
     }
 
     window.addEventListener('resize', handleResize)
-    window.addEventListener('scroll', handleScroll)
-
     handleResize()
-    handleScroll()
+
+    if (router?.query?.name) {
+      window.addEventListener('scroll', handleScroll)
+      handleScroll()
+    }
 
     return () => {
       window.removeEventListener('resize', handleResize)
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [setHeadPush, handleResize])
+  }, [router?.query?.name, setHeadPush, handleResize])
 
   return (
     <>
       <header
         ref={headerRef}
         className={classNames(styles.header, {
-          [styles['is-fixed']]: router?.query?.name,
+          [styles['is-fixed']]: router?.query?.fixed === 'head',
         })}
       >
         <Container>
@@ -133,16 +135,22 @@ const Header = ({ pages, otherLocalePage, children }) => {
               </Link>
             </div>
             <div className={styles.topRight}>
+              <p className={styles.beckmans}>
+                Beckmans <br />
+                College of Design
+              </p>
+            </div>
+            <div className={styles.bottomRight}>
               <div>
-                {/* <Link
+                <Link
                   href={{
                     pathname: router.asPath,
                     query: router.query,
                   }}
                   locale={otherLocale}
                 >
-                  <a className={styles.languagleLink}>
-                    <svg
+                  <a className={styles.languageLink}>
+                    {/* <svg
                       // className={styles.linkIcon}
                       width={12}
                       height={12}
@@ -155,15 +163,10 @@ const Header = ({ pages, otherLocalePage, children }) => {
                         fill="currentColor"
                         d="M10.56 9.28a5.67 5.67 0 0 0 0-5.95v-.01a5.7 5.7 0 0 0-9.72 0 5.7 5.7 0 0 0 0 5.96 5.7 5.7 0 0 0 9.72 0Zm-4.13 1.74c-.11.1-.24.2-.37.26a.84.84 0 0 1-.72 0 1.74 1.74 0 0 1-.65-.57 5.1 5.1 0 0 1-.73-1.6 28.88 28.88 0 0 1 3.48 0c-.08.3-.19.58-.31.86-.16.4-.4.75-.7 1.05ZM.65 6.62h2.3c.02.64.09 1.28.2 1.91-.62.06-1.25.13-1.87.23a5.03 5.03 0 0 1-.63-2.14Zm.63-2.78c.62.1 1.25.17 1.88.23-.12.63-.2 1.27-.2 1.91H.65c.04-.75.25-1.48.62-2.14Zm3.7-2.26c.1-.1.23-.2.36-.26a.84.84 0 0 1 .72 0c.26.13.48.33.65.57.33.49.58 1.03.73 1.6a28.89 28.89 0 0 1-3.48 0c.08-.3.19-.58.31-.86.16-.4.4-.75.7-1.05Zm5.77 4.4h-2.3c-.02-.64-.09-1.28-.2-1.91a28.9 28.9 0 0 0 1.87-.23c.37.66.58 1.39.63 2.14ZM3.8 8.48a10.6 10.6 0 0 1-.2-1.86h4.2a10.6 10.6 0 0 1-.2 1.86 29.56 29.56 0 0 0-3.8 0Zm3.8-4.36c.12.61.2 1.23.2 1.86H3.6c0-.63.08-1.25.2-1.86a29.59 29.59 0 0 0 3.8 0Zm.85 2.5h2.3a5.02 5.02 0 0 1-.63 2.14c-.62-.1-1.25-.17-1.88-.23.12-.63.2-1.27.2-1.91Zm1.29-3.37c-.55.08-1.1.14-1.65.19a7.3 7.3 0 0 0-.38-1.08 4.54 4.54 0 0 0-.53-.9c1.02.31 1.92.94 2.56 1.8Zm-7.62-.53a5.06 5.06 0 0 1 2.1-1.26l-.04.05c-.4.58-.7 1.24-.87 1.93-.55-.05-1.1-.11-1.65-.19.14-.18.3-.36.46-.53Zm-.46 6.63c.55-.08 1.1-.14 1.65-.19.1.37.22.73.38 1.08.14.32.32.62.53.9a5.06 5.06 0 0 1-2.56-1.8Zm7.62.53a5.06 5.06 0 0 1-2.1 1.26l.04-.05c.4-.58.7-1.24.87-1.93.55.05 1.1.11 1.65.19-.14.18-.3.36-.46.53Z"
                       />
-                    </svg>
+                    </svg> */}
                     <span>{t('navigation.otherLanguage')}</span>
                   </a>
-                </Link> */}
-
-                <p className={styles.beckmans}>
-                  Beckmans <br />
-                  College of Design
-                </p>
+                </Link>
                 {/* <button type="button" onClick={toggleMenu}>
                   <svg
                     width="20"
@@ -249,12 +252,12 @@ const Header = ({ pages, otherLocalePage, children }) => {
           </div>
         </Container>
       </header>
-      <Menu
+      {/* <Menu
         isActive={menuIsOpen}
         toggleMenu={toggleMenu}
         pages={pages}
         otherLocalePage={otherLocalePage}
-      />
+      /> */}
     </>
   )
 }

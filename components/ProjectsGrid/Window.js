@@ -5,7 +5,7 @@ import Image from '../Image'
 import LinkWrap from '../LinkWrap'
 import { slugify, isEmpty } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
-import { MotionConfig, AnimatePresence, m } from 'framer-motion'
+import { m } from 'framer-motion'
 import styles from './projectsGrid.module.css'
 
 const Window = ({ item, previousItem }) => {
@@ -13,18 +13,42 @@ const Window = ({ item, previousItem }) => {
 
   const t = useTranslations('categories')
 
-  if (!item?.uid) {
-    return null
-  }
+  if (!item?.uid) return null
+  // {
+  //   item = {
+  //     uid: 'fallback',
+  //     name: 'Examensutställning',
+  //     subtitle: '19.5–24.5.2022',
+  //     background: 'var(--color-white)',
+  //     color: 'var(--color-black)',
+  //   }
+  // }
 
   return (
-    <div className={styles.window}>
+    <m.div
+      className={styles.window}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={{
+        animate: {
+          opacity: 1,
+        },
+        exit: {
+          opacity: 0,
+          transition: {
+            duration: 0.4,
+          },
+        },
+      }}
+    >
       {previousItem?.uid && previousItem.uid !== item.uid && (
         <div key={previousItem.uid} className={styles.windowItem} id="prev">
           <div
             className={styles.windowItemInner}
             style={{
-              backgroundColor: previousItem.color ?? null,
+              backgroundColor: previousItem.background ?? null,
+              color: previousItem.color ?? null,
             }}
           >
             <div className={styles.windowContent}>
@@ -53,11 +77,11 @@ const Window = ({ item, previousItem }) => {
         <LinkWrap url={item.url}>
           <m.div
             className={styles.windowItemInner}
-            layout
             initial="loading"
             animate={isLoaded ? 'complete' : 'loading'}
             style={{
-              backgroundColor: item.color ?? null,
+              backgroundColor: item.background ?? null,
+              color: item.color ?? null,
             }}
             variants={{
               loading: { opacity: 0, scale: 0.98 },
@@ -96,7 +120,7 @@ const Window = ({ item, previousItem }) => {
           <div key={`dot_${dotIndex}`} />
         ))}
       </div>
-    </div>
+    </m.div>
   )
 }
 

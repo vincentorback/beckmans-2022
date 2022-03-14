@@ -7,6 +7,7 @@ import Map from '../Map'
 import Image from '../Image'
 import Pagination from '../Pagination'
 import Video from '../Video'
+import { m } from 'framer-motion'
 import styles from './project.module.css'
 
 const Project = ({ project, projects, nextProject, prevProject }) => {
@@ -70,8 +71,44 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
     )
 
   return (
-    <article className={styles.project}>
-      <div className={styles.inner}>
+    <article
+      className={classNames(styles.project, {
+        [styles['fixed-head']]: router?.query?.fixed === 'head',
+        [styles['fixed-side']]: router?.query?.fixed === 'side',
+      })}
+    >
+      <m.div
+        className={styles.inner}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        variants={{
+          initial: {
+            opacity: 0,
+            x: '-2%',
+            transition: {
+              delay: 0,
+              duration: 0.4,
+            },
+          },
+          animate: {
+            opacity: 1,
+            x: 0,
+            transition: {
+              delay: 0,
+              duration: 0.4,
+            },
+          },
+          exit: {
+            opacity: 0,
+            x: '2%',
+            transition: {
+              delay: 0,
+              duration: 0.4,
+            },
+          },
+        }}
+      >
         {image && (
           <div className={styles.mainImage}>
             <Image
@@ -187,8 +224,39 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
           </div>
         </div>
         <Pagination next={nextProject} prev={prevProject} />
-      </div>
-      <div className={classNames(styles.sidebar, 'u-hideSmall')}>
+      </m.div>
+      <m.div
+        className={classNames(styles.sidebar, 'u-hideSmall')}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        variants={{
+          initial: {
+            opacity: 0,
+            x: '2%',
+            transition: {
+              delay: 0,
+              duration: 0.4,
+            },
+          },
+          animate: {
+            opacity: 1,
+            x: 0,
+            transition: {
+              delay: 0,
+              duration: 0.4,
+            },
+          },
+          exit: {
+            opacity: 0,
+            x: '-2%',
+            transition: {
+              delay: 0,
+              duration: 0.4,
+            },
+          },
+        }}
+      >
         <div className={styles.sidebarInner}>
           <div className={styles.sidebarUpper}>
             <header className={styles.header}>
@@ -232,7 +300,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
             <Map items={projects} category={project.category} />
           </div>
         </div>
-      </div>
+      </m.div>
     </article>
   )
 }

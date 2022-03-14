@@ -8,12 +8,7 @@ import LinkWrap from '../LinkWrap'
 import { slugify, isEmpty } from '../../lib/utilities'
 import { SESSION_STARTED } from '../../lib/constants'
 import { useTranslations } from 'next-intl'
-import {
-  MotionConfig,
-  AnimatePresence,
-  m,
-  useReducedMotion,
-} from 'framer-motion'
+import { m, useReducedMotion } from 'framer-motion'
 import styles from './projectsGrid.module.css'
 
 const ProjectsGrid = ({ activeFilter, isReady, items, setGridLoaded }) => {
@@ -81,7 +76,7 @@ const ProjectsGrid = ({ activeFilter, isReady, items, setGridLoaded }) => {
         x: '-50%',
         y: '-50%',
         transition: {
-          duration: 0.3,
+          duration: 0.4,
           delay: reduceMotion ? 0 : (index % (25 * 1.3)) * 0.075,
         },
         backgroundColor: reduceMotion ? null : 'var(--color-black)',
@@ -121,8 +116,8 @@ const ProjectsGrid = ({ activeFilter, isReady, items, setGridLoaded }) => {
             }}
             custom={dotIndex}
             initial={sessionStorage[SESSION_STARTED] ? 'active' : 'hidden'}
-            variants={dotVariants}
             animate={sessionStorage[SESSION_STARTED] ? '' : dotAnimation}
+            variants={dotVariants}
             onAnimationComplete={(definition) => {
               if (
                 sessionStorage[SESSION_STARTED] ||

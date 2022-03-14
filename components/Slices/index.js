@@ -1,10 +1,21 @@
 import Credits from '../Credits'
 import Text from '../Text'
 import { isEmpty } from '../../lib/utilities'
+import { m } from 'framer-motion'
 
 const Slices = ({ body }) => {
   return (
-    <>
+    <m.div
+      initial={{ y: '2%', opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{
+        y: '-2%',
+        opacity: 0,
+      }}
+      transition={{
+        duration: 0.4,
+      }}
+    >
       {body.map((slice, sliceIndex) => {
         if (slice.slice_type === 'text') {
           if (!slice?.primary?.text_title && !slice?.primary?.text_body)
@@ -25,7 +36,7 @@ const Slices = ({ body }) => {
           return <Credits key={`slice_${sliceIndex}`} columns={slice.items} />
         }
       })}
-    </>
+    </m.div>
   )
 }
 

@@ -25,23 +25,28 @@ const Filters = ({ isReady, filters, activeFilter, onClick }) => {
               hidden: {
                 opacity: 0,
                 y: '50%',
+                transition: {
+                  delay: reduceMotion ? 0 : 0.5 + 0.1 * filterIndex,
+                },
               },
               enter: {
                 opacity: 1,
                 y: 0,
+                transition: {
+                  delay: reduceMotion ? 0 : 0.5 + 0.1 * filterIndex,
+                },
               },
               exit: {
                 opacity: 0,
                 y: '-50%',
+                transition: {
+                  delay: reduceMotion ? 0 : 0.1 * filterIndex,
+                },
               },
             }}
             initial="hidden"
             animate={isReady ? 'enter' : 'hidden'}
             exit="exit"
-            transition={{
-              type: 'ease',
-              delay: reduceMotion ? 0 : 0.5 + 0.1 * filterIndex,
-            }}
           >
             {t(slugify(filter))}
           </m.div>

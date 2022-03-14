@@ -6,15 +6,10 @@ import Window from './Window'
 import LinkWrap from '../LinkWrap'
 import { slugify, isEmpty } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
-import {
-  MotionConfig,
-  AnimatePresence,
-  m,
-  useReducedMotion,
-} from 'framer-motion'
+import { m, useReducedMotion } from 'framer-motion'
 import styles from './projectsGrid.module.css'
 
-const AnimatedItem = ({ className, isActive, children, color, index }) => {
+const AnimatedItem = ({ className, isActive, children, background, index }) => {
   const reduceMotion = useReducedMotion()
 
   return (
@@ -22,8 +17,9 @@ const AnimatedItem = ({ className, isActive, children, color, index }) => {
       className={className}
       initial="notActive"
       animate={isActive ? 'active' : 'notActive'}
+      exit="exit"
       style={{
-        backgroundColor: color,
+        backgroundColor: background,
       }}
       variants={{
         active: {
@@ -31,7 +27,7 @@ const AnimatedItem = ({ className, isActive, children, color, index }) => {
           scale: 1,
           transition: {
             duration: 0.1,
-            delay: reduceMotion ? 0 : index * 0.015,
+            delay: reduceMotion ? 0 : index * 0.02,
           },
         },
         notActive: {
@@ -39,7 +35,15 @@ const AnimatedItem = ({ className, isActive, children, color, index }) => {
           scale: 0.8,
           transition: {
             duration: 0.1,
-            delay: reduceMotion ? 0 : index * 0.015,
+            delay: reduceMotion ? 0 : index * 0.02,
+          },
+        },
+        exit: {
+          opacity: 0,
+          scale: 0.8,
+          transition: {
+            duration: 0.1,
+            delay: reduceMotion ? 0 : index * 0.03,
           },
         },
       }}
@@ -95,7 +99,7 @@ const Item = ({
           className={styles.itemInner}
           isActive={isVisible}
           index={itemIndex}
-          color={item.color}
+          background={item.background}
         >
           {item?.image && (
             <Image
