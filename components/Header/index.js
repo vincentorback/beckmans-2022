@@ -105,7 +105,7 @@ const Header = ({ pages, otherLocalePage, children }) => {
           <div className={styles.inner}>
             <div className={styles.topLeft}>
               <p>
-                {t('show')} <br />
+                {'Graduation Show'} <br />
                 {/* 2022-05-24P4D ? */}
                 <time dateTime="2022-05-19">19.05</time>–
                 <time dateTime="2022-05-24">24.05.2022</time>
@@ -162,7 +162,7 @@ const Header = ({ pages, otherLocalePage, children }) => {
 
                 <p className={styles.beckmans}>
                   Beckmans <br />
-                  {t('school-subtitle')}
+                  College of Design
                 </p>
                 {/* <button type="button" onClick={toggleMenu}>
                   <svg
