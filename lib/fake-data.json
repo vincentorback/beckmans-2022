@@ -644,52 +644,6 @@
         ]
     },
     {
-        "name": "Amanda Rascka",
-        "category": "fashion",
-        "uid": "amanda-rascka",
-        "lang": [
-            "sv",
-            "en"
-        ],
-        "url": "/fashion/amanda-rascka",
-        "image": "https://images.prismic.io/beckmans2022/082e8cb8-5b75-48a4-a296-3db070cf7ae8_chantalanderson_airbnbmag-16.jpg",
-        "imagePosition": "100% 18%",
-        "title": {
-            "sv": "Namn på verk",
-            "en": "Name of work"
-        },
-        "links": [
-            {
-                "label": "Email",
-                "url": "mailto:firstname@lastname@email.com"
-            },
-            {
-                "label": "Instagram",
-                "url": "#/"
-            },
-            {
-                "label": "Portfolio",
-                "url": "#/"
-            }
-        ],
-        "thanks": [
-            {
-                "label": "Vincent Orback",
-                "href": "https://vincentorback.se"
-            },
-            {
-                "label": "Mormor & Morfar"
-            },
-            {
-                "label": "Mina lärare"
-            },
-            {
-                "label": "Tryckeriet",
-                "href": "#/"
-            }
-        ]
-    },
-    {
         "name": "Asli Cömert",
         "category": "fashion",
         "uid": "asli-comert",
@@ -1344,6 +1298,52 @@
         "url": "/visual-communication/clementine-berglund",
         "image": "https://images.prismic.io/beckmans2022/082e8cb8-5b75-48a4-a296-3db070cf7ae8_chantalanderson_airbnbmag-16.jpg",
         "imagePosition": "54% 82%",
+        "title": {
+            "sv": "Namn på verk",
+            "en": "Name of work"
+        },
+        "links": [
+            {
+                "label": "Email",
+                "url": "mailto:firstname@lastname@email.com"
+            },
+            {
+                "label": "Instagram",
+                "url": "#/"
+            },
+            {
+                "label": "Portfolio",
+                "url": "#/"
+            }
+        ],
+        "thanks": [
+            {
+                "label": "Vincent Orback",
+                "href": "https://vincentorback.se"
+            },
+            {
+                "label": "Mormor & Morfar"
+            },
+            {
+                "label": "Mina lärare"
+            },
+            {
+                "label": "Tryckeriet",
+                "href": "#/"
+            }
+        ]
+    },
+    {
+        "name": "Erik Rösmark",
+        "category": "visual-communication",
+        "uid": "eric-rosmark",
+        "lang": [
+            "sv",
+            "en"
+        ],
+        "url": "/visual-communication/eric-rosmark",
+        "image": "https://images.prismic.io/beckmans2022/082e8cb8-5b75-48a4-a296-3db070cf7ae8_chantalanderson_airbnbmag-16.jpg",
+        "imagePosition": "35% 59%",
         "title": {
             "sv": "Namn på verk",
             "en": "Name of work"
