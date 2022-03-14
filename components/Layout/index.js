@@ -14,7 +14,9 @@ const Layout = ({ title, children, background, pages, otherLocalePage }) => {
         <meta content={`var(--color-${backgroundColor})`} name="theme-color" />
       </Meta>
       <div className={styles.main}>
-        <AnimatePresence exitBeforeEnter>{children}</AnimatePresence>
+        <AnimatePresence exitBeforeEnter>
+          <>{children}</>
+        </AnimatePresence>
       </div>
       <Footer pages={pages} otherLocalePage={otherLocalePage} />
     </div>

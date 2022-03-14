@@ -1,3 +1,4 @@
+import React from 'react'
 import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/router'
 import classNames from 'classnames'
@@ -13,6 +14,48 @@ import styles from './project.module.css'
 const Project = ({ project, projects, nextProject, prevProject }) => {
   const router = useRouter()
   const { category, name, title, image, links } = project
+
+  const setPush = React.useCallback(
+    (push) =>
+      window.requestAnimationFrame(() => {
+        document.documentElement.style.setProperty('--sticky-push', `${push}px`)
+      }),
+    []
+  )
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      // if (headerRef.current) {
+      //   if (
+      //     window.scrollY +
+      //       document.documentElement.clientHeight +
+      //       headerRef.current.clientHeight >
+      //     document.documentElement.scrollHeight
+      //   ) {
+      //     setHeadPush(
+      //       Math.min(
+      //         Math.abs(
+      //           document.documentElement.scrollHeight -
+      //             (window.scrollY +
+      //               document.documentElement.clientHeight +
+      //               headerRef.current.clientHeight)
+      //         ),
+      //         headerRef.current.clientHeight
+      //       )
+      //     )
+      //   } else {
+      //     setHeadPush(0)
+      //   }
+      // }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    handleScroll()
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [setPush])
 
   const t = useTranslations()
 

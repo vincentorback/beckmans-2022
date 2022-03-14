@@ -12,7 +12,6 @@
 
 @media (min-width: 800px) {
   .project {
-    padding-top: var(--site-spacing);
     display: grid;
     gap: var(--site-spacing);
     grid-template-columns: repeat(12, 1fr);
@@ -249,17 +248,4 @@
     top: var(--site-spacing);
     height: calc(100vh - (var(--site-spacing) * 2));
   }
-
-  .sidebarUpper {
-    transition: transform 100ms ease;
-    will-change: transform;
-  }
-
-  .project.fixed-head .sidebarUpper {
-    transform: translate3d(0, calc(var(--header-push) * 0.5), 0);
-  }
-
-  /* .project.fixed-side .sidebarUpper {
-    transform: translate3d(0, calc(var(--header-push) * 1), 0);
-  } */
 }

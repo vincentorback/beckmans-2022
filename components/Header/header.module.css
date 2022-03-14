@@ -2,7 +2,7 @@
   width: 100%;
   z-index: 99;
   top: 0;
-  padding-top: var(--site-spacing);
+  padding: var(--site-spacing) 0;
 }
 
 @media (min-width: 800px) and (min-height: 800px) {

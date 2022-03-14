@@ -1,5 +1,4 @@
 .container {
-  padding: var(--site-spacing) 0;
   user-select: none;
   max-width: var(--site-width);
   margin: 0 auto;

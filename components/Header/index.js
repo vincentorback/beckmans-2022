@@ -47,53 +47,14 @@ const Header = ({ pages, otherLocalePage, children }) => {
     }
   }, 200)
 
-  const setHeadPush = React.useCallback(
-    (push) =>
-      window.requestAnimationFrame(() => {
-        document.documentElement.style.setProperty('--header-push', `${push}px`)
-      }),
-    []
-  )
-
   React.useEffect(() => {
-    const handleScroll = () => {
-      if (headerRef.current) {
-        if (
-          window.scrollY +
-            document.documentElement.clientHeight +
-            headerRef.current.clientHeight >
-          document.documentElement.scrollHeight
-        ) {
-          setHeadPush(
-            Math.min(
-              Math.abs(
-                document.documentElement.scrollHeight -
-                  (window.scrollY +
-                    document.documentElement.clientHeight +
-                    headerRef.current.clientHeight)
-              ),
-              headerRef.current.clientHeight
-            )
-          )
-        } else {
-          setHeadPush(0)
-        }
-      }
-    }
-
     window.addEventListener('resize', handleResize)
     handleResize()
 
-    if (router?.query?.name) {
-      window.addEventListener('scroll', handleScroll)
-      handleScroll()
-    }
-
     return () => {
       window.removeEventListener('resize', handleResize)
-      window.removeEventListener('scroll', handleScroll)
     }
-  }, [router?.query?.name, setHeadPush, handleResize])
+  }, [router?.query?.name, handleResize])
 
   return (
     <>
