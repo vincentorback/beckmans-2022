@@ -49,7 +49,7 @@ const Header = ({ pages, otherLocalePage, children }) => {
         <div className={styles.inner}>
           <div className={styles.topLeft}>
             <p className={styles.showText}>
-              {'Graduation Show'} <br />
+              <span lang="en">Graduation Show</span> <br />
               <time dateTime="2022-05-19">19.05</time>–
               <time dateTime="2022-05-24">24.05.2022</time>
             </p>
@@ -76,7 +76,7 @@ const Header = ({ pages, otherLocalePage, children }) => {
             </Link>
           </div>
           <div className={styles.topRight}>
-            <p className={styles.beckmans}>
+            <p className={styles.beckmans} lang="en">
               Beckmans <br />
               College of Design
             </p>
@@ -90,7 +90,7 @@ const Header = ({ pages, otherLocalePage, children }) => {
                 }}
                 locale={otherLocale}
               >
-                <a className={styles.languageLink}>
+                <a className={styles.languageLink} lang={otherLocale}>
                   <span>{t('navigation.otherLanguage')}</span>
                 </a>
               </Link>

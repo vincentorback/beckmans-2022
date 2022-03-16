@@ -5,10 +5,9 @@ import { useRouter } from 'next/router'
 import { localeStrings } from '../../lib/constants'
 import styles from './footer.module.css'
 
-const Footer = ({ pages, otherLocalePage }) => {
+const Footer = ({ pages }) => {
   const t = useTranslations()
   const router = useRouter()
-  const otherLocale = router.locales.find((item) => item !== router.locale)
 
   return (
     <footer className={styles.footer}>
@@ -16,22 +15,6 @@ const Footer = ({ pages, otherLocalePage }) => {
         <div className={styles.grid}>
           <div className={styles.item}>
             <ul>
-              <li key={otherLocale}>
-                <Link
-                  href={{
-                    pathname: otherLocalePage
-                      ? otherLocalePage.uid
-                      : router.asPath,
-                    query: router.query,
-                  }}
-                  locale={otherLocale}
-                  scroll={false}
-                >
-                  <a className={styles.languagleLink} hrefLang={otherLocale}>
-                    <span>{t('navigation.otherLanguage')}</span>
-                  </a>
-                </Link>
-              </li>
               {pages &&
                 pages
                   .filter((item) => item.lang === localeStrings[router.locale])
