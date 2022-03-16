@@ -1,15 +1,19 @@
 const withTranslateRoutes = require('next-translate-routes/plugin')
 
+const isProduction = Boolean(
+  process.env.URL && !process.env.URL.includes('netlify')
+)
+
 const nextConfig = withTranslateRoutes({
   generateBuildId: () => 'build',
   reactStrictMode: true,
   i18n: {
     locales: ['sv', 'en'],
     defaultLocale: 'sv',
-    localeDetection: true,
+    localeDetection: isProduction,
   },
   images: {
-    formats: ['image/avif', 'image/webp'],
+    formats: isProduction ? ['image/avif', 'image/webp'] : ['image/webp'],
   },
   async redirects() {
     return [
