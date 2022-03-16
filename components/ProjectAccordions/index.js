@@ -10,12 +10,20 @@ import { m } from 'framer-motion'
 
 const ProjectAccordions = ({ lists, items }) => {
   const { locale } = useRouter()
+
   const t = useTranslations('categories')
 
   const listRefs = React.useRef([])
-  const [maxHeight, setMaxHeight] = React.useState(0)
 
+  const [maxHeight, setMaxHeight] = React.useState(0)
   const [activeAccordion, setActiveAccordion] = React.useState(null)
+  const [isReady, setIsReady] = React.useState(false)
+
+  React.useEffect(() => {
+    window.requestAnimationFrame(() => {
+      setIsReady(true)
+    })
+  }, [])
 
   React.useEffect(() => {
     listRefs.current.forEach((el) => {
@@ -69,7 +77,9 @@ const ProjectAccordions = ({ lists, items }) => {
 
   return (
     <m.div
-      className={styles.container}
+      className={classNames(styles.container, {
+        [styles.ready]: isReady,
+      })}
       initial="initial"
       animate="animate"
       exit="exit"

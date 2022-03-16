@@ -30,6 +30,9 @@
 .button svg {
   display: block;
   transform: rotateZ(0);
+}
+
+.container.ready .button svg {
   transition: transform 1000ms ease;
 }
 
