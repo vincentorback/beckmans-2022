@@ -128,26 +128,26 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
         variants={{
           initial: {
             opacity: 0,
-            x: '-2%',
+            y: 20,
             transition: {
               delay: 0,
-              duration: 0.4,
+              duration: 0.3,
             },
           },
           animate: {
             opacity: 1,
-            x: 0,
+            y: 0,
             transition: {
               delay: 0,
-              duration: 0.4,
+              duration: 0.3,
             },
           },
           exit: {
             opacity: 0,
-            x: '2%',
+            y: -20,
             transition: {
               delay: 0,
-              duration: 0.4,
+              duration: 0.3,
             },
           },
         }}
@@ -276,7 +276,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
         variants={{
           initial: {
             opacity: 0,
-            x: '2%',
+            y: -20,
             transition: {
               delay: 0,
               duration: 0.4,
@@ -284,7 +284,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
           },
           animate: {
             opacity: 1,
-            x: 0,
+            y: 0,
             transition: {
               delay: 0,
               duration: 0.4,
@@ -292,7 +292,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
           },
           exit: {
             opacity: 0,
-            x: '-2%',
+            y: 20,
             transition: {
               delay: 0,
               duration: 0.4,
