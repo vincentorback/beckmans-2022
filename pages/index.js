@@ -21,6 +21,7 @@ const Projects = ({
   setGridLoaded,
 }) => {
   const [windowWidth, setWindowWidth] = React.useState(null)
+  const [activeItem, setActiveItem] = React.useState(null)
 
   const lists = React.useMemo(
     () =>
@@ -63,12 +64,16 @@ const Projects = ({
             isReady={isReady}
             items={projects}
             setGridLoaded={setGridLoaded}
+            activeItem={activeItem}
+            setActiveItem={setActiveItem}
           />
           <ProjectLists
             activeFilter={activeFilter}
             filters={filters}
             items={projects}
             lists={lists}
+            activeItem={activeItem}
+            setActiveItem={setActiveItem}
           />
         </>
       ) : (

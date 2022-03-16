@@ -5,8 +5,15 @@ import styles from './projectLists.module.css'
 import { slugify } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
 
-const ProjectLists = ({ lists, items }) => {
+const ProjectLists = ({ setActiveItem, activeItem, lists, items }) => {
   const t = useTranslations('categories')
+
+  const handleMouseEnter = React.useCallback(
+    (item) => {
+      setActiveItem(item)
+    },
+    [setActiveItem]
+  )
 
   return (
     <ul className={styles.container} role="tree" aria-label="Studenter">
@@ -23,7 +30,7 @@ const ProjectLists = ({ lists, items }) => {
                   tabIndex="-1"
                 >
                   <Link href={item.url}>
-                    <a>
+                    <a onMouseEnter={() => handleMouseEnter(item)}>
                       <span>{item.name}</span>
                     </a>
                   </Link>

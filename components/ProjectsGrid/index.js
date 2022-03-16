@@ -11,8 +11,15 @@ import { useTranslations } from 'next-intl'
 import { m, useReducedMotion } from 'framer-motion'
 import styles from './projectsGrid.module.css'
 
-const ProjectsGrid = ({ activeFilter, isReady, items, setGridLoaded }) => {
-  const [activeItem, setActiveItem] = React.useState(null)
+const ProjectsGrid = ({
+  activeItem,
+  setActiveItem,
+  activeFilter,
+  isReady,
+  items,
+  setGridLoaded,
+}) => {
+  // const [activeItem, setActiveItem] = React.useState(null)
   const [previousActiveItem, setPreviousActiveItem] = React.useState(null)
   const [dotAnimation, setDotAnimation] = React.useState('loading')
   const [dotsDone, setDotsDone] = React.useState(false)
@@ -30,7 +37,7 @@ const ProjectsGrid = ({ activeFilter, isReady, items, setGridLoaded }) => {
     setActiveItem((prev) =>
       !activeFilter || prev?.category === activeFilter ? prev : null
     )
-  }, [activeFilter])
+  }, [activeFilter, setActiveItem])
 
   React.useEffect(() => {
     if (dotsDone && isReady) {
