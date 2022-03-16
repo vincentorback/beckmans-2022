@@ -9,7 +9,6 @@
 
 .button {
   display: block;
-  margin-top: var(--site-spacing);
   padding: var(--site-spacing) 0;
   width: 100%;
   display: flex;
@@ -17,6 +16,10 @@
   font-size: 1.3125rem;
   font-weight: var(--text-bold);
   transition: opacity 150ms ease;
+}
+
+.list:not(:first-child) .button {
+  padding-top: calc(var(--site-spacing) * 2);
 }
 
 .button:hover {
