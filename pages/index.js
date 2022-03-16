@@ -22,6 +22,27 @@ const Projects = ({
 }) => {
   const [windowWidth, setWindowWidth] = React.useState(null)
   const [activeItem, setActiveItem] = React.useState(null)
+  const [previousActiveItem, setPreviousActiveItem] = React.useState(null)
+
+  const handleSetItem = React.useCallback(
+    (item) => {
+      isReady &&
+        setActiveItem((prev) => {
+          setPreviousActiveItem(prev)
+          return item
+        })
+    },
+    [isReady, setActiveItem, setPreviousActiveItem]
+  )
+
+  React.useEffect(() => {
+    setActiveItem((prev) =>
+      !activeFilter || prev?.category === activeFilter ? prev : null
+    )
+    setPreviousActiveItem((prev) =>
+      !activeFilter || prev?.category === activeFilter ? prev : null
+    )
+  }, [activeFilter, setActiveItem])
 
   const lists = React.useMemo(
     () =>
@@ -32,14 +53,6 @@ const Projects = ({
       })),
     [projects, filters]
   )
-
-  // React.useEffect(() => {
-  //   return () => {
-  //     if (!sessionStorage[SEEN_DOTS]) {
-  //       sessionStorage[SEEN_DOTS] = true
-  //     }
-  //   }
-  // }, [])
 
   React.useEffect(() => {
     const handleResize = debounce(() => {
@@ -65,7 +78,9 @@ const Projects = ({
             items={projects}
             setGridLoaded={setGridLoaded}
             activeItem={activeItem}
-            setActiveItem={setActiveItem}
+            setActiveItem={handleSetItem}
+            previousActiveItem={previousActiveItem}
+            setPreviousActiveItem={setPreviousActiveItem}
           />
           <ProjectLists
             activeFilter={activeFilter}
@@ -73,7 +88,7 @@ const Projects = ({
             items={projects}
             lists={lists}
             activeItem={activeItem}
-            setActiveItem={setActiveItem}
+            setActiveItem={handleSetItem}
           />
         </>
       ) : (

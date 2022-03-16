@@ -13,14 +13,13 @@ import styles from './projectsGrid.module.css'
 
 const ProjectsGrid = ({
   activeItem,
+  previousActiveItem,
   setActiveItem,
   activeFilter,
   isReady,
   items,
   setGridLoaded,
 }) => {
-  // const [activeItem, setActiveItem] = React.useState(null)
-  const [previousActiveItem, setPreviousActiveItem] = React.useState(null)
   const [dotAnimation, setDotAnimation] = React.useState('loading')
   const [dotsDone, setDotsDone] = React.useState(false)
   const [allImagesLoaded, setAllImagesLoades] = React.useState(false)
@@ -34,12 +33,6 @@ const ProjectsGrid = ({
   }, [setGridLoaded, allImagesLoaded, dotsDone])
 
   React.useEffect(() => {
-    setActiveItem((prev) =>
-      !activeFilter || prev?.category === activeFilter ? prev : null
-    )
-  }, [activeFilter, setActiveItem])
-
-  React.useEffect(() => {
     if (dotsDone && isReady) {
       setDotAnimation('active')
     }
@@ -47,11 +40,7 @@ const ProjectsGrid = ({
 
   const handleMouseEnter = React.useCallback(
     (item) => {
-      isReady &&
-        setActiveItem((prev) => {
-          setPreviousActiveItem(prev)
-          return item
-        })
+      isReady && setActiveItem(item)
     },
     [isReady, setActiveItem]
   )
