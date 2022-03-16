@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/router'
 import { SESSION_CATEGORY } from '../../lib/constants'
 import styles from './projectAccordions.module.css'
+import { m } from 'framer-motion'
 
 const ProjectAccordions = ({ lists, items }) => {
   const { locale } = useRouter()
@@ -67,7 +68,23 @@ const ProjectAccordions = ({ lists, items }) => {
   }, [lists])
 
   return (
-    <div className={styles.container}>
+    <m.div
+      className={styles.container}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={{
+        initial: {
+          opacity: 0,
+        },
+        animate: {
+          opacity: 1,
+        },
+        exit: {
+          opacity: 0,
+        },
+      }}
+    >
       {lists &&
         lists.map((list) => (
           <div
@@ -147,7 +164,7 @@ const ProjectAccordions = ({ lists, items }) => {
             </div>
           </div>
         ))}
-    </div>
+    </m.div>
   )
 }
 
