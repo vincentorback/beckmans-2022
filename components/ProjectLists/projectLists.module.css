@@ -3,9 +3,6 @@
   display: grid;
   /* gap: var(--site-spacing) calc(var(--site-spacing) * 0.5); */
   gap: var(--site-spacing) 1rem;
-
-  max-width: 1800px;
-  margin: 0 auto;
 }
 
 @media (min-width: 600px) {
