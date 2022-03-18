@@ -36,7 +36,7 @@
 }
 
 .container.ready .button svg {
-  transition: transform 1000ms ease;
+  transition: transform 700ms ease;
 }
 
 .list.is-active .button svg {
@@ -44,8 +44,13 @@
 }
 
 .content {
-  transition: max-height 1000ms ease;
+  transition: max-height 300ms ease-out;
   overflow: hidden;
+}
+
+.list.is-active .content {
+  transition-timing-function: ease-in;
+  transition-duration: 600ms;
 }
 
 .item {
@@ -81,6 +86,10 @@
 .imageWrap {
   flex: 0 0 110px;
   position: relative;
+}
+
+.dots {
+  pointer-events: none;
 }
 
 .dots div {

@@ -35,9 +35,9 @@ const ProjectAccordions = ({ lists, items }) => {
 
   const handleToggleAccordion = React.useCallback(
     (id) => {
-      setActiveAccordion((previousList) => {
+      setActiveAccordion((previousListId) => {
         const newActiveList =
-          previousList === id ? null : lists.find((list) => list.id === id)
+          previousListId === id ? null : lists.find((list) => list.id === id)
 
         if (newActiveList?.id) {
           sessionStorage[SESSION_CATEGORY] = newActiveList.id
@@ -45,16 +45,22 @@ const ProjectAccordions = ({ lists, items }) => {
           delete sessionStorage[SESSION_CATEGORY]
         }
 
+        const previousList = previousListId
+          ? lists.find((list) => list.id === previousListId)
+          : false
+
         if (
           previousList &&
           newActiveList &&
           newActiveList.index > previousList.index &&
           listRefs?.current?.length
         ) {
-          listRefs.current[0].scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-          })
+          setTimeout(() => {
+            listRefs.current[0].scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+            })
+          }, 200)
         }
 
         return newActiveList ? newActiveList.id : newActiveList
