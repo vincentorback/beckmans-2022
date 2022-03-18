@@ -11,7 +11,7 @@ import { fixTimeoutTransition } from '../lib/utilities'
 import '../styles/index.css'
 
 const App = ({ Component, pageProps, router }) => {
-  fixTimeoutTransition(1000)
+  fixTimeoutTransition(3000)
 
   return (
     <NextIntlProvider messages={pageProps.messages}>
