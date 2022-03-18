@@ -1,5 +1,4 @@
 .container {
-  width: calc(100% - (var(--site-spacing) * 2));
-  max-width: var(--site-width);
-  margin: 0 auto;
+  width: min(100% - (var(--site-spacing) * 2), var(--site-width));
+  margin-inline: auto;
 }
