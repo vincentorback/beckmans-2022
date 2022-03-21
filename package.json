@@ -13,8 +13,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@prismicio/client": "^6",
-    "@prismicio/react": "^2.1",
+    "@prismicio/client": "^6.4.1",
+    "@prismicio/react": "^2.1.2",
     "classnames": "^2.3.1",
     "framer-motion": "^6.2.8",
     "lodash.debounce": "^4.0.8",
@@ -27,14 +27,14 @@
     "react-intersection-observer": "^8.33.1"
   },
   "devDependencies": {
-    "eslint": "^8",
+    "eslint": "^8.11.0",
     "eslint-config-next": "^12.1.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "postcss": "^8.4.12",
     "postcss-calc": "^8.2.4",
     "postcss-flexbugs-fixes": "^5.0.2",
-    "postcss-preset-env": "^7.4.2",
+    "postcss-preset-env": "^7.4.3",
     "prettier": "^2.6.0"
   },
   "browserslist": [

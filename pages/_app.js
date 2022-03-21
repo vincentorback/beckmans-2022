@@ -5,18 +5,16 @@ import {
   domAnimation,
   MotionConfig,
 } from 'framer-motion'
+import Router from 'next/router'
 import { NextIntlProvider } from 'next-intl'
 import withTranslateRoutes from 'next-translate-routes'
-import { fixTimeoutTransition } from '../lib/utilities'
 import '../styles/index.css'
 
 const App = ({ Component, pageProps, router }) => {
-  fixTimeoutTransition(3000)
-
   return (
     <NextIntlProvider messages={pageProps.messages}>
       <LazyMotion features={domAnimation} strict>
-        <AnimatePresence exitBeforeEnter>
+        <AnimatePresence exitBeforeEnter={!process.env.NETLIFY}>
           <Component {...pageProps} key={router.asPath} />
         </AnimatePresence>
       </LazyMotion>
