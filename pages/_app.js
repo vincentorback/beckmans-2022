@@ -14,9 +14,14 @@ const App = ({ Component, pageProps, router }) => {
   return (
     <NextIntlProvider messages={pageProps.messages}>
       <LazyMotion features={domAnimation} strict>
-        <AnimatePresence exitBeforeEnter={!process.env.NETLIFY}>
-          <Component {...pageProps} key={router.asPath} />
-        </AnimatePresence>
+        <Component {...pageProps} key={router.asPath} />
+        {/* <AnimatePresence
+          exitBeforeEnter={false}
+          onExitComplete={() =>
+            window.requestAnimationFrame(() => window.scrollTo(0, 0))
+          }
+        >
+        </AnimatePresence> */}
       </LazyMotion>
     </NextIntlProvider>
   )
