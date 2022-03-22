@@ -160,6 +160,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
               layout="responsive"
               width={1038}
               height={1200}
+              sizes="(min-width: 1400px) 800px, (min-width: 800px) 50vw, 100vw"
             />
             <div className={styles.dots}>
               {[...Array(9)].map((_, i) => (
@@ -232,6 +233,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                   layout="responsive"
                   width={506}
                   height={634}
+                  // TODO: Sizes
                 />
                 <Image
                   src={image}
@@ -239,6 +241,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                   layout="responsive"
                   width={506}
                   height={634}
+                  // TODO: Sizes
                 />
               </div>
             )}
@@ -256,6 +259,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
               layout="responsive"
               width={1038}
               height={632}
+              // TODO: Sizes
             />
             <Image
               src={image}
@@ -263,6 +267,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
               layout="responsive"
               width={1038}
               height={1200}
+              // TODO: Sizes
             />
           </div>
         </div>
