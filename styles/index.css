@@ -1,11 +1,24 @@
 @import 'config.css';
 @import 'fonts.css';
 @import 'base.css';
+
 @import 'vendor/plyr.css';
 
-.MainContent {
-  padding: calc(var(--site-spacing) * 2) 0 calc(var(--site-spacing) * 3);
-}
+@import 'components/container.css';
+@import 'components/credits.css';
+@import 'components/entry.css';
+@import 'components/filters.css';
+@import 'components/footer.css';
+@import 'components/header.css';
+@import 'components/layout.css';
+@import 'components/map.css';
+@import 'components/pagination.css';
+@import 'components/project.css';
+@import 'components/projectAccordions.css';
+@import 'components/projectLists.css';
+@import 'components/projectsGrid.css';
+@import 'components/text.css';
+@import 'components/video.css';
 
 .u-preLine {
   white-space: pre-line;

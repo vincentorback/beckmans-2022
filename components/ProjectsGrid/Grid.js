@@ -7,7 +7,6 @@ import LinkWrap from '../LinkWrap'
 import { slugify, isEmpty } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
 import { m, useReducedMotion } from 'framer-motion'
-import styles from './projectsGrid.module.css'
 
 const AnimatedItem = ({ className, isActive, children, background, index }) => {
   const reduceMotion = useReducedMotion()
@@ -88,15 +87,15 @@ const Item = ({
   return (
     <div
       key={item.uid || itemIndex}
-      className={classNames(styles.item, {
-        [styles['has-noImage']]: !item?.image,
-        [styles['is-visible']]: isVisible,
+      className={classNames('ProjectsGrid-item', {
+        'has-noImage': !item?.image,
+        'is-visible': isVisible,
       })}
       onMouseEnter={() => handleMouseEnter(item)}
     >
       <LinkWrap url={item.url}>
         <AnimatedItem
-          className={styles.itemInner}
+          className="ProjectsGrid-itemInner"
           isActive={isVisible}
           index={itemIndex}
           background={item.background}
@@ -104,13 +103,11 @@ const Item = ({
           {item?.image && (
             <Image
               alt={item.name}
-              className={styles.image}
+              className="ProjectsGrid-image"
               width={imageWidth}
               height={imageHeight}
               layout="fixed"
-              onLoadingComplete={() => {
-                handleImageLoad(item.uid)
-              }}
+              onLoadingComplete={() => handleImageLoad(item.uid)}
               priority
               quality={10}
               rect={`${rectX},${rectY},${imageOriginalWidth},${imageOriginalHeight}`}
@@ -161,7 +158,7 @@ const Grid = ({
 
   return React.useMemo(
     () => (
-      <div className={styles.grid}>
+      <div className="ProjectsGrid-grid">
         {items.map((item, itemIndex) => (
           <Item
             item={item}

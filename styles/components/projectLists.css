@@ -1,0 +1,82 @@
+.Lists {
+  padding: calc(var(--site-spacing) * 2) 0;
+  display: grid;
+  /* gap: var(--site-spacing) calc(var(--site-spacing) * 0.5); */
+  gap: var(--site-spacing) 1rem;
+}
+
+@media (min-width: 600px) {
+  .Lists {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .Lists {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.Lists-cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.Lists-title {
+  display: block;
+  font-size: 1.3125rem;
+  font-weight: var(--text-bold);
+}
+
+.Lists-title a {
+  display: inline-block;
+  transition: opacity 150ms ease;
+}
+
+.Lists-title a:hover {
+  opacity: 0.8;
+}
+
+.Lists-list {
+  flex: 1 0 auto;
+  border-top: 1px solid;
+  margin-top: 1em;
+  padding-top: 1em;
+  column-gap: 0;
+  column-fill: auto;
+  line-height: var(--lineheight-lg);
+  height: auto;
+}
+
+@media (min-width: 1300px) {
+  .Lists-list {
+    columns: 2;
+    height: 11.1em;
+  }
+}
+
+.Lists-item {
+  padding-right: 1rem;
+}
+
+.Lists-item a {
+  display: inline-block;
+}
+
+.Lists-item a span {
+  display: inline-block;
+  transition: opacity 150ms ease;
+}
+
+.Lists-item.is-active,
+.Lists-item a:active span {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+@media (pointer: fine) {
+  .Lists-item a:hover span {
+    opacity: 0.8;
+    text-decoration: underline;
+  }
+}

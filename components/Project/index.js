@@ -9,7 +9,6 @@ import Image from '../Image'
 import Pagination from '../Pagination'
 import Video from '../Video'
 import { m } from 'framer-motion'
-import styles from './project.module.css'
 
 const Project = ({ project, projects, nextProject, prevProject }) => {
   const router = useRouter()
@@ -115,13 +114,13 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
 
   return (
     <article
-      className={classNames(styles.project, {
-        [styles['fixed-head']]: router?.query?.fixed === 'head',
-        [styles['fixed-side']]: router?.query?.fixed === 'side',
+      className={classNames('Project', {
+        'fixed-head': router?.query?.fixed === 'head',
+        'fixed-side': router?.query?.fixed === 'side',
       })}
     >
       <m.div
-        className={styles.inner}
+        className="Project-inner"
         initial="initial"
         animate="animate"
         exit="exit"
@@ -153,7 +152,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
         }}
       >
         {image && (
-          <div className={styles.mainImage}>
+          <div className="Project-image">
             <Image
               src={image}
               alt={title[router.locale]}
@@ -162,24 +161,24 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
               height={1200}
               sizes="(min-width: 1400px) 800px, (min-width: 800px) 50vw, 100vw"
             />
-            <div className={styles.dots}>
+            <div className="Project-imageDots">
               {[...Array(9)].map((_, i) => (
                 <div key={`dot_${i}`} />
               ))}
             </div>
           </div>
         )}
-        <div className={styles.content}>
-          <header className={classNames(styles.header, 'u-showSmall')}>
+        <div className="Project-content">
+          <header className={classNames('Project-header', 'u-showSmall')}>
             {name && (
-              <h1 className={styles.title}>
+              <h1 className="Project-title">
                 {name} <br />
                 {title[router.locale]}
               </h1>
             )}
           </header>
 
-          <div className={styles.mainText}>
+          <div className="Project-mainText">
             <Entry>
               <ExampleParagraph />
               <ExampleLists />
@@ -187,12 +186,12 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
             </Entry>
           </div>
 
-          <div className={styles.projectInfo}>
-            <div className={classNames(styles.info, 'u-showSmall')}>
+          <div className="Project-projectInfo">
+            <div className={classNames('Project-info', 'u-showSmall')}>
               <h4>Program</h4>
               <p>{t(`categories.${category}`)}</p>
             </div>
-            <div className={classNames(styles.info, 'u-showSmall')}>
+            <div className={classNames('Project-info', 'u-showSmall')}>
               <h4>{t('project.contact')}</h4>
               {links && (
                 <ul>
@@ -207,12 +206,12 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
               )}
             </div>
             {thanks && (
-              <div className={styles.info}>
+              <div className="Project-info">
                 <h4>{t('project.thanks-to')}</h4>
                 <p className="u-preLine">{thanks}</p>
               </div>
             )}
-            <div className={classNames(styles.info, 'u-showSmall')}>
+            <div className={classNames('Project-info', 'u-showSmall')}>
               <h4>{t('project.press-images')}</h4>
               <ul>
                 <li>
@@ -224,9 +223,9 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
             </div>
           </div>
 
-          <div className={styles.media}>
+          <div className="Project-media">
             {image && (
-              <div className={styles.mediaGrid}>
+              <div className="Project-mediaGrid">
                 <Image
                   src={image}
                   alt={image?.alt}
@@ -274,7 +273,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
         <Pagination next={nextProject} prev={prevProject} />
       </m.div>
       <m.div
-        className={classNames(styles.sidebar, 'u-hideSmall')}
+        className={classNames('Project-sidebar', 'u-hideSmall')}
         initial="initial"
         animate="animate"
         exit="exit"
@@ -305,22 +304,22 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
           },
         }}
       >
-        <div className={styles.sidebarInner}>
-          <div className={styles.sidebarUpper}>
-            <header className={styles.header}>
+        <div className="Project-sidebarInner">
+          <div className="Project-sidebarUpper">
+            <header className="Project-header">
               {name && (
-                <h1 className={styles.title}>
+                <h1 className="Project-title">
                   {name} <br />
                   {title[router.locale]}
                 </h1>
               )}
             </header>
-            <div className={styles.projectInfo}>
-              <div className={styles.info}>
+            <div className="Project-projectInfo">
+              <div className="Project-info">
                 <h4>Program</h4>
                 <p>{t(`categories.${category}`)}</p>
               </div>
-              <div className={styles.info}>
+              <div className="Project-info">
                 <h4>{t('project.contact')}</h4>
                 <ul>
                   {links.map((link, linkIndex) => (
@@ -332,7 +331,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                   ))}
                 </ul>
               </div>
-              <div className={styles.info}>
+              <div className="Project-info">
                 <h4>{t('project.press-images')}</h4>
                 <ul>
                   <li>
@@ -344,7 +343,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
               </div>
             </div>
           </div>
-          <div className={styles.sidebarLower}>
+          <div className="Project-sidebarLower">
             <Map items={projects} category={project.category} />
           </div>
         </div>

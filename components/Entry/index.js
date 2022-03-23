@@ -1,7 +1,5 @@
-import styles from './entry.module.css'
-
 const Entry = ({ children }) => {
-  return <div className={styles.entry}>{children}</div>
+  return <div className="Entry">{children}</div>
 }
 
 export default Entry

@@ -1,0 +1,235 @@
+.ProjectsGrid {
+  user-select: none;
+}
+
+/* @media (min-height: 760px) and (max-height: 2000px) {
+  .ProjectsGrid {
+    max-width: calc(
+      (1372 / 800 * 100vh) - var(--header-height) - (var(--site-spacing) * 6.5)
+    );
+  }
+} */
+
+@media (max-height: 760px) {
+  .ProjectsGrid {
+    max-width: none;
+  }
+}
+
+.ProjectsGrid:not(.is-ready) {
+  pointer-events: none;
+}
+
+.ProjectsGrid-inner {
+  position: relative;
+  margin: 0 auto;
+  display: grid;
+}
+
+@media (min-width: 600px) {
+  .ProjectsGrid-inner {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.ProjectsGrid-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.ProjectsGrid-item {
+  position: relative;
+  z-index: 0;
+  height: 0;
+  padding-bottom: 100%;
+}
+
+.ProjectsGrid-item:not(.is-visible) {
+  pointer-events: none;
+}
+
+.ProjectsGrid-item.has-noImage .ProjectsGrid-itemInner {
+  padding-bottom: 100%;
+}
+
+.ProjectsGrid-item a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% + 1px);
+  height: calc(100% + 1px);
+  display: block;
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 150ms ease, filter 500ms ease;
+  background-color: var(--color);
+}
+
+.ProjectsGrid-item a:hover {
+  filter: contrast(1.2);
+}
+
+.ProjectsGrid-item a > div {
+  height: 100%;
+}
+
+.ProjectsGrid-itemInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.ProjectsGrid-image {
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateZ(0);
+}
+
+.ProjectsGrid-dots {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.ProjectsGrid-dots div {
+  position: absolute;
+  top: calc(var(--row) * (100% / 14));
+  left: calc(var(--cell) * (100% / 24));
+  transform: translate3d(-50%, -50%, 0);
+  width: clamp(2px, 0.33vw, 4px);
+  height: clamp(2px, 0.33vw, 4px);
+}
+
+.ProjectsGrid-window {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.ProjectsGrid-windowItem {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 300ms ease 300ms;
+}
+
+.ProjectsGrid-windowItem:first-child {
+  z-index: 0;
+}
+
+.ProjectsGrid-windowItemInner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--color-white);
+}
+
+.ProjectsGrid-windowItemImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ProjectsGrid-windowItem a,
+.ProjectsGrid-windowContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.ProjectsGrid-windowContent p {
+  position: absolute;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  padding: var(--site-spacing);
+  display: block;
+
+  text-align: center;
+  font-weight: var(--text-bold);
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: var(--lineheight-md);
+  text-shadow: rgba(0, 0, 0, 0.15) 1px 1px 20px;
+
+  white-space: pre-line;
+}
+
+.ProjectsGrid-windowContent p:first-child {
+  top: calc(100% / 3.15);
+}
+
+.ProjectsGrid-windowContent p:last-child {
+  top: calc(100% / 1.48);
+}
+
+.ProjectsGrid-windowDots {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.ProjectsGrid-windowDots div {
+  position: absolute;
+  top: calc(100% / 7);
+  left: calc(100% / 12);
+  width: clamp(4px, 0.75vw, 8px);
+  height: clamp(4px, 0.75vw, 8px);
+  transform: translate(-50%, -50%);
+  background-color: var(--color-white);
+  transition: opacity 150ms ease 150ms;
+}
+
+.ProjectsGrid-windowDots div:nth-child(4),
+.ProjectsGrid-windowDots div:nth-child(5),
+.ProjectsGrid-windowDots div:nth-child(6) {
+  top: 50%;
+}
+
+.ProjectsGrid-windowDots div:nth-child(2),
+.ProjectsGrid-windowDots div:nth-child(5),
+.ProjectsGrid-windowDots div:nth-child(8) {
+  left: 50%;
+}
+
+.ProjectsGrid-windowDots div:nth-child(3),
+.ProjectsGrid-windowDots div:nth-child(6),
+.ProjectsGrid-windowDots div:nth-child(9) {
+  left: auto;
+  right: calc(100% / 12);
+  transform: translate(50%, -50%);
+}
+
+.ProjectsGrid-windowDots div:nth-child(7),
+.ProjectsGrid-windowDots div:nth-child(8),
+.ProjectsGrid-windowDots div:nth-child(9) {
+  top: auto;
+  bottom: calc(100% / 7);
+  transform: translate(-50%, 50%);
+}
+
+.ProjectsGrid-windowDots div:nth-child(9) {
+  transform: translate(50%, 50%);
+}
+
+.ProjectsGrid-windowItem.is-loaded .ProjectsGrid-windowDots div {
+  opacity: 1;
+}

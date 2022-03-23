@@ -1,0 +1,105 @@
+.Accordions {
+  width: min(100%, 500px);
+  margin-inline: auto;
+}
+
+.Accordions-list {
+  border-bottom: 1px solid;
+}
+
+.Accordions-button {
+  display: block;
+  padding: var(--site-spacing) 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.3125rem;
+  font-weight: var(--text-bold);
+  transition: opacity 150ms ease;
+}
+
+.Accordions-list:not(:first-child) .Accordions-button {
+  padding-top: calc(var(--site-spacing) * 2);
+}
+
+.Accordions-button:hover {
+  opacity: 0.8;
+}
+
+.Accordions-button span {
+  display: block;
+}
+
+.Accordions-button svg {
+  display: block;
+  transform: rotateZ(0);
+}
+
+.Accordions.is-ready .Accordions-button svg {
+  transition: transform 700ms ease;
+}
+
+.Accordions-list.is-active .Accordions-button svg {
+  transform: rotateZ(-135deg);
+}
+
+.Accordions-content {
+  transition: max-height 300ms ease-out;
+  overflow: hidden;
+}
+
+.Accordions-list.is-active .Accordions-content {
+  transition-timing-function: ease-in;
+  transition-duration: 600ms;
+}
+
+.Accordions-item {
+  border-top: 1px solid;
+  padding: calc(var(--site-spacing) * 1) 0;
+}
+
+.Accordions-link {
+  display: flex;
+  justify-content: space-between;
+  transition: opacity 150ms ease;
+}
+
+.Accordions-link:active {
+  opacity: 0.8;
+}
+
+@media (pointer: fine) {
+  .Accordions-link:hover {
+    opacity: 0.8;
+  }
+}
+
+.Accordions-content {
+  flex: 1 1 auto;
+  line-height: var(--lineheight-lg);
+}
+
+.Accordions-content p:first-child {
+  font-weight: var(--text-bold);
+}
+
+.Accordions-imageWrap {
+  flex: 0 0 110px;
+  position: relative;
+}
+
+.Accordions-dots {
+  pointer-events: none;
+}
+
+.Accordions-dots div {
+  position: absolute;
+  top: calc((100% / 2) * var(--row));
+  left: calc((100% / 2) * var(--cell));
+  width: 3px;
+  height: 3px;
+  transform: translate(-50%, -50%);
+  background-color: var(--color-white);
+  transition: opacity 150ms ease, transform 150ms ease,
+    background-color 150ms ease;
+}

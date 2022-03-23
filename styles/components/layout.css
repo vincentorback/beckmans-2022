@@ -1,0 +1,14 @@
+.Layout {
+  min-height: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.Layout-main {
+  flex: 1 0 auto;
+}
+
+.Layout-content {
+  padding: calc(var(--site-spacing) * 2) 0 calc(var(--site-spacing) * 3);
+}

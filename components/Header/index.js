@@ -3,7 +3,6 @@ import Link from 'next-translate-routes/link'
 import Container from '../Container'
 import { useRouter } from 'next/router'
 import { useTranslations } from 'next-intl'
-import styles from './header.module.css'
 import debounce from 'lodash.debounce'
 import classNames from 'classnames'
 import { SESSION_STARTED } from '../../lib/constants'
@@ -41,27 +40,27 @@ const Header = ({ pages, otherLocalePage, children }) => {
   return (
     <header
       ref={headerRef}
-      className={classNames(styles.header, {
-        [styles['is-fixed']]: router?.query?.fixed === 'head',
+      className={classNames('Header', {
+        'is-fixed': router?.query?.fixed === 'head',
       })}
     >
       <Container>
-        <div className={styles.inner}>
-          <div className={styles.topLeft}>
-            <p className={styles.showText}>
+        <div className="Header-inner">
+          <div className="Header-topLeft">
+            <p className="Header-showText">
               <span lang="en">Graduation Show</span> <br />
               <time dateTime="2022-05-19">19.05</time>–
               <time dateTime="2022-05-24">24.05.2022</time>
             </p>
           </div>
           {children && (
-            <div className={styles.bottomLeft}>
+            <div className="Header-bottomLeft">
               <div>{children}</div>
             </div>
           )}
-          <div className={styles.mid}>
+          <div className="Header-mid">
             <Link href="/">
-              <a className={styles.logo}>
+              <a className="Header-logo">
                 <svg
                   viewBox="0 0 380 64"
                   xmlns="http://www.w3.org/2000/svg"
@@ -75,13 +74,13 @@ const Header = ({ pages, otherLocalePage, children }) => {
               </a>
             </Link>
           </div>
-          <div className={styles.topRight}>
-            <p className={styles.beckmans} lang="en">
+          <div className="Header-topRight">
+            <p className="Header-beckmans" lang="en">
               Beckmans <br />
               College of Design
             </p>
           </div>
-          <div className={styles.bottomRight}>
+          <div className="Header-bottomRight">
             <div>
               <Link
                 href={{
@@ -90,7 +89,7 @@ const Header = ({ pages, otherLocalePage, children }) => {
                 }}
                 locale={otherLocale}
               >
-                <a className={styles.languageLink} lang={otherLocale}>
+                <a className="Header-languageLink" lang={otherLocale}>
                   <span>{t('navigation.otherLanguage')}</span>
                 </a>
               </Link>

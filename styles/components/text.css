@@ -1,0 +1,43 @@
+.Text {
+  display: grid;
+}
+
+.Text-title {
+  position: relative;
+  margin-bottom: calc(var(--site-spacing) * 2);
+}
+
+.Text-title h1 {
+  font-size: clamp(1.3rem, 2.22vw, 2rem);
+  line-height: var(--lineheight-md);
+  font-weight: var(--text-bold);
+}
+
+@media (min-width: 800px) {
+  .Text {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  .Text-title {
+    grid-row: 1;
+    grid-column: 1 / 6;
+    padding-right: var(--site-spacing);
+  }
+
+  .Text-body {
+    grid-row: 1;
+    grid-column: 7 / 13;
+  }
+}
+
+@media (min-width: 1400px) {
+  .Text-title {
+    grid-row: 1;
+    grid-column: 1 / 7;
+  }
+
+  .Text-body {
+    grid-row: 1;
+    grid-column: 7 / 12;
+  }
+}

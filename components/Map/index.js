@@ -3,7 +3,6 @@ import Link from 'next-translate-routes/link'
 import Image from '../Image'
 import classNames from 'classnames'
 import { isEmpty } from '../../lib/utilities'
-import styles from './map.module.css'
 
 const Map = ({ items, category }) => {
   const [allImagesLoaded, setAllImagesLoaded] = React.useState(false)
@@ -35,13 +34,13 @@ const Map = ({ items, category }) => {
   const MemoMap = React.useMemo(() => {
     return (
       <div
-        className={classNames(styles.map, {
-          [styles['is-active']]: allImagesLoaded,
+        className={classNames('Map', {
+          'is-active': allImagesLoaded,
         })}
       >
-        <p className={styles.activeItem}>{activeItem}</p>
-        <div className={styles.container}>
-          <div className={styles.grid}>
+        <p className="Map-activeTitle">{activeItem}</p>
+        <div className="Map-container">
+          <div className="Map-grid">
             {items.map((item, itemIndex) => {
               const isVisible = item.category && item.category === category
 
@@ -66,18 +65,18 @@ const Map = ({ items, category }) => {
               return (
                 <div
                   key={item.uid || itemIndex}
-                  className={classNames(styles.item, {
-                    [styles['is-visible']]: isVisible,
+                  className={classNames('Map-item', {
+                    'is-visible': isVisible,
                   })}
                   onMouseEnter={() => isVisible && handleMouse(item.name)}
                   onMouseLeave={() => isVisible && handleMouse(null)}
                 >
                   {isVisible && (
                     <Link href={item.url} prefetch={false} scroll={false}>
-                      <a className={styles.link}>
-                        <div className={styles.itemInner}>
+                      <a className="Map-itemLink">
+                        <div className="Map-itemInner">
                           <Image
-                            className={styles.image}
+                            className="Map-itemImage"
                             src={item.image}
                             width={imageWidth}
                             height={imageWidth}
@@ -95,7 +94,7 @@ const Map = ({ items, category }) => {
               )
             })}
           </div>
-          <div className={styles.dots}>
+          <div className="Map-dots">
             {[...Array(195)].map((_, dotIndex) => (
               <div
                 key={`dot_${dotIndex}`}

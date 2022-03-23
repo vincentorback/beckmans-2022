@@ -3,15 +3,16 @@ import Entry from '../Entry'
 import { useTranslations } from 'next-intl'
 import { PrismicRichText } from '@prismicio/react'
 import { internalLink, externalLink } from '../../lib/prismic'
-import styles from './credits.module.css'
 
 const Credits = ({ columns }) => {
   return (
-    <div className={styles.credits}>
-      <div className={styles.columns}>
+    <div className="Credits">
+      <div className="Credits-columns">
         {columns.map((column, columnIndex) => (
-          <div className={styles.column} key={`column_${columnIndex}`}>
-            {column.column_title && <h2>{column.column_title}</h2>}
+          <div className="Credits-column" key={`column_${columnIndex}`}>
+            {column.column_title && (
+              <h2 className="Credits-title">{column.column_title}</h2>
+            )}
             {column.column_text && (
               <Entry>
                 <PrismicRichText

@@ -6,7 +6,6 @@ import LinkWrap from '../LinkWrap'
 import { slugify, isEmpty } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
 import { m } from 'framer-motion'
-import styles from './projectsGrid.module.css'
 
 const Window = ({ item, previousItem }) => {
   const [isLoaded, setIsLoaded] = React.useState(isEmpty(item?.image))
@@ -26,7 +25,7 @@ const Window = ({ item, previousItem }) => {
 
   return (
     <m.div
-      className={styles.window}
+      className="ProjectsGrid-window"
       initial="initial"
       animate="animate"
       exit="exit"
@@ -43,15 +42,19 @@ const Window = ({ item, previousItem }) => {
       }}
     >
       {previousItem?.uid && previousItem.uid !== item.uid && (
-        <div key={previousItem.uid} className={styles.windowItem} id="prev">
+        <div
+          key={previousItem.uid}
+          className="ProjectsGrid-windowItem"
+          id="prev"
+        >
           <div
-            className={styles.windowItemInner}
+            className="ProjectsGrid-windowItemInner"
             style={{
               backgroundColor: previousItem.background ?? null,
               color: previousItem.color ?? null,
             }}
           >
-            <div className={styles.windowContent}>
+            <div className="ProjectsGrid-windowContent">
               <p>
                 {previousItem.name ? previousItem.name : previousItem.title}
               </p>
@@ -61,7 +64,7 @@ const Window = ({ item, previousItem }) => {
             {previousItem?.image && (
               <Image
                 alt=""
-                className={styles.windowItemImage}
+                className="ProjectsGrid-windowItemImage"
                 width={1038}
                 height={1200}
                 layout="fill"
@@ -73,10 +76,10 @@ const Window = ({ item, previousItem }) => {
           </div>
         </div>
       )}
-      <div className={styles.windowItem} key={item.uid}>
+      <div className="ProjectsGrid-windowItem" key={item.uid}>
         <LinkWrap url={item.url}>
           <m.div
-            className={styles.windowItemInner}
+            className="ProjectsGrid-windowItemInner"
             initial="loading"
             animate={isLoaded ? 'complete' : 'loading'}
             style={{
@@ -92,7 +95,7 @@ const Window = ({ item, previousItem }) => {
               },
             }}
           >
-            <div className={styles.windowContent}>
+            <div className="ProjectsGrid-windowContent">
               <p>{item.name ? item.name : item.title}</p>
               {item.category && <p>{t(item.category)}</p>}
               {item.subtitle && <p>{item.subtitle}</p>}
@@ -100,7 +103,7 @@ const Window = ({ item, previousItem }) => {
             {item?.image && (
               <Image
                 alt=""
-                className={styles.windowItemImage}
+                className="ProjectsGrid-windowItemImage"
                 width={1038}
                 height={1200}
                 layout="fill"
@@ -115,7 +118,7 @@ const Window = ({ item, previousItem }) => {
           </m.div>
         </LinkWrap>
       </div>
-      <div className={styles.windowDots}>
+      <div className="ProjectsGrid-windowDots">
         {[...Array(9)].map((_, dotIndex) => (
           <div key={`dot_${dotIndex}`} />
         ))}

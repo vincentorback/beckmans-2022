@@ -5,7 +5,6 @@ import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/router'
 import { SESSION_CATEGORY } from '../../lib/constants'
-import styles from './projectAccordions.module.css'
 import { m } from 'framer-motion'
 
 const ProjectAccordions = ({ lists, items }) => {
@@ -83,8 +82,8 @@ const ProjectAccordions = ({ lists, items }) => {
 
   return (
     <m.div
-      className={classNames(styles.container, {
-        [styles.ready]: isReady,
+      className={classNames('Accordions', {
+        'is-ready': isReady,
       })}
       initial="initial"
       animate="animate"
@@ -104,8 +103,8 @@ const ProjectAccordions = ({ lists, items }) => {
       {lists &&
         lists.map((list) => (
           <div
-            className={classNames(styles.list, {
-              [styles['is-active']]: activeAccordion === list.id,
+            className={classNames('Accordions-list', {
+              'is-active': activeAccordion === list.id,
             })}
             ref={(el) =>
               el && !listRefs.current.includes(el) && listRefs.current.push(el)
@@ -114,7 +113,7 @@ const ProjectAccordions = ({ lists, items }) => {
           >
             <button
               id={`accordion-${list.id}-button`}
-              className={styles.button}
+              className="Accordions-button"
               aria-expanded={activeAccordion === list.id}
               aria-controls={`accordion-${list.id}-content`}
               onClick={() => handleToggleAccordion(list.id)}
@@ -134,7 +133,7 @@ const ProjectAccordions = ({ lists, items }) => {
               role="region"
               aria-labelledby={`accordion-${list.id}-button`}
               id={`accordion-${list.id}-content`}
-              className={styles.content}
+              className="Accordions-content"
               style={{
                 maxHeight: maxHeight
                   ? activeAccordion === list.id
@@ -144,24 +143,24 @@ const ProjectAccordions = ({ lists, items }) => {
               }}
             >
               {list.items.map((item, itemIndex) => (
-                <div className={styles.item} key={item.uid}>
-                  <Link href={item.url} prefetch={false}>
-                    <a className={styles.link}>
-                      <div className={styles.content}>
+                <div className="Accordions-item" key={item.uid}>
+                  <Link href={item.url} prefetch={false} scroll={false}>
+                    <a className="Accordions-link">
+                      <div className="Accordions-content">
                         <p>{item.name}</p>
                         <p>{item.title[locale]}</p>
                       </div>
-                      <div className={styles.imageWrap}>
+                      <div className="Accordions-imageWrap">
                         <Image
                           src={item.image}
                           width={110}
                           height={110}
                           alt={item.name}
-                          className={styles.image}
+                          className="Accordions-image"
                           layout="responsive"
                           priority={itemIndex <= 3}
                         />
-                        <div className={styles.dots}>
+                        <div className="Accordions-dots">
                           {[...Array(9)].map((_, i) => (
                             <div
                               style={{

@@ -29,7 +29,7 @@ export default function Page(props) {
     >
       <Header {...props} />
       <Container>
-        <div className="MainContent">
+        <div className="Layout-content">
           {page.data.body ? (
             <Slices body={page.data.body} />
           ) : (

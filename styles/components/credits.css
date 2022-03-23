@@ -1,0 +1,66 @@
+.Credits {
+}
+
+.Credits-columns {
+  display: grid;
+  gap: calc(var(--site-spacing) * 2) var(--site-spacing);
+  margin-bottom: calc(var(--site-spacing) * -1);
+}
+
+@media (min-width: 500px) {
+  .Credits-columns {
+    display: block;
+    columns: 2;
+    gap: 0;
+    column-gap: calc(var(--site-spacing) * 3);
+  }
+}
+
+@media (min-width: 800px) {
+  .Credits-columns {
+    font-size: 1rem;
+    columns: 3;
+  }
+}
+
+@media (min-width: 1400px) {
+  .Credits-columns {
+    columns: 4;
+  }
+}
+
+.Credits-column {
+  border-top: 2px solid;
+  padding: 1rem 0;
+  break-inside: avoid-column;
+  line-height: var(--lineheight-lg);
+}
+
+@media (min-width: 500px) {
+  .Credits-column {
+    border-top-width: 1px;
+    padding: 1rem 0 2rem;
+  }
+}
+
+.Credits-title {
+  font-weight: var(--text-bold);
+  margin-bottom: 1rem;
+}
+
+.Credits-column a {
+  text-decoration: none;
+  transition: opacity 150ms ease;
+}
+
+.Credits-column a:active {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+@media (pointer: fine) {
+  .Credits-column a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+  }
+}

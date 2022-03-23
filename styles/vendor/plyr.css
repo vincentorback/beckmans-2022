@@ -1,3 +1,5 @@
+@import 'plyr-react/dist/plyr.css';
+
 .plyr--video {
   --plyr-color-main: var(--color-white);
   --plyr-control-spacing: calc(var(--site-spacing) * 0.5);

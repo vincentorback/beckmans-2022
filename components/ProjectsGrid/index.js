@@ -9,7 +9,6 @@ import { slugify, isEmpty } from '../../lib/utilities'
 import { SESSION_STARTED } from '../../lib/constants'
 import { useTranslations } from 'next-intl'
 import { m, useReducedMotion } from 'framer-motion'
-import styles from './projectsGrid.module.css'
 
 const ProjectsGrid = ({
   activeItem,
@@ -102,7 +101,7 @@ const ProjectsGrid = ({
 
   const memoDots = React.useMemo(
     () => (
-      <div className={styles.dots}>
+      <div className="ProjectsGrid-dots">
         {[...Array(375)].map((_, dotIndex) => (
           <m.div
             key={`dot_${dotIndex}`}
@@ -131,11 +130,11 @@ const ProjectsGrid = ({
 
   return (
     <div
-      className={classNames(styles.container, {
-        [styles['is-ready']]: isReady,
+      className={classNames('ProjectsGrid', {
+        'is-ready': isReady,
       })}
     >
-      <div className={styles.inner}>
+      <div className="ProjectsGrid-inner">
         {memoGrid}
         {memoWindow}
         {memoDots}

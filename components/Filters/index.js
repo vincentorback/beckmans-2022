@@ -1,5 +1,4 @@
 import classNames from 'classnames'
-import styles from './filters.module.css'
 import { slugify } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
 import { m, useReducedMotion } from 'framer-motion'
@@ -10,14 +9,14 @@ const Filters = ({ isReady, filters, activeFilter, onClick }) => {
   const reduceMotion = useReducedMotion()
 
   return (
-    <div className={styles.filters}>
+    <div className="Filters">
       {filters.map((filter, filterIndex) => (
         <button
           aria-pressed={activeFilter === filter}
           key={filter}
           onClick={() => onClick(filter)}
-          className={classNames(styles.button, {
-            [styles['is-active']]: activeFilter === filter,
+          className={classNames('Filters-button', {
+            'is-active': activeFilter === filter,
           })}
         >
           <m.div

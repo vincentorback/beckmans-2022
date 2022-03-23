@@ -3,17 +3,16 @@ import Container from '../Container'
 import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/router'
 import { localeStrings } from '../../lib/constants'
-import styles from './footer.module.css'
 
 const Footer = ({ pages }) => {
   const t = useTranslations()
   const router = useRouter()
 
   return (
-    <footer className={styles.footer}>
+    <footer className="Footer">
       <Container>
-        <div className={styles.grid}>
-          <div className={styles.item}>
+        <div className="Footer-grid">
+          <div className="Footer-item">
             <ul>
               {pages &&
                 pages
@@ -25,14 +24,14 @@ const Footer = ({ pages }) => {
                   })
                   .map((page) => (
                     <li key={page.uid}>
-                      <Link href={`/${page.uid}`}>
+                      <Link href={`/${page.uid}`} scroll={false}>
                         <a>{page.data.title[0].text}</a>
                       </Link>
                     </li>
                   ))}
             </ul>
           </div>
-          <div className={styles.item}>
+          <div className="Footer-item">
             <p>
               Beckmans {t('school-subtitle')}
               <br />
@@ -48,13 +47,13 @@ const Footer = ({ pages }) => {
               </Link>
             </p>
           </div>
-          <div className={styles.item}>
+          <div className="Footer-item">
             <p>
               {t('show')} 2022 <br />
               19 - 24 {t('may')}
             </p>
           </div>
-          <div className={styles.item}>
+          <div className="Footer-item">
             <p>
               {t('fashion-show')} <br />
               <time dateTime="2022-05-17">17 {t('may')}</time>

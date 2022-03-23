@@ -1,0 +1,25 @@
+.Video {
+  position: relative;
+  background-color: var(--color-black);
+  user-select: none;
+}
+
+.Video.is-youtube {
+  background-color: var(--color-red);
+}
+
+.Video.is-vimeo {
+  background-color: var(--color-blue);
+}
+
+.Video-inner {
+  position: relative;
+  opacity: 0;
+  transition: opacity 200ms ease 1000ms;
+  overflow: hidden;
+  aspect-ratio: var(--width) / var(--height);
+}
+
+.Video-inner.is-inView {
+  opacity: 1;
+}

@@ -1,6 +1,5 @@
 import { useTranslations } from 'next-intl'
 import Link from 'next-translate-routes/link'
-import styles from './pagination.module.css'
 
 const Pagination = ({ prev, next }) => {
   const t = useTranslations('navigation')
@@ -8,10 +7,10 @@ const Pagination = ({ prev, next }) => {
   if (!prev?.url && !next?.url) return null
 
   return (
-    <nav className={styles.pagination}>
+    <nav className="Pagination">
       {prev && (
-        <Link href={prev.url} prefetch={false}>
-          <a className={styles.prev}>
+        <Link href={prev.url} prefetch={false} scroll={false}>
+          <a className="Pagination-link Pagination-prev">
             <svg
               width="16"
               height="16"
@@ -29,8 +28,8 @@ const Pagination = ({ prev, next }) => {
         </Link>
       )}
       {next && (
-        <Link href={next.url} prefetch={false}>
-          <a className={styles.next}>
+        <Link href={next.url} scroll={false}>
+          <a className="Pagination-link Pagination-next">
             <span>{t('next')} student</span>
             <svg
               width="16"

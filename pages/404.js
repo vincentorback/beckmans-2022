@@ -17,7 +17,7 @@ export default function Error404Page(props) {
     <Layout title={pageTitle} {...props}>
       <Header {...props} />
       <Container>
-        <div className="MainContent">
+        <div className="Layout-content">
           <Text title={pageTitle}>
             <p>{t('404')}</p>
           </Text>

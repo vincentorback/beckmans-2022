@@ -4,9 +4,6 @@ import classNames from 'classnames'
 import Plyr from 'plyr-react'
 import { useInView } from 'react-intersection-observer'
 
-import 'plyr-react/dist/plyr.css'
-import styles from './video.module.css'
-
 const Video = ({ id, provider, width, height, html }) => {
   const videoRef = React.useRef()
 
@@ -41,10 +38,15 @@ const Video = ({ id, provider, width, height, html }) => {
   // TODO: On error, replace with {html}
 
   return (
-    <div ref={ref} className={classNames(styles.video, styles.provider)}>
+    <div
+      ref={ref}
+      className={classNames('Video', {
+        [`is-${provider}`]: provider,
+      })}
+    >
       <div
-        className={classNames(styles.inner, {
-          [styles.inView]: inView,
+        className={classNames('Video-inner', {
+          'is-inView': inView,
         })}
         style={{
           '--width': `${width}`,

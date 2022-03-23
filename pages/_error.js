@@ -13,7 +13,7 @@ export default function ErrorPage(props) {
     <Layout title={t('title')} {...props}>
       <Header {...props} />
       <Container>
-        <div className="MainContent">
+        <div className="Layout-content">
           <Text title={t('title')}>
             <p>
               {statusCode} {statusMessage}

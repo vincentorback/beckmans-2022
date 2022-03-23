@@ -1,0 +1,83 @@
+.Entry {
+  line-height: var(--lineheight-lg);
+}
+
+.Entry > * + * {
+  margin-top: 1.25em;
+}
+
+/* .title {
+  font-size: 2rem;
+  line-height: var(--lineheight-md);
+  font-weight: var(--text-bold);
+}
+
+.subtitle {
+  font-size: 2rem;
+  line-height: var(--lineheight-md);
+} */
+
+.Entry h2,
+.Entry h3,
+.Entry h4 {
+  font-weight: var(--text-bold);
+}
+
+.Entry h2 {
+  font-size: 1.5rem;
+}
+
+.Entry h3 {
+  font-size: 1.3125rem;
+}
+
+.Entry h4 {
+  font-size: 1.2rem;
+}
+
+.Entry ul,
+.Entry ol {
+  list-style-position: inside;
+}
+
+.Entry ul {
+  list-style-type: circle;
+}
+
+.Entry ol {
+  list-style-type: decimal;
+}
+
+.Entry strong {
+  font-weight: var(--text-bold);
+}
+
+.Entry em {
+  font-style: italic;
+}
+
+.Entry a {
+  text-decoration: underline;
+  transition: opacity 150ms ease;
+}
+
+.Entry a:active {
+  opacity: 0.8;
+}
+
+@media (pointer: fine) {
+  .Entry a:hover {
+    opacity: 0.8;
+  }
+}
+
+/* .grid {
+  display: grid;
+  gap: var(--site-spacing);
+}
+
+@media (min-width: 800px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+} */

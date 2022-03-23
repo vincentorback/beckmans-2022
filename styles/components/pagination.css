@@ -1,0 +1,56 @@
+.Pagination {
+  margin-top: calc(var(--site-spacing) * 2);
+  padding: calc(var(--site-spacing) * 2) 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--site-spacing);
+
+  font-weight: var(--text-bold);
+  line-height: var(--lineheight-lg);
+}
+
+@media (min-width: 800px) {
+  .Pagination {
+    margin-top: calc(var(--site-spacing) * 1);
+  }
+}
+
+.Pagination-prev {
+  text-align: left;
+}
+
+.Pagination-next {
+  text-align: right;
+}
+
+.Pagination-link {
+  flex: 1 0 auto;
+  display: block;
+  transition: opacity 150ms ease;
+}
+
+.Pagination-link:hover {
+  opacity: 0.8;
+}
+
+.Pagination-link span,
+.Pagination-link svg {
+  display: inline-block;
+}
+
+.Pagination-link svg {
+  width: 1em;
+  height: 1em;
+  transform: translateY(2px);
+}
+
+.Pagination-link span + svg {
+  margin-left: 1rem;
+}
+
+.Pagination-link svg + span {
+  margin-left: 1rem;
+}
