@@ -39,12 +39,7 @@ const Header = ({ pages, children, otherLocalePage }) => {
   }, [router?.query?.name, handleResize])
 
   return (
-    <header
-      ref={headerRef}
-      className={classNames('Header', {
-        'is-fixed': router?.query?.fixed === 'head',
-      })}
-    >
+    <header ref={headerRef} className="Header">
       <Container>
         <div className="Header-inner">
           <div className="Header-topLeft">

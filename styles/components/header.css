@@ -5,12 +5,6 @@
   padding: var(--site-spacing) 0;
 }
 
-@media (min-width: 800px) and (min-height: 800px) {
-  .Header.is-fixed {
-    position: fixed;
-  }
-}
-
 .Header-inner {
   display: grid;
   grid-template-columns: repeat(12, 1fr);

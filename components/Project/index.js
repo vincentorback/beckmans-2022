@@ -113,12 +113,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
     )
 
   return (
-    <article
-      className={classNames('Project', {
-        'fixed-head': router?.query?.fixed === 'head',
-        'fixed-side': router?.query?.fixed === 'side',
-      })}
-    >
+    <article className="Project">
       <m.div
         className="Project-inner"
         initial="initial"

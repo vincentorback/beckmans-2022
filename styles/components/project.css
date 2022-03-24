@@ -4,12 +4,6 @@
   gap: var(--site-spacing);
 }
 
-@media (min-width: 800px) and (min-height: 800px) {
-  .Project.fixed-head {
-    margin-top: var(--header-height);
-  }
-}
-
 @media (min-width: 800px) {
   .Project {
     display: grid;
@@ -236,17 +230,12 @@
 }
 
 @media (min-width: 800px) and (min-height: 800px) {
-  .Project.fixed-head .Project-sidebarInner,
-  .Project.fixed-side .Project-sidebarInner {
+  .Project-sidebar {
+    padding-bottom: calc(var(--site-spacing) * 2);
+  }
+
+  .Project-sidebarInner {
     position: sticky;
-  }
-
-  .Project.fixed-head .Project-sidebarInner {
-    top: calc(var(--header-height));
-    height: calc(100vh - var(--header-height, 0px) - (var(--site-spacing) * 2));
-  }
-
-  .Project.fixed-side .Project-sidebarInner {
     top: var(--site-spacing);
     height: calc(100vh - (var(--site-spacing) * 2));
   }
