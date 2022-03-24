@@ -12,3 +12,15 @@
 .Layout-content {
   padding: calc(var(--site-spacing) * 2) 0 calc(var(--site-spacing) * 3);
 }
+
+.Layout-previewButton {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: var(--color-red);
+  border-top-right-radius: 3px;
+  color: #fff;
+  padding: 0.8em;
+  z-index: 9999;
+}
