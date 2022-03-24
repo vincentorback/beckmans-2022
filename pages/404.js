@@ -1,7 +1,5 @@
-import { queryDocuments } from '../lib/content'
-import { localeStrings } from '../lib/constants'
+import { getEverything } from '../lib/content'
 import Container from '../components/Container'
-import Credits from '../components/Credits'
 import Header from '../components/Header'
 import Layout from '../components/Layout'
 import Slices from '../components/Slices'
@@ -28,13 +26,12 @@ export default function Error404Page(props) {
 }
 
 export async function getStaticProps({ params, locale }) {
-  const content = await queryDocuments()
-  const pages = content.filter((item) => item.type === 'page')
+  const content = await getEverything(locale)
   const messages = require(`../locales/${locale}.json`)
 
   return {
     props: {
-      pages,
+      pages: content.pages,
       messages,
     },
   }

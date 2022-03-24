@@ -7,8 +7,13 @@ import Layout from '../components/Layout'
 import ProjectAccordions from '../components/ProjectAccordions'
 import ProjectLists from '../components/ProjectLists'
 import ProjectsGrid from '../components/ProjectsGrid'
-import { queryDocuments, fakeProjects } from '../lib/content'
-import { categories, SESSION_STARTED, SESSION_CATEGORY } from '../lib/constants'
+import { getEverything } from '../lib/content'
+import {
+  localeStrings,
+  categories,
+  SESSION_STARTED,
+  SESSION_CATEGORY,
+} from '../lib/constants'
 import debounce from 'lodash.debounce'
 
 const DEFAULT_FILTER = null
@@ -157,28 +162,23 @@ export default function HomePage(props) {
   )
 }
 
-export async function getStaticProps({ locale }) {
-  const content = await queryDocuments()
-  const pages = content.filter((item) => item.type === 'page')
+export async function getStaticProps({ locale, previewData }) {
+  const content = await getEverything(locale, previewData)
   const messages = require(`../locales/${locale}.json`)
-  const projects = fakeProjects.sort((a, b) => {
-    if (a.name < b.name) return -1
-    if (a.name > b.name) return 1
-    return 0
-  })
+  const otherLocale = Object.keys(localeStrings).find((key) => key !== locale)
 
   if (
-    Array.isArray(projects) &&
-    projects.some((item) => item.uid === 'apply') === false
+    Array.isArray(content.projects) &&
+    content.projects.some((item) => item.uid === 'apply') === false
   ) {
-    projects.splice(36, 0, {
+    content.projects.splice(36, 0, {
       uid: 'fashion',
       title: locale === 'sv' ? 'Modevisning' : 'Fashion show',
       subtitle: locale === 'sv' ? '17 maj' : 'May 17',
       background: 'var(--color-blue)',
     })
 
-    projects.splice(projects.length, 0, {
+    content.projects.splice(content.projects.length, 0, {
       uid: 'apply',
       title: locale === 'sv' ? 'Sök nu' : 'Apply now',
       subtitle: 'beckmans.se',
@@ -194,9 +194,12 @@ export async function getStaticProps({ locale }) {
     props: {
       filters: categories,
       locale,
-      pages,
-      projects,
+      pages: content.pages,
+      projects: content.projects,
       messages,
+      otherLocalePage: {
+        lang: otherLocale,
+      },
     },
   }
 }

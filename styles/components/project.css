@@ -118,7 +118,7 @@
   grid-column: 1 / 6;
 }
 
-.Project-info {
+.Project-projectInfo {
   grid-column: 7 / 9;
 }
 
@@ -146,7 +146,7 @@
     grid-column: 1 / 9;
   }
 
-  .Project-info {
+  .Project-projectInfo {
     grid-row: 3;
     grid-column: 1 / 9;
   }
@@ -162,7 +162,7 @@
   .Project-media {
     grid-row: 3;
   }
-  .Project-info {
+  .Project-projectInfo {
     grid-row: 4;
   }
 }
@@ -180,11 +180,11 @@
   }
 }
 
-.Project-header + .Project-info {
+.Project-header + .Project-projectInfo {
   padding-top: calc(var(--site-spacing) * 1);
 }
 
-.Project-info {
+.Project-projectInfo {
   display: grid;
   gap: 1em;
 }

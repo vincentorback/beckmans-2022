@@ -1,5 +1,5 @@
 import React from 'react'
-import { queryDocuments, fakeProjects } from '../../lib/content'
+import { getEverything } from '../../lib/content'
 import { useTranslations } from 'next-intl'
 import { slugify } from '../../lib/utilities'
 import Layout from '../../components/Layout'
@@ -27,11 +27,11 @@ export default function ProjectPage(props) {
 }
 
 export async function getStaticPaths({ locales }) {
-  const projects = fakeProjects // content.filter((item) => item.type === 'project')
+  const content = await getEverything()
   const paths = []
 
   locales.forEach((locale) => {
-    projects.forEach((project) => {
+    content.projects.forEach((project) => {
       if (project.lang.includes(locale)) {
         paths.push({
           params: {
@@ -50,30 +50,25 @@ export async function getStaticPaths({ locales }) {
   }
 }
 
-export async function getStaticProps({ params, locale }) {
-  const content = await queryDocuments()
-  const pages = content.filter((item) => item.type === 'page')
-  const projects = fakeProjects.sort((a, b) => {
-    if (a.name < b.name) return -1
-    if (a.name > b.name) return 1
-    return 0
-  })
+export async function getStaticProps({ params, locale, locales, previewData }) {
+  const messages = require(`../../locales/${locale}.json`)
+  const content = await getEverything(locale, previewData)
 
-  const project = projects.find((item) => slugify(item.name) === params.name)
-  const currentIndex = projects.findIndex(
+  const project = content.projects.find(
+    (item) => slugify(item.name) === params.name
+  )
+  const currentIndex = content.projects.findIndex(
     (item) => slugify(item.name) === params.name
   )
 
-  const nextProject = projects[currentIndex + 1] ?? false
-  const prevProject = projects[currentIndex - 1] ?? false
-
-  const messages = require(`../../locales/${locale}.json`)
+  const nextProject = content.projects[currentIndex + 1] ?? false
+  const prevProject = content.projects[currentIndex - 1] ?? false
 
   if (!project) {
     return {
       notFound: true,
       props: {
-        pages,
+        pages: content.pages,
         messages,
       },
     }
@@ -82,11 +77,18 @@ export async function getStaticProps({ params, locale }) {
   return {
     props: {
       project,
-      projects,
-      pages,
+      projects: content.projects,
+      pages: content.pages,
       messages,
       prevProject,
       nextProject,
+      // otherLocalePage: project.alternate_languages[0],
+      otherLocalePage: {
+        uid: project.uid,
+        lang: locales.find((item) => item !== locale),
+        category: project.category,
+        type: 'project',
+      },
     },
   }
 }

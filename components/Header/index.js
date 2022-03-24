@@ -6,8 +6,9 @@ import { useTranslations } from 'next-intl'
 import debounce from 'lodash.debounce'
 import classNames from 'classnames'
 import { SESSION_STARTED } from '../../lib/constants'
+import { linkResolver } from '../../lib/prismic'
 
-const Header = ({ pages, otherLocalePage, children }) => {
+const Header = ({ pages, children, otherLocalePage }) => {
   const router = useRouter()
   const t = useTranslations()
   const headerRef = React.useRef(null)
@@ -82,13 +83,7 @@ const Header = ({ pages, otherLocalePage, children }) => {
           </div>
           <div className="Header-bottomRight">
             <div>
-              <Link
-                href={{
-                  pathname: router.asPath,
-                  query: router.query,
-                }}
-                locale={otherLocale}
-              >
+              <Link href={linkResolver(otherLocalePage)} locale={otherLocale}>
                 <a className="Header-languageLink" lang={otherLocale}>
                   <span>{t('navigation.otherLanguage')}</span>
                 </a>

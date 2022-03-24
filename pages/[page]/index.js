@@ -1,5 +1,5 @@
 import React from 'react'
-import { queryDocuments } from '../../lib/content'
+import { getEverything } from '../../lib/content'
 import { localeStrings } from '../../lib/constants'
 import Container from '../../components/Container'
 import Credits from '../../components/Credits'
@@ -42,12 +42,11 @@ export default function Page(props) {
 }
 
 export async function getStaticPaths({ locales }) {
-  const content = await queryDocuments()
-  const pages = content.filter((item) => item.type === 'page')
+  const content = await getEverything()
   const paths = []
 
   locales.forEach((locale) => {
-    pages.forEach((page) => {
+    content.pages.forEach((page) => {
       if (page.lang.includes(locale)) {
         paths.push({
           params: {
@@ -65,23 +64,18 @@ export async function getStaticPaths({ locales }) {
   }
 }
 
-export async function getStaticProps({ params, locale }) {
-  const content = await queryDocuments()
-  const pages = content.filter((item) => item.type === 'page')
-  const page = pages.find(
-    (item) => item.uid === params.page && item.lang === localeStrings[locale]
-  )
+export async function getStaticProps({ params, locale, previewData }) {
   const messages = require(`../../locales/${locale}.json`)
-
-  const otherLocalePage = pages.find(
-    (item) => item.uid === page.alternate_languages[0].uid
+  const content = await getEverything(locale, previewData)
+  const page = content.pages.find(
+    (item) => item.uid === params.page && item.lang === localeStrings[locale]
   )
 
   if (!page) {
     return {
       notFound: true,
       props: {
-        pages,
+        pages: content.pages,
         messages,
       },
     }
@@ -91,9 +85,9 @@ export async function getStaticProps({ params, locale }) {
     props: {
       background: page?.data?.background_color,
       page,
-      pages,
+      pages: content.pages,
       messages,
-      otherLocalePage,
+      otherLocalePage: page.alternate_languages[0],
     },
   }
 }

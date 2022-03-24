@@ -1,9 +1,9 @@
-import { queryDocuments } from '../lib/content'
+import { getEverything } from '../lib/content'
+import { useTranslations } from 'next-intl'
 import Container from '../components/Container'
 import Header from '../components/Header'
 import Layout from '../components/Layout'
 import Text from '../components/Text'
-import { useTranslations } from 'next-intl'
 
 export default function ErrorPage(props) {
   const { statusCode, statusMessage } = props
@@ -26,15 +26,14 @@ export default function ErrorPage(props) {
 }
 
 export async function getServerSideProps({ res, locale }) {
-  const content = await queryDocuments()
-  const pages = content.filter((item) => item.type === 'page')
+  const content = await getEverything(locale)
   const messages = require(`../locales/${locale || 'sv'}.json`)
 
   return {
     props: {
       statusCode: res?.statusCode ?? 500,
       statusMessage: res?.statusMessage ?? messages?.error?.title,
-      pages,
+      pages: content.pages,
       messages,
     },
   }
