@@ -15,6 +15,9 @@ const nextConfig = withTranslateRoutes({
   images: {
     formats: isProduction ? ['image/avif', 'image/webp'] : ['image/webp'],
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   async redirects() {
     return [
       {
