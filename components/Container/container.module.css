@@ -1,4 +1,0 @@
-.container {
-  width: min(100% - (var(--site-spacing) * 2), var(--site-width));
-  margin-inline: auto;
-}
