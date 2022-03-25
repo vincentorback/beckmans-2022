@@ -152,8 +152,10 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
               src={image}
               alt={title[router.locale]}
               layout="responsive"
-              width={1038}
-              height={1200}
+              width={(1440 / 12) * 7 * 2}
+              height={(1440 / 12) * 7 * 2 * 1.1671511628}
+              // width={1038}
+              // height={1200}
               sizes="(min-width: 1400px) 800px, (min-width: 800px) 50vw, 100vw"
             />
             <div className="Project-imageDots">
