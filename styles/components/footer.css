@@ -61,11 +61,6 @@
 }
 
 @media (min-width: 600px) {
-  .Footer-item ul {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
   .Footer-item:nth-child(1) {
     grid-column: 1 / 13;
   }
