@@ -7,11 +7,12 @@
 @media (min-width: 800px) {
   .Project {
     display: grid;
-    gap: var(--site-spacing);
+    gap: var(--site-spacing) 0;
     grid-template-columns: repeat(12, 1fr);
   }
 
   .Project-sidebar {
+    padding-right: var(--site-spacing);
     grid-row: 1;
     grid-column: 1 / 6;
   }
@@ -212,10 +213,15 @@
   }
 }
 
-.Project-title {
+.Project-title,
+.Project-subtitle {
   font-size: clamp(1.3125rem, 3.5vw, 2rem);
   line-height: var(--lineheight-md);
   font-weight: var(--text-bold);
+}
+
+.Project-title + .Project-subtitle {
+  margin-top: 0.5rem;
 }
 
 .Project-sidebar {

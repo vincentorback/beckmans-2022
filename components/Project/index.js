@@ -165,11 +165,9 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
         )}
         <div className="Project-content">
           <header className={classNames('Project-header', 'u-showSmall')}>
-            {name && (
-              <h1 className="Project-title">
-                {name} <br />
-                {title[router.locale]}
-              </h1>
+            {name && <h1 className="Project-title">{name}</h1>}
+            {title && (
+              <h2 className="Project-subtitle">{title[router.locale]}</h2>
             )}
           </header>
 
@@ -302,11 +300,9 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
         <div className="Project-sidebarInner">
           <div className="Project-sidebarUpper">
             <header className="Project-header">
-              {name && (
-                <h1 className="Project-title">
-                  {name} <br />
-                  {title[router.locale]}
-                </h1>
+              {name && <h1 className="Project-title">{name}</h1>}
+              {title && (
+                <h2 className="Project-subtitle">{title[router.locale]}</h2>
               )}
             </header>
             <div className="Project-projectInfo">
