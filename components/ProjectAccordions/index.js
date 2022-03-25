@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import { SESSION_CATEGORY } from '../../lib/constants'
 import { m } from 'framer-motion'
 
-const ProjectAccordions = ({ lists, items }) => {
+const ProjectAccordions = ({ lists }) => {
   const { locale } = useRouter()
 
   const t = useTranslations('categories')

@@ -1,6 +1,5 @@
 import React from 'react'
 import Meta from '../Meta'
-import Header from '../Header'
 import Footer from '../Footer'
 import Link from 'next-translate-routes/link'
 import { useRouter } from 'next/router'

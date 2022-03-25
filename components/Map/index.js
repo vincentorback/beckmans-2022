@@ -2,28 +2,24 @@ import React from 'react'
 import Link from 'next-translate-routes/link'
 import Image from '../Image'
 import classNames from 'classnames'
-import { isEmpty } from '../../lib/utilities'
 
 const Map = ({ items, category }) => {
   const [allImagesLoaded, setAllImagesLoaded] = React.useState(false)
   const [imagesLoaded, setImagesLoaded] = React.useState(1)
 
-  const handleImageLoad = React.useCallback(
-    (id) => {
-      setImagesLoaded((prev) => {
-        if (
-          prev ===
-          items.filter((item) => item.category && item.category === category)
-            .length
-        ) {
-          setAllImagesLoaded(true)
-        }
+  const handleImageLoad = React.useCallback(() => {
+    setImagesLoaded((prev) => {
+      if (
+        prev ===
+        items.filter((item) => item.category && item.category === category)
+          .length
+      ) {
+        setAllImagesLoaded(true)
+      }
 
-        return prev + 1
-      })
-    },
-    [setImagesLoaded, items, category]
-  )
+      return prev + 1
+    })
+  }, [setImagesLoaded, items, category])
 
   const [activeItem, setActiveItem] = React.useState(null)
 
@@ -79,7 +75,7 @@ const Map = ({ items, category }) => {
                             className="Map-itemImage"
                             src={item.image}
                             width={imageWidth}
-                            height={imageWidth}
+                            height={imageHeight}
                             layout="fixed"
                             rect={`${rectX},${rectY},${imageOriginalWidth},${imageOriginalHeight}`}
                             quality={10}

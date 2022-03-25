@@ -190,7 +190,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
               <h4>{t('project.contact')}</h4>
               {links && (
                 <ul>
-                  {links.map((link, linkIndex) => (
+                  {links.map((link) => (
                     <li key={link.label}>
                       <Link href={link.url} prefetch={false}>
                         <a target="_blank">{link.label}</a>
@@ -315,7 +315,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
               <div className="Project-info">
                 <h4>{t('project.contact')}</h4>
                 <ul>
-                  {links.map((link, linkIndex) => (
+                  {links.map((link) => (
                     <li key={link.label}>
                       <Link href={link.url} prefetch={false}>
                         <a target="_blank">{link.label}</a>

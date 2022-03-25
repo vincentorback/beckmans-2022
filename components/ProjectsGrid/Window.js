@@ -1,9 +1,7 @@
 import React from 'react'
-import classNames from 'classnames'
-import Link from 'next-translate-routes/link'
 import Image from '../Image'
 import LinkWrap from '../LinkWrap'
-import { slugify, isEmpty } from '../../lib/utilities'
+import { isEmpty } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
 import { m } from 'framer-motion'
 

@@ -1,12 +1,6 @@
 import React from 'react'
 import Link from 'next-translate-routes/link'
-import {
-  AnimatePresence,
-  LazyMotion,
-  domAnimation,
-  MotionConfig,
-} from 'framer-motion'
-import Router from 'next/router'
+import { AnimatePresence, LazyMotion, domAnimation } from 'framer-motion'
 import { NextIntlProvider } from 'next-intl'
 import withTranslateRoutes from 'next-translate-routes'
 import { PrismicProvider } from '@prismicio/react'

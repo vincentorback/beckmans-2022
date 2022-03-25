@@ -1,5 +1,9 @@
+// import * as prismicH from "@prismicio/helpers"
+// const src = prismicH.asImageSrc(prismicDoc.data.example_image, {
+//   sat: -100,
+// })
+
 import React from 'react'
-import classNames from 'classnames'
 import NextImage from 'next/image'
 
 const imageLoader = (props) => {
@@ -33,7 +37,6 @@ const imageLoader = (props) => {
 const Image = (props) => {
   const {
     hidden,
-    className,
     objectFit,
     objectPosition,
     width,
@@ -41,10 +44,7 @@ const Image = (props) => {
     alt,
     quality,
     layout,
-    rect,
   } = props
-
-  const [isLoaded, setLoaded] = React.useState(false)
 
   return (
     <div

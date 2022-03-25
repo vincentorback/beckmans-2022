@@ -1,6 +1,5 @@
 import React from 'react'
 import Container from '../components/Container'
-import Credits from '../components/Credits'
 import Filters from '../components/Filters'
 import Header from '../components/Header'
 import Layout from '../components/Layout'

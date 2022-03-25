@@ -1,4 +1,3 @@
-import Container from '../Container'
 import Entry from '../Entry'
 import { PrismicRichText } from '@prismicio/react'
 import { internalLink, externalLink } from '../../lib/prismic'

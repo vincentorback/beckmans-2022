@@ -1,5 +1,4 @@
 import React from 'react'
-import Image from '../Image'
 import classNames from 'classnames'
 import Plyr from 'plyr-react'
 import { useInView } from 'react-intersection-observer'
@@ -36,6 +35,9 @@ const Video = ({ id, provider, width, height, html }) => {
   }, [inView])
 
   // TODO: On error, replace with {html}
+  if (html) {
+    console.log(html)
+  }
 
   return (
     <div

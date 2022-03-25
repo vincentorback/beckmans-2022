@@ -1,10 +1,8 @@
 import React from 'react'
 import Link from 'next-translate-routes/link'
-import classNames from 'classnames'
-import { slugify } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
 
-const ProjectLists = ({ setActiveItem, activeItem, lists, items }) => {
+const ProjectLists = ({ setActiveItem, lists }) => {
   const t = useTranslations('categories')
 
   const handleMouseEnter = React.useCallback(
@@ -17,14 +15,14 @@ const ProjectLists = ({ setActiveItem, activeItem, lists, items }) => {
   return (
     <ul className="Lists" role="tree" aria-label="Studenter">
       {lists &&
-        lists.map((list, listIndex) => (
+        lists.map((list) => (
           <li key={list.id} role="treeitem" tabIndex="-1">
             <span className="Lists-title">{t(list.id)}</span>
             <ul className="Lists-list" role="group">
-              {list.items.map((item, itemIndex) => (
+              {list.items.map((item) => (
                 <li
-                  className="Lists-item"
                   key={item.uid}
+                  className="Lists-item"
                   role="treeitem"
                   tabIndex="-1"
                 >

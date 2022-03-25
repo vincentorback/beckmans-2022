@@ -2,9 +2,7 @@ import React from 'react'
 import Link from 'next-translate-routes/link'
 import Container from '../Container'
 import { useRouter } from 'next/router'
-import { useTranslations } from 'next-intl'
 import debounce from 'lodash.debounce'
-import classNames from 'classnames'
 import { SESSION_STARTED } from '../../lib/constants'
 import { capitalize } from '../../lib/utilities'
 import { linkResolver } from '../../lib/prismic'
@@ -27,9 +25,8 @@ const LocaleLink = ({ locale, otherLocalePage }) => {
   )
 }
 
-const Header = ({ pages, children, otherLocalePage }) => {
+const Header = ({ children, otherLocalePage }) => {
   const router = useRouter()
-  const t = useTranslations()
   const headerRef = React.useRef(null)
   const otherLocale = router.locales.find((item) => item !== router.locale)
 

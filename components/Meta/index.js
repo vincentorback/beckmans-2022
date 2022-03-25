@@ -1,7 +1,6 @@
 import { linkResolver } from '../../lib/prismic'
 import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/router'
-import { SITE_URL } from '../../lib/constants'
 import Head from 'next/head'
 
 const Meta = ({ title, children, otherLocalePage }) => {

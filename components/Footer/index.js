@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/router'
 import { localeStrings } from '../../lib/constants'
 
-const Footer = ({ pages, otherLocalePage }) => {
+const Footer = ({ pages }) => {
   const t = useTranslations()
   const router = useRouter()
 

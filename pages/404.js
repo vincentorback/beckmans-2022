@@ -2,7 +2,6 @@ import { getEverything } from '../lib/content'
 import Container from '../components/Container'
 import Header from '../components/Header'
 import Layout from '../components/Layout'
-import Slices from '../components/Slices'
 import Text from '../components/Text'
 import { useTranslations } from 'next-intl'
 
@@ -25,7 +24,7 @@ export default function Error404Page(props) {
   )
 }
 
-export async function getStaticProps({ params, locale }) {
+export async function getStaticProps({ locale }) {
   const content = await getEverything(locale)
   const messages = require(`../locales/${locale}.json`)
 

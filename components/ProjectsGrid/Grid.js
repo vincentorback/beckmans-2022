@@ -1,11 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
-import Link from 'next-translate-routes/link'
 import Image from '../Image'
-import Window from './Window'
 import LinkWrap from '../LinkWrap'
-import { slugify, isEmpty } from '../../lib/utilities'
-import { useTranslations } from 'next-intl'
 import { m, useReducedMotion } from 'framer-motion'
 
 const AnimatedItem = ({ className, isActive, children, background, index }) => {
