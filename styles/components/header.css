@@ -66,7 +66,8 @@
 .Header-logo svg {
   flex: 1 0 auto;
   display: block;
-  max-width: 285px;
+  /* max-width: 285px; */
+  max-width: 230px;
   height: auto;
   margin: 0 auto;
 }
@@ -77,27 +78,29 @@
   cursor: default;
 }
 
-.Header-languageLink {
+.Header-languageLinks {
   font-size: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: flex-end;
 }
 
-.Header-languageLink:active span {
+div.Header-languageLink {
+  cursor: default;
+  font-weight: var(--text-bold);
+}
+
+a.Header-languageLink:active span {
   opacity: 0.8;
   text-decoration: underline;
 }
 
 @media (pointer: fine) {
-  .Header-languageLink:hover span {
+  a.Header-languageLink:hover span {
     opacity: 0.8;
     text-decoration: underline;
   }
-}
-
-.Header-languageLink svg {
-  display: inline-block;
-  margin-right: 0.375em;
-  width: 0.75em;
-  height: 0.75em;
 }
 
 .Header-beckmans {

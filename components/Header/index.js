@@ -6,7 +6,26 @@ import { useTranslations } from 'next-intl'
 import debounce from 'lodash.debounce'
 import classNames from 'classnames'
 import { SESSION_STARTED } from '../../lib/constants'
+import { capitalize } from '../../lib/utilities'
 import { linkResolver } from '../../lib/prismic'
+
+const LocaleLink = ({ locale, otherLocalePage }) => {
+  if (otherLocalePage) {
+    return (
+      <Link href={linkResolver(otherLocalePage)} locale={locale}>
+        <a className="Header-languageLink" lang={locale}>
+          <span>{capitalize(locale)}</span>
+        </a>
+      </Link>
+    )
+  }
+
+  return (
+    <div className="Header-languageLink">
+      <span>{capitalize(locale)}</span>
+    </div>
+  )
+}
 
 const Header = ({ pages, children, otherLocalePage }) => {
   const router = useRouter()
@@ -77,12 +96,14 @@ const Header = ({ pages, children, otherLocalePage }) => {
             </p>
           </div>
           <div className="Header-bottomRight">
-            <div>
-              <Link href={linkResolver(otherLocalePage)} locale={otherLocale}>
-                <a className="Header-languageLink" lang={otherLocale}>
-                  <span>{t('navigation.otherLanguage')}</span>
-                </a>
-              </Link>
+            <div className="Header-languageLinks">
+              {router.locales.map((locale) => (
+                <LocaleLink
+                  key={locale}
+                  locale={locale}
+                  otherLocalePage={locale === otherLocale && otherLocalePage}
+                />
+              ))}
             </div>
           </div>
         </div>
