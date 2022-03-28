@@ -14,12 +14,19 @@
 
 .Video-inner {
   position: relative;
-  opacity: 0;
-  transition: opacity 200ms ease 1000ms;
+
   overflow: hidden;
-  aspect-ratio: var(--width) / var(--height);
 }
 
-.Video-inner.is-inView {
+.Video:not(.is-inView) .Video-inner {
+  aspect-ratio: var(--video-width) / var(--video-height);
+}
+
+.Video .plyr__video-wrapper {
+  opacity: 0;
+  transition: opacity 300ms ease 300ms;
+}
+
+.Video.is-inView .plyr__video-wrapper {
   opacity: 1;
 }
