@@ -3,14 +3,12 @@ import Image from '../Image'
 import Link from 'next-translate-routes/link'
 import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
-import { useRouter } from 'next/router'
 import { SESSION_CATEGORY } from '../../lib/constants'
 import { m } from 'framer-motion'
+import { PrismicText } from '@prismicio/react'
 import { linkResolver } from '../../lib/prismic'
 
 const ProjectAccordions = ({ lists }) => {
-  const { locale } = useRouter()
-
   const t = useTranslations('categories')
 
   const listRefs = React.useRef([])
@@ -152,9 +150,13 @@ const ProjectAccordions = ({ lists }) => {
                   >
                     <a className="Accordions-link">
                       <div className="Accordions-content">
-                        <p>{item.data.name[0].text}</p>
+                        <p>
+                          <PrismicText field={item.data.name} />
+                        </p>
                         {Boolean(item?.data?.project_title.length) && (
-                          <p>{item.data.project_title[0].text}</p>
+                          <p>
+                            <PrismicText field={item.data.project_title} />
+                          </p>
                         )}
                       </div>
                       <div className="Accordions-imageWrap">

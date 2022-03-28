@@ -3,6 +3,7 @@ import Container from '../Container'
 import styles from './menu.module.css'
 import { localeStrings } from '../../lib/constants'
 import { useRouter } from 'next/router'
+import { PrismicText } from '@prismicio/react'
 
 const Menu = ({ isActive, toggleMenu, pages }) => {
   const router = useRouter()
@@ -109,7 +110,9 @@ const Menu = ({ isActive, toggleMenu, pages }) => {
                 })
                 .map((page) => (
                   <li key={page.uid} id={page.uid}>
-                    <a href={`/${page.uid}`}>{page.data.title[0].text}</a>
+                    <a href={`/${page.uid}`}>
+                      <PrismicText field={page.data.title} />
+                    </a>
                   </li>
                 ))}
             </ul>

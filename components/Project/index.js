@@ -7,7 +7,7 @@ import Entry from '../Entry'
 import Map from '../Map'
 import Image from '../Image'
 import Pagination from '../Pagination'
-import { PrismicRichText } from '@prismicio/react'
+import { PrismicText, PrismicRichText } from '@prismicio/react'
 import Video from '../Video'
 import { m } from 'framer-motion'
 import { slugify } from '../../lib/utilities'
@@ -119,11 +119,13 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
         <div className="Project-content">
           <header className={classNames('Project-header', 'u-showSmall')}>
             {Boolean(project.data.name.length) && (
-              <h1 className="Project-title">{project.data.name[0].text}</h1>
+              <h1 className="Project-title">
+                <PrismicText field={project.data.name} />
+              </h1>
             )}
             {Boolean(project.data?.project_title.length) && (
               <h2 className="Project-subtitle">
-                {project.data.project_title[0].text}
+                <PrismicText field={project.data.project_title} />
               </h2>
             )}
           </header>
@@ -265,11 +267,13 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
           <div className="Project-sidebarUpper">
             <header className="Project-header">
               {Boolean(project.data.name.length) && (
-                <h1 className="Project-title">{project.data.name[0].text}</h1>
+                <h1 className="Project-title">
+                  <PrismicText field={project.data.name} />
+                </h1>
               )}
               {Boolean(project.data?.project_title.length) && (
                 <h2 className="Project-subtitle">
-                  {project.data.project_title[0].text}
+                  <PrismicText field={project.data.project_title} />
                 </h2>
               )}
             </header>

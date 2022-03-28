@@ -5,6 +5,7 @@ import { slugify, isEmpty } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
 import { m } from 'framer-motion'
 import { linkResolver } from '../../lib/prismic'
+import { PrismicText } from '@prismicio/react'
 
 const Window = ({ item, previousItem }) => {
   const [isLoaded, setIsLoaded] = React.useState(isEmpty(item?.image))
@@ -56,9 +57,11 @@ const Window = ({ item, previousItem }) => {
           >
             <div className="ProjectsGrid-windowContent">
               <p>
-                {previousItem.title
-                  ? previousItem.title
-                  : previousItem.data.name[0].text}
+                {previousItem.title ? (
+                  previousItem.title
+                ) : (
+                  <PrismicText field={previousItem.data.name} />
+                )}
               </p>
               {previousItem?.data?.category && (
                 <p>{t(slugify(previousItem.data.category))}</p>
@@ -100,7 +103,13 @@ const Window = ({ item, previousItem }) => {
             }}
           >
             <div className="ProjectsGrid-windowContent">
-              <p>{item.title ? item.title : item.data.name[0].text}</p>
+              <p>
+                {item.title ? (
+                  item.title
+                ) : (
+                  <PrismicText field={item.data.name} />
+                )}
+              </p>
               {item?.data?.category && <p>{t(slugify(item.data.category))}</p>}
               {item.subtitle && <p>{item.subtitle}</p>}
             </div>

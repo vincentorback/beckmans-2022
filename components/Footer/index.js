@@ -3,6 +3,7 @@ import Container from '../Container'
 import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/router'
 import { localeStrings } from '../../lib/constants'
+import { PrismicText } from '@prismicio/react'
 
 const Footer = ({ pages }) => {
   const t = useTranslations()
@@ -20,7 +21,9 @@ const Footer = ({ pages }) => {
                   .map((page) => (
                     <li key={page.uid}>
                       <Link href={`/${page.uid}`} scroll={false}>
-                        <a>{page.data.title[0].text}</a>
+                        <a>
+                          <PrismicText field={page.data.title} />
+                        </a>
                       </Link>
                     </li>
                   ))}
