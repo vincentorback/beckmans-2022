@@ -7,89 +7,38 @@ import Entry from '../Entry'
 import Map from '../Map'
 import Image from '../Image'
 import Pagination from '../Pagination'
+import { PrismicRichText } from '@prismicio/react'
 import Video from '../Video'
 import { m } from 'framer-motion'
+import { slugify } from '../../lib/utilities'
+import ProjectMedia from './Media'
 
 const Project = ({ project, projects, nextProject, prevProject }) => {
   const router = useRouter()
-  const { category, name, title, image, links } = project
-
-  const setPush = React.useCallback(
-    (push) =>
-      window.requestAnimationFrame(() => {
-        document.documentElement.style.setProperty('--sticky-push', `${push}px`)
-      }),
-    []
-  )
-
-  React.useEffect(() => {
-    const handleScroll = () => {
-      // if (headerRef.current) {
-      //   if (
-      //     window.scrollY +
-      //       document.documentElement.clientHeight +
-      //       headerRef.current.clientHeight >
-      //     document.documentElement.scrollHeight
-      //   ) {
-      //     setHeadPush(
-      //       Math.min(
-      //         Math.abs(
-      //           document.documentElement.scrollHeight -
-      //             (window.scrollY +
-      //               document.documentElement.clientHeight +
-      //               headerRef.current.clientHeight)
-      //         ),
-      //         headerRef.current.clientHeight
-      //       )
-      //     )
-      //   } else {
-      //     setHeadPush(0)
-      //   }
-      // }
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    handleScroll()
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [setPush])
-
   const t = useTranslations()
 
-  const thanks =
-    router.locale === 'en'
-      ? `Grandma 'n Granpa \nMy teachers \nThe print house \nThe community \nThe future \nAhlgrens Bilar \nBe here nowness \nGodrick the Grafted \nAlbert Einstein \nAdam \nEva`
-      : `Mormor & Morfar \nMina lärare \nTryckeriet`
+  const ExampleThanks = () => (
+    <p className="u-preLine">
+      {router.locale === 'en'
+        ? `Grandma 'n Granpa \nMy teachers \nThe print house \nThe community \nThe future \nAhlgrens Bilar \nBe here nowness \nGodrick the Grafted \nAlbert Einstein \nAdam \nEva`
+        : `Mormor & Morfar \nMina lärare \nTryckeriet`}
+    </p>
+  )
 
-  const ExampleParagraph = () =>
-    router.locale === 'sv' ? (
-      <p>
-        Mitt <strong>examensarbete</strong> är ett <em>självutforskande</em> av
-        identitet ur ett posthumanistiskt perspektiv.{' '}
-        <a href="#/">Resultatet</a> är tre självporträtt där jag gestaltar min
-        mångfacetterade identitet i form av en avatar.
-      </p>
-    ) : (
-      <p>
-        My <strong>graduation project</strong> is a{' '}
-        <em>personal investigation</em> of identity from a post-humanist
-        perspective. <a href="#/">This has resulted</a> in three self-portraits
-        in which I give expression to my multifaceted identity in the form of an
-        avatar.
-      </p>
-    )
-
-  const ExampleLists = () =>
+  const ExampleContent = () =>
     router.locale === 'sv' ? (
       <>
+        <p>
+          Mitt <strong>examensarbete</strong> är ett <em>självutforskande</em>{' '}
+          av identitet ur ett posthumanistiskt perspektiv.{' '}
+          <a href="#/">Resultatet</a> är tre självporträtt där jag gestaltar min
+          mångfacetterade identitet i form av en avatar.
+        </p>
         <ul>
           <li>Lista med saker</li>
           <li>Kan vara vadsom</li>
           <li>helst?</li>
         </ul>
-
         <ol>
           <li>Lista med saker</li>
           <li>Kan vara vadsom</li>
@@ -98,12 +47,18 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
       </>
     ) : (
       <>
+        <p>
+          My <strong>graduation project</strong> is a{' '}
+          <em>personal investigation</em> of identity from a post-humanist
+          perspective. <a href="#/">This has resulted</a> in three
+          self-portraits in which I give expression to my multifaceted identity
+          in the form of an avatar.
+        </p>
         <ul>
           <li>List with things</li>
           <li>Can be</li>
           <li>anything?</li>
         </ul>
-
         <ol>
           <li>List with things</li>
           <li>Can be</li>
@@ -146,124 +101,131 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
           },
         }}
       >
-        {image && (
-          <div className="Project-image">
-            <Image
-              src={image}
-              alt={title[router.locale]}
-              layout="responsive"
-              width={(1440 / 12) * 7 * 2}
-              height={(1440 / 12) * 7 * 2 * 1.1671511628}
-              // width={1038}
-              // height={1200}
-              sizes="(min-width: 1400px) 800px, (min-width: 800px) 50vw, 100vw"
-            />
-            <div className="Project-imageDots">
-              {[...Array(9)].map((_, i) => (
-                <div key={`dot_${i}`} />
-              ))}
-            </div>
+        <div className="Project-image">
+          <Image
+            src={project.data.main_image}
+            alt=""
+            layout="responsive"
+            width={(1440 / 12) * 7 * 2}
+            height={(1440 / 12) * 7 * 2 * 1.1671511628}
+            sizes="(min-width: 1400px) 800px, (min-width: 800px) 50vw, 100vw"
+          />
+          <div className="Project-imageDots">
+            {[...Array(9)].map((_, i) => (
+              <div key={`dot_${i}`} />
+            ))}
           </div>
-        )}
+        </div>
         <div className="Project-content">
           <header className={classNames('Project-header', 'u-showSmall')}>
-            {name && <h1 className="Project-title">{name}</h1>}
-            {title && (
-              <h2 className="Project-subtitle">{title[router.locale]}</h2>
+            {Boolean(project.data.name.length) && (
+              <h1 className="Project-title">{project.data.name[0].text}</h1>
+            )}
+            {Boolean(project.data?.project_title.length) && (
+              <h2 className="Project-subtitle">
+                {project.data.project_title[0].text}
+              </h2>
             )}
           </header>
 
           <div className="Project-mainText">
             <Entry>
-              <ExampleParagraph />
-              <ExampleLists />
-              <ExampleParagraph />
+              {project.data.text.length ? (
+                <PrismicRichText field={project.data.text} />
+              ) : (
+                <ExampleContent />
+              )}
             </Entry>
           </div>
 
           <div className="Project-projectInfo">
             <div className={classNames('Project-info', 'u-showSmall')}>
               <h4>Program</h4>
-              <p>{t(`categories.${category}`)}</p>
+              <p>{t(`categories.${slugify(project.data.category)}`)}</p>
             </div>
-            <div className={classNames('Project-info', 'u-showSmall')}>
-              <h4>{t('project.contact')}</h4>
-              {links && (
-                <ul>
-                  {links.map((link) => (
-                    <li key={link.label}>
-                      <Link href={link.url} prefetch={false}>
-                        <a target="_blank">{link.label}</a>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+            {Boolean(project.data.contact.length) && (
+              <div className={classNames('Project-info', 'u-showSmall')}>
+                <h4>{t('project.contact')}</h4>
+                <PrismicRichText field={project.data.contact} />
+              </div>
+            )}
+            <div className="Project-info">
+              <h4>{t('project.thanks-to')}</h4>
+              {project.data.thanks.length ? (
+                <PrismicRichText field={project.data.thanks} />
+              ) : (
+                <ExampleThanks />
               )}
             </div>
-            {thanks && (
-              <div className="Project-info">
-                <h4>{t('project.thanks-to')}</h4>
-                <p className="u-preLine">{thanks}</p>
+            {project.data.press_download.url && (
+              <div className={classNames('Project-info', 'u-showSmall')}>
+                <h4>{t('project.press-images')}</h4>
+                <ul>
+                  <li>
+                    <Link href={project.data.press_download.url}>
+                      <a
+                        download={project.data.press_download.name}
+                        title={`${project.data.press_download.name} (${(
+                          project.data.press_download.size / 1000000
+                        ).toFixed(2)}MB)`}
+                      >
+                        {t('project.download')}
+                      </a>
+                    </Link>
+                  </li>
+                </ul>
               </div>
             )}
-            <div className={classNames('Project-info', 'u-showSmall')}>
-              <h4>{t('project.press-images')}</h4>
-              <ul>
-                <li>
-                  <Link href={'#/'} prefetch={false}>
-                    <a>{t('project.download')}</a>
-                  </Link>
-                </li>
-              </ul>
-            </div>
           </div>
 
-          <div className="Project-media">
-            {image && (
+          {project.data.body.length ? (
+            <ProjectMedia items={project.data.body} />
+          ) : (
+            <div className="Project-media">
               <div className="Project-mediaGrid">
                 <Image
-                  src={image}
-                  alt={image?.alt}
+                  src={project.data.main_image}
+                  alt=""
                   layout="responsive"
                   width={506}
                   height={634}
                   // TODO: Sizes
                 />
                 <Image
-                  src={image}
-                  alt={image?.alt}
+                  src={project.data.main_image}
+                  alt=""
                   layout="responsive"
                   width={506}
                   height={634}
                   // TODO: Sizes
                 />
               </div>
-            )}
-            <Video
-              key={project.uid}
-              provider="Vimeo"
-              id="286740784"
-              width={318}
-              height={240}
-              html={`<iframe src="https://player.vimeo.com/video/286740784?h=944a23271c&amp;app_id=122963" width="318" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="RED LIGHT"></iframe>`}
-            />
-            <Image
-              src={image}
-              alt={image?.alt}
-              layout="responsive"
-              width={1038}
-              height={632}
-              // TODO: Sizes
-            />
-            <Image
-              src={image}
-              alt={image?.alt}
-              layout="responsive"
-              width={1038}
-              height={1200}
-              // TODO: Sizes
-            />
-          </div>
+              <Video
+                key={project.uid}
+                provider_name="Vimeo"
+                video_id="286740784"
+                width={318}
+                height={240}
+                html={`<iframe src="https://player.vimeo.com/video/286740784?h=944a23271c&amp;app_id=122963" width="318" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="RED LIGHT"></iframe>`}
+              />
+              <Image
+                src={project.data.main_image}
+                alt=""
+                layout="responsive"
+                width={1038}
+                height={632}
+                // TODO: Sizes
+              />
+              <Image
+                src={project.data.main_image}
+                alt=""
+                layout="responsive"
+                width={1038}
+                height={1200}
+                // TODO: Sizes
+              />
+            </div>
+          )}
         </div>
         <Pagination next={nextProject} prev={prevProject} />
       </m.div>
@@ -302,42 +264,49 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
         <div className="Project-sidebarInner">
           <div className="Project-sidebarUpper">
             <header className="Project-header">
-              {name && <h1 className="Project-title">{name}</h1>}
-              {title && (
-                <h2 className="Project-subtitle">{title[router.locale]}</h2>
+              {Boolean(project.data.name.length) && (
+                <h1 className="Project-title">{project.data.name[0].text}</h1>
+              )}
+              {Boolean(project.data?.project_title.length) && (
+                <h2 className="Project-subtitle">
+                  {project.data.project_title[0].text}
+                </h2>
               )}
             </header>
             <div className="Project-projectInfo">
               <div className="Project-info">
                 <h4>Program</h4>
-                <p>{t(`categories.${category}`)}</p>
+                <p>{t(`categories.${slugify(project.data.category)}`)}</p>
               </div>
-              <div className="Project-info">
-                <h4>{t('project.contact')}</h4>
-                <ul>
-                  {links.map((link) => (
-                    <li key={link.label}>
-                      <Link href={link.url} prefetch={false}>
-                        <a target="_blank">{link.label}</a>
+              {Boolean(project.data.contact.length) && (
+                <div className={classNames('Project-info', 'u-hideSmall')}>
+                  <h4>{t('project.contact')}</h4>
+                  <PrismicRichText field={project.data.contact} />
+                </div>
+              )}
+              {project.data.press_download.url && (
+                <div className="Project-info">
+                  <h4>{t('project.press-images')}</h4>
+                  <ul>
+                    <li>
+                      <Link href={project.data.press_download.url}>
+                        <a
+                          download={project.data.press_download.name}
+                          title={`${project.data.press_download.name} (${(
+                            project.data.press_download.size / 1000000
+                          ).toFixed(2)}MB)`}
+                        >
+                          {t('project.download')}
+                        </a>
                       </Link>
                     </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="Project-info">
-                <h4>{t('project.press-images')}</h4>
-                <ul>
-                  <li>
-                    <Link href={'#/'} prefetch={false}>
-                      <a>{t('project.download')}</a>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
           <div className="Project-sidebarLower">
-            <Map items={projects} category={project.category} />
+            <Map items={projects} category={project.data.category} />
           </div>
         </div>
       </m.div>

@@ -1,4 +1,4 @@
-// import * as prismicH from "@prismicio/helpers"
+import * as prismicH from '@prismicio/helpers'
 // const src = prismicH.asImageSrc(prismicDoc.data.example_image, {
 //   sat: -100,
 // })
@@ -6,36 +6,20 @@
 import React from 'react'
 import NextImage from 'next/image'
 
-const imageLoader = (props) => {
-  const { src, width, height, rect } = props
+const imageLoader = (image) => {
+  const { width, height, quality, rect } = image
 
-  if (src.startsWith('/')) {
-    return src
-  } else {
-    const url = new URL(src)
-
-    url.searchParams.set('auto', 'compress,format')
-
-    if (width) {
-      url.searchParams.set('w', width)
-    }
-
-    if (height) {
-      url.searchParams.set('h', height)
-    }
-
-    let newSrc = url.toString()
-
-    if (rect) {
-      newSrc += `&rect=${rect}`
-    }
-
-    return newSrc
-  }
+  return prismicH.asImageSrc(image.src, {
+    w: width,
+    h: height,
+    q: quality,
+    rect,
+  })
 }
 
 const Image = (props) => {
   const {
+    src,
     hidden,
     objectFit,
     objectPosition,
@@ -50,7 +34,7 @@ const Image = (props) => {
     <div
       style={{
         display: hidden ? 'none' : 'block',
-        backgroundColor: layout !== 'fill' && 'rgba(0, 0, 0, 0.05)',
+        // backgroundColor: layout !== 'fill' && 'rgba(0, 0, 0, 0.05)',
         position: 'relative',
         width: layout === 'fill' ? '100%' : 'auto',
         height: layout === 'fill' ? '100%' : 'auto',
@@ -58,11 +42,12 @@ const Image = (props) => {
     >
       <NextImage
         {...props}
+        src={src.url}
         loader={() => imageLoader(props)}
         layout={layout || 'intrinsic'}
         objectFit={objectFit || 'cover'}
         objectPosition={objectPosition || '50% 50%'}
-        alt={alt || ''}
+        alt={alt || src.alt || ''}
         width={layout === 'cover' || layout === 'fill' ? null : width}
         height={layout === 'cover' || layout === 'fill' ? null : height}
         quality={quality || 50}

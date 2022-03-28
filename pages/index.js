@@ -7,12 +7,8 @@ import ProjectAccordions from '../components/ProjectAccordions'
 import ProjectLists from '../components/ProjectLists'
 import ProjectsGrid from '../components/ProjectsGrid'
 import { getEverything } from '../lib/content'
-import {
-  localeStrings,
-  categories,
-  SESSION_STARTED,
-  SESSION_CATEGORY,
-} from '../lib/constants'
+import { categories, SESSION_STARTED, SESSION_CATEGORY } from '../lib/constants'
+import { slugify } from '../lib/utilities'
 import debounce from 'lodash.debounce'
 
 const DEFAULT_FILTER = null
@@ -53,9 +49,12 @@ const Projects = ({
       filters.map((filter, filterIndex) => ({
         id: filter,
         index: filterIndex,
-        items: projects.filter((item) => filter === item.category),
+        items: projects.filter(
+          (project) =>
+            project?.data?.category && filter === slugify(project.data.category)
+        ),
       })),
-    [projects, filters]
+    [filters, projects]
   )
 
   React.useEffect(() => {
@@ -164,7 +163,6 @@ export default function HomePage(props) {
 export async function getStaticProps({ locale, previewData }) {
   const content = await getEverything(locale, previewData)
   const messages = require(`../locales/${locale}.json`)
-  const otherLocale = Object.keys(localeStrings).find((key) => key !== locale)
 
   if (
     Array.isArray(content.projects) &&
@@ -196,9 +194,6 @@ export async function getStaticProps({ locale, previewData }) {
       pages: content.pages,
       projects: content.projects,
       messages,
-      otherLocalePage: {
-        lang: otherLocale,
-      },
     },
   }
 }

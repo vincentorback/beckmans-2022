@@ -7,21 +7,25 @@ import { SESSION_STARTED } from '../../lib/constants'
 import { capitalize } from '../../lib/utilities'
 import { linkResolver } from '../../lib/prismic'
 
-const LocaleLink = ({ locale, otherLocalePage }) => {
-  if (otherLocalePage) {
+const LocaleLink = ({ locale, isActive, otherLocalePage, url }) => {
+  if (isActive) {
     return (
-      <Link href={linkResolver(otherLocalePage)} locale={locale}>
-        <a className="Header-languageLink" lang={locale}>
-          <span>{capitalize(locale)}</span>
-        </a>
-      </Link>
+      <div className="Header-languageLink">
+        <span>{capitalize(locale)}</span>
+      </div>
     )
   }
 
   return (
-    <div className="Header-languageLink">
-      <span>{capitalize(locale)}</span>
-    </div>
+    <Link
+      href={otherLocalePage ? linkResolver(otherLocalePage) : url}
+      locale={locale}
+      scroll={false}
+    >
+      <a className="Header-languageLink" lang={locale}>
+        <span>{capitalize(locale)}</span>
+      </a>
+    </Link>
   )
 }
 
@@ -71,7 +75,7 @@ const Header = ({ children, otherLocalePage }) => {
             </div>
           )}
           <div className="Header-mid">
-            <Link href="/">
+            <Link href="/" scroll={false}>
               <a className="Header-logo">
                 <svg
                   viewBox="0 0 380 64"
@@ -98,7 +102,9 @@ const Header = ({ children, otherLocalePage }) => {
                 <LocaleLink
                   key={locale}
                   locale={locale}
-                  otherLocalePage={locale === otherLocale && otherLocalePage}
+                  isActive={locale !== otherLocale}
+                  otherLocalePage={otherLocalePage}
+                  url={router.asPath}
                 />
               ))}
             </div>

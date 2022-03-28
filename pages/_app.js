@@ -14,6 +14,11 @@ const App = ({ Component, pageProps, router }) => {
       <PrismicProvider
         linkResolver={linkResolver}
         internalLinkComponent={({ href, children, ...props }) => (
+          <Link href={href} scroll={false}>
+            <a {...props}>{children}</a>
+          </Link>
+        )}
+        externalLinkComponent={({ href, children, ...props }) => (
           <Link href={href}>
             <a {...props}>{children}</a>
           </Link>

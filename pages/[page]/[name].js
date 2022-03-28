@@ -12,7 +12,12 @@ export default function ProjectPage(props) {
   const t = useTranslations('categories')
 
   return (
-    <Layout title={`${project.name} - ${t(project.category)}`} {...props}>
+    <Layout
+      title={`${project.data.name[0].text} - ${t(
+        slugify(project.data.category)
+      )}`}
+      {...props}
+    >
       <Header {...props} />
       <Container>
         <Project
@@ -35,8 +40,8 @@ export async function getStaticPaths({ locales }) {
       if (project.lang.includes(locale)) {
         paths.push({
           params: {
-            page: slugify(project.category),
-            name: slugify(project.name),
+            page: slugify(project.data.category),
+            name: slugify(project.uid),
           },
           locale,
         })
@@ -46,19 +51,21 @@ export async function getStaticPaths({ locales }) {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   }
 }
 
-export async function getStaticProps({ params, locale, locales, previewData }) {
+export async function getStaticProps({ params, locale, previewData }) {
   const messages = require(`../../locales/${locale}.json`)
   const content = await getEverything(locale, previewData)
 
   const project = content.projects.find(
-    (item) => slugify(item.name) === params.name
+    (item) =>
+      item?.data?.name && slugify(item.data.name[0].text) === params.name
   )
   const currentIndex = content.projects.findIndex(
-    (item) => slugify(item.name) === params.name
+    (item) =>
+      item?.data?.name && slugify(item.data.name[0].text) === params.name
   )
 
   const nextProject = content.projects[currentIndex + 1] ?? false
@@ -82,13 +89,7 @@ export async function getStaticProps({ params, locale, locales, previewData }) {
       messages,
       prevProject,
       nextProject,
-      // otherLocalePage: project.alternate_languages[0],
-      otherLocalePage: {
-        uid: project.uid,
-        lang: locales.find((item) => item !== locale),
-        category: project.category,
-        type: 'project',
-      },
+      otherLocalePage: project?.alternate_languages[0] ?? false,
     },
   }
 }

@@ -1,6 +1,8 @@
 import React from 'react'
 import Link from 'next-translate-routes/link'
 import { useTranslations } from 'next-intl'
+import { linkResolver } from '../../lib/prismic'
+import { PrismicText } from '@prismicio/react'
 
 const ProjectLists = ({ setActiveItem, lists }) => {
   const t = useTranslations('categories')
@@ -26,9 +28,11 @@ const ProjectLists = ({ setActiveItem, lists }) => {
                   role="treeitem"
                   tabIndex="-1"
                 >
-                  <Link href={item.url} scroll={false}>
+                  <Link href={linkResolver(item)} scroll={false}>
                     <a onMouseEnter={() => handleMouseEnter(item)}>
-                      <span>{item.name}</span>
+                      <span>
+                        <PrismicText field={item.data.name} />
+                      </span>
                     </a>
                   </Link>
                 </li>

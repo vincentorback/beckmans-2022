@@ -1,15 +1,16 @@
 import { useTranslations } from 'next-intl'
+import { linkResolver } from '../../lib/prismic'
 import Link from 'next-translate-routes/link'
 
 const Pagination = ({ prev, next }) => {
   const t = useTranslations('navigation')
 
-  if (!prev?.url && !next?.url) return null
+  if (!prev?.uid && !next?.uid) return null
 
   return (
     <nav className="Pagination">
       {prev && (
-        <Link href={prev.url} prefetch={false} scroll={false}>
+        <Link href={linkResolver(prev)} prefetch={false} scroll={false}>
           <a className="Pagination-link Pagination-prev">
             <svg
               width="16"
@@ -28,7 +29,7 @@ const Pagination = ({ prev, next }) => {
         </Link>
       )}
       {next && (
-        <Link href={next.url} scroll={false}>
+        <Link href={linkResolver(next)} scroll={false}>
           <a className="Pagination-link Pagination-next">
             <span>{t('next')} student</span>
             <svg

@@ -1,9 +1,10 @@
 import React from 'react'
 import Image from '../Image'
 import LinkWrap from '../LinkWrap'
-import { isEmpty } from '../../lib/utilities'
+import { slugify, isEmpty } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
 import { m } from 'framer-motion'
+import { linkResolver } from '../../lib/prismic'
 
 const Window = ({ item, previousItem }) => {
   const [isLoaded, setIsLoaded] = React.useState(isEmpty(item?.image))
@@ -11,6 +12,7 @@ const Window = ({ item, previousItem }) => {
   const t = useTranslations('categories')
 
   if (!item?.uid) return null
+
   // {
   //   item = {
   //     uid: 'fallback',
@@ -54,12 +56,16 @@ const Window = ({ item, previousItem }) => {
           >
             <div className="ProjectsGrid-windowContent">
               <p>
-                {previousItem.name ? previousItem.name : previousItem.title}
+                {previousItem.title
+                  ? previousItem.title
+                  : previousItem.data.name[0].text}
               </p>
-              {previousItem.category && <p>{t(previousItem.category)}</p>}
+              {previousItem?.data?.category && (
+                <p>{t(slugify(previousItem.data.category))}</p>
+              )}
               {previousItem.subtitle && <p>{previousItem.subtitle}</p>}
             </div>
-            {previousItem?.image && (
+            {previousItem?.data?.main_image?.url && (
               <Image
                 alt=""
                 className="ProjectsGrid-windowItemImage"
@@ -68,14 +74,14 @@ const Window = ({ item, previousItem }) => {
                 layout="fill"
                 quality={10}
                 sizes="(max-width: 1400px) 50vw, 686px"
-                src={previousItem.image}
+                src={previousItem.data.main_image}
               />
             )}
           </div>
         </div>
       )}
       <div className="ProjectsGrid-windowItem" key={item.uid}>
-        <LinkWrap url={item.url}>
+        <LinkWrap url={linkResolver(item)}>
           <m.div
             className="ProjectsGrid-windowItemInner"
             initial="loading"
@@ -94,11 +100,11 @@ const Window = ({ item, previousItem }) => {
             }}
           >
             <div className="ProjectsGrid-windowContent">
-              <p>{item.name ? item.name : item.title}</p>
-              {item.category && <p>{t(item.category)}</p>}
+              <p>{item.title ? item.title : item.data.name[0].text}</p>
+              {item?.data?.category && <p>{t(slugify(item.data.category))}</p>}
               {item.subtitle && <p>{item.subtitle}</p>}
             </div>
-            {item?.image && (
+            {item?.data?.main_image?.url && (
               <Image
                 alt=""
                 className="ProjectsGrid-windowItemImage"
@@ -107,7 +113,7 @@ const Window = ({ item, previousItem }) => {
                 layout="fill"
                 quality={10}
                 sizes="(max-width: 1400px) 50vw, 686px"
-                src={item.image}
+                src={item?.data?.main_image}
                 onLoadingComplete={() => {
                   setIsLoaded(true)
                 }}

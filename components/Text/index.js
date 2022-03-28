@@ -1,6 +1,5 @@
 import Entry from '../Entry'
 import { PrismicRichText } from '@prismicio/react'
-import { internalLink, externalLink } from '../../lib/prismic'
 
 const Text = ({ title, body, children }) => {
   return (
@@ -11,11 +10,7 @@ const Text = ({ title, body, children }) => {
       <div className="Text-body">
         {body && (
           <Entry>
-            <PrismicRichText
-              field={body}
-              internalLinkComponent={internalLink}
-              externalLinkComponent={externalLink}
-            />
+            <PrismicRichText field={body} />
           </Entry>
         )}
         {children && <Entry>{children}</Entry>}

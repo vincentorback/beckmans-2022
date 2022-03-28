@@ -1,6 +1,5 @@
 import Entry from '../Entry'
 import { PrismicRichText } from '@prismicio/react'
-import { internalLink, externalLink } from '../../lib/prismic'
 
 const Credits = ({ columns }) => {
   return (
@@ -13,11 +12,7 @@ const Credits = ({ columns }) => {
             )}
             {column.column_text && (
               <Entry>
-                <PrismicRichText
-                  field={column.column_text}
-                  internalLinkComponent={internalLink}
-                  externalLinkComponent={externalLink}
-                />
+                <PrismicRichText field={column.column_text} />
               </Entry>
             )}
           </div>

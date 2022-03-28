@@ -2,24 +2,27 @@ import React from 'react'
 import Link from 'next-translate-routes/link'
 import Image from '../Image'
 import classNames from 'classnames'
+import { isEmpty } from '../../lib/utilities'
+import { linkResolver } from '../../lib/prismic'
 
 const Map = ({ items, category }) => {
   const [allImagesLoaded, setAllImagesLoaded] = React.useState(false)
-  const [imagesLoaded, setImagesLoaded] = React.useState(1)
+  const imagesLoaded = React.useRef(0)
 
   const handleImageLoad = React.useCallback(() => {
-    setImagesLoaded((prev) => {
+    if (!isEmpty(imagesLoaded.current)) {
+      imagesLoaded.current += 1
+
       if (
-        prev ===
-        items.filter((item) => item.category && item.category === category)
-          .length
+        imagesLoaded.current ===
+        items.filter(
+          (item) => item?.data?.category && item.data.category === category
+        ).length
       ) {
         setAllImagesLoaded(true)
       }
-
-      return prev + 1
-    })
-  }, [setImagesLoaded, items, category])
+    }
+  }, [items, category])
 
   const [activeItem, setActiveItem] = React.useState(null)
 
@@ -38,25 +41,42 @@ const Map = ({ items, category }) => {
         <div className="Map-container">
           <div className="Map-grid">
             {items.map((item, itemIndex) => {
-              const isVisible = item.category && item.category === category
+              const isVisible =
+                item?.data?.category && item.data.category === category
 
-              const imageOriginalWidth = 1038
-              const imageOriginalHeight = 1200
-              const imageWidth = 40
-              const imageHeight = 40
+              const imageOriginalWidth =
+                item?.data?.main_image?.dimensions.width
+              const imageOriginalHeight =
+                item?.data?.main_image?.dimensions.height
+
+              const rectImageWidth = 40
+              const rectImageHeight = 40
 
               const imagePosition =
-                item.imagePosition &&
-                item.imagePosition.match('([0-9]{1,3}%) ([0-9]{1,3}%)')
+                item?.data?.image_position &&
+                item.data.image_position.match('([0-9]{1,3}%) ([0-9]{1,3}%)')
 
               const imagePositionX = imagePosition ? imagePosition[1] : '50%'
               const imagePositionY = imagePosition ? imagePosition[2] : '50%'
-              const rectX = Math.floor(
-                imageOriginalWidth * (imagePositionX.replace('%', '') / 100)
-              )
-              const rectY = Math.floor(
-                imageOriginalHeight * (imagePositionY.replace('%', '') / 100)
-              )
+
+              const rectX =
+                imageOriginalWidth &&
+                Math.min(
+                  Math.floor(
+                    imageOriginalWidth * (imagePositionX.replace('%', '') / 100)
+                  ),
+                  imageOriginalWidth - rectImageWidth
+                )
+
+              const rectY =
+                imageOriginalHeight &&
+                Math.min(
+                  Math.floor(
+                    imageOriginalHeight *
+                      (imagePositionY.replace('%', '') / 100)
+                  ),
+                  imageOriginalHeight - rectImageHeight
+                )
 
               return (
                 <div
@@ -64,23 +84,31 @@ const Map = ({ items, category }) => {
                   className={classNames('Map-item', {
                     'is-visible': isVisible,
                   })}
-                  onMouseEnter={() => isVisible && handleMouse(item.name)}
+                  onMouseEnter={() =>
+                    isVisible && handleMouse(item.data.name[0].text)
+                  }
                   onMouseLeave={() => isVisible && handleMouse(null)}
                 >
                   {isVisible && (
-                    <Link href={item.url} prefetch={false} scroll={false}>
+                    <Link
+                      href={linkResolver(item)}
+                      prefetch={false}
+                      scroll={false}
+                    >
                       <a className="Map-itemLink">
                         <div className="Map-itemInner">
                           <Image
                             className="Map-itemImage"
-                            src={item.image}
-                            width={imageWidth}
-                            height={imageHeight}
-                            layout="fixed"
-                            rect={`${rectX},${rectY},${imageOriginalWidth},${imageOriginalHeight}`}
+                            src={item.data.main_image}
+                            width={rectImageWidth * 2}
+                            height={rectImageHeight * 2}
+                            layout="responsive"
+                            rect={`${rectX},${rectY},${rectImageWidth * 2},${
+                              rectImageHeight * 2
+                            }`}
                             quality={10}
-                            alt={item.name}
                             onLoadingComplete={() => handleImageLoad(item.uid)}
+                            alt=""
                           />
                         </div>
                       </a>

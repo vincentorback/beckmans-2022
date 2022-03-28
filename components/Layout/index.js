@@ -16,7 +16,7 @@ const Layout = ({ title, children, background, pages, otherLocalePage }) => {
       <div className="Layout-main">{children}</div>
       <Footer pages={pages} otherLocalePage={otherLocalePage} />
       {router.isPreview && (
-        <Link href={'/api/exit-preview'} prefetch={false}>
+        <Link href={'/api/exit-preview'} prefetch={false} scroll={false}>
           <a className={'Layout-previewButton'}>Exit preview</a>
         </Link>
       )}

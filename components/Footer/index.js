@@ -17,11 +17,6 @@ const Footer = ({ pages }) => {
               {pages &&
                 pages
                   .filter((item) => item.lang === localeStrings[router.locale])
-                  .sort((a, b) => {
-                    if (a.uid > b.uid) return 1
-                    if (a.uid < b.uid) return -1
-                    return 0
-                  })
                   .map((page) => (
                     <li key={page.uid}>
                       <Link href={`/${page.uid}`} scroll={false}>

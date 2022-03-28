@@ -53,9 +53,8 @@ const ProjectsGrid = ({
   )
 
   const memoWindow = React.useMemo(
-    () =>
-      isReady && <Window item={activeItem} previousItem={previousActiveItem} />,
-    [isReady, activeItem, previousActiveItem]
+    () => <Window item={activeItem} previousItem={previousActiveItem} />,
+    [activeItem, previousActiveItem]
   )
 
   const dotVariants = React.useMemo(
@@ -131,7 +130,7 @@ const ProjectsGrid = ({
     >
       <div className="ProjectsGrid-inner">
         {memoGrid}
-        {memoWindow}
+        {Boolean(isReady && activeItem) && memoWindow}
         {memoDots}
       </div>
     </div>
