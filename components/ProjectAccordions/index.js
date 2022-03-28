@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/router'
 import { SESSION_CATEGORY } from '../../lib/constants'
 import { m } from 'framer-motion'
+import { linkResolver } from '../../lib/prismic'
 
 const ProjectAccordions = ({ lists }) => {
   const { locale } = useRouter()
@@ -144,18 +145,24 @@ const ProjectAccordions = ({ lists }) => {
             >
               {list.items.map((item, itemIndex) => (
                 <div className="Accordions-item" key={item.uid}>
-                  <Link href={item.url} prefetch={false} scroll={false}>
+                  <Link
+                    href={linkResolver(item)}
+                    prefetch={false}
+                    scroll={false}
+                  >
                     <a className="Accordions-link">
                       <div className="Accordions-content">
-                        <p>{item.name}</p>
-                        <p>{item.title[locale]}</p>
+                        <p>{item.data.name[0].text}</p>
+                        {Boolean(item?.data?.project_title.length) && (
+                          <p>{item.data.project_title[0].text}</p>
+                        )}
                       </div>
                       <div className="Accordions-imageWrap">
                         <Image
-                          src={item.image}
+                          src={item.data.main_image}
                           width={110}
                           height={110}
-                          alt={item.name}
+                          alt=""
                           className="Accordions-image"
                           layout="responsive"
                           priority={itemIndex <= 3}
