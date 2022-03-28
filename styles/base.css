@@ -26,6 +26,8 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: geometricPrecision;
 
+  scroll-behavior: smooth;
+
   transition: background-color 400ms ease;
 }
 
