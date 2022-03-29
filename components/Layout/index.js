@@ -10,9 +10,11 @@ const Layout = ({ title, children, background, pages, otherLocalePage }) => {
 
   return (
     <div className="Layout">
-      <Meta title={title} otherLocalePage={otherLocalePage}>
-        <meta content={`var(--color-${backgroundColor})`} name="theme-color" />
-      </Meta>
+      <Meta
+        title={title}
+        otherLocalePage={otherLocalePage}
+        backgroundColor={backgroundColor}
+      />
       <div className="Layout-main">{children}</div>
       <Footer pages={pages} otherLocalePage={otherLocalePage} />
       {router.isPreview && (
