@@ -9,6 +9,12 @@ import { linkResolver, repositoryName } from '../lib/prismic'
 import '../styles/index.css'
 
 const App = ({ Component, pageProps, router }) => {
+  React.useEffect(() => {
+    window.requestAnimationFrame(() => {
+      document.documentElement.style.transition = 'background-color 400ms ease'
+    })
+  }, [])
+
   return (
     <NextIntlProvider messages={pageProps.messages}>
       <PrismicProvider

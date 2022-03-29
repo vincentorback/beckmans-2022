@@ -27,8 +27,6 @@ html {
   text-rendering: geometricPrecision;
 
   scroll-behavior: smooth;
-
-  transition: background-color 400ms ease;
 }
 
 html.no-scroll,
