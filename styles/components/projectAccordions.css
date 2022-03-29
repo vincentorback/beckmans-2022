@@ -46,7 +46,6 @@
 .Accordions-content {
   transition: max-height 300ms ease-out;
   overflow: hidden;
-  padding-right: var(--site-spacing);
 }
 
 .Accordions-list.is-active .Accordions-content {
@@ -75,12 +74,13 @@
   }
 }
 
-.Accordions-content {
+.Accordions-itemContent {
+  padding-right: var(--site-spacing);
   flex: 1 1 auto;
   line-height: var(--lineheight-lg);
 }
 
-.Accordions-content p:first-child {
+.Accordions-itemContent p:first-child {
   font-weight: var(--text-bold);
 }
 

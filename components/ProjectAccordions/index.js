@@ -149,7 +149,7 @@ const ProjectAccordions = ({ lists }) => {
                     scroll={false}
                   >
                     <a className="Accordions-link">
-                      <div className="Accordions-content">
+                      <div className="Accordions-itemContent">
                         <p>
                           <PrismicText field={item.data.name} />
                         </p>
