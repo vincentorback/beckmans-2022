@@ -67,8 +67,8 @@ const Item = ({
   const imageOriginalWidth = item?.data?.main_image?.dimensions.width
   const imageOriginalHeight = item?.data?.main_image?.dimensions.height
 
-  const rectImageWidth = 115
-  const rectImageHeight = 115
+  const rectImageWidth = 116
+  const rectImageHeight = 116
 
   const imagePosition =
     item?.data?.image_position &&
@@ -97,12 +97,6 @@ const Item = ({
       imageOriginalHeight - rectImageHeight
     )
 
-  if (rectX) {
-    console.log(
-      `${rectX},${rectY},${rectImageWidth * 2},${rectImageHeight * 2}`
-    )
-  }
-
   return (
     <div
       key={item.uid || itemIndex}
@@ -124,7 +118,6 @@ const Item = ({
               className="ProjectsGrid-image"
               width={rectImageWidth * 2}
               height={rectImageHeight * 2}
-              layout="responsive"
               onLoadingComplete={() => handleImageLoad(item.uid)}
               alt=""
               quality={70}

@@ -50,8 +50,8 @@ const Map = ({ items, category }) => {
               const imageOriginalHeight =
                 item?.data?.main_image?.dimensions.height
 
-              const rectImageWidth = 40
-              const rectImageHeight = 40
+              const rectImageWidth = 116
+              const rectImageHeight = 116
 
               const imagePosition =
                 item?.data?.image_position &&
@@ -103,7 +103,6 @@ const Map = ({ items, category }) => {
                             src={item.data.main_image}
                             width={rectImageWidth * 2}
                             height={rectImageHeight * 2}
-                            layout="responsive"
                             rect={`${rectX},${rectY},${rectImageWidth * 2},${
                               rectImageHeight * 2
                             }`}
