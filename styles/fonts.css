@@ -19,5 +19,5 @@
   src: url('/fonts/Affairs-Italic.woff2') format('woff2'),
     url('/fonts/Affairs-Italic.woff') format('woff');
   font-style: italic;
-  font-display: swap;
+  font-display: block;
 }
