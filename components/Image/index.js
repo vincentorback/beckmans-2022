@@ -1,10 +1,5 @@
-import * as prismicH from '@prismicio/helpers'
-// const src = prismicH.asImageSrc(prismicDoc.data.example_image, {
-//   sat: -100,
-// })
-
-import React from 'react'
 import NextImage from 'next/image'
+import * as prismicH from '@prismicio/helpers'
 
 const imageLoader = (image) => {
   const { width, height, quality, rect } = image

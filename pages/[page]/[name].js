@@ -2,6 +2,7 @@ import React from 'react'
 import { getEverything } from '../../lib/content'
 import { useTranslations } from 'next-intl'
 import { slugify } from '../../lib/utilities'
+import * as prismicH from '@prismicio/helpers'
 import Layout from '../../components/Layout'
 import Header from '../../components/Header'
 import Project from '../../components/Project'
@@ -13,7 +14,7 @@ export default function ProjectPage(props) {
 
   return (
     <Layout
-      title={`${project.data.name[0].text} - ${t(
+      title={`${prismicH.asText(project.data.name)} - ${t(
         slugify(project.data.category)
       )}`}
       {...props}
@@ -61,11 +62,13 @@ export async function getStaticProps({ params, locale, previewData }) {
 
   const project = content.projects.find(
     (item) =>
-      item?.data?.name && slugify(item.data.name[0].text) === params.name
+      item?.data?.name &&
+      slugify(prismicH.asText(item.data.name)) === params.name
   )
   const currentIndex = content.projects.findIndex(
     (item) =>
-      item?.data?.name && slugify(item.data.name[0].text) === params.name
+      item?.data?.name &&
+      slugify(prismicH.asText(item.data.name)) === params.name
   )
 
   const nextProject = content.projects[currentIndex + 1] ?? false

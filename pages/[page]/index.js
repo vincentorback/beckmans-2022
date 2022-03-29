@@ -1,4 +1,5 @@
 import React from 'react'
+import * as prismicH from '@prismicio/helpers'
 import { getEverything } from '../../lib/content'
 import { localeStrings } from '../../lib/constants'
 import Container from '../../components/Container'
@@ -23,7 +24,7 @@ export default function Page(props) {
   return (
     <Layout
       {...props}
-      title={page.data.title[0].text}
+      title={prismicH.asText(page.data.title)}
       background={page?.data?.background_color}
     >
       <Header {...props} />

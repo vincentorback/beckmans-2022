@@ -4,6 +4,7 @@ import Image from '../Image'
 import classNames from 'classnames'
 import { isEmpty } from '../../lib/utilities'
 import { linkResolver } from '../../lib/prismic'
+import * as prismicH from '@prismicio/helpers'
 
 const Map = ({ items, category }) => {
   const [allImagesLoaded, setAllImagesLoaded] = React.useState(false)
@@ -85,7 +86,7 @@ const Map = ({ items, category }) => {
                     'is-visible': isVisible,
                   })}
                   onMouseEnter={() =>
-                    isVisible && handleMouse(item.data.name[0].text)
+                    isVisible && handleMouse(prismicH.asText(item.data.name))
                   }
                   onMouseLeave={() => isVisible && handleMouse(null)}
                 >
