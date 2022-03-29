@@ -116,11 +116,10 @@ const Item = ({
           {item?.data?.main_image?.url && (
             <Image
               className="ProjectsGrid-image"
-              width={rectImageWidth * 2}
-              height={rectImageHeight * 2}
+              width={rectImageWidth}
+              height={rectImageHeight}
               onLoadingComplete={() => handleImageLoad(item.uid)}
               alt=""
-              quality={70}
               rect={`${rectX},${rectY},${rectImageWidth * 2},${
                 rectImageHeight * 2
               }`}

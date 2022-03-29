@@ -101,8 +101,8 @@ const Map = ({ items, category }) => {
                           <Image
                             className="Map-itemImage"
                             src={item.data.main_image}
-                            width={rectImageWidth * 2}
-                            height={rectImageHeight * 2}
+                            width={rectImageWidth}
+                            height={rectImageHeight}
                             rect={`${rectX},${rectY},${rectImageWidth * 2},${
                               rectImageHeight * 2
                             }`}

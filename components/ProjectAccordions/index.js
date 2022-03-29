@@ -166,7 +166,6 @@ const ProjectAccordions = ({ lists }) => {
                           height={110}
                           alt=""
                           className="Accordions-image"
-                          layout="responsive"
                           priority={itemIndex <= 3}
                         />
                         <div className="Accordions-dots">

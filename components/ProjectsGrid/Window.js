@@ -72,8 +72,8 @@ const Window = ({ item, previousItem }) => {
               <Image
                 alt=""
                 className="ProjectsGrid-windowItemImage"
-                width={(1440 / 12) * 6 * 2}
-                height={(1440 / 12) * 6 * 2 * 1.1671511628}
+                width={(1440 / 12) * 6}
+                height={(1440 / 12) * 6 * 1.1671511628}
                 layout="fill"
                 quality={10}
                 sizes="(max-width: 1400px) 50vw, 686px"
@@ -117,10 +117,9 @@ const Window = ({ item, previousItem }) => {
               <Image
                 alt=""
                 className="ProjectsGrid-windowItemImage"
-                width={(1440 / 12) * 6 * 2}
-                height={(1440 / 12) * 6 * 2 * 1.1671511628}
+                width={(1440 / 12) * 6}
+                height={(1440 / 12) * 6 * 1.1671511628}
                 layout="fill"
-                quality={10}
                 sizes="(max-width: 1400px) 50vw, 686px"
                 src={item?.data?.main_image}
                 onLoadingComplete={() => {

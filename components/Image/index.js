@@ -1,15 +1,17 @@
 import NextImage from 'next/image'
-import * as prismicH from '@prismicio/helpers'
 
-const imageLoader = (image) => {
-  const { width, height, quality, rect } = image
+const imageLoader = (image, props) => {
+  const url = new URL(image.src)
 
-  return prismicH.asImageSrc(image.src, {
-    w: width,
-    h: height,
-    q: quality,
-    rect,
-  })
+  url.searchParams.set('auto', 'compress,format')
+  url.searchParams.set('w', image.width)
+  url.searchParams.set('q', image.quality)
+
+  if (props.rect) {
+    url.searchParams.set('rect', props.rect)
+  }
+
+  return url.toString()
 }
 
 const Image = (props) => {
@@ -38,14 +40,14 @@ const Image = (props) => {
       <NextImage
         {...props}
         src={src.url}
-        loader={() => imageLoader(props)}
+        loader={(image) => imageLoader(image, props)}
         layout={layout || 'intrinsic'}
         objectFit={objectFit || 'cover'}
         objectPosition={objectPosition || '50% 50%'}
         alt={alt || src.alt || ''}
         width={layout === 'cover' || layout === 'fill' ? null : width}
         height={layout === 'cover' || layout === 'fill' ? null : height}
-        quality={quality || 50}
+        quality={quality || 70}
       />
     </div>
   )

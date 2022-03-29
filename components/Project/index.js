@@ -106,8 +106,8 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
             src={project.data.main_image}
             alt=""
             layout="responsive"
-            width={(1440 / 12) * 7 * 2}
-            height={(1440 / 12) * 7 * 2 * 1.1671511628}
+            width={(1440 / 12) * 7}
+            height={(1440 / 12) * 7 * 1.1671511628}
             sizes="(min-width: 1400px) 800px, (min-width: 800px) 50vw, 100vw"
           />
           <div className="Project-imageDots">
@@ -188,18 +188,14 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                 <Image
                   src={project.data.main_image}
                   alt=""
-                  layout="responsive"
                   width={506}
                   height={634}
-                  // TODO: Sizes
                 />
                 <Image
                   src={project.data.main_image}
                   alt=""
-                  layout="responsive"
                   width={506}
                   height={634}
-                  // TODO: Sizes
                 />
               </div>
               <Video
@@ -213,18 +209,14 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
               <Image
                 src={project.data.main_image}
                 alt=""
-                layout="responsive"
                 width={1038}
                 height={632}
-                // TODO: Sizes
               />
               <Image
                 src={project.data.main_image}
                 alt=""
-                layout="responsive"
                 width={1038}
                 height={1200}
-                // TODO: Sizes
               />
             </div>
           )}
@@ -239,7 +231,6 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
         variants={{
           initial: {
             opacity: 0,
-            y: -10,
             transition: {
               delay: 0,
               duration: 0.4,
