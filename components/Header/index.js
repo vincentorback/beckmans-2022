@@ -105,7 +105,7 @@ const Header = ({ children, alternateLanguages }) => {
                   url={
                     locale === router.locale
                       ? null
-                      : alternateLanguages.length
+                      : Boolean(alternateLanguages && alternateLanguages.length)
                       ? linkResolver(alternateLanguages[0])
                       : router.asPath
                   }
