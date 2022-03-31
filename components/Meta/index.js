@@ -1,13 +1,10 @@
 import { linkResolver } from '../../lib/prismic'
 import { useTranslations } from 'next-intl'
-import { useRouter } from 'next/router'
-import { IS_PRODUCTION } from '../../lib/constants'
+import { localeStrings, IS_PRODUCTION } from '../../lib/constants'
 import Head from 'next/head'
 
-const Meta = ({ title, otherLocalePage, backgroundColor }) => {
+const Meta = ({ title, alternateLanguages, backgroundColor }) => {
   const t = useTranslations()
-  const router = useRouter()
-  const otherLocale = router.locales.find((item) => item !== router.locale)
 
   return (
     <Head>
@@ -17,13 +14,16 @@ const Meta = ({ title, otherLocalePage, backgroundColor }) => {
       <title>
         {title && `${title} | `}Beckmans {t('show')} 19.05–24.05.2022
       </title>
-      {otherLocalePage && (
+      {alternateLanguages?.map((doc) => (
         <link
+          key={doc.uid}
           rel="alternate"
-          hrefLang={otherLocale}
-          href={linkResolver(otherLocalePage, true)}
+          hrefLang={Object.keys(localeStrings).find(
+            (locale) => localeStrings[locale] === doc.lang
+          )}
+          href={linkResolver(doc, true)}
         />
-      )}
+      ))}
       {!IS_PRODUCTION && <meta name="robots" content="noindex, nofollow" />}
       <meta content={`var(--color-${backgroundColor})`} name="theme-color" />
     </Head>

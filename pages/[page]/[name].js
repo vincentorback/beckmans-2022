@@ -92,7 +92,7 @@ export async function getStaticProps({ params, locale, previewData }) {
       messages,
       prevProject,
       nextProject,
-      otherLocalePage: project?.alternate_languages[0] ?? false,
+      alternateLanguages: project.alternate_languages,
     },
   }
 }

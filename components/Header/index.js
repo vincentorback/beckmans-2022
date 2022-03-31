@@ -7,7 +7,7 @@ import { SESSION_STARTED } from '../../lib/constants'
 import { capitalize } from '../../lib/utilities'
 import { linkResolver } from '../../lib/prismic'
 
-const LocaleLink = ({ locale, isActive, otherLocalePage, url }) => {
+const LocaleLink = ({ locale, isActive, url }) => {
   if (isActive) {
     return (
       <div className="Header-languageLink">
@@ -17,11 +17,7 @@ const LocaleLink = ({ locale, isActive, otherLocalePage, url }) => {
   }
 
   return (
-    <Link
-      href={otherLocalePage ? linkResolver(otherLocalePage) : url}
-      locale={locale}
-      scroll={false}
-    >
+    <Link href={url} locale={locale} scroll={false}>
       <a className="Header-languageLink" lang={locale}>
         <span>{capitalize(locale)}</span>
       </a>
@@ -29,10 +25,9 @@ const LocaleLink = ({ locale, isActive, otherLocalePage, url }) => {
   )
 }
 
-const Header = ({ children, otherLocalePage }) => {
+const Header = ({ children, alternateLanguages }) => {
   const router = useRouter()
   const headerRef = React.useRef(null)
-  const otherLocale = router.locales.find((item) => item !== router.locale)
 
   React.useEffect(() => {
     return () => {
@@ -63,11 +58,15 @@ const Header = ({ children, otherLocalePage }) => {
       <Container>
         <div className="Header-inner">
           <div className="Header-topLeft">
-            <p className="Header-showText">
-              <span lang="en">Graduation Show</span> <br />
-              <time dateTime="2022-05-19">19.05</time>–
-              <time dateTime="2022-05-24">24.05.2022</time>
-            </p>
+            <Link href="/" scroll={false}>
+              <a>
+                <p className="Header-showText">
+                  <span lang="en">Graduation Show</span> <br />
+                  <time dateTime="2022-05-19">19.05</time>–
+                  <time dateTime="2022-05-24">24.05.2022</time>
+                </p>
+              </a>
+            </Link>
           </div>
           {children && (
             <div className="Header-bottomLeft">
@@ -102,9 +101,14 @@ const Header = ({ children, otherLocalePage }) => {
                 <LocaleLink
                   key={locale}
                   locale={locale}
-                  isActive={locale !== otherLocale}
-                  otherLocalePage={otherLocalePage}
-                  url={router.asPath}
+                  isActive={locale === router.locale}
+                  url={
+                    locale === router.locale
+                      ? null
+                      : alternateLanguages.length
+                      ? linkResolver(alternateLanguages[0])
+                      : router.asPath
+                  }
                 />
               ))}
             </div>

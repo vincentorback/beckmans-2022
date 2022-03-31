@@ -87,7 +87,7 @@ export async function getStaticProps({ params, locale, previewData }) {
       page,
       pages: content.pages,
       messages,
-      otherLocalePage: page.alternate_languages[0],
+      alternateLanguages: page.alternate_languages,
     },
   }
 }
