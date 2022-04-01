@@ -1,21 +1,17 @@
 .Entry {
   line-height: var(--lineheight-lg);
+  font-size: 0.875rem;
+}
+
+@media (min-width: 600px) {
+  .Entry {
+    font-size: 1rem;
+  }
 }
 
 .Entry > * + * {
   margin-top: 1.25em;
 }
-
-/* .title {
-  font-size: 2rem;
-  line-height: var(--lineheight-md);
-  font-weight: var(--text-bold);
-}
-
-.subtitle {
-  font-size: 2rem;
-  line-height: var(--lineheight-md);
-} */
 
 .Entry h2,
 .Entry h3,
@@ -70,14 +66,3 @@
     opacity: 0.8;
   }
 }
-
-/* .grid {
-  display: grid;
-  gap: var(--site-spacing);
-}
-
-@media (min-width: 800px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-} */

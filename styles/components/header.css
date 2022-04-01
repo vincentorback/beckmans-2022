@@ -84,6 +84,13 @@
   flex-wrap: wrap;
   gap: 1em;
   justify-content: flex-end;
+  font-size: 0.875rem;
+}
+
+@media (min-width: 600px) {
+  .Header-languageLinks {
+    font-size: 1rem;
+  }
 }
 
 div.Header-languageLink {
@@ -119,7 +126,7 @@ a.Header-languageLink:active span {
 
 @media (max-width: 800px) {
   .Header-inner {
-    gap: 0;
+    gap: var(--site-spacing);
     padding-bottom: var(--site-spacing);
   }
 
@@ -127,18 +134,19 @@ a.Header-languageLink:active span {
     padding: calc(var(--site-spacing) * 0.5) 0 0;
   }
 
+  .Header-topLeft,
+  .Header-topRight,
+  .Header-bottomLeft {
+    display: none;
+  }
+
   .Header-topLeft {
-    grid-row: 1;
     grid-column: 1 / 7;
   }
 
   .Header-mid {
     grid-column: 1 / 13;
-    grid-row: 2;
-  }
-
-  .Header-bottomLeft {
-    display: none;
+    grid-row: 1;
   }
 
   .Header-topRight,
@@ -146,12 +154,8 @@ a.Header-languageLink:active span {
     grid-column: 7 / 13;
   }
 
-  .Header-topRight {
-    grid-row: 3;
-  }
-
   .Header-bottomRight {
-    grid-row: 1;
+    grid-row: 2;
   }
 
   .Header-logo svg {

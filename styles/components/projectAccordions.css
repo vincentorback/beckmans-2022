@@ -78,14 +78,16 @@
   padding-right: var(--site-spacing);
   flex: 1 1 auto;
   line-height: var(--lineheight-lg);
+  font-weight: var(--text-bold);
+  font-size: 0.875rem;
 }
 
-.Accordions-itemContent p:first-child {
-  font-weight: var(--text-bold);
+.Accordions-itemContent p + p {
+  margin-top: 0.5rem;
 }
 
 .Accordions-imageWrap {
-  flex: 0 0 110px;
+  flex: 0 0 114px;
   position: relative;
 }
 

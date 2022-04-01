@@ -189,7 +189,14 @@
 }
 
 .Project-info {
+  font-size: 0.875rem;
   line-height: var(--lineheight-lg);
+}
+
+@media (min-width: 600px) {
+  .Project-info {
+    font-size: 1rem;
+  }
 }
 
 .Project-info h4 {

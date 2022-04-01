@@ -162,8 +162,8 @@ const ProjectAccordions = ({ lists }) => {
                       <div className="Accordions-imageWrap">
                         <Image
                           src={item.data.main_image}
-                          width={110}
-                          height={110}
+                          width={114}
+                          height={114}
                           alt=""
                           className="Accordions-image"
                           priority={itemIndex <= 3}
