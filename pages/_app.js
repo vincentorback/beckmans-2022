@@ -41,11 +41,6 @@ const App = ({ Component, pageProps, router }) => {
             <a {...props}>{children}</a>
           </Link>
         )}
-        externalLinkComponent={({ href, children, ...props }) => (
-          <Link href={href}>
-            <a {...props}>{children}</a>
-          </Link>
-        )}
       >
         <PrismicPreview repositoryName={repositoryName}>
           <LazyMotion features={domAnimation} strict>

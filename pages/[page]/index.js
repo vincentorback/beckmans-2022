@@ -1,6 +1,6 @@
 import React from 'react'
 import * as prismicH from '@prismicio/helpers'
-import { getEverything } from '../../lib/content'
+import { getSingle, getEverything } from '../../lib/content'
 import { localeStrings } from '../../lib/constants'
 import Container from '../../components/Container'
 import Header from '../../components/Header'
@@ -70,6 +70,16 @@ export async function getStaticProps({ params, locale, previewData }) {
   const page = content.pages.find(
     (item) => item.uid === params.page && item.lang === localeStrings[locale]
   )
+  const otherLocalePage =
+    page?.alternate_languages?.length &&
+    (await getSingle(
+      'page',
+      page.alternate_languages[0].uid,
+      Object.keys(localeStrings).find(
+        (key) => localeStrings[key] === page.alternate_languages[0].lang
+      ),
+      previewData
+    ))
 
   if (!page) {
     return {
@@ -87,7 +97,7 @@ export async function getStaticProps({ params, locale, previewData }) {
       page,
       pages: content.pages,
       messages,
-      alternateLanguages: page.alternate_languages,
+      alternatePage: otherLocalePage,
     },
   }
 }

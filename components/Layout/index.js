@@ -4,7 +4,7 @@ import Footer from '../Footer'
 import Link from 'next-translate-routes/link'
 import { useRouter } from 'next/router'
 
-const Layout = ({ title, children, background, pages, alternateLanguages }) => {
+const Layout = ({ title, children, background, pages, alternatePage }) => {
   const router = useRouter()
   const backgroundColor = background ? background.toLowerCase() : 'white'
 
@@ -12,7 +12,7 @@ const Layout = ({ title, children, background, pages, alternateLanguages }) => {
     <div className="Layout">
       <Meta
         title={title}
-        alternateLanguages={alternateLanguages}
+        alternatePage={alternatePage}
         backgroundColor={backgroundColor}
       />
       <div className="Layout-main">{children}</div>

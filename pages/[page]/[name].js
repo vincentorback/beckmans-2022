@@ -1,7 +1,8 @@
 import React from 'react'
-import { getEverything } from '../../lib/content'
+import { getSingle, getEverything } from '../../lib/content'
 import { useTranslations } from 'next-intl'
 import { slugify } from '../../lib/utilities'
+import { localeStrings } from '../../lib/constants'
 import * as prismicH from '@prismicio/helpers'
 import Layout from '../../components/Layout'
 import Header from '../../components/Header'
@@ -65,14 +66,6 @@ export async function getStaticProps({ params, locale, previewData }) {
       item?.data?.name &&
       slugify(prismicH.asText(item.data.name)) === params.name
   )
-  const currentIndex = content.projects.findIndex(
-    (item) =>
-      item?.data?.name &&
-      slugify(prismicH.asText(item.data.name)) === params.name
-  )
-
-  const nextProject = content.projects[currentIndex + 1] ?? false
-  const prevProject = content.projects[currentIndex - 1] ?? false
 
   if (!project) {
     return {
@@ -84,6 +77,26 @@ export async function getStaticProps({ params, locale, previewData }) {
     }
   }
 
+  const currentIndex = content.projects.findIndex(
+    (item) =>
+      item?.data?.name &&
+      slugify(prismicH.asText(item.data.name)) === params.name
+  )
+
+  const nextProject = content.projects[currentIndex + 1] ?? false
+  const prevProject = content.projects[currentIndex - 1] ?? false
+
+  const otherLocaleProject =
+    project?.alternate_languages?.length &&
+    (await getSingle(
+      'project',
+      project.alternate_languages[0].uid,
+      Object.keys(localeStrings).find(
+        (key) => localeStrings[key] === project.alternate_languages[0].lang
+      ),
+      previewData
+    ))
+
   return {
     props: {
       project,
@@ -92,7 +105,7 @@ export async function getStaticProps({ params, locale, previewData }) {
       messages,
       prevProject,
       nextProject,
-      alternateLanguages: project.alternate_languages,
+      alternatePage: otherLocaleProject,
     },
   }
 }

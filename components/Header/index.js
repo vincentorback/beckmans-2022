@@ -25,7 +25,7 @@ const LocaleLink = ({ locale, isActive, url }) => {
   )
 }
 
-const Header = ({ children, alternateLanguages }) => {
+const Header = ({ children, alternatePage }) => {
   const router = useRouter()
   const headerRef = React.useRef(null)
 
@@ -105,8 +105,8 @@ const Header = ({ children, alternateLanguages }) => {
                   url={
                     locale === router.locale
                       ? null
-                      : Boolean(alternateLanguages && alternateLanguages.length)
-                      ? linkResolver(alternateLanguages[0])
+                      : alternatePage
+                      ? linkResolver(alternatePage)
                       : router.asPath
                   }
                 />
