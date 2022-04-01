@@ -6,10 +6,10 @@ import { m } from 'framer-motion'
 const Slices = ({ body }) => {
   return (
     <m.div
-      initial={{ y: '2%', opacity: 0 }}
+      initial={{ opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       exit={{
-        y: '-2%',
+        y: 10,
         opacity: 0,
       }}
       transition={{

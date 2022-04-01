@@ -77,7 +77,6 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
         variants={{
           initial: {
             opacity: 0,
-            y: 10,
             transition: {
               delay: 0,
               duration: 0.3,
@@ -93,7 +92,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
           },
           exit: {
             opacity: 0,
-            y: -10,
+            y: 10,
             transition: {
               delay: 0,
               duration: 0.3,
