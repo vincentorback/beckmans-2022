@@ -6,7 +6,7 @@ import withTranslateRoutes from 'next-translate-routes'
 import { PrismicProvider } from '@prismicio/react'
 import { PrismicPreview } from '@prismicio/next'
 import { linkResolver, repositoryName } from '../lib/prismic'
-import { clamp, easeInOutExpo, easeInOutCirc } from '../lib/utilities'
+import { clamp, easeInOutExpo } from '../lib/utilities'
 import jump from 'jump.js'
 import '../styles/index.css'
 
@@ -50,7 +50,10 @@ const App = ({ Component, pageProps, router }) => {
         <PrismicPreview repositoryName={repositoryName}>
           <LazyMotion features={domAnimation} strict>
             <AnimatePresence exitBeforeEnter>
-              <Component {...pageProps} key={router.asPath} />
+              <Component
+                {...pageProps}
+                key={`${router.locale}_${router.asPath}`}
+              />
             </AnimatePresence>
           </LazyMotion>
         </PrismicPreview>
