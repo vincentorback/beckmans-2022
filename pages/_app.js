@@ -6,7 +6,7 @@ import withTranslateRoutes from 'next-translate-routes'
 import { PrismicProvider } from '@prismicio/react'
 import { PrismicPreview } from '@prismicio/next'
 import { linkResolver, repositoryName } from '../lib/prismic'
-import { clamp } from '../lib/utilities'
+import { clamp, easeInOutExpo, easeInOutCirc } from '../lib/utilities'
 import jump from 'jump.js'
 import '../styles/index.css'
 
@@ -19,11 +19,12 @@ const App = ({ Component, pageProps, router }) => {
 
   React.useEffect(() => {
     const handleRouteChange = () => {
-      setTimeout(() => {
+      window.requestAnimationFrame(() => {
         jump(document.documentElement, {
-          duration: (distance) => clamp(300, Math.abs(distance), 900),
+          duration: (distance) => clamp(400, Math.abs(distance), 700),
+          easing: easeInOutExpo,
         })
-      }, 200)
+      })
     }
 
     router.events.on('routeChangeStart', handleRouteChange)
