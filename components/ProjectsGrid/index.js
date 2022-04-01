@@ -32,6 +32,12 @@ const ProjectsGrid = ({
     }
   }, [dotsDone, isReady])
 
+  React.useEffect(() => {
+    if (sessionStorage[SESSION_STARTED]) {
+      setDotsDone(true)
+    }
+  }, [])
+
   const handleMouseEnter = React.useCallback(
     (item) => {
       isReady && setActiveItem(item)

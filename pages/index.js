@@ -7,7 +7,7 @@ import ProjectAccordions from '../components/ProjectAccordions'
 import ProjectLists from '../components/ProjectLists'
 import ProjectsGrid from '../components/ProjectsGrid'
 import { getEverything } from '../lib/content'
-import { categories, SESSION_STARTED, SESSION_CATEGORY } from '../lib/constants'
+import { categories, SESSION_CATEGORY } from '../lib/constants'
 import { slugify } from '../lib/utilities'
 import debounce from 'lodash.debounce'
 
@@ -115,18 +115,12 @@ export default function HomePage(props) {
   }, [gridLoaded])
 
   React.useEffect(() => {
-    if (sessionStorage[SESSION_STARTED]) {
-      setReady(true)
-    }
-  }, [])
-
-  React.useEffect(() => {
     if (sessionStorage[SESSION_CATEGORY]) {
       setActiveFilter(sessionStorage[SESSION_CATEGORY])
     }
   }, [])
 
-  // TODO: Set filter when opening accordions when moving Filters from Header
+  // TODO: Set filter when opening accordions if we're moving Filters away from Header
   const onClick = React.useCallback((filter) => {
     setActiveFilter((prev) => {
       const newFilter = prev === filter ? DEFAULT_FILTER : filter
