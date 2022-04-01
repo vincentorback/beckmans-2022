@@ -2,9 +2,12 @@ import React from 'react'
 import classNames from 'classnames'
 import Plyr from 'plyr-react'
 import { useInView } from 'react-intersection-observer'
+import { getYoutubeID } from '../../lib/utilities'
 
 const Video = ({ width, height, video_id, provider_name, html }) => {
   const videoRef = React.useRef()
+
+  video_id = video_id ?? (html ? getYoutubeID(html) : false)
 
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -32,6 +35,7 @@ const Video = ({ width, height, video_id, provider_name, html }) => {
     return () => {
       window.removeEventListener('error', onError)
       window.removeEventListener('unhandledrejection', onError)
+
       if (plyr?.off) {
         plyr.off('error', onError)
       }
@@ -40,8 +44,10 @@ const Video = ({ width, height, video_id, provider_name, html }) => {
 
   // TODO: On error, replace with {html}
 
-  const MemoVideo = React.useMemo(
-    () => (
+  const MemoVideo = React.useMemo(() => {
+    if (!provider_name || !video_id) return null
+
+    return (
       <Plyr
         ref={videoRef}
         source={{
@@ -71,9 +77,8 @@ const Video = ({ width, height, video_id, provider_name, html }) => {
           ],
         }}
       />
-    ),
-    [video_id, provider_name]
-  )
+    )
+  }, [video_id, provider_name])
 
   return (
     <div
