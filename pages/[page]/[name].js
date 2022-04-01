@@ -62,9 +62,7 @@ export async function getStaticProps({ params, locale, previewData }) {
   const content = await getEverything(locale, previewData)
 
   const project = content.projects.find(
-    (item) =>
-      item?.data?.name &&
-      slugify(prismicH.asText(item.data.name)) === params.name
+    (item) => item?.uid === params.name && item.lang === localeStrings[locale]
   )
 
   if (!project) {

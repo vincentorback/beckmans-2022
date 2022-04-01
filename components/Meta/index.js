@@ -6,8 +6,6 @@ import Head from 'next/head'
 const Meta = ({ title, alternatePage, backgroundColor }) => {
   const t = useTranslations()
 
-  console.log(123, alternatePage, linkResolver(alternatePage))
-
   return (
     <Head>
       <meta charSet="utf-8" />
