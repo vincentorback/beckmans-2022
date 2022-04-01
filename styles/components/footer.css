@@ -117,3 +117,7 @@
     padding-left: 0.33rem;
   }
 }
+
+.Footer-nav {
+  font-weight: var(--text-bold);
+}

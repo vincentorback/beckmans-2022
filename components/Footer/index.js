@@ -14,7 +14,7 @@ const Footer = ({ pages }) => {
       <Container>
         <div className="Footer-grid">
           <div className="Footer-item">
-            <ul>
+            <ul className="Footer-nav">
               {pages &&
                 pages
                   .filter((item) => item.lang === localeStrings[router.locale])
