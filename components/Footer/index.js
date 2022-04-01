@@ -47,14 +47,22 @@ const Footer = ({ pages }) => {
           </div>
           <div className="Footer-item">
             <p>
-              {t('show')} 2022 <br />
-              19 - 24 {t('may')}
+              <Link href="https://www.facebook.com">
+                <a>
+                  {t('show')} 2022 <br />
+                  19 - 24 {t('may')}
+                </a>
+              </Link>
             </p>
           </div>
           <div className="Footer-item">
             <p>
-              {t('fashion-show')} <br />
-              <time dateTime="2022-05-17">17 {t('may')}</time>
+              <Link href="https://www.facebook.com">
+                <a>
+                  {t('fashion-show')} <br />
+                  <time dateTime="2022-05-17">17 {t('may')}</time>
+                </a>
+              </Link>
             </p>
           </div>
         </div>
