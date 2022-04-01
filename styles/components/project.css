@@ -136,12 +136,12 @@
     grid-column: 1 / 9;
   }
 
-  .Project-media {
+  .Project-projectInfo {
     grid-row: 2;
     grid-column: 1 / 9;
   }
 
-  .Project-projectInfo {
+  .Project-media {
     grid-row: 3;
     grid-column: 1 / 9;
   }
@@ -154,11 +154,14 @@
   .Project-mainText {
     grid-row: 2;
   }
-  .Project-media {
+  .Project-projectInfo--thanks {
     grid-row: 3;
   }
-  .Project-projectInfo {
+  .Project-media {
     grid-row: 4;
+  }
+  .Project-projectInfo--main {
+    grid-row: 5;
   }
 }
 

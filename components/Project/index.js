@@ -139,17 +139,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
             </Entry>
           </div>
 
-          <div className="Project-projectInfo">
-            <div className={classNames('Project-info', 'u-showSmall')}>
-              <h4>Program</h4>
-              <p>{t(`categories.${slugify(project.data.category)}`)}</p>
-            </div>
-            {Boolean(project.data.contact.length) && (
-              <div className={classNames('Project-info', 'u-showSmall')}>
-                <h4>{t('project.contact')}</h4>
-                <PrismicRichText field={project.data.contact} />
-              </div>
-            )}
+          <div className="Project-projectInfo Project-projectInfo--thanks">
             <div className="Project-info">
               <h4>{t('project.thanks-to')}</h4>
               {project.data.thanks.length ? (
@@ -158,25 +148,6 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                 <ExampleThanks />
               )}
             </div>
-            {project.data.press_download.url && (
-              <div className={classNames('Project-info', 'u-showSmall')}>
-                <h4>{t('project.press-images')}</h4>
-                <ul>
-                  <li>
-                    <Link href={project.data.press_download.url}>
-                      <a
-                        download={project.data.press_download.name}
-                        title={`${project.data.press_download.name} (${(
-                          project.data.press_download.size / 1000000
-                        ).toFixed(2)}MB)`}
-                      >
-                        {t('project.download')}
-                      </a>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            )}
           </div>
 
           {project.data.body.length ? (
@@ -219,6 +190,40 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
               />
             </div>
           )}
+
+          <div className="Project-projectInfo Project-projectInfo--main">
+            <div className={classNames('Project-info', 'u-showSmall')}>
+              <h4>Program</h4>
+              <p>{t(`categories.${slugify(project.data.category)}`)}</p>
+            </div>
+
+            {Boolean(project.data.contact.length) && (
+              <div className={classNames('Project-info', 'u-showSmall')}>
+                <h4>{t('project.contact')}</h4>
+                <PrismicRichText field={project.data.contact} />
+              </div>
+            )}
+
+            {project.data.press_download.url && (
+              <div className={classNames('Project-info', 'u-showSmall')}>
+                <h4>{t('project.press-images')}</h4>
+                <ul>
+                  <li>
+                    <Link href={project.data.press_download.url}>
+                      <a
+                        download={project.data.press_download.name}
+                        title={`${project.data.press_download.name} (${(
+                          project.data.press_download.size / 1000000
+                        ).toFixed(2)}MB)`}
+                      >
+                        {t('project.download')}
+                      </a>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
         <Pagination next={nextProject} prev={prevProject} />
       </m.div>
@@ -267,7 +272,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                 </h2>
               )}
             </header>
-            <div className="Project-projectInfo">
+            <div className="Project-projectInfo Project-projectInfo--main">
               <div className="Project-info">
                 <h4>Program</h4>
                 <p>{t(`categories.${slugify(project.data.category)}`)}</p>
