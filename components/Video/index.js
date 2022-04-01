@@ -7,7 +7,9 @@ import { getYoutubeID } from '../../lib/utilities'
 const Video = ({ width, height, video_id, provider_name, html }) => {
   const videoRef = React.useRef()
 
-  video_id = video_id ?? (html ? getYoutubeID(html) : false)
+  video_id =
+    video_id ??
+    (provider_name === 'YouTube' && html ? getYoutubeID(html) : false)
 
   const { ref, inView } = useInView({
     triggerOnce: true,
