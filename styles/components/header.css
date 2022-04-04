@@ -82,7 +82,7 @@
   font-size: 1rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 1em;
+  gap: 1em 0.75em;
   justify-content: flex-end;
   font-size: 0.875rem;
 }
@@ -90,6 +90,7 @@
 @media (min-width: 600px) {
   .Header-languageLinks {
     font-size: 1rem;
+    gap: 1em;
   }
 }
 
@@ -155,7 +156,7 @@ a.Header-languageLink:active span {
   }
 
   .Header-bottomRight {
-    grid-row: 2;
+    grid-row: 1;
   }
 
   .Header-logo svg {
