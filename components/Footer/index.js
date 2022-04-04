@@ -49,8 +49,8 @@ const Footer = ({ pages }) => {
             <p>
               <Link href="https://www.facebook.com">
                 <a>
-                  {t('show')} 2022 <br />
-                  19 - 24 {t('may')}
+                  {t('show')} <br />
+                  19 – 24 {t('may')} 2022
                 </a>
               </Link>
             </p>
@@ -60,7 +60,7 @@ const Footer = ({ pages }) => {
               <Link href="https://www.facebook.com">
                 <a>
                   {t('fashion-show')} <br />
-                  <time dateTime="2022-05-17">17 {t('may')}</time>
+                  <time dateTime="2022-05-17">17 {t('may')} 2022</time>
                 </a>
               </Link>
             </p>
