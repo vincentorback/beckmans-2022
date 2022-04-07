@@ -5,11 +5,36 @@ import Link from 'next-translate-routes/link'
 import { useRouter } from 'next/router'
 
 const Layout = ({ title, children, background, pages, alternatePage }) => {
+  const [isDiabled, setDisabled] = React.useState(false)
+
   const router = useRouter()
   const backgroundColor = background ? background.toLowerCase() : 'white'
 
+  React.useEffect(() => {
+    const handleRouteChangeStart = (url, { shallow }) => {
+      setDisabled(!shallow)
+    }
+
+    const handleRouteChangeComplete = () => {
+      setDisabled(false)
+    }
+
+    router.events.on('routeChangeStart', handleRouteChangeStart)
+    router.events.on('routeChangeComplete', handleRouteChangeComplete)
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChangeStart)
+      router.events.off('routeChangeComplete', handleRouteChangeComplete)
+    }
+  }, [router])
+
   return (
-    <div className="Layout">
+    <div
+      className="Layout"
+      style={{
+        pointerEvents: isDiabled ? 'none' : null,
+      }}
+    >
       <Meta
         title={title}
         alternatePage={alternatePage}
