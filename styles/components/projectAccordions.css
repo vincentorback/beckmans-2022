@@ -1,4 +1,5 @@
 .Accordions {
+  padding-top: var(--site-spacing);
   width: min(100%, 500px);
   margin-inline: auto;
 }

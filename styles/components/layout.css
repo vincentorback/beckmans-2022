@@ -10,7 +10,7 @@
 }
 
 .Layout-content {
-  padding: calc(var(--site-spacing) * 2) 0 calc(var(--site-spacing) * 3);
+  padding: calc(var(--site-spacing) * 1) 0 calc(var(--site-spacing) * 3);
 }
 
 .Layout-previewButton {
