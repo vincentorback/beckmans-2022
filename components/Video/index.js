@@ -5,7 +5,7 @@ import { useInView } from 'react-intersection-observer'
 import { getYoutubeID } from '../../lib/utilities'
 
 const Video = ({ width, height, video_id, provider_name, html }) => {
-  const videoRef = React.useRef()
+  const plyrRef = React.useRef()
 
   video_id =
     video_id ??
@@ -16,33 +16,33 @@ const Video = ({ width, height, video_id, provider_name, html }) => {
   })
 
   React.useEffect(() => {
-    const plyr = videoRef?.current?.plyr
+    const plyr = plyrRef?.current?.plyr
 
-    const onError = (error) => {
-      console.log('Replace with iframe', error)
+    if (plyr && plyr?.source) {
+      console.log(123)
 
-      if (html) {
-        console.log(html)
+      const onError = (error) => {
+        console.log('Replace with iframe', error)
+
+        if (html) {
+          console.log(html)
+        }
+        // const errorMessage = e?.reason?.message || error?.message
       }
-      // const errorMessage = e?.reason?.message || error?.message
-    }
 
-    if (plyr?.on) {
       plyr.on('error', onError)
-    }
 
-    window.addEventListener('error', onError)
-    window.addEventListener('unhandledrejection', onError)
+      window.addEventListener('error', onError)
+      window.addEventListener('unhandledrejection', onError)
 
-    return () => {
-      window.removeEventListener('error', onError)
-      window.removeEventListener('unhandledrejection', onError)
+      return () => {
+        window.removeEventListener('error', onError)
+        window.removeEventListener('unhandledrejection', onError)
 
-      if (plyr?.off) {
         plyr.off('error', onError)
       }
     }
-  }, [inView, html])
+  }, [plyrRef?.current?.plyr, inView, html])
 
   // TODO: On error, replace with {html}
 
@@ -51,7 +51,7 @@ const Video = ({ width, height, video_id, provider_name, html }) => {
 
     return (
       <Plyr
-        ref={videoRef}
+        ref={plyrRef}
         source={{
           type: 'video',
           sources: [
