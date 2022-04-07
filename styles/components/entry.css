@@ -57,12 +57,12 @@
   transition: opacity 150ms ease;
 }
 
-.Entry a:active {
-  opacity: 0.8;
-}
-
-@media (pointer: fine) {
+@media (hover: hover) {
   .Entry a:hover {
     opacity: 0.8;
   }
+}
+
+.Entry a:active {
+  opacity: 0.6;
 }

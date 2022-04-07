@@ -94,7 +94,7 @@
   }
 }
 
-@media (pointer: fine) {
+@media (hover: hover) {
   .plyr--video .plyr__control--overlaid:hover {
     opacity: 0;
   }

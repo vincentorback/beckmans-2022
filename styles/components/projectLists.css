@@ -68,15 +68,15 @@
   transition: opacity 150ms ease;
 }
 
-.Lists-item.is-active,
-.Lists-item a:active span {
-  opacity: 0.8;
-  text-decoration: underline;
-}
-
-@media (pointer: fine) {
+@media (hover: hover) {
   .Lists-item a:hover span {
     opacity: 0.8;
     text-decoration: underline;
   }
+}
+
+.Lists-item.is-active,
+.Lists-item a:active span {
+  opacity: 0.8;
+  text-decoration: underline;
 }

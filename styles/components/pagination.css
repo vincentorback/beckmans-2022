@@ -32,8 +32,14 @@
   transition: opacity 150ms ease;
 }
 
-.Pagination-link:hover {
-  opacity: 0.8;
+@media (hover: hover) {
+  .Pagination-link:hover {
+    opacity: 0.8;
+  }
+}
+
+.Pagination-link:active {
+  opacity: 0.6;
 }
 
 .Pagination-link span,

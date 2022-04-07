@@ -215,16 +215,16 @@
   transition: opacity 150ms ease;
 }
 
-.Project-info a:active {
-  opacity: 0.8;
-  text-decoration: underline;
-}
-
-@media (pointer: fine) {
+@media (hover: hover) {
   .Project-info a:hover {
     opacity: 0.8;
     text-decoration: underline;
   }
+}
+
+.Project-info a:active {
+  opacity: 0.6;
+  text-decoration: underline;
 }
 
 .Project-title,

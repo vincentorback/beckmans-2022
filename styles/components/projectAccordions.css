@@ -64,14 +64,14 @@
   transition: opacity 150ms ease;
 }
 
-.Accordions-link:active {
-  opacity: 0.8;
-}
-
-@media (pointer: fine) {
+@media (hover: hover) {
   .Accordions-link:hover {
     opacity: 0.8;
   }
+}
+
+.Accordions-link:active {
+  opacity: 0.6;
 }
 
 .Accordions-itemContent {

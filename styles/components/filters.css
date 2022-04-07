@@ -20,15 +20,7 @@
   color: var(--color-red);
 }
 
-.Filters-button:active {
-  opacity: 0.8;
-}
-
-.Filters-button.is-active:active {
-  opacity: 0.9;
-}
-
-@media (pointer: fine) {
+@media (hover: hover) {
   .Filters-button:hover {
     opacity: 0.8;
   }
@@ -36,4 +28,8 @@
   .Filters-button.is-active:hover {
     opacity: 0.9;
   }
+}
+
+.Filters-button:active {
+  opacity: 0.6;
 }

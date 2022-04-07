@@ -57,14 +57,14 @@
   transition: opacity 150ms ease;
 }
 
-.Map-itemLink:active {
-  opacity: 0.8;
-}
-
-@media (pointer: fine) {
+@media (hover: hover) {
   .Map-itemLink:hover {
     opacity: 0.8;
   }
+}
+
+.Map-itemLink:active {
+  opacity: 0.6;
 }
 
 .Map-itemImage {
