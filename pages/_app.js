@@ -13,7 +13,7 @@ import '../styles/index.css'
 const App = ({ Component, pageProps, router }) => {
   React.useEffect(() => {
     window.requestAnimationFrame(() => {
-      document.documentElement.style.transition = 'background-color 400ms ease'
+      document.documentElement.style.transition = 'background-color 200ms ease'
     })
   }, [])
 

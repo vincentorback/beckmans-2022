@@ -9,29 +9,13 @@ import Slices from '../../components/Slices'
 import Text from '../../components/Text'
 
 export default function Page(props) {
-  const { page, background } = props
-
-  const backgroundColor = background ? background.toLowerCase() : 'white'
-
-  React.useEffect(() => {
-    document.documentElement.style.backgroundColor = `var(--color-${backgroundColor})`
-
-    return () => {
-      document.documentElement.style.backgroundColor = `var(--color-white)`
-    }
-  }, [backgroundColor])
-
   return (
-    <Layout
-      {...props}
-      title={prismicH.asText(page.data.title)}
-      background={page?.data?.background_color}
-    >
+    <Layout {...props} title={prismicH.asText(props.page.data.title)}>
       <Header {...props} />
       <Container>
         <div className="Layout-content">
-          {page.data.body ? (
-            <Slices body={page.data.body} />
+          {props.page.data.body ? (
+            <Slices body={props.page.data.body} />
           ) : (
             <Text title="no content yet" />
           )}

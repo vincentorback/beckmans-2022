@@ -28,6 +28,14 @@ const Layout = ({ title, children, background, pages, alternatePage }) => {
     }
   }, [router])
 
+  React.useEffect(() => {
+    document.documentElement.style.backgroundColor = `var(--color-${backgroundColor})`
+
+    return () => {
+      document.documentElement.style.backgroundColor = `var(--color-white)`
+    }
+  }, [backgroundColor])
+
   return (
     <div
       className="Layout"
