@@ -77,16 +77,12 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
         variants={{
           initial: {
             opacity: 0,
-            transition: {
-              delay: 0,
-              duration: 0.3,
-            },
           },
           animate: {
             opacity: 1,
             y: 0,
             transition: {
-              delay: 0,
+              delay: 1,
               duration: 0.3,
             },
           },
@@ -227,39 +223,35 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
         </div>
         <Pagination next={nextProject} prev={prevProject} />
       </m.div>
-      <m.div
-        className={classNames('Project-sidebar', 'u-hideSmall')}
-        initial="initial"
-        animate="animate"
-        exit="exit"
-        variants={{
-          initial: {
-            opacity: 0,
-            transition: {
-              delay: 0,
-              duration: 0.4,
-            },
-          },
-          animate: {
-            opacity: 1,
-            y: 0,
-            transition: {
-              delay: 0,
-              duration: 0.4,
-            },
-          },
-          exit: {
-            opacity: 0,
-            y: 10,
-            transition: {
-              delay: 0,
-              duration: 0.4,
-            },
-          },
-        }}
-      >
+      <div className={classNames('Project-sidebar', 'u-hideSmall')}>
         <div className="Project-sidebarInner">
-          <div className="Project-sidebarUpper">
+          <m.div
+            className="Project-sidebarUpper"
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            variants={{
+              initial: {
+                opacity: 0,
+              },
+              animate: {
+                opacity: 1,
+                y: 0,
+                transition: {
+                  delay: 0.3,
+                  duration: 0.3,
+                },
+              },
+              exit: {
+                opacity: 0,
+                y: 10,
+                transition: {
+                  delay: 0,
+                  duration: 0.3,
+                },
+              },
+            }}
+          >
             <header className="Project-header">
               {Boolean(project.data.name.length) && (
                 <h1 className="Project-title">
@@ -303,12 +295,13 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                 </div>
               )}
             </div>
-          </div>
+          </m.div>
+
           <div className="Project-sidebarLower">
             <Map items={projects} category={project.data.category} />
           </div>
         </div>
-      </m.div>
+      </div>
     </article>
   )
 }

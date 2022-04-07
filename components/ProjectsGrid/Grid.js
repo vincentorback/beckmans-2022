@@ -24,7 +24,7 @@ const AnimatedItem = ({ className, isActive, children, background, index }) => {
           scale: 1,
           transition: {
             duration: 0.1,
-            delay: reduceMotion ? 0 : index * 0.02,
+            delay: reduceMotion ? 0 : 0.2 + index * 0.02,
           },
         },
         notActive: {
@@ -76,11 +76,11 @@ const Item = ({
 
   const imagePositionX = React.useMemo(
     () => (imagePosition ? imagePosition[1] : `${randomNumbers(2)}%`),
-    [item.uid]
+    [imagePosition]
   )
   const imagePositionY = React.useMemo(
     () => (imagePosition ? imagePosition[2] : `${randomNumbers(2)}%`),
-    [item.uid]
+    [imagePosition]
   )
 
   const rectX =

@@ -136,12 +136,6 @@
   color: var(--color-white);
 }
 
-.ProjectsGrid-windowItemImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .ProjectsGrid-windowItem a,
 .ProjectsGrid-windowContent {
   position: absolute;

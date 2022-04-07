@@ -4,6 +4,7 @@ import Image from '../Image'
 import classNames from 'classnames'
 import { isEmpty } from '../../lib/utilities'
 import { linkResolver } from '../../lib/prismic'
+import { m } from 'framer-motion'
 import * as prismicH from '@prismicio/helpers'
 
 const Map = ({ items, category }) => {
@@ -33,10 +34,29 @@ const Map = ({ items, category }) => {
 
   const MemoMap = React.useMemo(() => {
     return (
-      <div
-        className={classNames('Map', {
-          'is-active': allImagesLoaded,
-        })}
+      <m.div
+        className="Map"
+        animate={allImagesLoaded && 'animate'}
+        initial="initial"
+        exit="exit"
+        variants={{
+          initial: {
+            opacity: 0,
+          },
+          animate: {
+            opacity: 1,
+            transition: {
+              duration: 0.3,
+            },
+          },
+          exit: {
+            opacity: 0,
+            transition: {
+              delay: 0,
+              duration: 0.3,
+            },
+          },
+        }}
       >
         <p className="Map-activeTitle">{activeItem}</p>
         <div className="Map-container">
@@ -130,7 +150,7 @@ const Map = ({ items, category }) => {
             ))}
           </div>
         </div>
-      </div>
+      </m.div>
     )
   }, [
     activeItem,
