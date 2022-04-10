@@ -47,13 +47,13 @@ const Map = ({ items, category }) => {
             opacity: 1,
             transition: {
               duration: 0.3,
+              delay: 0.6,
             },
           },
           exit: {
             opacity: 0,
             transition: {
-              delay: 0,
-              duration: 0.3,
+              duration: 0.5,
             },
           },
         }}

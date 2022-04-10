@@ -1,19 +1,19 @@
 .Footer {
   --footer-gap: 0.5rem;
-  padding: calc(var(--site-spacing) * 2) 0 calc(var(--site-spacing) * 1);
+  padding: calc(var(--site-spacing) * 2) 0;
   font-size: 0.875rem;
 }
 
 @media (min-width: 600px) {
   .Footer {
     font-size: 1rem;
-    padding: calc(var(--site-spacing) * 1) 0 calc(var(--site-spacing) * 1);
+    padding: var(--site-spacing) 0;
   }
 }
 
 .Footer-grid {
   display: grid;
-  gap: var(--site-spacing) 0;
+  gap: calc(var(--site-spacing) * 2) 0;
 }
 
 @media (min-width: 600px) {

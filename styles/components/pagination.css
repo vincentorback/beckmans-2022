@@ -14,7 +14,13 @@
 
 @media (min-width: 800px) {
   .Pagination {
-    margin-top: calc(var(--site-spacing) * 1);
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .Pagination {
+    padding: calc(var(--site-spacing) * 1) 0 calc(var(--site-spacing) * 2);
   }
 }
 

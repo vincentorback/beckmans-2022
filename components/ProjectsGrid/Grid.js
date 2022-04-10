@@ -23,7 +23,7 @@ const AnimatedItem = ({ className, isActive, children, background, index }) => {
           opacity: 1,
           scale: 1,
           transition: {
-            duration: 0.1,
+            duration: 0.2,
             delay: reduceMotion ? 0 : 0.2 + index * 0.02,
           },
         },
@@ -31,7 +31,7 @@ const AnimatedItem = ({ className, isActive, children, background, index }) => {
           opacity: 0,
           scale: 0.8,
           transition: {
-            duration: 0.1,
+            duration: 0.2,
             delay: reduceMotion ? 0 : index * 0.02,
           },
         },
@@ -39,7 +39,7 @@ const AnimatedItem = ({ className, isActive, children, background, index }) => {
           opacity: 0,
           scale: 0.8,
           transition: {
-            duration: 0.1,
+            duration: 0.2,
             delay: reduceMotion ? 0 : index * 0.03,
           },
         },

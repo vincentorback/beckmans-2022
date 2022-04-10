@@ -3,7 +3,7 @@ import { slugify } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
 import { m, useReducedMotion } from 'framer-motion'
 
-const Filters = ({ isReady, filters, activeFilter, onClick }) => {
+const Filters = ({ isReady, filters, activeFilter, onChange }) => {
   const t = useTranslations('categories')
 
   const reduceMotion = useReducedMotion()
@@ -14,7 +14,7 @@ const Filters = ({ isReady, filters, activeFilter, onClick }) => {
         <button
           aria-pressed={activeFilter === filter}
           key={filter}
-          onClick={() => onClick(filter)}
+          onClick={() => onChange(filter)}
           className={classNames('Filters-button', {
             'is-active': activeFilter === filter,
           })}
@@ -25,21 +25,24 @@ const Filters = ({ isReady, filters, activeFilter, onClick }) => {
                 opacity: 0,
                 y: '50%',
                 transition: {
-                  delay: reduceMotion ? 0 : 0.5 + 0.1 * filterIndex,
+                  duration: 0.2,
+                  delay: reduceMotion ? 0 : 0.5 + 0.2 * filterIndex,
                 },
               },
               enter: {
                 opacity: 1,
                 y: 0,
                 transition: {
-                  delay: reduceMotion ? 0 : 0.5 + 0.1 * filterIndex,
+                  duration: 0.2,
+                  delay: reduceMotion ? 0 : 0.5 + 0.2 * filterIndex,
                 },
               },
               exit: {
                 opacity: 0,
                 y: '-50%',
                 transition: {
-                  delay: reduceMotion ? 0 : 0.1 * filterIndex,
+                  duration: 0.2,
+                  delay: reduceMotion ? 0 : 0.2 * filterIndex,
                 },
               },
             }}

@@ -1,4 +1,5 @@
 import NextImage from 'next/image'
+import className from 'classnames'
 
 const imageLoader = (image, props) => {
   const url = new URL(image.src)
@@ -15,33 +16,22 @@ const imageLoader = (image, props) => {
 }
 
 const Image = (props) => {
-  const {
-    src,
-    hidden,
-    objectFit,
-    objectPosition,
-    width,
-    height,
-    alt,
-    quality,
-    layout,
-  } = props
+  let { src, objectFit, objectPosition, width, height, alt, quality, layout } =
+    props
+
+  layout = layout ?? 'intrinsic'
 
   return (
     <div
-      style={{
-        display: hidden ? 'none' : 'block',
-        // backgroundColor: layout !== 'fill' && 'rgba(0, 0, 0, 0.05)',
-        position: 'relative',
-        width: layout === 'fill' ? '100%' : 'auto',
-        height: layout === 'fill' ? '100%' : 'auto',
-      }}
+      className={className('Image', {
+        [`Image--${layout}`]: layout,
+      })}
     >
       <NextImage
         {...props}
         src={src.url}
         loader={(image) => imageLoader(image, props)}
-        layout={layout || 'intrinsic'}
+        layout={layout}
         objectFit={objectFit || 'cover'}
         objectPosition={objectPosition || '50% 50%'}
         alt={alt || src.alt || ''}
