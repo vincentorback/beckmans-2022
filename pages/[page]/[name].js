@@ -37,12 +37,14 @@ export async function getStaticPaths({ locales }) {
   const content = await getEverything()
   const paths = []
 
-  locales.forEach((locale) => {
+  locales.forEach(async (locale) => {
+    const messages = await require(`../../locales/${locale}.json`)
+
     content.projects.forEach((project) => {
       if (project.lang.includes(locale)) {
         paths.push({
           params: {
-            page: slugify(project.data.category),
+            page: slugify(messages.categories[slugify(project.data.category)]),
             name: slugify(project.uid),
           },
           locale,
