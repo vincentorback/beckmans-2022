@@ -1,3 +1,9 @@
+@media (min-width: 1300px) {
+  .Credits {
+    width: calc(100% - var(--site-spacing) * 3);
+  }
+}
+
 .Credits-columns {
   display: grid;
   gap: calc(var(--site-spacing) * 2) var(--site-spacing);
@@ -20,13 +26,14 @@
   }
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1300px) {
   .Credits-columns {
     columns: 4;
   }
 }
 
 .Credits-column {
+  max-width: 229px;
   border-top: 2px solid;
   padding: 1rem 0;
   break-inside: avoid-column;
@@ -37,6 +44,12 @@
   .Credits-column {
     border-top-width: 1px;
     padding: 1rem 0 2rem;
+  }
+}
+
+@media (min-width: 1300px) {
+  .Credits-column {
+    max-width: 229px;
   }
 }
 
