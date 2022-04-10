@@ -20,10 +20,16 @@ const App = ({ Component, pageProps, router }) => {
   React.useEffect(() => {
     const handleRouteChange = () => {
       window.requestAnimationFrame(() => {
-        jump(document.documentElement, {
-          duration: (distance) => clamp(400, Math.abs(distance), 700),
-          easing: easeInOutExpo,
-        })
+        if (window.scrollY < 5) return
+
+        if (window?.CSS?.supports('scroll-behavior', 'smooth')) {
+          window.scroll({ top: 0, left: 0, behavior: 'smooth' })
+        } else {
+          jump(document.documentElement, {
+            duration: (distance) => clamp(200, Math.abs(distance) * 0.5, 500),
+            easing: easeInOutExpo,
+          })
+        }
       })
     }
 
