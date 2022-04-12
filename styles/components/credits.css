@@ -33,7 +33,6 @@
 }
 
 .Credits-column {
-  max-width: 229px;
   border-top: 2px solid;
   padding: 1rem 0;
   break-inside: avoid-column;
@@ -42,6 +41,7 @@
 
 @media (min-width: 500px) {
   .Credits-column {
+    max-width: 229px;
     border-top-width: 1px;
     padding: 1rem 0 2rem;
   }
