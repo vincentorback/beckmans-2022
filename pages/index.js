@@ -127,6 +127,8 @@ export default function HomePage(props) {
 
       if (newFilter) {
         sessionStorage[SESSION_CATEGORY] = newFilter
+      } else {
+        delete sessionStorage[SESSION_CATEGORY]
       }
 
       return newFilter
