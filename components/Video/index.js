@@ -19,8 +19,6 @@ const Video = ({ width, height, video_id, provider_name, html }) => {
     const plyr = plyrRef?.current?.plyr
 
     if (plyr && plyr?.source) {
-      console.log(123)
-
       const onError = (error) => {
         console.log('Replace with iframe', error)
 

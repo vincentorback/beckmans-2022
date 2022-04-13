@@ -22,17 +22,17 @@
 @import 'components/video.css';
 
 .u-preLine {
-  white-space: pre-line;
+  white-space: pre-line !important;
 }
 
 @media (min-width: 800px) {
   .u-showSmall {
-    display: none;
+    display: none !important;
   }
 }
 
 @media (max-width: 800px) {
   .u-hideSmall {
-    display: none;
+    display: none !important;
   }
 }

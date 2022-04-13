@@ -53,7 +53,7 @@ const Map = ({ items, category }) => {
           exit: {
             opacity: 0,
             transition: {
-              duration: 0.5,
+              duration: 0.3,
             },
           },
         }}
@@ -138,17 +138,7 @@ const Map = ({ items, category }) => {
               )
             })}
           </div>
-          <div className="Map-dots">
-            {[...Array(195)].map((_, dotIndex) => (
-              <div
-                key={`dot_${dotIndex}`}
-                style={{
-                  '--row': Math.floor(dotIndex / 13),
-                  '--cell': Math.floor(dotIndex % 13),
-                }}
-              />
-            ))}
-          </div>
+          <MapDots />
         </div>
       </m.div>
     )
@@ -163,5 +153,19 @@ const Map = ({ items, category }) => {
 
   return MemoMap
 }
+
+const MapDots = () => (
+  <div className="Map-dots">
+    {[...Array(195)].map((_, dotIndex) => (
+      <div
+        key={`dot_${dotIndex}`}
+        style={{
+          '--row': Math.floor(dotIndex / 13),
+          '--cell': Math.floor(dotIndex % 13),
+        }}
+      />
+    ))}
+  </div>
+)
 
 export default Map

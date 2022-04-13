@@ -68,11 +68,7 @@ const Header = ({ children, alternatePage }) => {
               </a>
             </Link>
           </div>
-          {children && (
-            <div className="Header-bottomLeft">
-              <div>{children}</div>
-            </div>
-          )}
+
           <div className="Header-mid">
             <Link href="/" scroll={false}>
               <a className="Header-logo">
@@ -113,6 +109,11 @@ const Header = ({ children, alternatePage }) => {
               ))}
             </div>
           </div>
+          {children && (
+            <div className="Header-bottomLeft">
+              <div>{children}</div>
+            </div>
+          )}
         </div>
       </Container>
     </header>

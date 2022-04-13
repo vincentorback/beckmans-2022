@@ -57,10 +57,10 @@ const Window = ({ item, previousItem }) => {
           >
             <div className="ProjectsGrid-windowContent">
               <p>
-                {previousItem.title ? (
-                  previousItem.title
+                {previousItem?.data?.name ? (
+                  <PrismicText field={previousItem?.data?.name} />
                 ) : (
-                  <PrismicText field={previousItem.data.name} />
+                  <span>{previousItem?.title}</span>
                 )}
               </p>
               {previousItem?.data?.category && (
@@ -94,7 +94,10 @@ const Window = ({ item, previousItem }) => {
               color: item.color ?? null,
             }}
             variants={{
-              loading: { opacity: 0, scale: 0.98 },
+              loading: {
+                opacity: 0,
+                scale: 0.98,
+              },
               complete: {
                 transition: { duration: 0.1 },
                 opacity: 1,
@@ -104,10 +107,10 @@ const Window = ({ item, previousItem }) => {
           >
             <div className="ProjectsGrid-windowContent">
               <p>
-                {item.title ? (
-                  item.title
+                {item?.data?.name?.length ? (
+                  <PrismicText field={item?.data?.name} />
                 ) : (
-                  <PrismicText field={item.data.name} />
+                  <span>{item?.title}</span>
                 )}
               </p>
               {item?.data?.category && <p>{t(slugify(item.data.category))}</p>}
@@ -130,13 +133,17 @@ const Window = ({ item, previousItem }) => {
           </m.div>
         </LinkWrap>
       </div>
-      <div className="ProjectsGrid-windowDots">
-        {[...Array(9)].map((_, dotIndex) => (
-          <div key={`dot_${dotIndex}`} />
-        ))}
-      </div>
+      <WindowDots />
     </m.div>
   )
 }
+
+const WindowDots = () => (
+  <div className="ProjectsGrid-windowDots">
+    {[...Array(9)].map((_, dotIndex) => (
+      <div key={`dot_${dotIndex}`} />
+    ))}
+  </div>
+)
 
 export default Window
