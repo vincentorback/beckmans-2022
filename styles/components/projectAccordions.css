@@ -4,6 +4,11 @@
   margin-inline: auto;
 }
 
+.Accordions:not(.is-ready) {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .Accordions-list {
   border-bottom: 1px solid;
 }
@@ -23,8 +28,14 @@
   padding-top: calc(var(--site-spacing) * 2);
 }
 
-.Accordions-button:hover {
-  opacity: 0.8;
+@media (hover: hover) {
+  .Accordions-button:hover {
+    opacity: 0.8;
+  }
+}
+
+.Accordions-button:active {
+  opacity: 0.6;
 }
 
 .Accordions-button span {

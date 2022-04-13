@@ -13,7 +13,6 @@ const ProjectAccordions = ({ lists }) => {
 
   const listRefs = React.useRef([])
 
-  const [maxHeight, setMaxHeight] = React.useState(0)
   const [activeAccordion, setActiveAccordion] = React.useState(null)
   const [isReady, setIsReady] = React.useState(false)
 
@@ -22,14 +21,6 @@ const ProjectAccordions = ({ lists }) => {
       setIsReady(true)
     })
   }, [])
-
-  React.useEffect(() => {
-    listRefs.current.forEach((el) => {
-      if (el) {
-        setMaxHeight((prev) => Math.max(prev, el.clientHeight))
-      }
-    })
-  }, [listRefs])
 
   const handleToggleAccordion = React.useCallback(
     (id) => {
@@ -134,11 +125,7 @@ const ProjectAccordions = ({ lists }) => {
               id={`accordion-${list.id}-content`}
               className="Accordions-content"
               style={{
-                maxHeight: maxHeight
-                  ? activeAccordion === list.id
-                    ? maxHeight
-                    : 0
-                  : null,
+                maxHeight: activeAccordion === list.id ? null : 0,
               }}
             >
               {list.items.map((item, itemIndex) => (
@@ -168,17 +155,7 @@ const ProjectAccordions = ({ lists }) => {
                           className="Accordions-image"
                           priority={itemIndex <= 3}
                         />
-                        <div className="Accordions-dots">
-                          {[...Array(9)].map((_, i) => (
-                            <div
-                              style={{
-                                '--row': Math.floor(i / 3),
-                                '--cell': i % 3,
-                              }}
-                              key={`${item.uid}_${i}`}
-                            />
-                          ))}
-                        </div>
+                        <ImageDots />
                       </div>
                     </a>
                   </Link>
@@ -190,5 +167,23 @@ const ProjectAccordions = ({ lists }) => {
     </m.div>
   )
 }
+
+const ImageDots = () =>
+  React.useMemo(
+    () => (
+      <div className="Accordions-dots">
+        {[...Array(9)].map((_, i) => (
+          <div
+            style={{
+              '--row': Math.floor(i / 3),
+              '--cell': i % 3,
+            }}
+            key={i}
+          />
+        ))}
+      </div>
+    ),
+    []
+  )
 
 export default ProjectAccordions
