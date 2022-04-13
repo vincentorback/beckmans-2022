@@ -1,6 +1,5 @@
 .Image {
   position: relative;
-  overflow: hidden;
 }
 
 .Image--intrinsic span {
