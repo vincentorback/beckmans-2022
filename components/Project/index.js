@@ -69,34 +69,33 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
 
   return (
     <article className="Project">
-      <m.div
-        className="Project-inner"
-        initial="initial"
-        animate="animate"
-        exit="exit"
-        variants={{
-          initial: {
-            opacity: 0,
-            y: 10,
-          },
-          animate: {
-            opacity: 1,
-            y: 0,
-            transition: {
-              delay: 1,
-              duration: 0.3,
+      <div className="Project-inner">
+        <m.div
+          className="Project-image"
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          variants={{
+            initial: {
+              opacity: 0,
             },
-          },
-          exit: {
-            opacity: 0,
-            y: 10,
-            transition: {
-              duration: 0.5,
+            animate: {
+              opacity: 1,
+              transition: {
+                delay: 1,
+                ease: 'easeInOut',
+                duration: 1,
+              },
             },
-          },
-        }}
-      >
-        <div className="Project-image">
+            exit: {
+              opacity: 0,
+              transition: {
+                ease: 'easeInOut',
+                duration: 1,
+              },
+            },
+          }}
+        >
           <Image
             src={project.data.main_image}
             alt=""
@@ -110,8 +109,31 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
               <div key={`dot_${i}`} />
             ))}
           </div>
-        </div>
-        <div className="Project-content">
+        </m.div>
+        <m.div
+          className="Project-content"
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          variants={{
+            initial: {
+              opacity: 0,
+            },
+            animate: {
+              opacity: 1,
+              transition: {
+                delay: 1,
+                duration: 0.3,
+              },
+            },
+            exit: {
+              opacity: 0,
+              transition: {
+                duration: 0.3,
+              },
+            },
+          }}
+        >
           <header className={classNames('Project-header', 'u-showSmall')}>
             {Boolean(project.data.name.length) && (
               <h1 className="Project-title">
@@ -220,9 +242,9 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
               </div>
             )}
           </div>
-        </div>
+        </m.div>
         <Pagination next={nextProject} prev={prevProject} />
-      </m.div>
+      </div>
       <div className={classNames('Project-sidebar', 'u-hideSmall')}>
         <div className="Project-sidebarInner">
           <m.div

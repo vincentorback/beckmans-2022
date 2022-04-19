@@ -29,7 +29,7 @@ const AnimatedItem = ({ className, isActive, children, background, index }) => {
         },
         notActive: {
           opacity: 0,
-          scale: 0.8,
+          scale: 0.7,
           transition: {
             duration: 0.2,
             delay: reduceMotion ? 0 : index * 0.02,
@@ -37,7 +37,7 @@ const AnimatedItem = ({ className, isActive, children, background, index }) => {
         },
         exit: {
           opacity: 0,
-          scale: 0.8,
+          scale: 0.7,
           transition: {
             duration: 0.2,
             delay: reduceMotion ? 0 : index * 0.03,
