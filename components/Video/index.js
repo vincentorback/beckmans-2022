@@ -13,6 +13,7 @@ const Video = ({ width, height, video_id, provider_name, html }) => {
 
   const { ref, inView } = useInView({
     triggerOnce: true,
+    rootMargin: '100% 0 0',
   })
 
   React.useEffect(() => {
@@ -92,7 +93,7 @@ const Video = ({ width, height, video_id, provider_name, html }) => {
         '--video-height': `${height}`,
       }}
     >
-      <div className="Video-inner">{MemoVideo}</div>
+      {inView && <div className="Video-inner">{MemoVideo}</div>}
     </div>
   )
 }

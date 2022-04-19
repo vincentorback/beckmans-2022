@@ -24,7 +24,7 @@
 
 .Video .plyr__video-wrapper {
   opacity: 0;
-  transition: opacity 300ms ease 300ms;
+  transition: opacity 300ms ease 1000ms;
 }
 
 .Video.is-inView .plyr__video-wrapper {
