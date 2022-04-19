@@ -102,13 +102,11 @@ div.Header-languageLink {
 @media (hover: hover) {
   a.Header-languageLink:hover span {
     opacity: 0.8;
-    text-decoration: underline;
   }
 }
 
 a.Header-languageLink:active span {
   opacity: 0.6;
-  text-decoration: underline;
 }
 
 .Header-beckmans {
