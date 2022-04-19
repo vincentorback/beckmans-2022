@@ -106,3 +106,27 @@
 .Footer-nav {
   font-weight: var(--text-bold);
 }
+
+.Footer-navItem {
+  position: relative;
+}
+
+.Footer-navItem.is-active::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  position: absolute;
+  left: -10px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: currentColor;
+}
+
+@media (min-width: 800px) {
+  .Footer-navItem.is-active::before {
+    left: -13px;
+    width: 5px;
+    height: 5px;
+  }
+}

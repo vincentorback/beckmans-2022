@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import Link from 'next-translate-routes/link'
 import Container from '../Container'
 import { useTranslations } from 'next-intl'
@@ -19,7 +20,12 @@ const Footer = ({ pages }) => {
                 pages
                   .filter((item) => item.lang === localeStrings[router.locale])
                   .map((page) => (
-                    <li key={page.uid}>
+                    <li
+                      className={classNames('Footer-navItem', {
+                        'is-active': page.slugs.includes(router.query.page),
+                      })}
+                      key={page.uid}
+                    >
                       <Link href={`/${page.uid}`} scroll={false}>
                         <a>
                           <PrismicText field={page.data.title} />
