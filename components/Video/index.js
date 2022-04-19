@@ -93,7 +93,7 @@ const Video = ({ width, height, video_id, provider_name, html }) => {
         '--video-height': `${height}`,
       }}
     >
-      {inView && <div className="Video-inner">{MemoVideo}</div>}
+      <div className="Video-inner">{MemoVideo}</div>
     </div>
   )
 }
