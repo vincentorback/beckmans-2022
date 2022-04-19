@@ -1,4 +1,6 @@
 .Layout {
+  position: relative;
+  overflow: hidden;
   min-height: 100%;
   height: fit-content;
   display: flex;
@@ -10,6 +12,8 @@
 }
 
 .Layout-content {
+  position: relative;
+  z-index: 1;
   padding: calc(var(--site-spacing) * 1) 0 calc(var(--site-spacing) * 3);
 }
 
@@ -23,4 +27,19 @@
   color: #fff;
   padding: 0.8em;
   z-index: 9999;
+}
+
+.Layout-background {
+}
+
+@media (max-width: 800px), (min-width: 2000px) {
+  .Layout-background--about {
+    display: none;
+  }
+}
+
+@media (max-width: 800px), (min-width: 2200px) {
+  .Layout-background--credits {
+    display: none;
+  }
 }
