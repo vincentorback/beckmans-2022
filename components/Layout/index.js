@@ -29,10 +29,16 @@ const Layout = ({ title, children, background, pages, alternatePage }) => {
   }, [router])
 
   React.useEffect(() => {
-    document.documentElement.style.backgroundColor = `var(--color-${backgroundColor})`
+    document.documentElement.style.setProperty(
+      '--site-background',
+      `var(--color-${backgroundColor})`
+    )
 
     return () => {
-      document.documentElement.style.backgroundColor = `var(--color-white)`
+      document.documentElement.style.setProperty(
+        '--site-background',
+        'var(--color-white)'
+      )
     }
   }, [backgroundColor])
 
