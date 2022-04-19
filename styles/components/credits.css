@@ -23,6 +23,7 @@
   .Credits-columns {
     font-size: 1rem;
     columns: 3;
+    transform: translateX(-1rem);
   }
 }
 
@@ -33,24 +34,33 @@
 }
 
 .Credits-column {
-  border-top: 2px solid;
-  padding: 1rem;
+  position: relative;
   break-inside: avoid-column;
   line-height: var(--lineheight-lg);
-  background-color: var(--site-background);
 }
 
 @media (min-width: 500px) {
   .Credits-column {
-    max-width: 229px;
-    border-top-width: 1px;
-    padding: 1rem 1rem 2rem;
+    padding: 0 0 2rem;
   }
 }
 
-@media (min-width: 1300px) {
+@media (min-width: 800px) {
   .Credits-column {
+    background-color: var(--site-background);
+    padding: 0 1rem 2rem;
+  }
+}
+
+.Credits-columnInner {
+  border-top: 2px solid;
+  padding-top: 1rem;
+}
+
+@media (min-width: 500px) {
+  .Credits-columnInner {
     max-width: 229px;
+    border-top-width: 1px;
   }
 }
 
