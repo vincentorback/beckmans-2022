@@ -129,19 +129,18 @@ const Item = ({
           )}
         </AnimatedItem>
       </LinkWrap>
-      {/* prefetch test {item?.image && (
+      {item?.data?.main_image && (
         <Image
-          alt=""
-          width={686}
-          height={800}
           hidden
-          layout="fill"
-          priority
-          quality={10}
+          alt=""
+          width={(1440 / 12) * 6}
+          height={(1440 / 12) * 6 * 1.1671511628}
+          layout="responsive"
+          quality={50}
           sizes="(max-width: 1400px) 50vw, 686px"
-          src={item.image}
+          src={item?.data?.main_image}
         />
-      )} */}
+      )}
     </div>
   )
 }

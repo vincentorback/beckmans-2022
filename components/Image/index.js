@@ -16,8 +16,17 @@ const imageLoader = (image, props) => {
 }
 
 const Image = (props) => {
-  let { src, objectFit, objectPosition, width, height, alt, quality, layout } =
-    props
+  let {
+    src,
+    objectFit,
+    objectPosition,
+    width,
+    height,
+    alt,
+    hidden,
+    quality,
+    layout,
+  } = props
 
   layout = layout ?? 'intrinsic'
 
@@ -26,6 +35,7 @@ const Image = (props) => {
       className={className('Image', {
         [`Image--${layout}`]: layout,
       })}
+      hidden={hidden}
     >
       <NextImage
         {...props}
