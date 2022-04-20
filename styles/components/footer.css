@@ -111,13 +111,14 @@
   position: relative;
 }
 
+/*
 .Footer-navItem.is-active::before {
   content: '';
   width: 4px;
   height: 4px;
   position: absolute;
   left: -10px;
-  top: 0;
+  top: -1px;
   bottom: 0;
   margin: auto;
   background-color: currentColor;
@@ -129,4 +130,4 @@
     width: 5px;
     height: 5px;
   }
-}
+} */
