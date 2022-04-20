@@ -34,30 +34,7 @@ const Map = ({ items, category }) => {
 
   const MemoMap = React.useMemo(() => {
     return (
-      <m.div
-        className="Map"
-        animate={allImagesLoaded && 'animate'}
-        initial="initial"
-        exit="exit"
-        variants={{
-          initial: {
-            opacity: 0,
-          },
-          animate: {
-            opacity: 1,
-            transition: {
-              duration: 0.3,
-              delay: 0.6,
-            },
-          },
-          exit: {
-            opacity: 0,
-            transition: {
-              duration: 0.3,
-            },
-          },
-        }}
-      >
+      <div className="Map">
         <p className="Map-activeTitle">{activeItem}</p>
         <div className="Map-container">
           <div className="Map-grid">
@@ -100,15 +77,38 @@ const Map = ({ items, category }) => {
                 )
 
               return (
-                <div
+                <m.div
                   key={item.uid || itemIndex}
-                  className={classNames('Map-item', {
-                    'is-visible': isVisible,
-                  })}
+                  className="Map-item"
                   onMouseEnter={() =>
                     isVisible && handleMouse(prismicH.asText(item.data.name))
                   }
                   onMouseLeave={() => isVisible && handleMouse(null)}
+                  animate={allImagesLoaded && isVisible && 'animate'}
+                  initial="initial"
+                  exit="exit"
+                  variants={{
+                    initial: {
+                      opacity: 0,
+                      scale: 0.7,
+                    },
+                    animate: {
+                      opacity: 1,
+                      scale: 1,
+                      transition: {
+                        duration: 0.3,
+                        delay: 1 + itemIndex * 0.03,
+                      },
+                    },
+                    exit: {
+                      opacity: 0,
+                      scale: 0.7,
+                      transition: {
+                        duration: 0.2,
+                        delay: itemIndex * 0.03,
+                      },
+                    },
+                  }}
                 >
                   {isVisible && (
                     <Link
@@ -134,13 +134,13 @@ const Map = ({ items, category }) => {
                       </a>
                     </Link>
                   )}
-                </div>
+                </m.div>
               )
             })}
           </div>
           <MapDots />
         </div>
-      </m.div>
+      </div>
     )
   }, [
     activeItem,
