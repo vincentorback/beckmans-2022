@@ -1,6 +1,4 @@
 .Layout {
-  position: relative;
-  overflow: hidden;
   min-height: 100%;
   height: fit-content;
   display: flex;
@@ -27,6 +25,11 @@
   color: #fff;
   padding: 0.8em;
   z-index: 9999;
+}
+
+.Layout--withBackground {
+  position: relative;
+  overflow: hidden;
 }
 
 .Layout-background {

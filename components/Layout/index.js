@@ -2,6 +2,7 @@ import React from 'react'
 import Meta from '../Meta'
 import Footer from '../Footer'
 import Link from 'next-translate-routes/link'
+import classNames from 'classnames'
 import { useRouter } from 'next/router'
 
 const Layout = ({ title, children, background, pages, alternatePage }) => {
@@ -44,7 +45,9 @@ const Layout = ({ title, children, background, pages, alternatePage }) => {
 
   return (
     <div
-      className="Layout"
+      className={classNames('Layout', {
+        'Layout--withBackground': router.query.page && !router.query.name,
+      })}
       style={{
         pointerEvents: isDiabled ? 'none' : null,
       }}
