@@ -19,7 +19,7 @@ html {
   line-height: var(--lineheight-sm);
   font-weight: var(--text-normal);
   background-color: var(--site-background, var(--color-white));
-  color: var(--color-black);
+  color: var(--site-color, var(--color-black));
   text-size-adjust: none;
   -webkit-tap-highlight-color: transparent;
   -webkit-font-smoothing: antialiased;

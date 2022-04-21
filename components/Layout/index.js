@@ -35,10 +35,26 @@ const Layout = ({ title, children, background, pages, alternatePage }) => {
       `var(--color-${backgroundColor})`
     )
 
+    if (backgroundColor === 'black') {
+      document.documentElement.style.setProperty(
+        '--site-color',
+        `var(--color-white)`
+      )
+    } else {
+      document.documentElement.style.setProperty(
+        '--site-color',
+        `var(--color-black)`
+      )
+    }
+
     return () => {
       document.documentElement.style.setProperty(
         '--site-background',
         'var(--color-white)'
+      )
+      document.documentElement.style.setProperty(
+        '--site-color',
+        `var(--color-black)`
       )
     }
   }, [backgroundColor])
