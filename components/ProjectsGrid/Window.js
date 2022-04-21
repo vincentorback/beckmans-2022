@@ -14,16 +14,6 @@ const Window = ({ item, previousItem }) => {
 
   if (!item?.uid) return null
 
-  // {
-  //   item = {
-  //     uid: 'fallback',
-  //     name: 'Examensutställning',
-  //     subtitle: '19.5–24.5.2022',
-  //     background: 'var(--color-white)',
-  //     color: 'var(--color-black)',
-  //   }
-  // }
-
   return (
     <m.div
       className="ProjectsGrid-window"
@@ -51,22 +41,27 @@ const Window = ({ item, previousItem }) => {
           <div
             className="ProjectsGrid-windowItemInner"
             style={{
-              backgroundColor: previousItem.background ?? null,
-              color: previousItem.color ?? null,
+              backgroundColor: previousItem.data.background_color
+                ? `var(--color-${previousItem.data.background_color.toLowerCase()})`
+                : null,
             }}
           >
             <div className="ProjectsGrid-windowContent">
               <p>
-                {previousItem?.data?.name ? (
-                  <PrismicText field={previousItem?.data?.name} />
-                ) : (
-                  <span>{previousItem?.title}</span>
+                {Boolean(
+                  previousItem?.data?.name || previousItem?.data?.title
+                ) && (
+                  <PrismicText
+                    field={
+                      previousItem?.data?.name ?? previousItem?.data?.title
+                    }
+                  />
                 )}
               </p>
               {previousItem?.data?.category && (
                 <p>{t(slugify(previousItem.data.category))}</p>
               )}
-              {previousItem.subtitle && <p>{previousItem.subtitle}</p>}
+              {item?.data?.title && <p />}
             </div>
             {previousItem?.data?.main_image?.url && (
               <Image
@@ -90,8 +85,9 @@ const Window = ({ item, previousItem }) => {
             initial="loading"
             animate={isLoaded ? 'complete' : 'loading'}
             style={{
-              backgroundColor: item.background ?? null,
-              color: item.color ?? null,
+              backgroundColor: item.data.background_color
+                ? `var(--color-${item.data.background_color.toLowerCase()})`
+                : null,
             }}
             variants={{
               loading: {
@@ -107,14 +103,12 @@ const Window = ({ item, previousItem }) => {
           >
             <div className="ProjectsGrid-windowContent">
               <p>
-                {item?.data?.name?.length ? (
-                  <PrismicText field={item?.data?.name} />
-                ) : (
-                  <span>{item?.title}</span>
+                {Boolean(item?.data?.name || item?.data?.title) && (
+                  <PrismicText field={item?.data?.name ?? item?.data?.title} />
                 )}
               </p>
               {item?.data?.category && <p>{t(slugify(item.data.category))}</p>}
-              {item.subtitle && <p>{item.subtitle}</p>}
+              {item?.data?.title && <p />}
             </div>
             {item?.data?.main_image?.url && (
               <Image

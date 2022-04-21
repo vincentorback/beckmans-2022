@@ -160,27 +160,8 @@ export async function getStaticProps({ locale, previewData }) {
   const content = await getEverything(locale, previewData)
   const messages = require(`../locales/${locale}.json`)
 
-  if (
-    Array.isArray(content.projects) &&
-    content.projects.some((item) => item.uid === 'apply') === false
-  ) {
-    content.projects.splice(36, 0, {
-      uid: 'fashion',
-      title: locale === 'sv' ? 'Modevisning' : 'Fashion show',
-      subtitle: locale === 'sv' ? '17 maj' : 'May 17',
-      background: 'var(--color-blue)',
-    })
-
-    content.projects.splice(content.projects.length, 0, {
-      uid: 'apply',
-      title: locale === 'sv' ? 'Sök nu' : 'Apply now',
-      subtitle: 'beckmans.se',
-      background: 'var(--color-red)',
-      url:
-        locale === 'sv'
-          ? 'https://beckmans.se/ansok/'
-          : 'https://beckmans.se/en/ansok/',
-    })
+  if (Array.isArray(content.projects)) {
+    content.projects = content.projects.concat(content.pages)
   }
 
   return {

@@ -16,7 +16,7 @@ const AnimatedItem = ({ className, isActive, children, background, index }) => {
       animate={isActive ? 'active' : 'notActive'}
       exit="exit"
       style={{
-        backgroundColor: background,
+        backgroundColor: `var(--color-${background})`,
       }}
       variants={{
         active: {
@@ -61,7 +61,7 @@ const Item = ({
   const isVisible =
     isReady &&
     (!activeFilter ||
-      (!item.data && !activeFilter) ||
+      (!item.data?.category && !activeFilter) ||
       (item?.data?.category && slugify(item.data.category) === activeFilter))
 
   const imageOriginalWidth = item?.data?.main_image?.dimensions.width
@@ -101,7 +101,7 @@ const Item = ({
     <div
       key={item.uid || itemIndex}
       className={classNames('ProjectsGrid-item', {
-        'has-noImage': !item?.data?.image,
+        'has-noImage': !item?.data?.main_image?.url,
         'is-visible': isVisible,
       })}
       onMouseEnter={() => handleMouseEnter(item)}
@@ -111,7 +111,11 @@ const Item = ({
           className="ProjectsGrid-itemInner"
           isActive={isVisible}
           index={itemIndex}
-          background={item?.background}
+          background={
+            item?.data?.background_color
+              ? item?.data?.background_color.toLowerCase()
+              : null
+          }
         >
           {item?.data?.main_image?.url && (
             <Image
