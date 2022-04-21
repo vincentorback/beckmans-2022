@@ -23,41 +23,10 @@ export default function Page(props) {
         </div>
       </Container>
       {['om-utstallningen', 'about-the-show'].includes(props.page.uid) && (
-        <AboutBackground
-          style={{
-            pointerEvents: 'none',
-            position: 'absolute',
-            top: '15%',
-            left: 0,
-            transform: 'translateX(-58%) rotate(45deg)',
-          }}
-          svgStyle={{
-            minWidth: '100vmin',
-            minHeight: '100vmin',
-            display: 'block',
-          }}
-        />
+        <AboutBackground />
       )}
       {['medverkande', 'credits'].includes(props.page.uid) && (
-        <CreditsBackground
-          style={{
-            pointerEvents: 'none',
-            position: 'absolute',
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 0,
-            margin: 'auto',
-            width: '100vw',
-            height: '100vw',
-          }}
-          svgStyle={{
-            minWidth: '100vw',
-            minHeight: '100vw',
-            display: 'block',
-            margin: '0 auto',
-          }}
-        />
+        <CreditsBackground />
       )}
     </Layout>
   )
@@ -124,10 +93,9 @@ export async function getStaticProps({ params, locale, previewData }) {
   }
 }
 
-const CreditsBackground = ({ style, svgStyle }) => (
+const CreditsBackground = () => (
   <m.div
     className="Layout-background Layout-background--credits"
-    style={style}
     initial={{ opacity: 0 }}
     animate={{
       opacity: 1,
@@ -145,7 +113,6 @@ const CreditsBackground = ({ style, svgStyle }) => (
     }}
   >
     <svg
-      style={svgStyle}
       viewBox="0 0 1284 993"
       width="1284"
       height="993"
@@ -160,10 +127,9 @@ const CreditsBackground = ({ style, svgStyle }) => (
   </m.div>
 )
 
-const AboutBackground = ({ style, svgStyle }) => (
+const AboutBackground = () => (
   <m.div
     className="Layout-background Layout-background--about"
-    style={style}
     initial={{ opacity: 0 }}
     animate={{
       opacity: 1,
@@ -181,7 +147,6 @@ const AboutBackground = ({ style, svgStyle }) => (
     }}
   >
     <svg
-      style={svgStyle}
       width="1055"
       height="664"
       viewBox="0 0 1055 664"

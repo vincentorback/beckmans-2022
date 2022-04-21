@@ -33,12 +33,44 @@
 }
 
 .Layout-background {
+  pointer-events: none;
+  position: absolute;
+  left: 0;
 }
 
-@media (max-width: 800px), (min-width: 2000px) {
+.Layout-background--about {
+  top: 5%;
+  bottom: 10%;
+  transform: translateX(-58%) rotate(45deg);
+}
+
+.Layout-background--about svg {
+  min-width: 100vmin;
+  min-height: 100vmin;
+  display: block;
+}
+
+@media (max-width: 900px), (min-width: 2000px) {
   .Layout-background--about {
     display: none;
   }
+}
+
+.Layout-background--credits {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 100vw;
+  height: 100vw;
+}
+
+.Layout-background--credits svg {
+  min-width: 100vw;
+  min-height: 100vw;
+  display: block;
+  margin: 0 auto;
 }
 
 @media (max-width: 800px), (min-width: 2200px) {
