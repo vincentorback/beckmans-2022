@@ -8,7 +8,9 @@ import { linkResolver } from '../../lib/prismic'
 import { PrismicText } from '@prismicio/react'
 
 const Window = ({ item, previousItem }) => {
-  const [isLoaded, setIsLoaded] = React.useState(isEmpty(item?.image))
+  const [isLoaded, setIsLoaded] = React.useState(
+    isEmpty(item?.data?.main_image)
+  )
 
   const t = useTranslations('categories')
 
