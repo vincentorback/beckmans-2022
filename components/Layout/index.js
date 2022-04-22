@@ -6,7 +6,7 @@ import classNames from 'classnames'
 import { useRouter } from 'next/router'
 
 const Layout = ({ title, children, background, pages, alternatePage }) => {
-  const [isDiabled, setDisabled] = React.useState(false)
+  const [isDisabled, setDisabled] = React.useState(false)
 
   const router = useRouter()
   const backgroundColor = background ? background.toLowerCase() : 'white'
@@ -65,7 +65,7 @@ const Layout = ({ title, children, background, pages, alternatePage }) => {
         'Layout--withBackground': router.query.page && !router.query.name,
       })}
       style={{
-        pointerEvents: isDiabled ? 'none' : null,
+        pointerEvents: isDisabled ? 'none' : null,
       }}
     >
       <Meta
