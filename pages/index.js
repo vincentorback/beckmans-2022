@@ -160,9 +160,7 @@ export async function getStaticProps({ locale, previewData }) {
   const content = await getEverything(locale, previewData)
   const messages = require(`../locales/${locale}.json`)
 
-  if (Array.isArray(content.projects)) {
-    content.projects = content.projects.concat(content.pages)
-  }
+  content.projects = content.projects.concat(content.pages)
 
   return {
     props: {

@@ -1,7 +1,6 @@
 import React from 'react'
 import Link from 'next-translate-routes/link'
 import Image from '../Image'
-import classNames from 'classnames'
 import { isEmpty } from '../../lib/utilities'
 import { linkResolver } from '../../lib/prismic'
 import { m } from 'framer-motion'

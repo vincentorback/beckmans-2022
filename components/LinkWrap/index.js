@@ -1,10 +1,10 @@
 import Link from 'next-translate-routes/link'
 
-const LinkWrap = ({ url, children, prefetch }) => {
+const LinkWrap = ({ className, url, children }) => {
   if (url) {
     return (
-      <Link href={url} prefetch={prefetch || false} scroll={false}>
-        <a>{children}</a>
+      <Link href={url} prefetch={false} scroll={false}>
+        <a className={className}>{children}</a>
       </Link>
     )
   }

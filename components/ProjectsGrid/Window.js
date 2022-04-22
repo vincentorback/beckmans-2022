@@ -29,7 +29,8 @@ const Window = ({ item, previousItem }) => {
         exit: {
           opacity: 0,
           transition: {
-            duration: 0.4,
+            delay: 0.2,
+            duration: 1,
           },
         },
       }}

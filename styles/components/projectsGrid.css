@@ -111,6 +111,8 @@
   z-index: 1;
   width: 100%;
   height: 100%;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .ProjectsGrid-windowItem {
@@ -135,6 +137,7 @@
   width: 100%;
   height: 100%;
   color: var(--color-white);
+  backface-visibility: hidden;
 }
 
 .ProjectsGrid-windowItem a,

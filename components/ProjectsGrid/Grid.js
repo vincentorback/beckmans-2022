@@ -16,7 +16,7 @@ const AnimatedItem = ({ className, isActive, children, background, index }) => {
       animate={isActive ? 'active' : 'notActive'}
       exit="exit"
       style={{
-        backgroundColor: `var(--color-${background})`,
+        backgroundColor: background ? `var(--color-${background})` : null,
       }}
       variants={{
         active: {
