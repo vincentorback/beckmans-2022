@@ -5,6 +5,7 @@ const isProduction = Boolean(
 )
 
 const nextConfig = withTranslateRoutes({
+  swcMinify: false,
   generateBuildId: () => 'build',
   reactStrictMode: true,
   i18n: {
