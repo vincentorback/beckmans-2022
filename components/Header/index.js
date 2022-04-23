@@ -2,7 +2,6 @@ import React from 'react'
 import Link from 'next-translate-routes/link'
 import Container from '../Container'
 import { useRouter } from 'next/router'
-import debounce from 'lodash.debounce'
 import { SESSION_STARTED } from '../../lib/constants'
 import { capitalize } from '../../lib/utilities'
 import { linkResolver } from '../../lib/prismic'
@@ -27,7 +26,6 @@ const LocaleLink = ({ locale, isActive, url }) => {
 
 const Header = ({ children, alternatePage }) => {
   const router = useRouter()
-  const headerRef = React.useRef(null)
 
   React.useEffect(() => {
     return () => {
@@ -35,26 +33,8 @@ const Header = ({ children, alternatePage }) => {
     }
   }, [router.asPath])
 
-  const handleResize = debounce(() => {
-    if (headerRef.current) {
-      document.documentElement.style.setProperty(
-        '--header-height',
-        `${headerRef.current.clientHeight}px`
-      )
-    }
-  }, 200)
-
-  React.useEffect(() => {
-    window.addEventListener('resize', handleResize)
-    handleResize()
-
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [router?.query?.name, handleResize])
-
   return (
-    <header ref={headerRef} className="Header">
+    <header className="Header">
       <Container>
         <div className="Header-inner">
           <div className="Header-topLeft">
