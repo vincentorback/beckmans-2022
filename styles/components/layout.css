@@ -5,6 +5,13 @@
   flex-direction: column;
 }
 
+@media (min-width: 800px) {
+  .Layout {
+    position: relative;
+    overflow: hidden;
+  }
+}
+
 .Layout-main {
   flex: 1 0 auto;
 }
@@ -25,11 +32,6 @@
   color: #fff;
   padding: 0.8em;
   z-index: 9999;
-}
-
-.Layout--withBackground {
-  position: relative;
-  overflow: hidden;
 }
 
 .Layout-background {

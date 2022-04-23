@@ -17,7 +17,9 @@ const Layout = ({ title, children, background, pages, alternatePage }) => {
     }
 
     const handleRouteChangeComplete = () => {
-      setDisabled(false)
+      window.requestAnimationFrame(() => {
+        setDisabled(false)
+      })
     }
 
     router.events.on('routeChangeStart', handleRouteChangeStart)
@@ -55,9 +57,7 @@ const Layout = ({ title, children, background, pages, alternatePage }) => {
 
   return (
     <div
-      className={classNames('Layout', {
-        'Layout--withBackground': router.query.page && !router.query.name,
-      })}
+      className="Layout"
       style={{
         pointerEvents: isDisabled ? 'none' : null,
       }}
