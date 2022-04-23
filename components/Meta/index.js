@@ -3,16 +3,8 @@ import { useTranslations } from 'next-intl'
 import { localeStrings, IS_PRODUCTION } from '../../lib/constants'
 import Head from 'next/head'
 
-const colors = {
-  black: '#000',
-  blue: '#a6b7d5',
-  white: '#f5f1e7',
-  red: '#dd7550',
-}
-
 const Meta = ({ title, alternatePage, backgroundColor }) => {
   const t = useTranslations()
-  const backgroundColorHex = colors[backgroundColor]
 
   return (
     <Head>
@@ -36,7 +28,7 @@ const Meta = ({ title, alternatePage, backgroundColor }) => {
 
       {!IS_PRODUCTION && <meta name="robots" content="noindex, nofollow" />}
 
-      <meta name="theme-color" content={backgroundColorHex} />
+      {/* <meta name="theme-color" content={`var(--color-${backgroundColor})`} /> */}
 
       <link
         rel="apple-touch-icon"

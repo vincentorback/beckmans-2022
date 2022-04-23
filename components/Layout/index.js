@@ -48,14 +48,8 @@ const Layout = ({ title, children, background, pages, alternatePage }) => {
     }
 
     return () => {
-      document.documentElement.style.setProperty(
-        '--site-background',
-        'var(--color-white)'
-      )
-      document.documentElement.style.setProperty(
-        '--site-color',
-        `var(--color-black)`
-      )
+      document.documentElement.style.removeProperty('--site-background')
+      document.documentElement.style.removeProperty('--site-color')
     }
   }, [backgroundColor])
 
