@@ -11,10 +11,10 @@ const Layout = ({
   pages,
   alternatePage,
   settings,
+  project,
+  page,
 }) => {
   const router = useRouter()
-
-  console.log(321, settings)
 
   React.useEffect(() => {
     document.documentElement.style.setProperty(
@@ -42,7 +42,7 @@ const Layout = ({
 
   return (
     <div className="Layout">
-      <Meta title={title} alternatePage={alternatePage} />
+      <Meta title={title} alternatePage={alternatePage} doc={page || project} />
       <div className="Layout-main">{children}</div>
       <Footer pages={pages} settings={settings} />
       {router.isPreview && (

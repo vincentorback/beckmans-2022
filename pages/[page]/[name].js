@@ -1,5 +1,5 @@
 import React from 'react'
-import { getSingle, getEverything } from '../../lib/content'
+import { getEverything } from '../../lib/content'
 import { useTranslations } from 'next-intl'
 import { slugify } from '../../lib/utilities'
 import { localeStrings } from '../../lib/constants'
@@ -41,15 +41,15 @@ export async function getStaticPaths({ locales }) {
     const messages = await require(`../../locales/${locale}.json`)
 
     content.projects.forEach((project) => {
-      if (project.lang.includes(locale)) {
+      project.alternate_languages.forEach((altLang) => {
         paths.push({
           params: {
-            page: slugify(messages.categories[slugify(project.data.category)]),
-            name: slugify(project.uid),
+            page: slugify(messages.categories[slugify(altLang.data.category)]),
+            name: slugify(altLang.uid),
           },
           locale,
         })
-      }
+      })
     })
   })
 
@@ -87,17 +87,6 @@ export async function getStaticProps({ params, locale, previewData }) {
   const nextProject = content.projects[currentIndex + 1] ?? false
   const prevProject = content.projects[currentIndex - 1] ?? false
 
-  const otherLocaleProject =
-    project?.alternate_languages?.length &&
-    (await getSingle(
-      'project',
-      project.alternate_languages[0].uid,
-      Object.keys(localeStrings).find(
-        (key) => localeStrings[key] === project.alternate_languages[0].lang
-      ),
-      previewData
-    ))
-
   return {
     props: {
       project,
@@ -107,7 +96,6 @@ export async function getStaticProps({ params, locale, previewData }) {
       messages,
       prevProject,
       nextProject,
-      alternatePage: otherLocaleProject,
     },
   }
 }

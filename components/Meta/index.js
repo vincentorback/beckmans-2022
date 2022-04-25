@@ -1,9 +1,11 @@
 import { linkResolver } from '../../lib/prismic'
 import { useTranslations } from 'next-intl'
-import { localeStrings, IS_PRODUCTION } from '../../lib/constants'
+import { localeStrings, IS_PRODUCTION, SITE_URL } from '../../lib/constants'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
-const Meta = ({ title, alternatePage }) => {
+const Meta = ({ title, doc }) => {
+  const router = useRouter()
   const t = useTranslations()
 
   return (
@@ -15,14 +17,40 @@ const Meta = ({ title, alternatePage }) => {
         {title && `${title} | `}Beckmans {t('show')} 19.05–24.05.2022
       </title>
 
-      {alternatePage && (
+      {doc?.alternate_languages?.length ? (
         <link
-          key={alternatePage.uid}
+          key={doc.alternate_languages[0].uid}
           rel="alternate"
           hrefLang={Object.keys(localeStrings).find(
-            (locale) => localeStrings[locale] === alternatePage.lang
+            (locale) =>
+              localeStrings[locale] === doc.alternate_languages[0].lang
           )}
-          href={linkResolver(alternatePage)}
+          href={linkResolver(doc.alternate_languages[0], true)}
+        />
+      ) : (
+        !doc?.alternate_languages &&
+        !title && (
+          <link
+            rel="alternate"
+            hrefLang={Object.keys(localeStrings).find(
+              (locale) => localeStrings[locale] === router.locale
+            )}
+            href={linkResolver(
+              {
+                lang: Object.keys(localeStrings).find(
+                  (locale) => locale !== router.locale
+                ),
+              },
+              true
+            )}
+          />
+        )
+      )}
+
+      {doc && (
+        <link
+          rel="canonical"
+          href={(SITE_URL + linkResolver(doc)).replace(/\/+$/, '')}
         />
       )}
 

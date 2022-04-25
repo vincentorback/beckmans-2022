@@ -24,8 +24,10 @@ const LocaleLink = ({ locale, isActive, url }) => {
   )
 }
 
-const Header = ({ children, alternatePage }) => {
+const Header = ({ children, project, page }) => {
   const router = useRouter()
+
+  const doc = React.useMemo(() => page ?? project, [page, project])
 
   React.useEffect(() => {
     return () => {
@@ -81,8 +83,8 @@ const Header = ({ children, alternatePage }) => {
                   url={
                     locale === router.locale
                       ? null
-                      : alternatePage
-                      ? linkResolver(alternatePage)
+                      : doc?.alternate_languages?.length
+                      ? linkResolver(doc.alternate_languages[0])
                       : router.asPath
                   }
                 />
