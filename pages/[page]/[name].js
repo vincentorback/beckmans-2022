@@ -41,14 +41,12 @@ export async function getStaticPaths({ locales }) {
     const messages = await require(`../../locales/${locale}.json`)
 
     content.projects.forEach((project) => {
-      project.alternate_languages.forEach((altLang) => {
-        paths.push({
-          params: {
-            page: slugify(messages.categories[slugify(altLang.data.category)]),
-            name: slugify(altLang.uid),
-          },
-          locale,
-        })
+      paths.push({
+        params: {
+          page: slugify(messages.categories[slugify(project.data.category)]),
+          name: project.uid,
+        },
+        locale,
       })
     })
   })
@@ -79,9 +77,7 @@ export async function getStaticProps({ params, locale, previewData }) {
   }
 
   const currentIndex = content.projects.findIndex(
-    (item) =>
-      item?.data?.name &&
-      slugify(prismicH.asText(item.data.name)) === params.name
+    (item) => item?.uid === params.name
   )
 
   const nextProject = content.projects[currentIndex + 1] ?? false
