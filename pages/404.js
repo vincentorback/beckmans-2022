@@ -31,6 +31,7 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       pages: content.pages,
+      settings: content.settings,
       messages,
     },
   }

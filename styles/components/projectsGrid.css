@@ -57,8 +57,10 @@
   background-color: var(--color);
 }
 
-.ProjectsGrid-item a:hover {
-  filter: contrast(1.2);
+@media (hover: hover) {
+  .ProjectsGrid-item a:hover {
+    filter: contrast(1.2);
+  }
 }
 
 .ProjectsGrid-item a > div {
@@ -165,6 +167,11 @@
 
 .ProjectsGrid-windowContent p:last-child {
   top: calc(100% / 1.48);
+}
+
+.ProjectsGrid-windowContent p:first-child:last-child {
+  transform: translateY(-50%);
+  top: calc(100% / 2.03);
 }
 
 .ProjectsGrid-windowDots {

@@ -97,6 +97,12 @@ const Item = ({
       imageOriginalHeight - rectImageHeight
     )
 
+  const backgroundColor = item?.data?.background_color
+    ? item?.data?.background_color.toLowerCase()
+    : item?.background_color
+    ? item.background_color.toLowerCase()
+    : null
+
   return (
     <div
       key={item.uid || itemIndex}
@@ -106,16 +112,12 @@ const Item = ({
       })}
       onMouseEnter={() => handleMouseEnter(item)}
     >
-      <LinkWrap url={linkResolver(item)}>
+      <LinkWrap href={item.url ?? linkResolver(item)}>
         <AnimatedItem
           className="ProjectsGrid-itemInner"
           isActive={isVisible}
           index={itemIndex}
-          background={
-            item?.data?.background_color
-              ? item?.data?.background_color.toLowerCase()
-              : null
-          }
+          background={backgroundColor}
         >
           {item?.data?.main_image?.url && (
             <Image

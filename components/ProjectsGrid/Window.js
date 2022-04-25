@@ -44,27 +44,29 @@ const Window = ({ item, previousItem }) => {
           <div
             className="ProjectsGrid-windowItemInner"
             style={{
-              backgroundColor: previousItem.data.background_color
+              backgroundColor: previousItem?.data?.background_color
                 ? `var(--color-${previousItem.data.background_color.toLowerCase()})`
+                : previousItem?.background_color
+                ? `var(--color-${previousItem.background_color.toLowerCase()})`
                 : null,
             }}
           >
             <div className="ProjectsGrid-windowContent">
-              <p>
-                {Boolean(
-                  previousItem?.data?.name || previousItem?.data?.title
-                ) && (
+              {Boolean(
+                previousItem?.data?.name || previousItem?.data?.title
+              ) && (
+                <p>
                   <PrismicText
                     field={
                       previousItem?.data?.name ?? previousItem?.data?.title
                     }
                   />
-                )}
-              </p>
+                </p>
+              )}
+              {previousItem?.title?.length && <p>{previousItem.title}</p>}
               {previousItem?.data?.category && (
                 <p>{t(slugify(previousItem.data.category))}</p>
               )}
-              {item?.data?.title && <p />}
             </div>
             {previousItem?.data?.main_image?.url && (
               <Image
@@ -82,14 +84,16 @@ const Window = ({ item, previousItem }) => {
         </div>
       )}
       <div className="ProjectsGrid-windowItem" key={item.uid}>
-        <LinkWrap url={linkResolver(item)}>
+        <LinkWrap href={item.url ?? linkResolver(item)}>
           <m.div
             className="ProjectsGrid-windowItemInner"
             initial="loading"
             animate={isLoaded ? 'complete' : 'loading'}
             style={{
-              backgroundColor: item.data.background_color
+              backgroundColor: item?.data?.background_color
                 ? `var(--color-${item.data.background_color.toLowerCase()})`
+                : item?.background_color
+                ? `var(--color-${item.background_color.toLowerCase()})`
                 : null,
             }}
             variants={{
@@ -105,13 +109,17 @@ const Window = ({ item, previousItem }) => {
             }}
           >
             <div className="ProjectsGrid-windowContent">
-              <p>
-                {Boolean(item?.data?.name || item?.data?.title) && (
+              {Boolean(
+                item?.data?.name?.length || item?.data?.title?.length
+              ) && (
+                <p>
                   <PrismicText field={item?.data?.name ?? item?.data?.title} />
-                )}
-              </p>
-              {item?.data?.category && <p>{t(slugify(item.data.category))}</p>}
-              {item?.data?.title && <p />}
+                </p>
+              )}
+              {item?.title?.length && <p>{item.title}</p>}
+              {item?.data?.category?.length && (
+                <p>{t(slugify(item.data.category))}</p>
+              )}
             </div>
             {item?.data?.main_image?.url && (
               <Image
@@ -131,15 +139,15 @@ const Window = ({ item, previousItem }) => {
           </m.div>
         </LinkWrap>
       </div>
-      <WindowDots />
+      <WindowDots hideMiddle={!item?.data?.main_image} />
     </m.div>
   )
 }
 
-const WindowDots = () => (
+const WindowDots = ({ hideMiddle }) => (
   <div className="ProjectsGrid-windowDots">
     {[...Array(9)].map((_, dotIndex) => (
-      <div key={`dot_${dotIndex}`} />
+      <div key={`dot_${dotIndex}`} hidden={hideMiddle && dotIndex === 4} />
     ))}
   </div>
 )

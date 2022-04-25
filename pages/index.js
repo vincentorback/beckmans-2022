@@ -168,6 +168,7 @@ export async function getStaticProps({ locale, previewData }) {
       locale,
       pages: content.pages,
       projects: content.projects,
+      settings: content.settings,
       messages,
     },
   }

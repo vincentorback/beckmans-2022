@@ -72,6 +72,7 @@ export async function getStaticProps({ params, locale, previewData }) {
       notFound: true,
       props: {
         pages: content.pages,
+        settings: content.settings,
         messages,
       },
     }
@@ -102,6 +103,7 @@ export async function getStaticProps({ params, locale, previewData }) {
       project,
       projects: content.projects,
       pages: content.pages,
+      settings: content.settings,
       messages,
       prevProject,
       nextProject,

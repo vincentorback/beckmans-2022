@@ -38,7 +38,7 @@ export async function getStaticPaths({ locales }) {
 
   locales.forEach((locale) => {
     content.pages.forEach((page) => {
-      if (page.lang.includes(locale)) {
+      if (page.lang && page.lang.includes(locale)) {
         paths.push({
           params: {
             page: page.uid,
@@ -77,6 +77,7 @@ export async function getStaticProps({ params, locale, previewData }) {
       notFound: true,
       props: {
         pages: content.pages,
+        settings: content.settings,
         messages,
       },
     }
@@ -86,6 +87,7 @@ export async function getStaticProps({ params, locale, previewData }) {
     props: {
       background: page?.data?.background_color,
       page,
+      settings: content.settings,
       pages: content.pages,
       messages,
       alternatePage: otherLocalePage,

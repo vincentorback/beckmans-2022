@@ -51,6 +51,7 @@ function generateSiteMap({ locales, pages, projects }) {
       )
       .join('')}
     ${pages
+      ?.filter((page) => page?.last_publication_date)
       ?.map(
         (doc) => `
       <url>

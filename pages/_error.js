@@ -34,6 +34,7 @@ export async function getServerSideProps({ res, locale }) {
       statusCode: res?.statusCode ?? 500,
       statusMessage: res?.statusMessage ?? messages?.error?.title,
       pages: content.pages,
+      settings: content.settings,
       messages,
     },
   }
