@@ -33,8 +33,8 @@ function generateSiteMap({ locales, pages, projects }) {
           doc
         )}" hreflang="${defaultLocale}" rel="alternate"/>
         ${
-          doc?.alternate_languages ||
-          []
+          doc?.alternate_languages?.length &&
+          doc?.alternate_languages
             .map(
               (altDoc) =>
                 `<xhtml:link href="${SITE_URL}${linkResolver(
