@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl'
 import { localeStrings, IS_PRODUCTION } from '../../lib/constants'
 import Head from 'next/head'
 
-const Meta = ({ title, alternatePage, backgroundColor }) => {
+const Meta = ({ title, alternatePage }) => {
   const t = useTranslations()
 
   return (
@@ -27,8 +27,6 @@ const Meta = ({ title, alternatePage, backgroundColor }) => {
       )}
 
       {!IS_PRODUCTION && <meta name="robots" content="noindex, nofollow" />}
-
-      {/* <meta name="theme-color" content={`var(--color-${backgroundColor})`} /> */}
 
       <link
         rel="apple-touch-icon"

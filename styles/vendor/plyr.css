@@ -39,11 +39,17 @@
 }
 
 .plyr--video .plyr__control.plyr__tab-focus,
-.plyr--video .plyr__control:hover,
 .plyr--video .plyr__control[aria-expanded='true'] {
   background: transparent;
   color: currentColor;
   opacity: 0.8;
+}
+
+@media (hover: hover) {
+  .plyr--video .plyr__control:hover {
+    color: currentColor;
+    opacity: 0.8;
+  }
 }
 
 .plyr--video input[type='range'] {

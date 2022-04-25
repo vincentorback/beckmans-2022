@@ -1,9 +1,3 @@
-const Container = ({ ref, children }) => {
-  return (
-    <div ref={ref} className="Container">
-      {children}
-    </div>
-  )
-}
+const Container = ({ children }) => <div className="Container">{children}</div>
 
 export default Container

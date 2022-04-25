@@ -4,15 +4,8 @@ import { useTranslations } from 'next-intl'
 import { linkResolver } from '../../lib/prismic'
 import { PrismicText } from '@prismicio/react'
 
-const ProjectLists = ({ setActiveItem, lists }) => {
+const ProjectLists = ({ lists }) => {
   const t = useTranslations('categories')
-
-  // const handleMouseEnter = React.useCallback(
-  //   (item) => {
-  //     // setActiveItem(item)
-  //   },
-  //   [setActiveItem]
-  // )
 
   return (
     <ul className="Lists" role="tree" aria-label="Studenter">
@@ -29,9 +22,7 @@ const ProjectLists = ({ setActiveItem, lists }) => {
                   tabIndex="-1"
                 >
                   <Link href={linkResolver(item)} scroll={false}>
-                    <a
-                    // onMouseEnter={() => handleMouseEnter(item)}
-                    >
+                    <a>
                       <span>
                         <PrismicText field={item.data.name} />
                       </span>

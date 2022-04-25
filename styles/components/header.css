@@ -61,6 +61,11 @@
   align-items: center;
   justify-content: center;
   flex: 1 0 auto;
+  transition: opacity 100ms ease;
+}
+
+.Header-logo:active {
+  opacity: 0.8;
 }
 
 .Header-logo svg {

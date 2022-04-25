@@ -18,7 +18,7 @@ const App = ({ Component, pageProps, router }) => {
   }, [])
 
   React.useEffect(() => {
-    const handleRouteChange = () => {
+    const handleRouteStart = () => {
       window.requestAnimationFrame(() => {
         if (window.scrollY < 5) return
 
@@ -33,9 +33,9 @@ const App = ({ Component, pageProps, router }) => {
       })
     }
 
-    router.events.on('routeChangeStart', handleRouteChange)
+    router.events.on('routeChangeStart', handleRouteStart)
 
-    return () => router.events.off('routeChangeStart', handleRouteChange)
+    return () => router.events.off('routeChangeStart', handleRouteStart)
   }, [router])
 
   return (

@@ -5,7 +5,6 @@ import { m, useReducedMotion } from 'framer-motion'
 
 const Filters = ({ isReady, filters, activeFilter, onChange }) => {
   const t = useTranslations('categories')
-
   const reduceMotion = useReducedMotion()
 
   return (

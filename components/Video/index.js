@@ -7,10 +7,6 @@ import { getYoutubeID } from '../../lib/utilities'
 const Video = ({ width, height, video_id, provider_name, html }) => {
   const plyrRef = React.useRef()
 
-  video_id =
-    video_id ??
-    (provider_name === 'YouTube' && html ? getYoutubeID(html) : false)
-
   const { ref, inView } = useInView({
     triggerOnce: true,
   })
@@ -54,7 +50,11 @@ const Video = ({ width, height, video_id, provider_name, html }) => {
           type: 'video',
           sources: [
             {
-              src: video_id,
+              src:
+                video_id ??
+                (provider_name === 'YouTube' && html
+                  ? getYoutubeID(html)
+                  : false),
               provider: provider_name.toLowerCase(),
             },
           ],
@@ -78,7 +78,7 @@ const Video = ({ width, height, video_id, provider_name, html }) => {
         }}
       />
     )
-  }, [video_id, provider_name])
+  }, [video_id, provider_name, html])
 
   return (
     <div
