@@ -82,6 +82,12 @@ const Map = ({ items, category }) => {
                   onMouseEnter={() =>
                     isVisible && handleMouse(prismicH.asText(item.data.name))
                   }
+                  onTouchStart={(e) => {
+                    if (isVisible) {
+                      e.preventDefault()
+                      handleMouse(prismicH.asText(item.data.name))
+                    }
+                  }}
                   onMouseLeave={() => isVisible && handleMouse(null)}
                   animate={allImagesLoaded && isVisible && 'animate'}
                   initial="initial"
@@ -89,9 +95,10 @@ const Map = ({ items, category }) => {
                   variants={{
                     initial: {
                       opacity: 0,
-                      scale: 0.7,
+                      scale: 0.75,
                     },
                     animate: {
+                      y: 0,
                       opacity: 1,
                       scale: 1,
                       transition: {
@@ -101,7 +108,7 @@ const Map = ({ items, category }) => {
                     },
                     exit: {
                       opacity: 0,
-                      scale: 0.7,
+                      scale: 0.75,
                       transition: {
                         duration: 0.2,
                         delay: itemIndex * 0.03,

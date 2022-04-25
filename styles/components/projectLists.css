@@ -50,24 +50,24 @@
   padding-right: 1rem;
 }
 
-.Lists-item a {
+.Lists-itemLink {
   display: inline-block;
 }
 
-.Lists-item a span {
+.Lists-itemText {
   display: inline-block;
   transition: opacity 150ms ease;
 }
 
 @media (hover: hover) {
-  .Lists-item a:hover span {
+  .Lists-itemLink:hover .Lists-itemText {
     opacity: 0.8;
     text-decoration: underline;
   }
 }
 
 .Lists-item.is-active,
-.Lists-item a:active span {
+.Lists-itemLink:active .Lists-itemText {
   opacity: 0.8;
   text-decoration: underline;
 }

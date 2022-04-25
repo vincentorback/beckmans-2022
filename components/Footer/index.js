@@ -71,7 +71,7 @@ const Footer = ({ pages, settings }) => {
         </Container>
       </footer>
     ),
-    [t, pages]
+    [t, pages, settings]
   )
 
   return MemoFooter

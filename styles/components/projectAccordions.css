@@ -1,5 +1,5 @@
 .Accordions {
-  padding-top: var(--site-spacing);
+  padding: var(--site-spacing) 0 calc(var(--site-spacing) * 3);
   width: min(100%, 500px);
   margin-inline: auto;
 }
@@ -38,20 +38,20 @@
   opacity: 0.6;
 }
 
-.Accordions-button span {
+.Accordions-buttonText {
   display: block;
 }
 
-.Accordions-button svg {
+.Accordions-buttonSymbol {
   display: block;
   transform: rotateZ(0);
 }
 
-.Accordions.is-ready .Accordions-button svg {
+.Accordions.is-ready .Accordions-buttonSymbol {
   transition: transform 700ms ease;
 }
 
-.Accordions-list.is-active .Accordions-button svg {
+.Accordions-list.is-active .Accordions-buttonSymbol {
   transform: rotateZ(-135deg);
 }
 

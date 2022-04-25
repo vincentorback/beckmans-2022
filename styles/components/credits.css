@@ -57,7 +57,7 @@
   padding-top: 1rem;
 }
 
-@media (min-width: 500px) {
+@media (min-width: 800px) {
   .Credits-columnInner {
     max-width: 229px;
     border-top-width: 1px;

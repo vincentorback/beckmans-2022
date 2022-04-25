@@ -108,8 +108,9 @@ const ProjectAccordions = ({ lists }) => {
               aria-controls={`accordion-${list.id}-content`}
               onClick={() => handleToggleAccordion(list.id)}
             >
-              <span>{t(list.id)}</span>
+              <span className="Accordions-buttonText">{t(list.id)}</span>
               <svg
+                className="Accordions-buttonSymbol"
                 width="20"
                 height="20"
                 viewBox="0 0 20 20"

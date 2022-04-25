@@ -13,6 +13,7 @@ const Pagination = ({ prev, next }) => {
         <Link href={linkResolver(prev)} prefetch={false} scroll={false}>
           <a className="Pagination-link Pagination-prev">
             <svg
+              className="Pagination-linkSymbol"
               width="16"
               height="16"
               viewBox="0 0 16 16"
@@ -24,15 +25,16 @@ const Pagination = ({ prev, next }) => {
                 fill="currentColor"
               />
             </svg>
-            <span>{t('previous')} student</span>
+            <span className="Pagination-linkText">{t('previous')} student</span>
           </a>
         </Link>
       )}
       {next && (
         <Link href={linkResolver(next)} scroll={false}>
           <a className="Pagination-link Pagination-next">
-            <span>{t('next')} student</span>
+            <span className="Pagination-linkText">{t('next')} student</span>
             <svg
+              className="Pagination-linkSymbol"
               width="16"
               height="16"
               viewBox="0 0 16 16"

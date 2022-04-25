@@ -22,8 +22,8 @@ const ProjectLists = ({ lists }) => {
                   tabIndex="-1"
                 >
                   <Link href={linkResolver(item)} scroll={false}>
-                    <a>
-                      <span>
+                    <a className="Lists-itemLink">
+                      <span className="Lists-itemText">
                         <PrismicText field={item.data.name} />
                       </span>
                     </a>

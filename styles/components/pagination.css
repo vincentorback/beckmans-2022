@@ -48,21 +48,21 @@
   opacity: 0.6;
 }
 
-.Pagination-link span,
-.Pagination-link svg {
+.Pagination-linkText,
+.Pagination-linkSymbol {
   display: inline-block;
 }
 
-.Pagination-link svg {
+.Pagination-linkSymbol {
   width: 1em;
   height: 1em;
   transform: translateY(2px);
 }
 
-.Pagination-link span + svg {
+.Pagination-linkText + .Pagination-linkSymbol {
   margin-left: 1rem;
 }
 
-.Pagination-link svg + span {
+.Pagination-linkSymbol + .Pagination-linkText {
   margin-left: 1rem;
 }

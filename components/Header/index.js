@@ -10,7 +10,7 @@ const LocaleLink = ({ locale, isActive, url }) => {
   if (isActive) {
     return (
       <div className="Header-languageLink">
-        <span>{capitalize(locale)}</span>
+        <span className="Header-languageLinkText">{capitalize(locale)}</span>
       </div>
     )
   }
@@ -18,7 +18,7 @@ const LocaleLink = ({ locale, isActive, url }) => {
   return (
     <Link href={url} locale={locale} scroll={false}>
       <a className="Header-languageLink" lang={locale}>
-        <span>{capitalize(locale)}</span>
+        <span className="Header-languageLinkText">{capitalize(locale)}</span>
       </a>
     </Link>
   )
@@ -55,6 +55,7 @@ const Header = ({ children, project, page }) => {
             <Link href="/" scroll={false}>
               <a className="Header-logo">
                 <svg
+                  className="Header-logoSymbol"
                   viewBox="0 0 380 64"
                   xmlns="http://www.w3.org/2000/svg"
                   aria-hidden="true"

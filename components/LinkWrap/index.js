@@ -14,7 +14,7 @@ const LinkWrap = ({ className, href, children }) => {
     )
   }
 
-  return children
+  return <span className={className}>{children}</span>
 }
 
 export default LinkWrap

@@ -65,10 +65,10 @@
 }
 
 .Header-logo:active {
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
-.Header-logo svg {
+.Header-logoSymbol {
   flex: 1 0 auto;
   display: block;
   /* max-width: 285px; */
@@ -105,12 +105,12 @@ div.Header-languageLink {
 }
 
 @media (hover: hover) {
-  a.Header-languageLink:hover span {
+  a.Header-languageLink:hover .Header-languageLinkText {
     opacity: 0.8;
   }
 }
 
-a.Header-languageLink:active span {
+a.Header-languageLink:active .Header-languageLinkText {
   opacity: 0.6;
 }
 
@@ -161,7 +161,7 @@ a.Header-languageLink:active span {
     grid-row: 2;
   }
 
-  .Header-logo svg {
+  .Header-logoSymbol {
     margin: 0 auto;
     max-width: 200px;
   }

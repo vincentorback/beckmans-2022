@@ -29,7 +29,7 @@ const AnimatedItem = ({ className, isActive, children, background, index }) => {
         },
         notActive: {
           opacity: 0,
-          scale: 0.7,
+          scale: 0.75,
           transition: {
             duration: 0.2,
             delay: reduceMotion ? 0 : index * 0.02,
@@ -37,7 +37,7 @@ const AnimatedItem = ({ className, isActive, children, background, index }) => {
         },
         exit: {
           opacity: 0,
-          scale: 0.7,
+          scale: 0.75,
           transition: {
             duration: 0.2,
             delay: reduceMotion ? 0 : index * 0.03,
@@ -111,6 +111,10 @@ const Item = ({
         'is-visible': isVisible,
       })}
       onMouseEnter={() => handleMouseEnter(item)}
+      onTouchStart={(e) => {
+        e.preventDefault()
+        handleMouseEnter(item)
+      }}
     >
       <LinkWrap href={item.url ?? linkResolver(item)}>
         <AnimatedItem
@@ -127,7 +131,7 @@ const Item = ({
               onLoadingComplete={() => handleImageLoad(item.uid)}
               alt=""
               rect={`${rectX},${rectY},${rectImageWidth * 2},${
-                rectImageHeight * 2
+                rectImageHeight * 2 // TODO: Test x3 with production images
               }`}
               src={item?.data?.main_image}
               priority
