@@ -12,10 +12,15 @@ import Video from '../Video'
 import { m } from 'framer-motion'
 import { slugify } from '../../lib/utilities'
 import ProjectMedia from './Media'
+import { SESSION_ITEM } from '../../lib/constants'
 
 const Project = ({ project, projects, nextProject, prevProject }) => {
   const router = useRouter()
   const t = useTranslations()
+
+  React.useEffect(() => {
+    sessionStorage[SESSION_ITEM] = project.uid
+  }, [project.uid])
 
   const ExampleThanks = () => (
     <p className="u-preLine">

@@ -102,7 +102,7 @@ const Window = ({ item, previousItem }) => {
                 scale: 0.98,
               },
               complete: {
-                transition: { duration: 0.1 },
+                transition: { duration: !previousItem ? 0.3 : 0.1 },
                 opacity: 1,
                 scale: 1,
               },

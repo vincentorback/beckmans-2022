@@ -24,7 +24,7 @@ const LocaleLink = ({ locale, isActive, url }) => {
   )
 }
 
-const Header = ({ children, project, page }) => {
+const Header = ({ children, project, page, setFilter }) => {
   const router = useRouter()
 
   const doc = React.useMemo(() => page ?? project, [page, project])
@@ -53,7 +53,10 @@ const Header = ({ children, project, page }) => {
 
           <div className="Header-mid">
             <Link href="/" scroll={false}>
-              <a className="Header-logo">
+              <a
+                className="Header-logo"
+                onClick={() => setFilter && setFilter()}
+              >
                 <svg
                   className="Header-logoSymbol"
                   viewBox="0 0 380 64"
@@ -70,8 +73,12 @@ const Header = ({ children, project, page }) => {
           </div>
           <div className="Header-topRight">
             <p className="Header-beckmans" lang="en">
-              Beckmans <br />
-              College of Design
+              <Link href="https://beckmans.se">
+                <a target="_blank">
+                  Beckmans <br />
+                  College of Design
+                </a>
+              </Link>
             </p>
           </div>
           <div className="Header-bottomRight">
