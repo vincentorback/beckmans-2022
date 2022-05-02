@@ -8,8 +8,15 @@
   flex-wrap: wrap;
   gap: var(--site-spacing);
 
+  font-size: 0.875rem;
   font-weight: var(--text-bold);
   line-height: var(--lineheight-lg);
+}
+
+@media (min-width: 600px) {
+  .Pagination {
+    font-size: 1rem;
+  }
 }
 
 @media (min-width: 800px) {
