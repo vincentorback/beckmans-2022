@@ -72,13 +72,34 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
       </>
     )
 
+  const [isImageLoaded, setImageLoaded] = React.useState(false)
+
+  const handleImageLoad = React.useCallback(() => {
+    setImageLoaded(true)
+  }, [])
+
+  const MainImage = React.useMemo(
+    () => (
+      <Image
+        src={project.data.main_image}
+        alt=""
+        layout="responsive"
+        width={(1440 / 12) * 7}
+        height={(1440 / 12) * 7 * 1.1671511628}
+        sizes="(min-width: 1400px) 800px, (min-width: 800px) 50vw, 100vw"
+        onLoadingComplete={handleImageLoad}
+      />
+    ),
+    [project.data.main_image, handleImageLoad]
+  )
+
   return (
     <article className="Project">
       <div className="Project-inner">
         <m.div
           className="Project-image"
           initial="initial"
-          animate="animate"
+          animate={handleImageLoad && 'animate'}
           exit="exit"
           variants={{
             initial: {
@@ -87,7 +108,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
             animate: {
               opacity: 1,
               transition: {
-                delay: 1,
+                delay: 0.5,
                 ease: 'easeInOut',
                 duration: 0.5,
               },
@@ -101,14 +122,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
             },
           }}
         >
-          <Image
-            src={project.data.main_image}
-            alt=""
-            layout="responsive"
-            width={(1440 / 12) * 7}
-            height={(1440 / 12) * 7 * 1.1671511628}
-            sizes="(min-width: 1400px) 800px, (min-width: 800px) 50vw, 100vw"
-          />
+          {MainImage}
           <div className="Project-imageDots">
             {[...Array(9)].map((_, i) => (
               <div key={`dot_${i}`} />
