@@ -34,6 +34,14 @@
   }
 }
 
+.Accordions-button:focus {
+  outline: none;
+}
+
+.Accordions-button:focus-visible {
+  outline: 1px solid;
+}
+
 .Accordions-button:active {
   opacity: 0.6;
 }

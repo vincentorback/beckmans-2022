@@ -10,7 +10,6 @@ const Layout = ({
   children,
   background,
   pages,
-  alternatePage,
   settings,
   project,
   page,
@@ -47,7 +46,7 @@ const Layout = ({
         'u-hideOverflow': !project,
       })}
     >
-      <Meta title={title} alternatePage={alternatePage} doc={page || project} />
+      <Meta title={title} doc={page || project} />
       <div className="Layout-main">{children}</div>
       <Footer pages={pages} settings={settings} />
       {router.isPreview && (
