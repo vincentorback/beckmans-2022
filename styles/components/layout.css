@@ -1,15 +1,9 @@
 .Layout {
+  position: relative;
   min-height: 100%;
   height: fit-content;
   display: flex;
   flex-direction: column;
-}
-
-@media (min-width: 800px) {
-  .Layout {
-    position: relative;
-    overflow: hidden;
-  }
 }
 
 .Layout-main {

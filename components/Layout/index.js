@@ -2,6 +2,7 @@ import React from 'react'
 import Meta from '../Meta'
 import Footer from '../Footer'
 import Link from 'next-translate-routes/link'
+import classNames from 'classnames'
 import { useRouter } from 'next/router'
 
 const Layout = ({
@@ -41,7 +42,11 @@ const Layout = ({
   }, [background])
 
   return (
-    <div className="Layout">
+    <div
+      className={classNames('Layout', {
+        'u-hideOverflow': !project,
+      })}
+    >
       <Meta title={title} alternatePage={alternatePage} doc={page || project} />
       <div className="Layout-main">{children}</div>
       <Footer pages={pages} settings={settings} />
