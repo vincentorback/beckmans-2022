@@ -1,0 +1,57 @@
+{
+  "id": "c42ec489-a160-48d9-958c-2c832135d71b",
+  "uid": "vel-recusandae-provident",
+  "type": "project",
+  "data": {
+    "name": [
+      {
+        "type": "heading1",
+        "text": "Empower efficient mindshare",
+        "spans": []
+      }
+    ],
+    "project_title": [
+      {
+        "type": "heading2",
+        "text": "Utilize extensible paradigms",
+        "spans": []
+      }
+    ],
+    "category": "Fashion",
+    "text": [
+      {
+        "type": "paragraph",
+        "text": "Excepteur veniam esse incididunt nisi proident commodo culpa aute. Eiusmod est incididunt veniam ut qui voluptate magna pariatur elit exercitation do non reprehenderit nostrud ad.",
+        "spans": []
+      }
+    ],
+    "contact": [
+      {
+        "type": "paragraph",
+        "text": "Incididunt labore eiusmod eu proident officia ex eu officia deserunt ad in eiusmod veniam aliqua.",
+        "spans": []
+      }
+    ],
+    "thanks": [
+      {
+        "type": "paragraph",
+        "text": "Laboris amet aliqua tempor qui dolor ipsum pariatur excepteur consectetur. Voluptate esse aliqua do amet dolore duis ut fugiat ad mollit amet veniam.",
+        "spans": []
+      }
+    ],
+    "press_download": {
+      "link_type": "media",
+      "url": "https://source.unsplash.com/daily"
+    },
+    "main_image": {
+      "dimensions": {
+        "width": 900,
+        "height": 500
+      },
+      "alt": "Placeholder image",
+      "copyright": null,
+      "url": "https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?w=900&h=500&fit=crop"
+    },
+    "image_position": "empower ubiquitous experiences"
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "id": "project",
+  "label": "Project",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "name": {
+        "type": "StructuredText",
+        "config": {
+          "single": "heading1",
+          "label": "Student name"
+        }
+      },
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "ID"
+        }
+      },
+      "project_title": {
+        "type": "StructuredText",
+        "config": {
+          "single": "heading2",
+          "label": "Project title"
+        }
+      },
+      "category": {
+        "type": "Select",
+        "config": {
+          "options": [
+            "Product Design",
+            "Fashion",
+            "Visual communication"
+          ],
+          "label": "Category"
+        }
+      },
+      "text": {
+        "type": "StructuredText",
+        "config": {
+          "multi": "paragraph,heading2,heading3,heading4,strong,em,hyperlink,list-item,o-list-item",
+          "allowTargetBlank": true,
+          "label": "Text"
+        }
+      },
+      "contact": {
+        "type": "StructuredText",
+        "config": {
+          "multi": "paragraph,strong,em,hyperlink",
+          "allowTargetBlank": true,
+          "label": "Contact info"
+        }
+      },
+      "thanks": {
+        "type": "StructuredText",
+        "config": {
+          "multi": "paragraph,strong,em,hyperlink",
+          "allowTargetBlank": true,
+          "label": "Thanks"
+        }
+      },
+      "press_download": {
+        "type": "Link",
+        "config": {
+          "select": "media",
+          "label": "Press download",
+          "placeholder": ".zip"
+        }
+      },
+      "main_image": {
+        "type": "Image",
+        "config": {
+          "constraint": {},
+          "thumbnails": [],
+          "label": "Main image"
+        }
+      },
+      "image_position": {
+        "type": "Text",
+        "config": {
+          "label": "Image position",
+          "placeholder": "50% 50%"
+        }
+      },
+      "body": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "image": {
+              "type": "Slice",
+              "fieldset": "Images",
+              "description": "Images",
+              "icon": "image",
+              "display": "grid",
+              "non-repeat": {},
+              "repeat": {
+                "image": {
+                  "type": "Image",
+                  "config": {
+                    "constraint": {},
+                    "thumbnails": [],
+                    "label": "Image"
+                  }
+                }
+              }
+            },
+            "video": {
+              "type": "SharedSlice"
+            },
+            "images": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    }
+  }
+}

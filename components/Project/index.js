@@ -11,7 +11,7 @@ import { PrismicText, PrismicRichText } from '@prismicio/react'
 import Video from '../Video'
 import { m } from 'framer-motion'
 import { slugify } from '../../lib/utilities'
-import ProjectMedia from './Media'
+import ProjectSlices from './ProjectSlices'
 import { SESSION_ITEM } from '../../lib/constants'
 
 const Project = ({ project, projects, nextProject, prevProject }) => {
@@ -99,7 +99,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
         <m.div
           className="Project-image"
           initial="initial"
-          animate={handleImageLoad && 'animate'}
+          animate={isImageLoaded && 'animate'}
           exit="exit"
           variants={{
             initial: {
@@ -188,7 +188,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
           </div>
 
           {project.data.body.length ? (
-            <ProjectMedia items={project.data.body} />
+            <ProjectSlices items={project.data.body} />
           ) : (
             <div className="Project-media">
               <div className="Project-mediaGrid">

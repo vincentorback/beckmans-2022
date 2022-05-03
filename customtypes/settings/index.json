@@ -1,0 +1,31 @@
+{
+  "id": "settings",
+  "label": "Settings",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "press_link": {
+        "type": "Link",
+        "config": {
+          "label": "Press link",
+          "select": null
+        }
+      },
+      "graduation_show_link": {
+        "type": "Link",
+        "config": {
+          "label": "Graduation show link",
+          "select": null
+        }
+      },
+      "fashion_show_link": {
+        "type": "Link",
+        "config": {
+          "label": "Fashion show link",
+          "select": null
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "slices": {
+    "Text": {
+      "default": {
+        "primary": {
+          "body": {
+            "config": {
+              "patternType": "PARAGRAPH",
+              "blocks": 1
+            }
+          },
+          "title": {
+            "config": {
+              "patternType": "HEADING",
+              "blocks": 1
+            }
+          }
+        }
+      }
+    },
+    "Video": {
+      "default": {
+        "primary": {}
+      }
+    },
+    "Credits": {
+      "default": {
+        "primary": {}
+      }
+    },
+    "Images": {
+      "default": {
+        "primary": {}
+      }
+    }
+  },
+  "_cts": {
+    "project": {},
+    "page": {}
+  }
+}

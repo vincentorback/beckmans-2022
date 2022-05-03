@@ -1,5 +1,5 @@
-import Credits from '../Credits'
-import Text from '../Text'
+import Credits from '../../slices/Credits'
+import Text from '../../slices/Text'
 import { isEmpty } from '../../lib/utilities'
 import { m } from 'framer-motion'
 
@@ -26,22 +26,14 @@ const Slices = ({ body }) => {
     >
       {body.map((slice, sliceIndex) => {
         if (slice.slice_type === 'text') {
-          if (!slice?.primary?.text_title && !slice?.primary?.text_body)
-            return null
-
-          return (
-            <Text
-              key={`slice_${sliceIndex}`}
-              title={slice?.primary?.text_title}
-              body={slice?.primary?.text_body}
-            />
-          )
+          if (!slice?.primary?.title && !slice?.primary?.body) return null
+          return <Text slice={slice} key={`slice_${sliceIndex}`} />
         }
 
         if (slice.slice_type === 'credits') {
           if (isEmpty(slice?.items)) return null
 
-          return <Credits key={`slice_${sliceIndex}`} columns={slice.items} />
+          return <Credits key={`slice_${sliceIndex}`} slice={slice} />
         }
       })}
     </m.div>

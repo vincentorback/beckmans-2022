@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import Video from '../Video'
+import Video from '../../slices/Video'
 import Image from '../Image'
 
 const Media = ({ items }) => {
@@ -7,14 +7,14 @@ const Media = ({ items }) => {
     <div className="Project-media">
       {items.map((slice, sliceIndex) => {
         if (slice.slice_type === 'video') {
-          if (!slice?.primary?.embed_url?.provider_name) return null
-          return <Video key={sliceIndex} {...slice.primary.embed_url} />
+          if (!slice?.primary?.embedURL?.provider_name) return null
+          return <Video key={sliceIndex} slice={slice} />
         }
 
-        if (slice.slice_type === 'image') {
+        if (slice.slice_type === 'images') {
           if (!slice?.items.length) return null
           const images = slice.items.filter((item) => item.image.url)
-          if (!images.length) return null
+          if (!images?.length) return null
 
           return (
             <div
