@@ -56,7 +56,7 @@ const Meta = ({ title, doc }) => {
 
       {!IS_PRODUCTION && <meta name="robots" content="noindex, nofollow" />}
 
-      <link
+      {/* <link
         rel="apple-touch-icon"
         sizes="180x180"
         href="/icons/apple-touch-icon.png"
@@ -77,7 +77,7 @@ const Meta = ({ title, doc }) => {
       <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#000" />
       <link rel="shortcut icon" href="/icons/favicon.ico" />
       <meta name="msapplication-TileColor" content="#f5f1e7" />
-      <meta name="msapplication-config" content="/icons/browserconfig.xml" />
+      <meta name="msapplication-config" content="/icons/browserconfig.xml" /> */}
     </Head>
   )
 }
