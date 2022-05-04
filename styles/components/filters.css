@@ -41,3 +41,7 @@
 .Filters-button:focus-visible {
   outline: 1px solid;
 }
+
+.Filters-buttonText {
+  display: block;
+}

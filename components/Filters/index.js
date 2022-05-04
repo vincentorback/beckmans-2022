@@ -1,31 +1,31 @@
 import classNames from 'classnames'
 import { slugify } from '../../lib/utilities'
 import { useTranslations } from 'next-intl'
-import { m, useReducedMotion } from 'framer-motion'
+import { m } from 'framer-motion'
 
 const Filters = ({ isReady, filters, activeFilter, onChange }) => {
   const t = useTranslations('categories')
-  const reduceMotion = useReducedMotion()
 
   return (
     <div className="Filters">
       {filters.map((filter, filterIndex) => (
         <button
-          aria-pressed={activeFilter === filter}
-          key={filter}
-          onClick={() => onChange(filter)}
           className={classNames('Filters-button', {
             'is-active': activeFilter === filter,
           })}
+          aria-pressed={activeFilter === filter}
+          key={filter}
+          onClick={() => onChange(filter)}
         >
-          <m.div
+          <m.span
+            className="Filters-buttonText"
             variants={{
               hidden: {
                 opacity: 0,
                 y: '50%',
                 transition: {
                   duration: 0.2,
-                  delay: reduceMotion ? 0 : 0.5 + 0.2 * filterIndex,
+                  delay: 0.5 + 0.2 * filterIndex,
                 },
               },
               enter: {
@@ -33,7 +33,7 @@ const Filters = ({ isReady, filters, activeFilter, onChange }) => {
                 y: 0,
                 transition: {
                   duration: 0.2,
-                  delay: reduceMotion ? 0 : 0.5 + 0.2 * filterIndex,
+                  delay: 0.5 + 0.2 * filterIndex,
                 },
               },
               exit: {
@@ -41,7 +41,7 @@ const Filters = ({ isReady, filters, activeFilter, onChange }) => {
                 y: '-50%',
                 transition: {
                   duration: 0.2,
-                  delay: reduceMotion ? 0 : 0.2 * filterIndex,
+                  delay: 0.2 * filterIndex,
                 },
               },
             }}
@@ -50,7 +50,7 @@ const Filters = ({ isReady, filters, activeFilter, onChange }) => {
             exit="exit"
           >
             {t(slugify(filter))}
-          </m.div>
+          </m.span>
         </button>
       ))}
     </div>

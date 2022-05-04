@@ -2,29 +2,37 @@ import React from 'react'
 import classNames from 'classnames'
 import Image from '../Image'
 import LinkWrap from '../LinkWrap'
-import { m, useReducedMotion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { slugify, randomNumbers } from '../../lib/utilities'
 import { linkResolver } from '../../lib/prismic'
 
-const AnimatedItem = ({ className, isActive, children, background, index }) => {
-  const reduceMotion = useReducedMotion()
-
+const AnimatedItem = ({
+  className,
+  isActive,
+  children,
+  background,
+  itemIndex,
+}) => {
   return (
     <m.div
       className={className}
-      initial="notActive"
+      initial="initial"
       animate={isActive ? 'active' : 'notActive'}
       exit="exit"
       style={{
         backgroundColor: background ? `var(--color-${background})` : null,
       }}
       variants={{
+        initial: {
+          opacity: 0,
+          scale: 0.75,
+        },
         active: {
           opacity: 1,
           scale: 1,
           transition: {
             duration: 0.2,
-            delay: reduceMotion ? 0 : 0.2 + index * 0.02,
+            delay: itemIndex * 0.02,
           },
         },
         notActive: {
@@ -32,7 +40,7 @@ const AnimatedItem = ({ className, isActive, children, background, index }) => {
           scale: 0.75,
           transition: {
             duration: 0.2,
-            delay: reduceMotion ? 0 : index * 0.02,
+            delay: itemIndex * 0.02,
           },
         },
         exit: {
@@ -40,7 +48,7 @@ const AnimatedItem = ({ className, isActive, children, background, index }) => {
           scale: 0.75,
           transition: {
             duration: 0.2,
-            delay: reduceMotion ? 0 : index * 0.03,
+            delay: (isActive ? itemIndex : 0) * 0.03,
           },
         },
       }}
@@ -120,7 +128,7 @@ const Item = ({
         <AnimatedItem
           className="ProjectsGrid-itemInner"
           isActive={isVisible}
-          index={itemIndex}
+          itemIndex={itemIndex}
           background={backgroundColor}
         >
           {item?.data?.main_image?.url && (

@@ -89,16 +89,17 @@ const Map = ({ items, category }) => {
                     }
                   }}
                   onMouseLeave={() => isVisible && handleMouse(null)}
-                  animate={allImagesLoaded && isVisible && 'animate'}
                   initial="initial"
+                  animate={
+                    allImagesLoaded && isVisible ? 'active' : 'notActive'
+                  }
                   exit="exit"
                   variants={{
                     initial: {
                       opacity: 0,
                       scale: 0.75,
                     },
-                    animate: {
-                      y: 0,
+                    active: {
                       opacity: 1,
                       scale: 1,
                       transition: {
@@ -106,12 +107,20 @@ const Map = ({ items, category }) => {
                         delay: 1 + itemIndex * 0.03,
                       },
                     },
+                    notActive: {
+                      opacity: 0,
+                      scale: 0.75,
+                      transition: {
+                        duration: 0.3,
+                        delay: itemIndex * 0.03,
+                      },
+                    },
                     exit: {
                       opacity: 0,
                       scale: 0.75,
                       transition: {
                         duration: 0.2,
-                        delay: itemIndex * 0.03,
+                        delay: (isVisible ? itemIndex : 0) * 0.03,
                       },
                     },
                   }}

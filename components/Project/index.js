@@ -108,7 +108,6 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
             animate: {
               opacity: 1,
               transition: {
-                delay: 0.5,
                 ease: 'easeInOut',
                 duration: 0.5,
               },

@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import Window from './Window'
 import Grid from './Grid'
 import { SESSION_STARTED } from '../../lib/constants'
-import { m, useReducedMotion } from 'framer-motion'
+import { m } from 'framer-motion'
 
 const ProjectsGrid = ({
   activeItem,
@@ -17,8 +17,6 @@ const ProjectsGrid = ({
   const [dotAnimation, setDotAnimation] = React.useState('loading')
   const [dotsDone, setDotsDone] = React.useState(false)
   const [allImagesLoaded, setAllImagesLoades] = React.useState(false)
-
-  const reduceMotion = useReducedMotion()
 
   React.useEffect(() => {
     if (allImagesLoaded && dotsDone) {
@@ -63,42 +61,6 @@ const ProjectsGrid = ({
     [activeItem, previousActiveItem]
   )
 
-  const dotVariants = React.useMemo(
-    () => ({
-      loading: (index) => ({
-        opacity: 1,
-        scale: 1,
-        x: '-50%',
-        y: '-50%',
-        transition: {
-          duration: 0.4,
-          delay: reduceMotion ? 0 : (index % (25 * 1.3)) * 0.075,
-        },
-        backgroundColor: reduceMotion ? null : 'var(--color-black)',
-      }),
-      active: (index) => ({
-        opacity: Math.floor(index % 25) < 13 ? 1 : 0,
-        scale: Math.floor(index % 25) < 13 ? 1 : 0,
-        x: '-50%',
-        y: '-50%',
-        transition: {
-          duration: 0.2,
-        },
-        backgroundColor: 'var(--color-white)',
-      }),
-      hidden: {
-        opacity: 0,
-        scale: 0,
-        x: '-50%',
-        y: '-50%',
-        transition: {
-          duration: 0.2,
-        },
-      },
-    }),
-    [reduceMotion]
-  )
-
   const memoDots = React.useMemo(
     () => (
       <div className="ProjectsGrid-dots">
@@ -112,7 +74,38 @@ const ProjectsGrid = ({
             custom={dotIndex}
             initial={sessionStorage[SESSION_STARTED] ? 'active' : 'hidden'}
             animate={sessionStorage[SESSION_STARTED] ? '' : dotAnimation}
-            variants={dotVariants}
+            variants={{
+              loading: (index) => ({
+                opacity: 1,
+                scale: 1,
+                x: '-50%',
+                y: '-50%',
+                transition: {
+                  duration: 0.4,
+                  delay: (index % (25 * 1.3)) * 0.075,
+                },
+                backgroundColor: 'var(--color-black)',
+              }),
+              active: (index) => ({
+                opacity: Math.floor(index % 25) < 13 ? 1 : 0,
+                scale: Math.floor(index % 25) < 13 ? 1 : 0,
+                x: '-50%',
+                y: '-50%',
+                transition: {
+                  duration: 0.2,
+                },
+                backgroundColor: 'var(--color-white)',
+              }),
+              hidden: {
+                opacity: 0,
+                scale: 0,
+                x: '-50%',
+                y: '-50%',
+                transition: {
+                  duration: 0.2,
+                },
+              },
+            }}
             onAnimationComplete={(definition) => {
               if (
                 sessionStorage[SESSION_STARTED] ||
@@ -125,7 +118,7 @@ const ProjectsGrid = ({
         ))}
       </div>
     ),
-    [dotVariants, dotAnimation]
+    [dotAnimation]
   )
 
   return (
