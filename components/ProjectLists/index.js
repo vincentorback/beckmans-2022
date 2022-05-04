@@ -53,7 +53,11 @@ const ProjectLists = ({ lists }) => {
                   role="treeitem"
                   tabIndex="-1"
                 >
-                  <Link href={linkResolver(item)} scroll={false}>
+                  <Link
+                    href={linkResolver(item)}
+                    scroll={false}
+                    prefetch={false}
+                  >
                     <a className="Lists-itemLink">
                       <span className="Lists-itemText">
                         <PrismicText field={item.data.name} />

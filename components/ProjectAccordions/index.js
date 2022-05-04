@@ -133,8 +133,8 @@ const ProjectAccordions = ({ lists }) => {
                 <div className="Accordions-item" key={item.uid}>
                   <Link
                     href={linkResolver(item)}
-                    prefetch={false}
                     scroll={false}
+                    prefetch={false}
                   >
                     <a className="Accordions-link">
                       <div className="Accordions-itemContent">
