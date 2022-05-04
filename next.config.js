@@ -1,8 +1,7 @@
 const withTranslateRoutes = require('next-translate-routes/plugin')
-
-const isProduction = Boolean(
-  process.env.URL && !process.env.URL.includes('netlify')
-)
+const IS_PRODUCTION =
+  process.env.URL &&
+  ['vercel', 'netlify'].includes(process.env.URL.includes) === false
 
 const nextConfig = withTranslateRoutes({
   swcMinify: false,
@@ -11,10 +10,10 @@ const nextConfig = withTranslateRoutes({
   i18n: {
     locales: ['sv', 'en'],
     defaultLocale: 'sv',
-    localeDetection: isProduction,
+    localeDetection: IS_PRODUCTION,
   },
   images: {
-    formats: isProduction ? ['image/avif', 'image/webp'] : ['image/webp'],
+    formats: IS_PRODUCTION ? ['image/avif', 'image/webp'] : ['image/webp'],
   },
   eslint: {
     ignoreDuringBuilds: true,
