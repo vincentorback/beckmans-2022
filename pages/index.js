@@ -133,12 +133,8 @@ const Projects = ({
             setPreviousActiveItem={setPreviousActiveItem}
           />
           <ProjectLists
-            activeFilter={activeFilter}
-            filters={filters}
-            items={projects}
             lists={lists}
-            activeItem={activeItem}
-            setActiveItem={handleSetItem}
+            isReady={isReady}
           />
         </>
       ) : (

@@ -5,7 +5,7 @@ import { linkResolver } from '../../lib/prismic'
 import { PrismicText } from '@prismicio/react'
 import { m } from 'framer-motion'
 
-const ProjectLists = ({ lists }) => {
+const ProjectLists = ({ lists, isReady }) => {
   const t = useTranslations('categories')
 
   return (
@@ -14,28 +14,26 @@ const ProjectLists = ({ lists }) => {
       role="tree"
       aria-label="Studenter"
       initial="initial"
-      animate="animate"
+      animate={isReady && "animate"}
       exit="exit"
       variants={{
         initial: {
           opacity: 0,
-          y: 30,
         },
         animate: {
           opacity: 1,
           y: 0,
           transition: {
             ease: 'easeInOut',
-            delay: 0.8,
-            duration: 0.4,
+            delay: 0.3,
+            duration: 0.6,
           },
         },
         exit: {
-          y: 30,
           opacity: 0,
           transition: {
             ease: 'easeInOut',
-            delay: 0.8,
+            delay: 0.3,
             duration: 0.4,
           },
         },
