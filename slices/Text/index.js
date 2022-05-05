@@ -1,28 +1,30 @@
-import React from 'react'
 import Entry from '../../components/Entry'
 import { PrismicRichText } from '@prismicio/react'
 import * as prismicH from '@prismicio/helpers'
 
-const Text = ({ slice, children }) => (
-  <div className="Text">
-    <div className="Text-title">
-      {slice.primary.title && (
-        <h1>
-          {Array.isArray(slice.primary.title)
-            ? prismicH.asText(slice.primary.title)
-            : slice.primary.title}
-        </h1>
-      )}
+const Text = ({ slice, title, body, children }) => {
+  const textTitle = title ?? slice?.primary?.title
+  const textBody = body ?? slice?.primary?.body
+
+  return (
+    <div className="Text">
+      <div className="Text-title">
+        {textTitle && (
+          <h1>
+            {Array.isArray(textTitle) ? prismicH.asText(textTitle) : textTitle}
+          </h1>
+        )}
+      </div>
+      <div className="Text-body">
+        {textBody && (
+          <Entry>
+            <PrismicRichText field={textBody} />
+          </Entry>
+        )}
+        {children && <Entry>{children}</Entry>}
+      </div>
     </div>
-    <div className="Text-body">
-      {slice.primary.body && (
-        <Entry>
-          <PrismicRichText field={slice.primary.body} />
-        </Entry>
-      )}
-      {children && <Entry>{children}</Entry>}
-    </div>
-  </div>
-)
+  )
+}
 
 export default Text

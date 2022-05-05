@@ -6,7 +6,7 @@ import Container from '../../components/Container'
 import Header from '../../components/Header'
 import Layout from '../../components/Layout'
 import Slices from '../../components/Slices'
-import Text from '../../components/Text'
+import Text from '../../slices/Text'
 import { m } from 'framer-motion'
 
 export default function Page(props) {

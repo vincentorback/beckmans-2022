@@ -1,0 +1,19 @@
+.u-preLine {
+  white-space: pre-line !important;
+}
+
+@media (min-width: 800px) {
+  .u-showSmall {
+    display: none !important;
+  }
+}
+
+@media (max-width: 800px) {
+  .u-hideSmall {
+    display: none !important;
+  }
+}
+
+.u-hideOverflow {
+  overflow: hidden !important;
+}

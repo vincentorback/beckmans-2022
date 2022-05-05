@@ -2,7 +2,7 @@ import { getEverything } from '../lib/content'
 import Container from '../components/Container'
 import Header from '../components/Header'
 import Layout from '../components/Layout'
-import Text from '../components/Text'
+import Text from '../slices/Text'
 import { useTranslations } from 'next-intl'
 
 export default function Error404Page(props) {

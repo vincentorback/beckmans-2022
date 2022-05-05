@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl'
 import Container from '../components/Container'
 import Header from '../components/Header'
 import Layout from '../components/Layout'
-import Text from '../components/Text'
+import Text from '../slices/Text'
 
 export default function ErrorPage(props) {
   const { statusCode, statusMessage } = props

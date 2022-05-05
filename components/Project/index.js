@@ -8,7 +8,6 @@ import Map from '../Map'
 import Image from '../Image'
 import Pagination from '../Pagination'
 import { PrismicText, PrismicRichText } from '@prismicio/react'
-import Video from '../Video'
 import { m } from 'framer-motion'
 import { slugify } from '../../lib/utilities'
 import ProjectSlices from './ProjectSlices'
@@ -204,14 +203,6 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                   height={634}
                 />
               </div>
-              <Video
-                key={project.uid}
-                provider_name="Vimeo"
-                video_id="286740784"
-                width={318}
-                height={240}
-                html={`<iframe src="https://player.vimeo.com/video/286740784?h=944a23271c&amp;app_id=122963" width="318" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="RED LIGHT"></iframe>`}
-              />
               <Image
                 src={project.data.main_image}
                 alt=""

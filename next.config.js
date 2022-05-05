@@ -1,7 +1,7 @@
 const withTranslateRoutes = require('next-translate-routes/plugin')
+
 const IS_PRODUCTION =
-  process.env.URL &&
-  ['vercel', 'netlify'].includes(process.env.URL.includes) === false
+  process.env.URL && ['netlify'].includes(process.env.URL.includes) === false
 
 const nextConfig = withTranslateRoutes({
   swcMinify: false,

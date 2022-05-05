@@ -249,6 +249,8 @@
   gap: var(--site-spacing);
 }
 
+/* TODO: If content doesnt with, push map to bottom and keep info sticky */
+
 @media (min-width: 800px) and (min-height: 800px) {
   .Project-sidebar {
     padding-bottom: calc(var(--site-spacing) * 2);

@@ -163,7 +163,6 @@ export default function HomePage(props) {
     }
   }, [])
 
-  // TODO: Set filter when opening accordions if we're moving Filters away from Header
   const handleSetFilter = React.useCallback((filter) => {
     setActiveFilter((prev) => {
       const newFilter = !filter || prev === filter ? DEFAULT_FILTER : filter
