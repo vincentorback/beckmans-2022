@@ -6,7 +6,7 @@ import withTranslateRoutes from 'next-translate-routes'
 import { PrismicProvider } from '@prismicio/react'
 import { PrismicPreview } from '@prismicio/next'
 import { linkResolver, repositoryName } from '../lib/prismic'
-import { clamp, easeInOutExpo } from '../lib/utilities'
+import { clamp } from '../lib/utilities'
 import jump from 'jump.js'
 import '../styles/index.css'
 
@@ -27,7 +27,6 @@ const App = ({ Component, pageProps, router }) => {
         } else {
           jump(document.documentElement, {
             duration: (distance) => clamp(200, Math.abs(distance) * 0.5, 500),
-            easing: easeInOutExpo,
           })
         }
       })

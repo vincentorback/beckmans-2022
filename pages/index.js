@@ -93,14 +93,17 @@ const Projects = ({
 
   const lists = React.useMemo(
     () =>
-      filters.map((filter, filterIndex) => ({
-        id: filter,
-        index: filterIndex,
-        items: projects.filter(
-          (project) =>
-            project?.data?.category && filter === slugify(project.data.category)
-        ),
-      })),
+      filters
+        .map((filter, filterIndex) => ({
+          id: filter,
+          index: filterIndex,
+          items: projects.filter(
+            (project) =>
+              project?.data?.category &&
+              filter === slugify(project.data.category)
+          ),
+        }))
+        .filter((list) => list?.items?.length),
     [filters, projects]
   )
 
@@ -132,10 +135,7 @@ const Projects = ({
             previousActiveItem={previousActiveItem}
             setPreviousActiveItem={setPreviousActiveItem}
           />
-          <ProjectLists
-            lists={lists}
-            isReady={isReady}
-          />
+          <ProjectLists lists={lists} isReady={isReady} />
         </>
       ) : (
         <ProjectAccordions items={projects} lists={lists} />

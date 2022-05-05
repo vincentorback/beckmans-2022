@@ -151,8 +151,8 @@ const Item = ({
         <Image
           hidden
           alt=""
-          width={(1440 / 12) * 6}
-          height={(1440 / 12) * 6 * 1.1671511628}
+          width={Math.floor((1440 / 12) * 6)}
+          height={Math.floor((1440 / 12) * 6 * 1.1671511628)}
           layout="responsive"
           quality={50}
           sizes="(max-width: 1400px) 50vw, 686px"

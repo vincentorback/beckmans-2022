@@ -84,6 +84,7 @@ const ProjectAccordions = ({ lists }) => {
         },
         animate: {
           opacity: 1,
+          delay: 0.1,
         },
         exit: {
           opacity: 0,
