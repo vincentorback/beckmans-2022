@@ -21,112 +21,15 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
     sessionStorage[SESSION_ITEM] = project.uid
   }, [project.uid])
 
-  const ExampleThanks = () => (
-    <p className="u-preLine">
-      {router.locale === 'en'
-        ? `Grandma 'n Granpa \nMy teachers \nThe print house \nThe community \nThe future \nAhlgrens Bilar \nBe here nowness \nGodrick the Grafted \nAlbert Einstein \nAdam \nEva`
-        : `Mormor & Morfar \nMina lärare \nTryckeriet`}
-    </p>
-  )
-
-  const ExampleContent = () =>
-    router.locale === 'sv' ? (
-      <>
-        <p>
-          Mitt <strong>examensarbete</strong> är ett <em>självutforskande</em>{' '}
-          av identitet ur ett posthumanistiskt perspektiv.{' '}
-          <a href="#/">Resultatet</a> är tre självporträtt där jag gestaltar min
-          mångfacetterade identitet i form av en avatar.
-        </p>
-        <ul>
-          <li>Lista med saker</li>
-          <li>Kan vara vadsom</li>
-          <li>helst?</li>
-        </ul>
-        <ol>
-          <li>Lista med saker</li>
-          <li>Kan vara vadsom</li>
-          <li>helst?</li>
-        </ol>
-      </>
-    ) : (
-      <>
-        <p>
-          My <strong>graduation project</strong> is a{' '}
-          <em>personal investigation</em> of identity from a post-humanist
-          perspective. <a href="#/">This has resulted</a> in three
-          self-portraits in which I give expression to my multifaceted identity
-          in the form of an avatar.
-        </p>
-        <ul>
-          <li>List with things</li>
-          <li>Can be</li>
-          <li>anything?</li>
-        </ul>
-        <ol>
-          <li>List with things</li>
-          <li>Can be</li>
-          <li>anything?</li>
-        </ol>
-      </>
-    )
-
-  const [isImageLoaded, setImageLoaded] = React.useState(false)
-
-  const handleImageLoad = React.useCallback(() => {
-    setImageLoaded(true)
-  }, [])
-
-  const MainImage = React.useMemo(
-    () => (
-      <Image
-        src={project.data.main_image}
-        alt=""
-        layout="responsive"
-        width={Math.floor((1440 / 12) * 7)}
-        height={Math.floor((1440 / 12) * 7 * 1.1671511628)}
-        sizes="(min-width: 1400px) 800px, (min-width: 800px) 50vw, 100vw"
-        onLoadingComplete={handleImageLoad}
-      />
-    ),
-    [project.data.main_image, handleImageLoad]
+  const MemoImage = React.useMemo(
+    () => <MainImage image={project.data.main_image} />,
+    [project.data.main_image]
   )
 
   return (
     <article className="Project">
       <div className="Project-inner">
-        <m.div
-          className="Project-image"
-          initial="initial"
-          animate={isImageLoaded && 'animate'}
-          exit="exit"
-          variants={{
-            initial: {
-              opacity: 0,
-            },
-            animate: {
-              opacity: 1,
-              transition: {
-                ease: 'easeInOut',
-                duration: 0.5,
-              },
-            },
-            exit: {
-              opacity: 0,
-              transition: {
-                ease: 'easeInOut',
-                duration: 0.5,
-              },
-            },
-          }}
-        >
-          {MainImage}
-          <div className="Project-imageDots">
-            {[...Array(9)].map((_, i) => (
-              <div key={`dot_${i}`} />
-            ))}
-          </div>
-        </m.div>
+        {MemoImage}
         <m.div
           className="Project-content"
           initial="initial"
@@ -169,7 +72,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
               {project.data.text.length ? (
                 <PrismicRichText field={project.data.text} />
               ) : (
-                <ExampleContent />
+                <ExampleContent locale={router.locale} />
               )}
             </Entry>
           </div>
@@ -180,7 +83,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
               {project.data.thanks.length ? (
                 <PrismicRichText field={project.data.thanks} />
               ) : (
-                <ExampleThanks />
+                <ExampleThanks locale={router.locale} />
               )}
             </div>
           </div>
@@ -264,20 +167,21 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
             variants={{
               initial: {
                 opacity: 0,
+                y: -5,
               },
               animate: {
                 opacity: 1,
                 y: 0,
                 transition: {
-                  delay: 0.6,
-                  duration: 0.3,
+                  delay: 1,
+                  duration: 0.6,
                 },
               },
               exit: {
                 opacity: 0,
-                y: 10,
+                y: -5,
                 transition: {
-                  duration: 0.5,
+                  duration: 0.6,
                 },
               },
             }}
@@ -336,4 +240,121 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
   )
 }
 
+const MainImage = ({ image }) => {
+  const [isImageLoaded, setImageLoaded] = React.useState(false)
+
+  const handleImageLoad = React.useCallback(() => {
+    setImageLoaded(true)
+  }, [])
+
+  const ImageLoader = React.useMemo(
+    () => (
+      <Image
+        src={image}
+        alt=""
+        layout="responsive"
+        width={Math.floor((1440 / 12) * 7)}
+        height={Math.floor((1440 / 12) * 7 * 1.1671511628)}
+        sizes="(min-width: 1400px) 800px, (min-width: 800px) 50vw, 100vw"
+        onLoadingComplete={handleImageLoad}
+      />
+    ),
+    [image, handleImageLoad]
+  )
+
+  const ImageDots = React.useMemo(
+    () => (
+      <div className="Project-imageDots">
+        {[...Array(9)].map((_, i) => (
+          <div key={`dot_${i}`} />
+        ))}
+      </div>
+    ),
+    []
+  )
+
+  return (
+    <m.div
+      className="Project-image"
+      initial="initial"
+      animate={isImageLoaded && 'animate'}
+      exit="exit"
+      variants={{
+        initial: {
+          opacity: 0,
+          y: 5,
+        },
+        animate: {
+          opacity: 1,
+          y: 0,
+          transition: {
+            duration: 0.7,
+            delay: 0.2,
+          },
+        },
+        exit: {
+          opacity: 0,
+          y: 5,
+          transition: {
+            duration: 0.7,
+          },
+        },
+      }}
+    >
+      {ImageLoader}
+      {ImageDots}
+    </m.div>
+  )
+}
+
 export default Project
+
+const ExampleThanks = ({ locale }) => (
+  <p className="u-preLine">
+    {locale === 'en'
+      ? `Grandma 'n Granpa \nMy teachers \nThe print house \nThe community \nThe future \nAhlgrens Bilar \nBe here nowness \nGodrick the Grafted \nAlbert Einstein \nAdam \nEva`
+      : `Mormor & Morfar \nMina lärare \nTryckeriet`}
+  </p>
+)
+
+const ExampleContent = ({ locale }) =>
+  locale === 'sv' ? (
+    <>
+      <p>
+        Mitt <strong>examensarbete</strong> är ett <em>självutforskande</em> av
+        identitet ur ett posthumanistiskt perspektiv.{' '}
+        <a href="#/">Resultatet</a> är tre självporträtt där jag gestaltar min
+        mångfacetterade identitet i form av en avatar.
+      </p>
+      <ul>
+        <li>Lista med saker</li>
+        <li>Kan vara vadsom</li>
+        <li>helst?</li>
+      </ul>
+      <ol>
+        <li>Lista med saker</li>
+        <li>Kan vara vadsom</li>
+        <li>helst?</li>
+      </ol>
+    </>
+  ) : (
+    <>
+      <p>
+        My <strong>graduation project</strong> is a{' '}
+        <em>personal investigation</em> of identity from a post-humanist
+        perspective. <a href="#/">This has resulted</a> in three self-portraits
+        in which I give expression to my multifaceted identity in the form of an
+        avatar.
+      </p>
+      <ul>
+        <li>List with things</li>
+        <li>Can be</li>
+        <li>anything?</li>
+      </ul>
+      <ol>
+        <li>List with things</li>
+        <li>Can be</li>
+        <li>anything?</li>
+      </ol>
+    </>
+  )

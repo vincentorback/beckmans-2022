@@ -4,11 +4,6 @@
   margin-inline: auto;
 }
 
-.Accordions:not(.is-ready) {
-  opacity: 0;
-  pointer-events: none;
-}
-
 .Accordions-list {
   border-bottom: 1px solid;
 }
@@ -56,7 +51,7 @@
 }
 
 .Accordions.is-ready .Accordions-buttonSymbol {
-  transition: transform 700ms ease;
+  transition: transform 600ms ease;
 }
 
 .Accordions-list.is-active .Accordions-buttonSymbol {
@@ -64,13 +59,7 @@
 }
 
 .Accordions-content {
-  transition: max-height 300ms ease-out;
   overflow: hidden;
-}
-
-.Accordions-list.is-active .Accordions-content {
-  transition-timing-function: ease-in;
-  transition-duration: 600ms;
 }
 
 .Accordions-item {

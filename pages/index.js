@@ -72,6 +72,7 @@ const Projects = ({
         (!activeFilter || slugify(project.data.category) === activeFilter)
       ) {
         setActiveItem(project)
+        delete sessionStorage[SESSION_ITEM]
       }
     }
   }, [projects, isReady, activeFilter])

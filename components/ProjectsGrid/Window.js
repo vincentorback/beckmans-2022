@@ -20,10 +20,9 @@ const Window = ({ item, previousItem }) => {
     <m.div
       className="ProjectsGrid-window"
       initial="initial"
-      animate="animate"
       exit="exit"
       variants={{
-        animate: {
+        initial: {
           opacity: 1,
         },
         exit: {
