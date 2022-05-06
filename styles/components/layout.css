@@ -25,7 +25,7 @@
   border-top-right-radius: 3px;
   color: #fff;
   padding: 0.8em;
-  z-index: 9999;
+  z-index: 1000;
 }
 
 .Layout-background {
