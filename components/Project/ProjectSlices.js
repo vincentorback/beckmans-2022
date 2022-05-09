@@ -30,6 +30,7 @@ const Media = ({ items }) => {
                   alt=""
                   width={item.image.dimensions.width}
                   height={item.image.dimensions.height}
+                  lazyBoundary="100%"
                 />
               ))}
             </div>

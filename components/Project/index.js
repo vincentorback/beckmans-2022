@@ -26,6 +26,16 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
     [project.data.main_image]
   )
 
+  const MemoMedia = React.useMemo(
+    () =>
+      project.data.body.length ? (
+        <ProjectSlices items={project.data.body} />
+      ) : (
+        <ExampleMedia image={project.data.main_image} />
+      ),
+    [project.data.body, project.data.main_image]
+  )
+
   return (
     <article className="Project">
       <div className="Project-inner">
@@ -88,38 +98,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
             </div>
           </div>
 
-          {project.data.body.length ? (
-            <ProjectSlices items={project.data.body} />
-          ) : (
-            <div className="Project-media">
-              <div className="Project-mediaGrid">
-                <Image
-                  src={project.data.main_image}
-                  alt=""
-                  width={506}
-                  height={634}
-                />
-                <Image
-                  src={project.data.main_image}
-                  alt=""
-                  width={506}
-                  height={634}
-                />
-              </div>
-              <Image
-                src={project.data.main_image}
-                alt=""
-                width={1038}
-                height={632}
-              />
-              <Image
-                src={project.data.main_image}
-                alt=""
-                width={1038}
-                height={1200}
-              />
-            </div>
-          )}
+          {MemoMedia}
 
           <div className="Project-projectInfo Project-projectInfo--main">
             <div className={classNames('Project-info', 'u-showSmall')}>
@@ -264,13 +243,29 @@ const MainImage = ({ image }) => {
 
   const ImageDots = React.useMemo(
     () => (
-      <div className="Project-imageDots">
+      <m.div
+        className="Project-imageDots"
+        initial="initial"
+        animate={isImageLoaded && 'animate'}
+        variants={{
+          initial: {
+            opacity: 1,
+          },
+          animate: {
+            opacity: 0,
+            transition: {
+              duration: 1,
+              delay: 2,
+            },
+          },
+        }}
+      >
         {[...Array(9)].map((_, i) => (
           <div key={`dot_${i}`} />
         ))}
-      </div>
+      </m.div>
     ),
-    []
+    [isImageLoaded]
   )
 
   return (
@@ -358,3 +353,42 @@ const ExampleContent = ({ locale }) =>
       </ol>
     </>
   )
+
+const ExampleMedia = ({ image }) => (
+  <div className="Project-media">
+    <div className="Project-mediaGrid">
+      <Image
+        src={image}
+        alt=""
+        width={506}
+        height={634}
+        quality={1}
+        lazyBoundary="100%"
+      />
+      <Image
+        src={image}
+        alt=""
+        width={506}
+        height={634}
+        quality={1}
+        lazyBoundary="100%"
+      />
+    </div>
+    <Image
+      src={image}
+      alt=""
+      width={1038}
+      height={632}
+      quality={1}
+      lazyBoundary="100%"
+    />
+    <Image
+      src={image}
+      alt=""
+      width={1038}
+      height={1200}
+      quality={1}
+      lazyBoundary="100%"
+    />
+  </div>
+)
