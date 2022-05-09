@@ -92,7 +92,7 @@ const CreditsBackground = () => (
       opacity: 1,
       transition: {
         duration: 0.5,
-        delay: 0.25,
+        delay: 0.2,
       },
     }}
     exit={{
@@ -126,7 +126,7 @@ const AboutBackground = () => (
       opacity: 1,
       transition: {
         duration: 0.5,
-        delay: 0.25,
+        delay: 0.2,
       },
     }}
     exit={{

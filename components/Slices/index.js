@@ -19,7 +19,7 @@ const Slices = ({ body }) => {
         opacity: 0,
         transition: {
           duration: 0.5,
-          delay: 0.25,
+          delay: 0.2,
         },
       }}
     >
