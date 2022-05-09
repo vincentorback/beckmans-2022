@@ -5,7 +5,7 @@ import { linkResolver } from '../../lib/prismic'
 import { PrismicText } from '@prismicio/react'
 import { m } from 'framer-motion'
 
-const ProjectLists = ({ lists, isReady }) => {
+const ProjectLists = ({ lists, isReady, setActiveItem }) => {
   const t = useTranslations('categories')
 
   return (
@@ -14,7 +14,7 @@ const ProjectLists = ({ lists, isReady }) => {
       role="tree"
       aria-label="Studenter"
       initial="initial"
-      animate={isReady && "animate"}
+      animate={isReady && 'animate'}
       exit="exit"
       variants={{
         initial: {
@@ -56,7 +56,15 @@ const ProjectLists = ({ lists, isReady }) => {
                     scroll={false}
                     prefetch={false}
                   >
-                    <a className="Lists-itemLink">
+                    <a
+                      className="Lists-itemLink"
+                      onMouseEnter={
+                        setActiveItem ? () => setActiveItem(item) : null
+                      }
+                      onTouchStart={
+                        setActiveItem ? () => setActiveItem(item) : null
+                      }
+                    >
                       <span className="Lists-itemText">
                         <PrismicText field={item.data.name} />
                       </span>

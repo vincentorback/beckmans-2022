@@ -42,7 +42,7 @@
 @media (min-width: 1300px) {
   .Lists-list {
     columns: 2;
-    height: 11.1em;
+    height: 11.5em;
   }
 }
 
@@ -56,18 +56,17 @@
 
 .Lists-itemText {
   display: inline-block;
-  transition: opacity 150ms ease;
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
 }
 
 @media (hover: hover) {
   .Lists-itemLink:hover .Lists-itemText {
-    opacity: 0.8;
-    text-decoration: underline;
+    text-decoration-color: currentColor;
   }
 }
 
-.Lists-item.is-active,
 .Lists-itemLink:active .Lists-itemText {
+  text-decoration-color: currentColor;
   opacity: 0.8;
-  text-decoration: underline;
 }

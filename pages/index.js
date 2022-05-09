@@ -22,7 +22,7 @@ const Projects = ({
   setGridLoaded,
 }) => {
   const router = useRouter()
-  const [windowWidth, setWindowWidth] = React.useState(null)
+  const [dimensions, setDimensions] = React.useState(null)
   const [activeItem, setActiveItem] = React.useState(null)
   const [previousActiveItem, setPreviousActiveItem] = React.useState(null)
   const [inTransition, setInTransition] = React.useState()
@@ -110,7 +110,7 @@ const Projects = ({
 
   React.useEffect(() => {
     const handleResize = debounce(() => {
-      setWindowWidth(window.innerWidth)
+      setDimensions([window.innerWidth, window.innerHeight])
     }, 200)
 
     window.addEventListener('resize', handleResize)
@@ -120,11 +120,11 @@ const Projects = ({
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  if (!windowWidth) return <div style={{ height: '100vh' }} />
+  if (!dimensions?.length) return <div style={{ height: '100vh' }} />
 
   return (
     <Container>
-      {windowWidth > 800 ? (
+      {dimensions[0] > 800 ? (
         <>
           <ProjectsGrid
             activeFilter={activeFilter}
@@ -136,7 +136,11 @@ const Projects = ({
             previousActiveItem={previousActiveItem}
             setPreviousActiveItem={setPreviousActiveItem}
           />
-          <ProjectLists lists={lists} isReady={isReady} />
+          <ProjectLists
+            lists={lists}
+            isReady={isReady}
+            setActiveItem={dimensions[1] > 800 && handleSetItem}
+          />
         </>
       ) : (
         <ProjectAccordions items={projects} lists={lists} />
