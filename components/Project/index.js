@@ -243,27 +243,30 @@ const MainImage = ({ image }) => {
 
   const ImageDots = React.useMemo(
     () => (
-      <m.div
-        className="Project-imageDots"
-        initial="initial"
-        animate={isImageLoaded && 'animate'}
-        variants={{
-          initial: {
-            opacity: 1,
-          },
-          animate: {
-            opacity: 0,
-            transition: {
-              duration: 1,
-              delay: 2,
-            },
-          },
-        }}
-      >
-        {[...Array(9)].map((_, i) => (
-          <div key={`dot_${i}`} />
+      <div className="Project-imageDots">
+        {[...Array(9)].map((_, dotIndex) => (
+          <m.div
+            initial="initial"
+            animate={isImageLoaded && 'animate'}
+            variants={{
+              initial: {
+                opacity: 1,
+                scale: 1,
+              },
+              animate: {
+                opacity: 0,
+                scale: 0.9,
+                transition: {
+                  duration: 0.5,
+                  delay:
+                    dotIndex % 2 ? 0.5 + 0.3 * dotIndex : 1.2 + 0.3 * dotIndex,
+                },
+              },
+            }}
+            key={`dot_${dotIndex}`}
+          />
         ))}
-      </m.div>
+      </div>
     ),
     [isImageLoaded]
   )
