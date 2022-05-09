@@ -53,13 +53,13 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
               opacity: 1,
               transition: {
                 delay: 0.5,
-                duration: 0.5,
+                duration: 0.4,
               },
             },
             exit: {
               opacity: 0,
               transition: {
-                duration: 0.5,
+                duration: 0.4,
               },
             },
           }}
@@ -153,14 +153,14 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                 y: 0,
                 transition: {
                   delay: 0.5,
-                  duration: 0.5,
+                  duration: 0.4,
                 },
               },
               exit: {
                 opacity: 0,
                 y: -10,
                 transition: {
-                  duration: 0.5,
+                  duration: 0.4,
                 },
               },
             }}
@@ -247,7 +247,7 @@ const MainImage = ({ image }) => {
         {[...Array(9)].map((_, dotIndex) => (
           <m.div
             initial="initial"
-            animate={isImageLoaded && 'animate'}
+            animate="animate"
             variants={{
               initial: {
                 opacity: 1,
@@ -255,11 +255,10 @@ const MainImage = ({ image }) => {
               },
               animate: {
                 opacity: 0,
-                scale: 0.9,
+                scale: 0.8,
                 transition: {
-                  duration: 0.5,
-                  delay:
-                    dotIndex % 2 ? 0.5 + 0.3 * dotIndex : 1.2 + 0.3 * dotIndex,
+                  duration: 1,
+                  delay: 1 + (dotIndex % 4) * 0.5,
                 },
               },
             }}
@@ -268,7 +267,7 @@ const MainImage = ({ image }) => {
         ))}
       </div>
     ),
-    [isImageLoaded]
+    []
   )
 
   return (
@@ -286,15 +285,15 @@ const MainImage = ({ image }) => {
           opacity: 1,
           y: 0,
           transition: {
-            duration: 0.5,
-            delay: 0.1,
+            duration: 0.3,
+            delay: 0,
           },
         },
         exit: {
           opacity: 0,
           y: 10,
           transition: {
-            duration: 0.5,
+            duration: 0.3,
           },
         },
       }}
