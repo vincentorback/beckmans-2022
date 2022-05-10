@@ -9,8 +9,18 @@ import LinkWrap from '../LinkWrap'
 const Footer = ({ pages, settings }) => {
   const t = useTranslations()
 
-  const MemoFooter = React.useMemo(
-    () => (
+  const translations = React.useMemo(
+    () => ({
+      schoolSubtitle: t('school-subtitle'),
+      show: t('show'),
+      may: t('may'),
+      fashionShow: t('fashion-show'),
+    }),
+    [t]
+  )
+
+  const MemoFooter = React.useMemo(() => {
+    return (
       <footer className="Footer">
         <Container>
           <div className="Footer-grid">
@@ -37,7 +47,7 @@ const Footer = ({ pages, settings }) => {
             </div>
             <div className="Footer-item">
               <p>
-                Beckmans {t('school-subtitle')}
+                Beckmans {translations.schoolSubtitle}
                 <br />
                 <Link
                   href={`https://www.google.se/maps?q=${encodeURIComponent(
@@ -54,25 +64,24 @@ const Footer = ({ pages, settings }) => {
             <div className="Footer-item">
               <p>
                 <LinkWrap href={settings?.show_link}>
-                  {t('show')} <br />
-                  19 – 24 {t('may')} 2022
+                  {translations.show} <br />
+                  19 – 24 {translations.may} 2022
                 </LinkWrap>
               </p>
             </div>
             <div className="Footer-item">
               <p>
                 <LinkWrap href={settings?.fashion_link}>
-                  {t('fashion-show')} <br />
-                  <time dateTime="2022-05-17">17 {t('may')} 2022</time>
+                  {translations.fashionShow} <br />
+                  <time dateTime="2022-05-17">17 {translations.may} 2022</time>
                 </LinkWrap>
               </p>
             </div>
           </div>
         </Container>
       </footer>
-    ),
-    [t, pages, settings]
-  )
+    )
+  }, [pages, settings])
 
   return MemoFooter
 }
