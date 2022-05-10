@@ -2,25 +2,14 @@ import React from 'react'
 import Image from '../Image'
 import Link from 'next-translate-routes/link'
 import classNames from 'classnames'
-import { useTranslations } from 'next-intl'
 import { SESSION_CATEGORY } from '../../lib/constants'
 import { m } from 'framer-motion'
 import { PrismicText } from '@prismicio/react'
 import { linkResolver } from '../../lib/prismic'
 
 const ProjectAccordions = ({ lists }) => {
-  const t = useTranslations('categories')
-
   const listRefs = React.useRef([])
-
   const [activeAccordion, setActiveAccordion] = React.useState(null)
-  const [isReady, setIsReady] = React.useState(false)
-
-  React.useEffect(() => {
-    window.requestAnimationFrame(() => {
-      setIsReady(true)
-    })
-  }, [])
 
   const handleToggleAccordion = React.useCallback(
     (id) => {
@@ -83,7 +72,7 @@ const ProjectAccordions = ({ lists }) => {
             }
             key={list.id}
             initial="initial"
-            animate={isReady && 'animate'}
+            animate="animate"
             exit="exit"
             variants={{
               initial: {
@@ -111,7 +100,7 @@ const ProjectAccordions = ({ lists }) => {
               aria-controls={`accordion-${list.id}-content`}
               onClick={() => handleToggleAccordion(list.id)}
             >
-              <span className="Accordions-buttonText">{t(list.id)}</span>
+              <span className="Accordions-buttonText">{list.label}</span>
               <svg
                 className="Accordions-buttonSymbol"
                 width="20"

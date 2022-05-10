@@ -50,7 +50,7 @@
   transform: rotateZ(0);
 }
 
-.Accordions.is-ready .Accordions-buttonSymbol {
+.Accordions-buttonSymbol {
   transition: transform 600ms ease;
 }
 

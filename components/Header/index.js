@@ -55,7 +55,7 @@ const Header = ({ children, project, page, setFilter }) => {
             <Link href="/" scroll={false}>
               <a
                 className="Header-logo"
-                onClick={() => setFilter && setFilter()}
+                onClick={setFilter ? () => setFilter() : null}
               >
                 <svg
                   className="Header-logoSymbol"

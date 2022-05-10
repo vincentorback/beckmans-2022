@@ -11,6 +11,7 @@ import { categories, SESSION_CATEGORY, SESSION_ITEM } from '../lib/constants'
 import { slugify } from '../lib/utilities'
 import debounce from 'lodash.debounce'
 import { useRouter } from 'next/router'
+import { useTranslations } from 'next-intl'
 
 const DEFAULT_FILTER = null
 
@@ -21,6 +22,7 @@ const Projects = ({
   projects,
   setGridLoaded,
 }) => {
+  const t = useTranslations('categories')
   const router = useRouter()
   const [dimensions, setDimensions] = React.useState(null)
   const [activeItem, setActiveItem] = React.useState(null)
@@ -98,6 +100,7 @@ const Projects = ({
         .map((filter, filterIndex) => ({
           id: filter,
           index: filterIndex,
+          label: t(filter),
           items: projects.filter(
             (project) =>
               project?.data?.category &&

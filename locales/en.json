@@ -1,9 +1,11 @@
 {
-  "show": "Graduation Show",
-  "may": "may",
-  "credits": "Credits",
-  "school-subtitle": "College of Design",
-  "fashion-show": "Fashion Show",
+  "strings": {
+    "show": "Graduation Show",
+    "may": "may",
+    "credits": "Credits",
+    "school-subtitle": "College of Design",
+    "fashion-show": "Fashion Show"
+  },
   "project": {
     "thanks-to": "Thanks to",
     "contact": "Contact",

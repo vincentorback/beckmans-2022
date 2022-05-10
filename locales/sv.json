@@ -1,9 +1,11 @@
 {
-  "show": "Examensutställning",
-  "may": "maj",
-  "credits": "Medverkande",
-  "school-subtitle": "Designhögskola",
-  "fashion-show": "Modevisning",
+  "strings": {
+    "show": "Examensutställning",
+    "may": "maj",
+    "credits": "Medverkande",
+    "school-subtitle": "Designhögskola",
+    "fashion-show": "Modevisning"
+  },
   "project": {
     "thanks-to": "Tack till",
     "contact": "Kontakt",

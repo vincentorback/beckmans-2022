@@ -1,13 +1,10 @@
 import React from 'react'
 import Link from 'next-translate-routes/link'
-import { useTranslations } from 'next-intl'
 import { linkResolver } from '../../lib/prismic'
 import { PrismicText } from '@prismicio/react'
 import { m } from 'framer-motion'
 
 const ProjectLists = ({ lists, isReady, setActiveItem }) => {
-  const t = useTranslations('categories')
-
   return (
     <m.ul
       className="Lists"
@@ -42,7 +39,7 @@ const ProjectLists = ({ lists, isReady, setActiveItem }) => {
       {lists &&
         lists.map((list) => (
           <li key={list.id} role="treeitem" tabIndex="-1">
-            <span className="Lists-title">{t(list.id)}</span>
+            <span className="Lists-title">{list.label}</span>
             <ul className="Lists-list" role="group">
               {list.items.map((item) => (
                 <li

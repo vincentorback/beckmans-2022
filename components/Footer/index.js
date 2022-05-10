@@ -7,7 +7,7 @@ import { linkResolver } from '../../lib/prismic'
 import LinkWrap from '../LinkWrap'
 
 const Footer = ({ pages, settings }) => {
-  const t = useTranslations()
+  const t = useTranslations('strings')
 
   const translations = React.useMemo(
     () => ({

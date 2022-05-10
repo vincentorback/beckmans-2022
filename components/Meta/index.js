@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 
 const Meta = ({ title, doc }) => {
   const router = useRouter()
-  const t = useTranslations()
+  const t = useTranslations('strings')
 
   return (
     <Head>
