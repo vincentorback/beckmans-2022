@@ -71,29 +71,10 @@ const ProjectAccordions = ({ lists }) => {
   }, [lists])
 
   return (
-    <m.div
-      className={classNames('Accordions', {
-        'is-ready': isReady,
-      })}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      variants={{
-        initial: {
-          opacity: 0,
-        },
-        animate: {
-          opacity: 1,
-          delay: 0.1,
-        },
-        exit: {
-          opacity: 0,
-        },
-      }}
-    >
+    <div className="Accordions">
       {lists &&
         lists.map((list) => (
-          <div
+          <m.div
             className={classNames('Accordions-list', {
               'is-active': activeAccordion === list.id,
             })}
@@ -101,6 +82,27 @@ const ProjectAccordions = ({ lists }) => {
               el && !listRefs.current.includes(el) && listRefs.current.push(el)
             }
             key={list.id}
+            initial="initial"
+            animate={isReady && 'animate'}
+            exit="exit"
+            variants={{
+              initial: {
+                opacity: 0,
+                y: 3,
+              },
+              animate: {
+                opacity: 1,
+                y: 0,
+                transition: {
+                  duration: 0.3,
+                  delay: 0.05 * (lists.length - list.index),
+                },
+              },
+              exit: {
+                opacity: 0,
+                y: 3,
+              },
+            }}
           >
             <button
               id={`accordion-${list.id}-button`}
@@ -164,9 +166,9 @@ const ProjectAccordions = ({ lists }) => {
                 </div>
               ))}
             </div>
-          </div>
+          </m.div>
         ))}
-    </m.div>
+    </div>
   )
 }
 
