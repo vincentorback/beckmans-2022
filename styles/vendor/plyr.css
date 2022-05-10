@@ -12,6 +12,7 @@
   --plyr-range-thumb-height: 14px;
   --plyr-range-track-height: 6px;
   --plyr-range-thumb-border: 0;
+  --plyr-control-icon-size: 1rem;
 }
 
 /* Video */
@@ -32,7 +33,7 @@
 }
 
 .plyr--video .plyr__controls::before {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 0;
   left: 0;
@@ -41,8 +42,6 @@
   height: 300%;
   pointer-events: none;
 }
-
-
 
 .plyr--video .plyr__control {
   transition: opacity 200ms ease;
@@ -82,8 +81,6 @@
 
 /* Big play button */
 .plyr--video .plyr__control--overlaid {
-  --plyr-control-icon-size: 1.175rem;
-
   top: calc(50% - (var(--plyr-control-icon-size) * 0.75));
   color: var(--color-black) !important;
   background: var(--plyr-color-main) !important;
@@ -136,8 +133,8 @@
 
 /* Progress */
 .plyr__controls .plyr__progress__container {
-  flex: 0 1 66%;
-  max-width: 66%;
+  flex: 1 0 auto;
+  margin: 0 calc(var(--plyr-control-spacing) * 0.5);
 }
 
 .plyr__controls .plyr__controls__item.plyr__progress__container {
