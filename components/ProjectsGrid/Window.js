@@ -69,14 +69,14 @@ const Window = ({ item, previousItem }) => {
             </div>
             {previousItem?.data?.main_image?.url && (
               <Image
-                alt=""
                 className="ProjectsGrid-windowItemImage"
                 width={(1440 / 12) * 6}
                 height={(1440 / 12) * 6 * 1.1671511628}
-                layout="responsive"
                 quality={50}
-                sizes="(max-width: 1400px) 50vw, 686px"
                 src={previousItem.data.main_image}
+                sizes="(max-width: 1400px) 50vw, 686px"
+                layout="responsive"
+                alt=""
               />
             )}
           </div>
@@ -122,14 +122,14 @@ const Window = ({ item, previousItem }) => {
             </div>
             {item?.data?.main_image?.url && (
               <Image
-                alt=""
                 className="ProjectsGrid-windowItemImage"
                 width={(1440 / 12) * 6}
                 height={(1440 / 12) * 6 * 1.1671511628}
-                layout="responsive"
-                sizes="(max-width: 1400px) 50vw, 686px"
-                src={item?.data?.main_image}
                 quality={50}
+                src={item.data.main_image}
+                sizes="(max-width: 1400px) 50vw, 686px"
+                layout="responsive"
+                alt=""
                 onLoadingComplete={() => {
                   setIsLoaded(true)
                 }}

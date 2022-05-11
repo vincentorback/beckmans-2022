@@ -1,5 +1,5 @@
 import NextImage from 'next/image'
-import className from 'classnames'
+import classNames from 'classnames'
 
 const imageLoader = (image, props) => {
   const url = new URL(image.src)
@@ -26,13 +26,14 @@ const Image = (props) => {
     hidden,
     quality,
     layout,
+    className,
   } = props
 
   layout = layout ?? 'intrinsic'
 
   return (
     <div
-      className={className('Image', {
+      className={classNames('Image', className, {
         [`Image--${layout}`]: layout,
       })}
       hidden={hidden}

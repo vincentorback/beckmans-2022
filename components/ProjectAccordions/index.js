@@ -141,11 +141,11 @@ const ProjectAccordions = ({ lists }) => {
                       </div>
                       <div className="Accordions-imageWrap">
                         <Image
+                          className="Accordions-image"
                           src={item.data.main_image}
                           width={114}
                           height={114}
                           alt=""
-                          className="Accordions-image"
                           priority={itemIndex <= 3}
                         />
                         <ImageDots />
