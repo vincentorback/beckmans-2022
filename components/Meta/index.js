@@ -74,12 +74,10 @@ const Meta = ({ title, doc }) => {
         href="/icons/favicon-16x16.png"
       />
       <link rel="manifest" href="/icons/site.webmanifest" />
-      <link
-        rel="mask-icon"
-        href="/icons/safari-pinned-tab.svg"
-        color="#f5f1e7"
-      />
+      <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#000" />
       <link rel="shortcut icon" href="/icons/favicon.ico" />
+      <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
+      <link rel="icon" type="image/png" href="/icons/favicon.png" />
       <meta name="msapplication-TileColor" content="#f5f1e7" />
       <meta name="msapplication-config" content="/icons/browserconfig.xml" />
     </Head>
