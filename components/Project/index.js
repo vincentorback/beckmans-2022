@@ -1,6 +1,5 @@
 import React from 'react'
 import { useTranslations } from 'next-intl'
-import { useRouter } from 'next/router'
 import classNames from 'classnames'
 import Link from 'next-translate-routes/link'
 import Entry from '../Entry'
@@ -14,7 +13,6 @@ import ProjectSlices from './ProjectSlices'
 import { SESSION_ITEM } from '../../lib/constants'
 
 const Project = ({ project, projects, nextProject, prevProject }) => {
-  const router = useRouter()
   const t = useTranslations()
 
   React.useEffect(() => {
@@ -30,10 +28,8 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
     () =>
       project.data.body.length ? (
         <ProjectSlices items={project.data.body} />
-      ) : (
-        <ExampleMedia image={project.data.main_image} />
-      ),
-    [project.data.body, project.data.main_image]
+      ) : null,
+    [project.data.body]
   )
 
   return (
@@ -77,26 +73,23 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
             )}
           </header>
 
-          <div className="Project-mainText">
-            <Entry>
-              {project.data.text.length ? (
+          {Boolean(project.data.text.length) && (
+            <div className="Project-mainText">
+              <Entry>
                 <PrismicRichText field={project.data.text} />
-              ) : (
-                <ExampleContent locale={router.locale} />
-              )}
-            </Entry>
-          </div>
-
-          <div className="Project-projectInfo Project-projectInfo--thanks">
-            <div className="Project-info">
-              <h4>{t('project.thanks-to')}</h4>
-              {project.data.thanks.length ? (
-                <PrismicRichText field={project.data.thanks} />
-              ) : (
-                <ExampleThanks locale={router.locale} />
-              )}
+              </Entry>
             </div>
-          </div>
+          )}
+
+          {Boolean(project.data.thanks.length) && (
+            <div className="Project-projectInfo Project-projectInfo--thanks">
+              <div className="Project-info">
+                <h4>{t('project.thanks-to')}</h4>
+
+                <PrismicRichText field={project.data.thanks} />
+              </div>
+            </div>
+          )}
 
           {MemoMedia}
 
@@ -232,8 +225,8 @@ const MainImage = ({ image }) => {
         src={image}
         alt=""
         layout="responsive"
-        width={Math.floor((1440 / 12) * 7)}
-        height={Math.floor((1440 / 12) * 7 * 1.1671511628)}
+        width={image.dimensions.width}
+        height={image.dimensions.height}
         sizes="(min-width: 1400px) 800px, (min-width: 800px) 50vw, 100vw"
         onLoadingComplete={handleImageLoad}
       />
@@ -305,92 +298,3 @@ const MainImage = ({ image }) => {
 }
 
 export default Project
-
-const ExampleThanks = ({ locale }) => (
-  <p className="u-preLine">
-    {locale === 'en'
-      ? `Grandma 'n Granpa \nMy teachers \nThe print house \nThe community \nThe future \nAhlgrens Bilar \nBe here nowness \nGodrick the Grafted \nAlbert Einstein \nAdam \nEva`
-      : `Mormor & Morfar \nMina lärare \nTryckeriet`}
-  </p>
-)
-
-const ExampleContent = ({ locale }) =>
-  locale === 'sv' ? (
-    <>
-      <p>
-        Mitt <strong>examensarbete</strong> är ett <em>självutforskande</em> av
-        identitet ur ett posthumanistiskt perspektiv.{' '}
-        <a href="#/">Resultatet</a> är tre självporträtt där jag gestaltar min
-        mångfacetterade identitet i form av en avatar.
-      </p>
-      <ul>
-        <li>Lista med saker</li>
-        <li>Kan vara vadsom</li>
-        <li>helst?</li>
-      </ul>
-      <ol>
-        <li>Lista med saker</li>
-        <li>Kan vara vadsom</li>
-        <li>helst?</li>
-      </ol>
-    </>
-  ) : (
-    <>
-      <p>
-        My <strong>graduation project</strong> is a{' '}
-        <em>personal investigation</em> of identity from a post-humanist
-        perspective. <a href="#/">This has resulted</a> in three self-portraits
-        in which I give expression to my multifaceted identity in the form of an
-        avatar.
-      </p>
-      <ul>
-        <li>List with things</li>
-        <li>Can be</li>
-        <li>anything?</li>
-      </ul>
-      <ol>
-        <li>List with things</li>
-        <li>Can be</li>
-        <li>anything?</li>
-      </ol>
-    </>
-  )
-
-const ExampleMedia = ({ image }) => (
-  <div className="Project-media">
-    <div className="Project-mediaGrid">
-      <Image
-        src={image}
-        alt=""
-        width={506}
-        height={634}
-        quality={1}
-        lazyBoundary="100%"
-      />
-      <Image
-        src={image}
-        alt=""
-        width={506}
-        height={634}
-        quality={1}
-        lazyBoundary="100%"
-      />
-    </div>
-    <Image
-      src={image}
-      alt=""
-      width={1038}
-      height={632}
-      quality={1}
-      lazyBoundary="100%"
-    />
-    <Image
-      src={image}
-      alt=""
-      width={1038}
-      height={1200}
-      quality={1}
-      lazyBoundary="100%"
-    />
-  </div>
-)
