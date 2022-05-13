@@ -207,7 +207,7 @@ export default function HomePage(props) {
 }
 
 export async function getStaticProps({ locale, previewData }) {
-  const content = await getEverything(locale, previewData)
+  const content = await getEverything(locale, previewData, 'home')
   const messages = require(`../locales/${locale}.json`)
 
   content.projects = content.projects.concat(content.pages)

@@ -2,6 +2,12 @@ import classNames from 'classnames'
 import Video from '../../slices/Video'
 import Image from '../Image'
 
+/**
+ * @url https://www.prismic.io/docs/reactjs/0.13/api-reference/slice-types/video
+ * @author Vincent Orback
+ * @param { items } param - array of items to be rendered
+ * @returns React.Component
+ */
 const Media = ({ items }) => {
   return (
     <div className="Project-media">
@@ -31,6 +37,7 @@ const Media = ({ items }) => {
                   width={item.image.dimensions.width}
                   height={item.image.dimensions.height}
                   lazyBoundary="100%"
+                  loadingBackground="rgba(0, 0, 0, 0.01)"
                 />
               ))}
             </div>

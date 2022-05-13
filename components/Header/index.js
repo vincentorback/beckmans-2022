@@ -35,6 +35,34 @@ const Header = ({ children, project, page, setFilter }) => {
     }
   }, [router.asPath])
 
+  const LanguageLinks = React.useMemo(() => {
+    return (
+      <div className="Header-languageLinks">
+        {router.locales.map((locale) => {
+          const url =
+            locale === router.locale
+              ? null
+              : doc?.uid
+              ? linkResolver(doc, locale)
+              : router.isReady
+              ? router.asPath
+              : '/'
+
+          return (
+            <LocaleLink
+              key={locale}
+              locale={locale}
+              isActive={locale === router.locale}
+              url={url}
+            />
+          )
+        })}
+      </div>
+    )
+  }, [doc, router.asPath, router.locale, router.locales, router.isReady])
+
+  console.log('header')
+
   return (
     <header className="Header">
       <Container>
@@ -81,24 +109,7 @@ const Header = ({ children, project, page, setFilter }) => {
               </Link>
             </p>
           </div>
-          <div className="Header-bottomRight">
-            <div className="Header-languageLinks">
-              {router.locales.map((locale) => (
-                <LocaleLink
-                  key={locale}
-                  locale={locale}
-                  isActive={locale === router.locale}
-                  url={
-                    locale === router.locale
-                      ? null
-                      : doc?.alternate_languages?.length
-                      ? linkResolver(doc.alternate_languages[0])
-                      : router.asPath
-                  }
-                />
-              ))}
-            </div>
-          </div>
+          <div className="Header-bottomRight">{LanguageLinks}</div>
           {children && (
             <div className="Header-bottomLeft">
               <div>{children}</div>

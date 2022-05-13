@@ -133,7 +133,7 @@ const ProjectAccordions = ({ lists }) => {
                         <p>
                           <PrismicText field={item.data.name} />
                         </p>
-                        {Boolean(item?.data?.project_title.length) && (
+                        {Boolean(item?.data?.project_title?.length) && (
                           <p>
                             <PrismicText field={item.data.project_title} />
                           </p>

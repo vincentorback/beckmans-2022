@@ -27,6 +27,7 @@ const Image = (props) => {
     quality,
     layout,
     className,
+    loadingBackground,
   } = props
 
   layout = layout ?? 'intrinsic'
@@ -37,6 +38,9 @@ const Image = (props) => {
         [`Image--${layout}`]: layout,
       })}
       hidden={hidden}
+      style={{
+        backgroundColor: loadingBackground ?? null,
+      }}
     >
       <NextImage
         {...props}

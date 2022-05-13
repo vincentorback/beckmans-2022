@@ -1,9 +1,7 @@
 import React from 'react'
 import { getEverything } from '../../lib/content'
-import { useTranslations } from 'next-intl'
 import { slugify } from '../../lib/utilities'
 import { localeStrings } from '../../lib/constants'
-import * as prismicH from '@prismicio/helpers'
 import Layout from '../../components/Layout'
 import Header from '../../components/Header'
 import Project from '../../components/Project'
@@ -11,23 +9,19 @@ import Container from '../../components/Container'
 
 export default function ProjectPage(props) {
   const { project, projects, nextProject, prevProject } = props
-  const t = useTranslations('categories')
 
   return (
-    <Layout
-      title={`${prismicH.asText(project.data.name)} - ${t(
-        slugify(project.data.category)
-      )}`}
-      {...props}
-    >
+    <Layout {...props}>
       <Header {...props} />
       <Container>
-        <Project
-          project={project}
-          projects={projects}
-          nextProject={nextProject}
-          prevProject={prevProject}
-        />
+        {project?.uid && (
+          <Project
+            project={project}
+            projects={projects}
+            nextProject={nextProject}
+            prevProject={prevProject}
+          />
+        )}
       </Container>
     </Layout>
   )
@@ -38,8 +32,6 @@ export async function getStaticPaths({ locales }) {
   const paths = []
 
   locales.forEach(async (locale) => {
-    const messages = await require(`../../locales/${locale}.json`)
-
     content.projects.forEach((project) => {
       paths.push({
         params: {
@@ -53,13 +45,13 @@ export async function getStaticPaths({ locales }) {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   }
 }
 
 export async function getStaticProps({ params, locale, previewData }) {
   const messages = require(`../../locales/${locale}.json`)
-  const content = await getEverything(locale, previewData)
+  const content = await getEverything(locale, previewData, 'project')
 
   const project = content.projects.find(
     (item) => item?.uid === params.name && item.lang === localeStrings[locale]

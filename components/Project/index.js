@@ -61,19 +61,19 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
           }}
         >
           <header className={classNames('Project-header', 'u-showSmall')}>
-            {Boolean(project.data.name.length) && (
+            {Boolean(project?.data?.name?.length) && (
               <h1 className="Project-title">
                 <PrismicText field={project.data.name} />
               </h1>
             )}
-            {Boolean(project.data?.project_title.length) && (
+            {Boolean(project?.data?.project_title?.length) && (
               <h2 className="Project-subtitle">
                 <PrismicText field={project.data.project_title} />
               </h2>
             )}
           </header>
 
-          {Boolean(project.data.text.length) && (
+          {Boolean(project?.data?.text?.length) && (
             <div className="Project-mainText">
               <Entry>
                 <PrismicRichText field={project.data.text} />
@@ -81,7 +81,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
             </div>
           )}
 
-          {Boolean(project.data.thanks.length) && (
+          {Boolean(project?.data?.thanks?.length) && (
             <div className="Project-projectInfo Project-projectInfo--thanks">
               <div className="Project-info">
                 <h4>{t('project.thanks-to')}</h4>

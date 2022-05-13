@@ -11,21 +11,21 @@ import { m } from 'framer-motion'
 
 export default function Page(props) {
   return (
-    <Layout {...props} title={prismicH.asText(props.page.data.title)}>
+    <Layout {...props} title={prismicH.asText(props?.page?.data?.title)}>
       <Header {...props} />
       <Container>
         <div className="Layout-content">
-          {props.page.data.body ? (
+          {props?.page?.data?.body ? (
             <Slices body={props.page.data.body} />
           ) : (
             <Text title="no content yet" />
           )}
         </div>
       </Container>
-      {['om-utstallningen', 'about-the-show'].includes(props.page.uid) && (
+      {['om-utstallningen', 'about-the-show'].includes(props?.page?.uid) && (
         <AboutBackground />
       )}
-      {['medverkande', 'credits'].includes(props.page.uid) && (
+      {['medverkande', 'credits'].includes(props?.page?.uid) && (
         <CreditsBackground />
       )}
     </Layout>
@@ -51,13 +51,13 @@ export async function getStaticPaths({ locales }) {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   }
 }
 
 export async function getStaticProps({ params, locale, previewData }) {
   const messages = require(`../../locales/${locale}.json`)
-  const content = await getEverything(locale, previewData)
+  const content = await getEverything(locale, previewData, 'page')
   const page = content.pages.find(
     (item) => item.uid === params.page && item.lang === localeStrings[locale]
   )

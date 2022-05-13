@@ -48,7 +48,7 @@ const Layout = ({
         'u-hideOverflow': !project,
       })}
     >
-      <Meta title={title} doc={page || project} />
+      {/* <Meta title={title} doc={page || project} /> */}
       <div className="Layout-main">{children}</div>
       <Footer pages={pages} settings={settings} />
       {IS_PRODUCTION && <Countdown />}

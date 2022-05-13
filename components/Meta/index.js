@@ -1,12 +1,20 @@
 import { linkResolver } from '../../lib/prismic'
 import { useTranslations } from 'next-intl'
 import { localeStrings, IS_PRODUCTION, SITE_URL } from '../../lib/constants'
+import { slugify } from '../../lib/utilities'
+import * as prismicH from '@prismicio/helpers'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 const Meta = ({ title, doc }) => {
   const router = useRouter()
   const t = useTranslations('strings')
+
+  if (doc?.data?.name && doc?.data?.category) {
+    title = `${prismicH.asText(doc.data.name)} - ${t(
+      slugify(doc.data.category)
+    )}`
+  }
 
   return (
     <Head>
