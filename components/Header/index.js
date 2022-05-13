@@ -61,8 +61,6 @@ const Header = ({ children, project, page, setFilter }) => {
     )
   }, [doc, router.asPath, router.locale, router.locales, router.isReady])
 
-  console.log('header')
-
   return (
     <header className="Header">
       <Container>
