@@ -232,7 +232,6 @@
   font-size: clamp(1.3125rem, 3.5vw, 2rem);
   line-height: var(--lineheight-md);
   font-weight: var(--text-bold);
-  white-space: pre-line;
 }
 
 .Project-title + .Project-subtitle {

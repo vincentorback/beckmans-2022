@@ -67,7 +67,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
               </h1>
             )}
             {Boolean(project?.data?.project_title?.length) && (
-              <h2 className="Project-subtitle">
+              <h2 className="Project-subtitle u-textPreLine">
                 <PrismicText field={project.data.project_title} />
               </h2>
             )}
@@ -165,7 +165,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                 </h1>
               )}
               {Boolean(project.data?.project_title.length) && (
-                <h2 className="Project-subtitle">
+                <h2 className="Project-subtitle u-textPreLine">
                   <PrismicText field={project.data.project_title} />
                 </h2>
               )}
