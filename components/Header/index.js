@@ -28,6 +28,9 @@ const Header = ({ children, project, page, setFilter }) => {
   const router = useRouter()
 
   const doc = React.useMemo(() => page ?? project, [page, project])
+  const otherLangDoc = doc?.alternate_languages?.length
+    ? doc?.alternate_languages[0]
+    : false
 
   React.useEffect(() => {
     return () => {
@@ -42,8 +45,8 @@ const Header = ({ children, project, page, setFilter }) => {
           const url =
             locale === router.locale
               ? null
-              : doc?.uid
-              ? linkResolver(doc, locale)
+              : otherLangDoc || doc
+              ? linkResolver(otherLangDoc ?? doc)
               : router.isReady
               ? router.asPath
               : '/'
@@ -59,7 +62,14 @@ const Header = ({ children, project, page, setFilter }) => {
         })}
       </div>
     )
-  }, [doc, router.asPath, router.locale, router.locales, router.isReady])
+  }, [
+    doc,
+    otherLangDoc,
+    router.asPath,
+    router.locale,
+    router.locales,
+    router.isReady,
+  ])
 
   return (
     <header className="Header">
