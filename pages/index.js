@@ -210,6 +210,13 @@ export async function getStaticProps({ locale, previewData }) {
   const content = await getEverything(locale, previewData, 'home')
   const messages = require(`../locales/${locale}.json`)
 
+  content.projects.push({
+    uid: 'beckmans',
+    title: 'Beckmans.se',
+    url: 'https://beckmans.se',
+    background_color: 'Black',
+  })
+
   content.projects = content.projects.concat(content.pages)
 
   return {
