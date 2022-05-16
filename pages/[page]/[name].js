@@ -68,12 +68,17 @@ export async function getStaticProps({ params, locale, previewData }) {
     }
   }
 
-  const currentIndex = content.projects.findIndex(
-    (item) => item?.uid === params.name
+  const projectsWithSameCategory = content.projects.filter(
+    (p) => p.data.category && p.data.category === project.data.category
   )
 
-  const nextProject = content.projects[currentIndex + 1] ?? false
-  const prevProject = content.projects[currentIndex - 1] ?? false
+  const currentCategoryIndex = projectsWithSameCategory.findIndex(
+    (item) => item?.uid === params.name
+  )
+  const nextProject =
+    projectsWithSameCategory[currentCategoryIndex + 1] ?? false
+  const prevProject =
+    projectsWithSameCategory[currentCategoryIndex - 1] ?? false
 
   return {
     props: {
