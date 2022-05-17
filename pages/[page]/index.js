@@ -6,7 +6,6 @@ import Container from '../../components/Container'
 import Header from '../../components/Header'
 import Layout from '../../components/Layout'
 import Slices from '../../components/Slices'
-import Text from '../../slices/Text'
 import { m } from 'framer-motion'
 
 export default function Page(props) {
@@ -15,11 +14,9 @@ export default function Page(props) {
       <Header {...props} />
       <Container>
         <div className="Layout-content">
-          {props?.page?.data?.body ? (
+          {props?.page?.data?.body?.length ? (
             <Slices body={props.page.data.body} />
-          ) : (
-            <Text title="no content yet" />
-          )}
+          ) : null}
         </div>
       </Container>
       {['om-utstallningen', 'about-the-show'].includes(props?.page?.uid) && (
