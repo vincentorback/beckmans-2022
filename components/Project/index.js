@@ -49,13 +49,14 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
               opacity: 1,
               transition: {
                 delay: 0.5,
-                duration: 0.4,
+                duration: 0.3,
               },
             },
             exit: {
               opacity: 0,
+              y: 8,
               transition: {
-                duration: 0.4,
+                duration: 0.3,
               },
             },
           }}
@@ -139,7 +140,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
             variants={{
               initial: {
                 opacity: 0,
-                y: -10,
+                y: -8,
               },
               animate: {
                 opacity: 1,
@@ -151,7 +152,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
               },
               exit: {
                 opacity: 0,
-                y: -10,
+                y: -8,
                 transition: {
                   duration: 0.4,
                 },
@@ -272,7 +273,7 @@ const MainImage = ({ image }) => {
       variants={{
         initial: {
           opacity: 0,
-          y: 10,
+          y: 8,
         },
         animate: {
           opacity: 1,
@@ -284,7 +285,7 @@ const MainImage = ({ image }) => {
         },
         exit: {
           opacity: 0,
-          y: 10,
+          y: 8,
           transition: {
             duration: 0.3,
           },
