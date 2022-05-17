@@ -20,7 +20,9 @@ const AnimatedItem = ({
       animate={isActive ? 'active' : 'notActive'}
       exit="exit"
       style={{
-        backgroundColor: background ? `var(--color-${background})` : null,
+        backgroundColor: background
+          ? `var(--color-${background.toLowerCase()})`
+          : null,
       }}
       variants={{
         initial: {
@@ -91,6 +93,8 @@ const Item = ({
     [imagePosition]
   )
 
+  const backgroundColor = item?.data?.background_color || item?.backgroundColor
+
   const rectX =
     imageOriginalWidth &&
     Math.min(
@@ -104,12 +108,6 @@ const Item = ({
       Math.floor(imageOriginalHeight * (imagePositionY.replace('%', '') / 100)),
       imageOriginalHeight - rectImageHeight
     )
-
-  const backgroundColor = item?.data?.background_color
-    ? item?.data?.background_color.toLowerCase()
-    : item?.backgroundColor
-    ? item.backgroundColor.toLowerCase()
-    : null
 
   return (
     <div

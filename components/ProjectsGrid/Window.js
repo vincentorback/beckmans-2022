@@ -16,6 +16,11 @@ const Window = ({ item, previousItem }) => {
 
   if (!item?.uid) return null
 
+  const prevBackgroundColor =
+    previousItem?.data?.background_color || previousItem?.backgroundColor
+  const itemBackgroundColor =
+    item?.data?.background_color || item?.backgroundColor
+
   return (
     <m.div
       className="ProjectsGrid-window"
@@ -43,10 +48,8 @@ const Window = ({ item, previousItem }) => {
           <div
             className="ProjectsGrid-windowItemInner"
             style={{
-              backgroundColor: previousItem?.data?.background_color
-                ? `var(--color-${previousItem.data.background_color.toLowerCase()})`
-                : previousItem?.backgroundColor
-                ? `var(--color-${previousItem.backgroundColor.toLowerCase()})`
+              backgroundColor: prevBackgroundColor
+                ? `var(--color-${prevBackgroundColor.toLowerCase()})`
                 : null,
             }}
           >
@@ -89,10 +92,8 @@ const Window = ({ item, previousItem }) => {
             initial="loading"
             animate={isLoaded ? 'complete' : 'loading'}
             style={{
-              backgroundColor: item?.data?.background_color
-                ? `var(--color-${item.data.background_color.toLowerCase()})`
-                : item?.backgroundColor
-                ? `var(--color-${item.backgroundColor.toLowerCase()})`
+              backgroundColor: itemBackgroundColor
+                ? `var(--color-${itemBackgroundColor.toLowerCase()})`
                 : null,
             }}
             variants={{
