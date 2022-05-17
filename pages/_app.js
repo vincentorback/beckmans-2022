@@ -41,7 +41,7 @@ const App = ({ Component, pageProps, router }) => {
     <NextIntlProvider
       messages={pageProps?.messages ?? {}}
       onError={() => {}}
-      getMessageFallback={() => '[translating]'}
+      getMessageFallback={() => ''}
     >
       <PrismicProvider
         linkResolver={linkResolver}
