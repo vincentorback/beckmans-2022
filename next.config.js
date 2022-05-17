@@ -13,7 +13,7 @@ const nextConfig = withTranslateRoutes({
     localeDetection: IS_PRODUCTION,
   },
   images: {
-    formats: ['image/webp'],
+    formats: IS_PRODUCTION ? ['image/avif', 'image/webp'] : ['image/webp'],
   },
   eslint: {
     ignoreDuringBuilds: true,
