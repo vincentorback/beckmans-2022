@@ -6,7 +6,6 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: var(--site-spacing);
 
   font-size: 0.875rem;
   font-weight: var(--text-bold);
@@ -31,18 +30,19 @@
   }
 }
 
-.Pagination-prev {
+.Pagination-link {
+  flex: 0 0 auto;
+  display: block;
+  white-space: nowrap;
+  transition: opacity 150ms ease;
+}
+
+.Pagination-link--prev {
   text-align: left;
 }
 
-.Pagination-next {
+.Pagination-link--next {
   text-align: right;
-}
-
-.Pagination-link {
-  flex: 1 0 auto;
-  display: block;
-  transition: opacity 150ms ease;
 }
 
 @media (hover: hover) {

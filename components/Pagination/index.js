@@ -11,7 +11,7 @@ const Pagination = ({ prev, next }) => {
     <nav className="Pagination">
       {prev && (
         <Link href={linkResolver(prev)} prefetch={false} scroll={false}>
-          <a className="Pagination-link Pagination-prev">
+          <a className="Pagination-link Pagination-link--prev">
             <svg
               className="Pagination-linkSymbol"
               width="16"
@@ -31,7 +31,7 @@ const Pagination = ({ prev, next }) => {
       )}
       {next && (
         <Link href={linkResolver(next)} scroll={false}>
-          <a className="Pagination-link Pagination-next">
+          <a className="Pagination-link Pagination-link--next">
             <span className="Pagination-linkText">{t('next')} student</span>
             <svg
               className="Pagination-linkSymbol"
