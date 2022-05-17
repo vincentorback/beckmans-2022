@@ -8,11 +8,11 @@ import { useRouter } from 'next/router'
 
 const Meta = ({ title, doc }) => {
   const router = useRouter()
-  const t = useTranslations('strings')
+  const t = useTranslations()
 
   if (doc?.data?.name && doc?.data?.category) {
     title = `${prismicH.asText(doc.data.name)} - ${t(
-      slugify(doc.data.category)
+      `categories.${slugify(doc.data.category)}`
     )}`
   }
 
@@ -22,7 +22,7 @@ const Meta = ({ title, doc }) => {
       <meta name="viewport" content="width=device-width,initial-scale=1" />
       <meta httpEquiv="x-ua-compatible" content="ie=edge" />
       <title>
-        {title && `${title} | `}Beckmans {t('show')} 19.05–24.05.2022
+        {title && `${title} | `}Beckmans {t('strings.show')} 19.05–24.05.2022
       </title>
 
       {doc?.alternate_languages?.length ? (
