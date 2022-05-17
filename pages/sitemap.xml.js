@@ -89,7 +89,7 @@ ${pages
 function SiteMap() {}
 
 export async function getServerSideProps({ res, locales }) {
-  const content = await getEverything(defaultLocale)
+  const content = await getEverything(defaultLocale, false, 'sitemap')
 
   const sitemap = generateSiteMap({
     pages: content.pages,
