@@ -82,15 +82,15 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
             </div>
           )}
 
-          {Boolean(project?.data?.thanks?.length) && (
-            <div className="Project-projectInfo Project-projectInfo--thanks">
+          <div className="Project-projectInfo Project-projectInfo--thanks">
+            {Boolean(project?.data?.thanks?.length) && (
               <div className="Project-info">
                 <h4>{t('project.thanks-to')}</h4>
 
                 <PrismicRichText field={project.data.thanks} />
               </div>
-            </div>
-          )}
+            )}
+          </div>
 
           {MemoMedia}
 
