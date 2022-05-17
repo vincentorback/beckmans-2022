@@ -7,13 +7,9 @@ import Header from '../../components/Header'
 import Project from '../../components/Project'
 import Container from '../../components/Container'
 
-export default function ProjectPage({
-  project,
-  projects,
-  nextProject,
-  prevProject,
-  ...props
-}) {
+export default function ProjectPage(props) {
+  const { project, projects, nextProject, prevProject } = props
+
   return (
     <Layout {...props}>
       <Header {...props} />
