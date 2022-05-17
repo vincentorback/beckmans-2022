@@ -45,8 +45,8 @@ const Window = ({ item, previousItem }) => {
             style={{
               backgroundColor: previousItem?.data?.background_color
                 ? `var(--color-${previousItem.data.background_color.toLowerCase()})`
-                : previousItem?.background_color
-                ? `var(--color-${previousItem.background_color.toLowerCase()})`
+                : previousItem?.backgroundColor
+                ? `var(--color-${previousItem.backgroundColor.toLowerCase()})`
                 : null,
             }}
           >
@@ -91,8 +91,8 @@ const Window = ({ item, previousItem }) => {
             style={{
               backgroundColor: item?.data?.background_color
                 ? `var(--color-${item.data.background_color.toLowerCase()})`
-                : item?.background_color
-                ? `var(--color-${item.background_color.toLowerCase()})`
+                : item?.backgroundColor
+                ? `var(--color-${item.backgroundColor.toLowerCase()})`
                 : null,
             }}
             variants={{

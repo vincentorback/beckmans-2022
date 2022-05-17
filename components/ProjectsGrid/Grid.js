@@ -107,8 +107,8 @@ const Item = ({
 
   const backgroundColor = item?.data?.background_color
     ? item?.data?.background_color.toLowerCase()
-    : item?.background_color
-    ? item.background_color.toLowerCase()
+    : item?.backgroundColor
+    ? item.backgroundColor.toLowerCase()
     : null
 
   return (

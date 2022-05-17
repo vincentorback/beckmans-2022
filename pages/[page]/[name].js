@@ -85,12 +85,32 @@ export async function getStaticProps({ params, locale, previewData }) {
   return {
     props: {
       project,
-      projects: content.projects,
+      projects: content.projects.map((project) => ({
+        ...project,
+        data: {
+          ...project.data,
+          body: [],
+        },
+      })),
       pages: content.pages,
       settings: content.settings,
       messages,
-      prevProject,
-      nextProject,
+      prevProject: prevProject?.uid && {
+        uid: prevProject?.uid,
+        type: prevProject?.type,
+        lang: prevProject?.lang,
+        data: {
+          category: prevProject.data.category,
+        },
+      },
+      nextProject: nextProject?.uid && {
+        uid: nextProject?.uid,
+        type: nextProject?.type,
+        lang: nextProject?.lang,
+        data: {
+          category: nextProject.data.category,
+        },
+      },
     },
   }
 }

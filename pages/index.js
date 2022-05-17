@@ -214,7 +214,7 @@ export async function getStaticProps({ locale, previewData }) {
     uid: 'beckmans',
     title: 'Beckmans.se',
     url: 'https://beckmans.se',
-    background_color: 'Black',
+    backgroundColor: 'Black',
   })
 
   content.projects = content.projects.concat(content.pages)
