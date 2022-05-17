@@ -129,8 +129,8 @@
     padding-bottom: calc(var(--site-spacing) * 2);
   }
 
-  .Project-projectInfo--thanks {
-    padding-bottom: 1em;
+  .Project-projectInfo--thanks + .Project-projectInfo--main {
+    padding-top: 1em;
   }
 
   .Project-media {
