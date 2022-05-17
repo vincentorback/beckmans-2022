@@ -95,22 +95,26 @@ export async function getStaticProps({ params, locale, previewData }) {
       pages: content.pages,
       settings: content.settings,
       messages,
-      prevProject: prevProject?.uid && {
-        uid: prevProject?.uid,
-        type: prevProject?.type,
-        lang: prevProject?.lang,
-        data: {
-          category: prevProject.data.category,
-        },
-      },
-      nextProject: nextProject?.uid && {
-        uid: nextProject?.uid,
-        type: nextProject?.type,
-        lang: nextProject?.lang,
-        data: {
-          category: nextProject.data.category,
-        },
-      },
+      prevProject: prevProject?.uid
+        ? {
+            uid: prevProject?.uid,
+            type: prevProject?.type,
+            lang: prevProject?.lang,
+            data: {
+              category: prevProject.data.category,
+            },
+          }
+        : false,
+      nextProject: nextProject?.uid
+        ? {
+            uid: nextProject?.uid,
+            type: nextProject?.type,
+            lang: nextProject?.lang,
+            data: {
+              category: nextProject.data.category,
+            },
+          }
+        : false,
     },
   }
 }
