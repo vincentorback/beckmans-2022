@@ -28,10 +28,12 @@ export default function ProjectPage(props) {
 }
 
 export async function getStaticPaths({ locales }) {
-  const content = await getEverything()
+  const content = await getEverything(false, false, 'project')
   const paths = []
 
   locales.forEach(async (locale) => {
+    const messages = await require(`../../locales/${locale}.json`)
+
     content.projects.forEach((project) => {
       paths.push({
         params: {
