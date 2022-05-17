@@ -1,7 +1,6 @@
 .Filters {
   display: flex;
   flex-wrap: wrap;
-  gap: calc(var(--site-spacing) * 0.5) calc(var(--site-spacing) * 0.5);
 }
 
 @media (max-width: 800px) {
@@ -14,6 +13,10 @@
   text-align: left;
   font-weight: var(--text-bold);
   transition: color 150ms ease, opacity 150ms ease;
+}
+
+.Filters-button:not(:first-child) {
+  margin-left: calc(var(--site-spacing) * 0.5);
 }
 
 .Filters-button.is-active {

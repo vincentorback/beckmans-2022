@@ -1,7 +1,6 @@
 .Lists {
   padding: calc(var(--site-spacing) * 2) 0;
   display: grid;
-  /* gap: var(--site-spacing) calc(var(--site-spacing) * 0.5); */
   gap: var(--site-spacing) 1rem;
 }
 
