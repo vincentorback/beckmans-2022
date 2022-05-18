@@ -14,7 +14,7 @@
   .Credits-columns {
     display: block;
     columns: 2;
-    gap: 0;
+    gap: normal;
     column-gap: calc(var(--site-spacing) * 3);
   }
 }
