@@ -33,6 +33,10 @@ const Countdown = () => {
       }
     }, 1000)
 
+    if (window.location.href.includes('netlify')) {
+      handleComplete(true)
+    }
+
     return () => clearInterval(timer)
   }, [launchDate, handleComplete])
 
