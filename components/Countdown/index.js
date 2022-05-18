@@ -49,7 +49,6 @@ const Countdown = () => {
               .map((int, intIndex) => <span key={intIndex}>{int}</span>)
           )}
       </p>
-      <button onClick={handleComplete}>skip</button>
     </div>
   )
 }
