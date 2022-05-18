@@ -21,7 +21,7 @@ const Footer = ({ pages, settings }) => {
 
   const MemoFooter = React.useMemo(() => {
     return (
-      <footer className="Footer">
+      <footer className="Footer u-printHide">
         <Container>
           <div className="Footer-grid">
             <div className="Footer-item">

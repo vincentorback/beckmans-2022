@@ -83,7 +83,7 @@ export async function getStaticProps({ params, locale, previewData }) {
 
 const CreditsBackground = () => (
   <m.div
-    className="Layout-background Layout-background--credits"
+    className="Layout-background Layout-background--credits u-printHide"
     initial={{ opacity: 0 }}
     animate={{
       opacity: 1,
@@ -117,7 +117,7 @@ const CreditsBackground = () => (
 
 const AboutBackground = () => (
   <m.div
-    className="Layout-background Layout-background--about"
+    className="Layout-background Layout-background--about u-printHide"
     initial={{ opacity: 0 }}
     animate={{
       opacity: 1,

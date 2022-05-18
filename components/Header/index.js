@@ -117,7 +117,7 @@ const Header = ({ children, project, page, setFilter }) => {
               </Link>
             </p>
           </div>
-          <div className="Header-bottomRight">{LanguageLinks}</div>
+          <div className="Header-bottomRight u-printHide">{LanguageLinks}</div>
           {children && (
             <div className="Header-bottomLeft">
               <div>{children}</div>

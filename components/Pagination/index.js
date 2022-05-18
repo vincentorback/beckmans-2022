@@ -8,7 +8,7 @@ const Pagination = ({ prev, next }) => {
   if (!prev?.uid && !next?.uid) return null
 
   return (
-    <nav className="Pagination">
+    <nav className="Pagination u-printHide">
       {prev ? (
         <Link href={linkResolver(prev)} prefetch={false} scroll={false}>
           <a className="Pagination-link Pagination-link--prev">

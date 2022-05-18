@@ -52,7 +52,7 @@ const Map = ({ items, category }) => {
   )
 
   return (
-    <div className="Map">
+    <div className="Map u-printHide">
       {MemoTitle}
       <div className="Map-container">
         {MemoGrid}
@@ -145,7 +145,7 @@ const MapGrid = ({
               scale: 1,
               transition: {
                 duration: 0.3,
-                delay: 1 + itemIndex * 0.03,
+                delay: 1 + itemIndex * 0.02,
               },
             },
             notActive: {
@@ -153,15 +153,16 @@ const MapGrid = ({
               scale: 0.75,
               transition: {
                 duration: 0.3,
-                delay: itemIndex * 0.03,
+                delay: itemIndex * 0.02,
               },
             },
             exit: {
               opacity: 0,
               scale: 0.75,
+              pointerEvents: 'none',
               transition: {
                 duration: 0.2,
-                delay: (isVisible ? itemIndex : 0) * 0.03,
+                delay: (isVisible ? itemIndex : 0) * 0.02,
               },
             },
           }}

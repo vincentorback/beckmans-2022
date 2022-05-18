@@ -17,3 +17,9 @@
 .u-hideOverflow {
   overflow: hidden !important;
 }
+
+@media print {
+  .u-printHide {
+    display: none !important;
+  }
+}
