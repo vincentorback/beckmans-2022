@@ -1,6 +1,6 @@
 import { linkResolver } from '../../lib/prismic'
 import { useTranslations } from 'next-intl'
-import { localeStrings, IS_PRODUCTION, SITE_URL } from '../../lib/constants'
+import { localeStrings, IS_PRODUCTION } from '../../lib/constants'
 import { slugify } from '../../lib/utilities'
 import * as prismicH from '@prismicio/helpers'
 import Head from 'next/head'
@@ -53,13 +53,15 @@ const Meta = ({ title, doc }) => {
           />
         )
       )}
-
-      {doc && (
-        <link
-          rel="canonical"
-          href={(SITE_URL + linkResolver(doc)).replace(/\/+$/, '')}
-        />
-      )}
+      <link
+        rel="alternate"
+        hrefLang="x-default"
+        href={linkResolver(
+          doc ?? {
+            lang: 'sv',
+          }
+        )}
+      />
 
       {doc?.data?.main_image?.url && (
         <meta property="og:image" content={doc.data.main_image.url} />
