@@ -13,9 +13,9 @@ function generateSiteMap({ locales, pages, projects }) {
     ${locales
       ?.map(
         (locale) =>
-          `<xhtml:link href="${SITE_URL}" hreflang="${locale}" rel="alternate"/>`
+          `<xhtml:link href="${SITE_URL}" hreflang="${localeStrings[locale]}" rel="alternate"/>`
       )
-      .join('')}
+      .join('\n')}
   </url>
 ${projects
   .map(
@@ -29,9 +29,9 @@ ${projects
     <xhtml:link href="${SITE_URL}${linkResolver(
       doc
     )}" hreflang="x-default" rel="alternate"/>
-    <xhtml:link href="${SITE_URL}${linkResolver(
-      doc
-    )}" hreflang="${defaultLocale}" rel="alternate"/>
+    <xhtml:link href="${SITE_URL}${linkResolver(doc)}" hreflang="${
+      localeStrings[defaultLocale]
+    }" rel="alternate"/>
     ${
       doc?.alternate_languages?.length
         ? doc?.alternate_languages
@@ -40,9 +40,13 @@ ${projects
                 `<xhtml:link href="${SITE_URL}${linkResolver(
                   altDoc,
                   true
-                )}" hreflang="${Object.keys(localeStrings).find(
-                  (locale) => localeStrings[locale] === altDoc.lang
-                )}" rel="alternate"/>`
+                )}" hreflang="${
+                  localeStrings[
+                    Object.keys(localeStrings).find(
+                      (locale) => localeStrings[locale] === altDoc.lang
+                    )
+                  ]
+                }" rel="alternate"/>`
             )
             .join('')
         : ''
@@ -64,18 +68,22 @@ ${pages
     <xhtml:link href="${SITE_URL}${linkResolver(
       doc
     )}" hreflang="x-default" rel="alternate"/>
-    <xhtml:link href="${SITE_URL}${linkResolver(
-      doc
-    )}" hreflang="${defaultLocale}" rel="alternate"/>
+    <xhtml:link href="${SITE_URL}${linkResolver(doc)}" hreflang="${
+      localeStrings[defaultLocale]
+    }" rel="alternate"/>
     ${doc?.alternate_languages
       .map(
         (altDoc) =>
           `<xhtml:link href="${SITE_URL}${linkResolver(
             altDoc,
             true
-          )}" hreflang="${Object.keys(localeStrings).find(
-            (locale) => localeStrings[locale] === altDoc.lang
-          )}" rel="alternate"/>`
+          )}" hreflang="${
+            localeStrings[
+              Object.keys(localeStrings).find(
+                (locale) => localeStrings[locale] === altDoc.lang
+              )
+            ]
+          }" rel="alternate"/>`
       )
       .join('')}
   </url>
