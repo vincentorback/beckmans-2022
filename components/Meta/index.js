@@ -29,10 +29,7 @@ const Meta = ({ title, doc }) => {
         <link
           key={doc.alternate_languages[0].uid}
           rel="alternate"
-          hrefLang={Object.keys(localeStrings).find(
-            (locale) =>
-              localeStrings[locale] === doc.alternate_languages[0].lang
-          )}
+          hrefLang={doc.alternate_languages[0].lang}
           href={linkResolver(doc.alternate_languages[0], true)}
         />
       ) : (
@@ -40,9 +37,11 @@ const Meta = ({ title, doc }) => {
         !title && (
           <link
             rel="alternate"
-            hrefLang={Object.keys(localeStrings).find(
-              (locale) => localeStrings[locale] === router.locale
-            )}
+            hrefLang={
+              localeStrings[
+                Object.keys(localeStrings).find((key) => key !== router.locale)
+              ]
+            }
             href={linkResolver(
               {
                 lang: Object.keys(localeStrings).find(
