@@ -26,40 +26,73 @@ const Meta = ({ title, doc }) => {
       </title>
 
       {doc?.alternate_languages?.length ? (
-        <link
-          key={doc.alternate_languages[0].uid}
-          rel="alternate"
-          hrefLang={doc.alternate_languages[0].lang}
-          href={linkResolver(doc.alternate_languages[0], true)}
-        />
+        <>
+          <link
+            rel="alternate"
+            hrefLang={doc.lang}
+            href={linkResolver(doc, true)}
+          />
+          <link
+            rel="alternate"
+            hrefLang={doc.alternate_languages[0].lang}
+            href={linkResolver(
+              doc.alternate_languages[0],
+              doc.alternate_languages[0].lang === 'en-us'
+            )}
+          />
+        </>
       ) : (
         !doc?.alternate_languages &&
         !title && (
-          <link
-            rel="alternate"
-            hrefLang={
-              localeStrings[
-                Object.keys(localeStrings).find((key) => key !== router.locale)
-              ]
-            }
-            href={linkResolver(
-              {
-                lang: Object.keys(localeStrings).find(
-                  (locale) => locale !== router.locale
-                ),
-              },
-              true
-            )}
-          />
+          <>
+            <link
+              rel="alternate"
+              hrefLang={
+                localeStrings[
+                  Object.keys(localeStrings).find(
+                    (key) => key === router.locale
+                  )
+                ]
+              }
+              href={linkResolver(
+                {
+                  lang: Object.keys(localeStrings).find(
+                    (locale) => locale === router.locale
+                  ),
+                },
+                true
+              )}
+            />
+            <link
+              rel="alternate"
+              hrefLang={
+                localeStrings[
+                  Object.keys(localeStrings).find(
+                    (key) => key !== router.locale
+                  )
+                ]
+              }
+              href={linkResolver(
+                {
+                  lang: Object.keys(localeStrings).find(
+                    (locale) => locale !== router.locale
+                  ),
+                },
+                true
+              )}
+            />
+          </>
         )
       )}
       <link
         rel="alternate"
         hrefLang="x-default"
         href={linkResolver(
-          doc ?? {
-            lang: 'sv',
-          }
+          doc?.lang === 'sv-se'
+            ? doc
+            : doc?.alternate_languages[0] ?? {
+                lang: 'sv',
+              }
         )}
       />
 
