@@ -62,6 +62,11 @@ const Meta = ({ title, doc }) => {
         />
       )}
 
+      {doc?.data?.main_image?.url && (
+        <meta property="og:image" content={doc.data.main_image.url} />
+      )}
+      <meta property="og:image" content="/images/share.jpg" />
+
       {!IS_PRODUCTION && <meta name="robots" content="noindex, nofollow" />}
 
       <link
