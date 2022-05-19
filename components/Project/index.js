@@ -107,22 +107,54 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
               </div>
             )}
 
-            {project.data.press_download.url && (
+            {(project.data.press_download?.url ||
+              project.data.press_download2?.url ||
+              project.data.press_download3?.url) && (
               <div className={classNames('Project-info', 'u-showSmall')}>
                 <h4>{t('project.press-images')}</h4>
                 <ul>
-                  <li>
-                    <Link href={project.data.press_download.url}>
-                      <a
-                        download={project.data.press_download.name}
-                        title={`${project.data.press_download.name} (${(
-                          project.data.press_download.size / 1000000
-                        ).toFixed(2)}MB)`}
-                      >
-                        {t('project.download')}
-                      </a>
-                    </Link>
-                  </li>
+                  {project.data.press_download.url && (
+                    <li>
+                      <Link href={project.data.press_download.url}>
+                        <a
+                          download={project.data.press_download.name}
+                          title={`${project.data.press_download.name} (${(
+                            project.data.press_download.size / 1000000
+                          ).toFixed(2)}MB)`}
+                        >
+                          {t('project.download')}
+                        </a>
+                      </Link>
+                    </li>
+                  )}
+                  {project.data.press_download2?.url && (
+                    <li>
+                      <Link href={project.data.press_download2.url}>
+                        <a
+                          download={project.data.press_download2.name}
+                          title={`${project.data.press_download2.name} (${(
+                            project.data.press_download2.size / 1000000
+                          ).toFixed(2)}MB)`}
+                        >
+                          {t('project.download2')}
+                        </a>
+                      </Link>
+                    </li>
+                  )}
+                  {project.data.press_download3?.url && (
+                    <li>
+                      <Link href={project.data.press_download3.url}>
+                        <a
+                          download={project.data.press_download3.name}
+                          title={`${project.data.press_download3.name} (${(
+                            project.data.press_download3.size / 1000000
+                          ).toFixed(2)}MB)`}
+                        >
+                          {t('project.download3')}
+                        </a>
+                      </Link>
+                    </li>
+                  )}
                 </ul>
               </div>
             )}
@@ -182,22 +214,55 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                   <PrismicRichText field={project.data.contact} />
                 </div>
               )}
-              {project.data.press_download.url && (
+
+              {(project.data.press_download?.url ||
+                project.data.press_download2?.url ||
+                project.data.press_download3?.url) && (
                 <div className="Project-info">
                   <h4>{t('project.press-images')}</h4>
                   <ul>
-                    <li>
-                      <Link href={project.data.press_download.url}>
-                        <a
-                          download={project.data.press_download.name}
-                          title={`${project.data.press_download.name} (${(
-                            project.data.press_download.size / 1000000
-                          ).toFixed(2)}MB)`}
-                        >
-                          {t('project.download')}
-                        </a>
-                      </Link>
-                    </li>
+                    {project.data.press_download.url && (
+                      <li>
+                        <Link href={project.data.press_download.url}>
+                          <a
+                            download={project.data.press_download.name}
+                            title={`${project.data.press_download.name} (${(
+                              project.data.press_download.size / 1000000
+                            ).toFixed(2)}MB)`}
+                          >
+                            {t('project.download')}
+                          </a>
+                        </Link>
+                      </li>
+                    )}
+                    {project.data.press_download2?.url && (
+                      <li>
+                        <Link href={project.data.press_download2.url}>
+                          <a
+                            download={project.data.press_download2.name}
+                            title={`${project.data.press_download2.name} (${(
+                              project.data.press_download2.size / 1000000
+                            ).toFixed(2)}MB)`}
+                          >
+                            {t('project.download2')}
+                          </a>
+                        </Link>
+                      </li>
+                    )}
+                    {project.data.press_download3?.url && (
+                      <li>
+                        <Link href={project.data.press_download3.url}>
+                          <a
+                            download={project.data.press_download3.name}
+                            title={`${project.data.press_download3.name} (${(
+                              project.data.press_download3.size / 1000000
+                            ).toFixed(2)}MB)`}
+                          >
+                            {t('project.download3')}
+                          </a>
+                        </Link>
+                      </li>
+                    )}
                   </ul>
                 </div>
               )}
