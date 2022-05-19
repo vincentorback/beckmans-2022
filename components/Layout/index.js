@@ -4,8 +4,8 @@ import Footer from '../Footer'
 import Link from 'next-translate-routes/link'
 import classNames from 'classnames'
 import { useRouter } from 'next/router'
-import Countdown from '../../components/Countdown'
-import { IS_PRODUCTION } from '../../lib/constants'
+// import Countdown from '../../components/Countdown'
+// import { IS_PRODUCTION } from '../../lib/constants'
 
 const Layout = ({
   title,
@@ -51,7 +51,7 @@ const Layout = ({
       <Meta title={title} doc={page ?? project} />
       <div className="Layout-main">{children}</div>
       <Footer pages={pages} settings={settings} />
-      {IS_PRODUCTION && !router.isPreview && <Countdown />}
+      {/* {IS_PRODUCTION && !router.isPreview && <Countdown />} */}
       {router.isPreview && (
         <Link href={'/api/exit-preview'} prefetch={false} scroll={false}>
           <a className={'Layout-previewButton'}>Exit preview</a>
