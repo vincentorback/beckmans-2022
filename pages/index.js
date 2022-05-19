@@ -211,6 +211,13 @@ export async function getStaticProps({ locale, previewData }) {
   const messages = require(`../locales/${locale}.json`)
 
   content.projects.push({
+    uid: 'instagram',
+    title: 'Instagram',
+    url: 'https://www.instagram.com/beckmanscollegeofdesign/',
+    backgroundColor: 'Blue',
+  })
+
+  content.projects.push({
     uid: 'beckmans',
     title: 'Beckmans.se',
     url: 'https://beckmans.se',
