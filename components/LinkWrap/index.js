@@ -1,7 +1,7 @@
 import Link from 'next-translate-routes/link'
 
 const LinkWrap = ({ className, href, children }) => {
-  if (href) {
+  if (href?.length) {
     return (
       <Link href={href} prefetch={false} scroll={false}>
         <a
