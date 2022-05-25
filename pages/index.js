@@ -118,7 +118,7 @@ const Projects = ({
 
     window.addEventListener('resize', handleResize)
 
-    handleResize()
+    window.requestAnimationFrame(handleResize)
 
     return () => window.removeEventListener('resize', handleResize)
   }, [])
