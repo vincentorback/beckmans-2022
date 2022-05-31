@@ -187,6 +187,13 @@
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
+@media (min-width: 400px) {
+  .Project-mediaGrid {
+    gap: var(--site-spacing);
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (min-width: 800px) {
   .Project-mediaGrid {
     gap: var(--site-spacing);

@@ -38,6 +38,12 @@ const Media = ({ items }) => {
                   height={item.image.dimensions.height}
                   lazyBoundary="100%"
                   loadingBackground="rgba(0, 0, 0, 0.01)"
+                  layout="responsive"
+                  sizes={
+                    images.length === 1
+                      ? '(min-width: 1400px) 800px, (min-width: 800px) 50vw, 100vw'
+                      : '(min-width: 1400px) 385px, (min-width: 800px) 25vw, (min-width: 400px) 50vw, 100vw'
+                  }
                 />
               ))}
             </div>
