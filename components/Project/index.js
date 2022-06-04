@@ -33,7 +33,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
   )
 
   return (
-    <article className="Project">
+    <main className="Project">
       <div className="Project-inner">
         {MemoImage}
         <m.div
@@ -269,12 +269,12 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
             </div>
           </m.div>
 
-          <div className="Project-sidebarLower">
+          <aside className="Project-sidebarLower">
             <Map items={projects} category={project.data.category} />
-          </div>
+          </aside>
         </div>
       </div>
-    </article>
+    </main>
   )
 }
 

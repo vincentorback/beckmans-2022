@@ -21,9 +21,14 @@ const Meta = ({ title, doc }) => {
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width,initial-scale=1" />
       <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+
       <title>
         {title && `${title} | `}Beckmans {t('strings.show')} 19.05–24.05.2022
       </title>
+
+      {router.asPath === '/' && (
+        <meta name="description" content={t('description')} />
+      )}
 
       {doc?.alternate_languages?.length ? (
         <>
@@ -96,10 +101,11 @@ const Meta = ({ title, doc }) => {
         )}
       />
 
-      {doc?.data?.main_image?.url && (
+      {doc?.data?.main_image?.url ? (
         <meta property="og:image" content={doc.data.main_image.url} />
+      ) : (
+        <meta property="og:image" content="/images/share.jpg" />
       )}
-      <meta property="og:image" content="/images/share.jpg" />
 
       {!IS_PRODUCTION && <meta name="robots" content="noindex, nofollow" />}
 

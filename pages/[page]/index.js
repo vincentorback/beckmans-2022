@@ -13,11 +13,11 @@ export default function Page(props) {
     <Layout {...props} title={prismicH.asText(props?.page?.data?.title)}>
       <Header {...props} />
       <Container>
-        <div className="Layout-content">
+        <main className="Layout-content">
           {props?.page?.data?.body?.length ? (
             <Slices body={props.page.data.body} />
           ) : null}
-        </div>
+        </main>
       </Container>
       {['om-utstallningen', 'about-the-show'].includes(props?.page?.uid) && (
         <AboutBackground />
