@@ -5,7 +5,7 @@ import Link from 'next-translate-routes/link'
 import { PrismicText, PrismicRichText } from '@prismicio/react'
 import { m } from 'framer-motion'
 import { slugify } from '../../lib/utilities'
-import { SESSION_ITEM } from '../../lib/constants'
+import { SESSION_ITEM, SESSION_CATEGORY } from '../../lib/constants'
 import Entry from '../Entry'
 import Image from '../Image'
 import Map from '../Map'
@@ -31,6 +31,10 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
       ) : null,
     [project.data.body]
   )
+
+  const handleCategoryClick = React.useCallback(() => {
+    sessionStorage[SESSION_CATEGORY] = slugify(project.data.category)
+  }, [project.data.category])
 
   return (
     <main className="Project">
@@ -97,7 +101,13 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
           <div className="Project-projectInfo Project-projectInfo--main">
             <div className={classNames('Project-info', 'u-showSmall')}>
               <h4>Program</h4>
-              <p>{t(`categories.${slugify(project.data.category)}`)}</p>
+              <p>
+                <Link href="/" prefetch="false">
+                  <a onClick={handleCategoryClick}>
+                    {t(`categories.${slugify(project.data.category)}`)}
+                  </a>
+                </Link>
+              </p>
             </div>
 
             {Boolean(project.data.contact.length) && (
@@ -115,7 +125,10 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                 <ul>
                   {project.data.press_download.url && (
                     <li>
-                      <Link href={project.data.press_download.url}>
+                      <Link
+                        href={project.data.press_download.url}
+                        prefetch="false"
+                      >
                         <a
                           download={project.data.press_download.name}
                           title={`${project.data.press_download.name} (${(
@@ -129,7 +142,10 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                   )}
                   {project.data.press_download2?.url && (
                     <li>
-                      <Link href={project.data.press_download2.url}>
+                      <Link
+                        href={project.data.press_download2.url}
+                        prefetch="false"
+                      >
                         <a
                           download={project.data.press_download2.name}
                           title={`${project.data.press_download2.name} (${(
@@ -143,7 +159,10 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                   )}
                   {project.data.press_download3?.url && (
                     <li>
-                      <Link href={project.data.press_download3.url}>
+                      <Link
+                        href={project.data.press_download3.url}
+                        prefetch="false"
+                      >
                         <a
                           download={project.data.press_download3.name}
                           title={`${project.data.press_download3.name} (${(
@@ -206,7 +225,11 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
             <div className="Project-projectInfo Project-projectInfo--main">
               <div className="Project-info">
                 <h4>Program</h4>
-                <p>{t(`categories.${slugify(project.data.category)}`)}</p>
+                <Link href="/" prefetch="false">
+                  <a onClick={handleCategoryClick}>
+                    {t(`categories.${slugify(project.data.category)}`)}
+                  </a>
+                </Link>
               </div>
               {Boolean(project.data.contact.length) && (
                 <div className={classNames('Project-info', 'u-hideSmall')}>
@@ -223,7 +246,10 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                   <ul>
                     {project.data.press_download.url && (
                       <li>
-                        <Link href={project.data.press_download.url}>
+                        <Link
+                          href={project.data.press_download.url}
+                          prefetch="false"
+                        >
                           <a
                             download={project.data.press_download.name}
                             title={`${project.data.press_download.name} (${(
@@ -237,7 +263,10 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                     )}
                     {project.data.press_download2?.url && (
                       <li>
-                        <Link href={project.data.press_download2.url}>
+                        <Link
+                          href={project.data.press_download2.url}
+                          prefetch="false"
+                        >
                           <a
                             download={project.data.press_download2.name}
                             title={`${project.data.press_download2.name} (${(
@@ -251,7 +280,10 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                     )}
                     {project.data.press_download3?.url && (
                       <li>
-                        <Link href={project.data.press_download3.url}>
+                        <Link
+                          href={project.data.press_download3.url}
+                          prefetch="false"
+                        >
                           <a
                             download={project.data.press_download3.name}
                             title={`${project.data.press_download3.name} (${(
