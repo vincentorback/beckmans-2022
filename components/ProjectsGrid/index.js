@@ -61,6 +61,48 @@ const ProjectsGrid = ({
     [activeItem, previousActiveItem]
   )
 
+  const dotsVariants = React.useMemo(
+    () => ({
+      loading: (index) => ({
+        opacity: 1,
+        scale: 1,
+        x: '-50%',
+        y: '-50%',
+        transition: {
+          duration: 0.4,
+          delay: (index % (25 * 1.3)) * 0.075,
+        },
+        backgroundColor: 'var(--color-black)',
+      }),
+      active: (index) => ({
+        opacity: Math.floor(index % 25) < 13 ? 1 : 0,
+        scale: Math.floor(index % 25) < 13 ? 1 : 0,
+        x: '-50%',
+        y: '-50%',
+        transition: {
+          duration: 0.2,
+        },
+        backgroundColor: 'var(--color-white)',
+      }),
+      hidden: {
+        opacity: 0,
+        scale: 0,
+        x: '-50%',
+        y: '-50%',
+        transition: {
+          duration: 0.2,
+        },
+      },
+    }),
+    []
+  )
+
+  const onDotsAnimationComplete = React.useCallback((definition) => {
+    if (sessionStorage[SESSION_STARTED] || definition === 'loading') {
+      setDotsDone(true)
+    }
+  }, [])
+
   const memoDots = React.useMemo(
     () => (
       <div className="ProjectsGrid-dots">
@@ -74,51 +116,17 @@ const ProjectsGrid = ({
             custom={dotIndex}
             initial={sessionStorage[SESSION_STARTED] ? 'active' : 'hidden'}
             animate={sessionStorage[SESSION_STARTED] ? '' : dotAnimation}
-            variants={{
-              loading: (index) => ({
-                opacity: 1,
-                scale: 1,
-                x: '-50%',
-                y: '-50%',
-                transition: {
-                  duration: 0.4,
-                  delay: (index % (25 * 1.3)) * 0.075,
-                },
-                backgroundColor: 'var(--color-black)',
-              }),
-              active: (index) => ({
-                opacity: Math.floor(index % 25) < 13 ? 1 : 0,
-                scale: Math.floor(index % 25) < 13 ? 1 : 0,
-                x: '-50%',
-                y: '-50%',
-                transition: {
-                  duration: 0.2,
-                },
-                backgroundColor: 'var(--color-white)',
-              }),
-              hidden: {
-                opacity: 0,
-                scale: 0,
-                x: '-50%',
-                y: '-50%',
-                transition: {
-                  duration: 0.2,
-                },
-              },
-            }}
-            onAnimationComplete={(definition) => {
-              if (
-                sessionStorage[SESSION_STARTED] ||
-                (definition === 'loading' && dotIndex === 357)
-              ) {
-                setDotsDone(true)
-              }
-            }}
+            variants={dotsVariants}
+            onAnimationComplete={
+              dotIndex === 357
+                ? (definition) => onDotsAnimationComplete(definition)
+                : null
+            }
           />
         ))}
       </div>
     ),
-    [dotAnimation]
+    [dotAnimation, dotsVariants, onDotsAnimationComplete]
   )
 
   return (

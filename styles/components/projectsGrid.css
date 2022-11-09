@@ -96,6 +96,7 @@
 
 .ProjectsGrid-dots div {
   position: absolute;
+  z-index: 1;
   top: calc(var(--row) * (100% / 14));
   left: calc(var(--cell) * (100% / 24));
   transform: translate3d(-50%, -50%, 0);

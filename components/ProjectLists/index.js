@@ -4,7 +4,7 @@ import { linkResolver } from '../../lib/prismic'
 import { PrismicText } from '@prismicio/react'
 import { m } from 'framer-motion'
 
-const ProjectLists = ({ lists, isReady, setActiveItem }) => {
+const ProjectLists = ({ lists, isReady, setActiveItem, setFilter }) => {
   return (
     <m.ul
       className="Lists"
@@ -39,7 +39,9 @@ const ProjectLists = ({ lists, isReady, setActiveItem }) => {
       {lists &&
         lists.map((list) => (
           <li key={list.id} role="treeitem" tabIndex="-1">
-            <span className="Lists-title">{list.label}</span>
+            <button className="Lists-title" onClick={() => setFilter(list.id)}>
+              {list.label}
+            </button>
             <ul className="Lists-list" role="group">
               {list.items.map((item) => (
                 <li

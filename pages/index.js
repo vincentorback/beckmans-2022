@@ -21,6 +21,7 @@ const Projects = ({
   isReady,
   projects,
   setGridLoaded,
+  setFilter,
 }) => {
   const t = useTranslations('categories')
   const router = useRouter()
@@ -83,12 +84,12 @@ const Projects = ({
     if (inTransition) return
 
     setActiveItem((prev) =>
-      !activeFilter || slugify(prev?.data.category) === activeFilter
+      !activeFilter || slugify(prev?.data?.category) === activeFilter
         ? prev
         : null
     )
     setPreviousActiveItem((prev) =>
-      !activeFilter || slugify(prev?.data.category) === activeFilter
+      !activeFilter || slugify(prev?.data?.category) === activeFilter
         ? prev
         : null
     )
@@ -143,6 +144,7 @@ const Projects = ({
             lists={lists}
             isReady={isReady}
             setActiveItem={dimensions[1] > 800 && handleSetItem}
+            setFilter={setFilter}
           />
         </>
       ) : (
@@ -201,6 +203,7 @@ export default function HomePage(props) {
         isReady={isReady}
         projects={projects}
         setGridLoaded={setGridLoaded}
+        setFilter={handleSetFilter}
       />
     </Layout>
   )

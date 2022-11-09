@@ -102,7 +102,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
             <div className={classNames('Project-info', 'u-showSmall')}>
               <h4>Program</h4>
               <p>
-                <Link href="/" prefetch="false">
+                <Link href="/" prefetch={false}>
                   <a onClick={handleCategoryClick}>
                     {t(`categories.${slugify(project.data.category)}`)}
                   </a>
@@ -127,7 +127,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                     <li>
                       <Link
                         href={project.data.press_download.url}
-                        prefetch="false"
+                        prefetch={false}
                       >
                         <a
                           download={project.data.press_download.name}
@@ -144,7 +144,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                     <li>
                       <Link
                         href={project.data.press_download2.url}
-                        prefetch="false"
+                        prefetch={false}
                       >
                         <a
                           download={project.data.press_download2.name}
@@ -161,7 +161,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                     <li>
                       <Link
                         href={project.data.press_download3.url}
-                        prefetch="false"
+                        prefetch={false}
                       >
                         <a
                           download={project.data.press_download3.name}
@@ -225,7 +225,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
             <div className="Project-projectInfo Project-projectInfo--main">
               <div className="Project-info">
                 <h4>Program</h4>
-                <Link href="/" prefetch="false">
+                <Link href="/" prefetch={false}>
                   <a onClick={handleCategoryClick}>
                     {t(`categories.${slugify(project.data.category)}`)}
                   </a>
@@ -248,7 +248,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                       <li>
                         <Link
                           href={project.data.press_download.url}
-                          prefetch="false"
+                          prefetch={false}
                         >
                           <a
                             download={project.data.press_download.name}
@@ -265,7 +265,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                       <li>
                         <Link
                           href={project.data.press_download2.url}
-                          prefetch="false"
+                          prefetch={false}
                         >
                           <a
                             download={project.data.press_download2.name}
@@ -282,7 +282,7 @@ const Project = ({ project, projects, nextProject, prevProject }) => {
                       <li>
                         <Link
                           href={project.data.press_download3.url}
-                          prefetch="false"
+                          prefetch={false}
                         >
                           <a
                             download={project.data.press_download3.name}
