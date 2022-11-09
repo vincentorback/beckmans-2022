@@ -213,21 +213,37 @@ export async function getStaticProps({ locale, previewData }) {
   const content = await getEverything(locale, previewData, 'home')
   const messages = require(`../locales/${locale}.json`)
 
-  content.projects.push({
-    uid: 'instagram',
-    title: 'Instagram',
-    url: 'https://www.instagram.com/beckmanscollegeofdesign/',
-    backgroundColor: 'Blue',
-  })
+  const extraProjects = [
+    {
+      uid: 'instagram',
+      title: 'Instagram',
+      url: 'https://www.instagram.com/beckmanscollegeofdesign/',
+      backgroundColor: 'Blue',
+    },
+    {
+      uid: 'beckmans',
+      title: 'Beckmans.se',
+      url: 'https://beckmans.se',
+      backgroundColor: 'Black',
+    },
+    ...content.pages.sort((a) => {
+      if (['credits', 'medverkande'].includes(a.uid)) {
+        return -1
+      }
 
-  content.projects.push({
-    uid: 'beckmans',
-    title: 'Beckmans.se',
-    url: 'https://beckmans.se',
-    backgroundColor: 'Black',
-  })
+      if (['about-the-show', 'om-utstallningen'].includes(a.uid)) {
+        return 0
+      }
 
-  content.projects = content.projects.concat(content.pages)
+      if ('press' === a.uid) {
+        return 1
+      }
+    }),
+  ]
+
+  console.log(extraProjects)
+
+  content.projects = content.projects.concat(extraProjects)
 
   return {
     props: {
