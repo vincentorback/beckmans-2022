@@ -53,7 +53,12 @@ export async function getStaticPaths({ locales }) {
 
 export async function getStaticProps({ params, locale, previewData }) {
   const messages = require(`../../locales/${locale}.json`)
-  const content = await getEverything(locale, previewData, 'project')
+  const content = await getEverything(
+    locale,
+    previewData,
+    'project',
+    params.name
+  )
 
   const project = content.projects.find(
     (item) => item?.uid === params.name && item.lang === localeStrings[locale]
