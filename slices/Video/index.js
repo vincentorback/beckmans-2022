@@ -8,8 +8,6 @@ const Video = ({ slice }) => {
   const { width, height, video_id, provider_name, html } =
     slice.primary.embedURL
 
-  console.log(video_id, provider_name.toLowerCase())
-
   const plyrRef = React.useRef()
   const containerRef = React.useRef(null)
   const { ref, inView } = useInView({
@@ -53,11 +51,10 @@ const Video = ({ slice }) => {
   const MemoVideo = React.useMemo(() => {
     if (!provider_name || !video_id) return null
 
-    console.log('render plyr')
-
     return (
       <Plyr
         ref={plyrRef}
+        id={video_id}
         source={{
           type: 'video',
           sources: [
@@ -87,6 +84,7 @@ const Video = ({ slice }) => {
             'volume',
             'fullscreen',
           ],
+          youtube: { noCookie: true },
         }}
       />
     )

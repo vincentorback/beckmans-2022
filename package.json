@@ -17,7 +17,7 @@
     "@prismicio/client": "^6.4.3",
     "@prismicio/helpers": "^2.3.0",
     "@prismicio/next": "^0.1.2",
-    "@prismicio/react": "^2.3.0",
+    "@prismicio/react": "2.3.0",
     "@prismicio/slice-simulator-react": "^0.2.2",
     "classnames": "^2.3.1",
     "framer-motion": "^6.3.3",

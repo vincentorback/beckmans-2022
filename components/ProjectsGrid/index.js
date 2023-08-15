@@ -98,7 +98,6 @@ const ProjectsGrid = ({
   )
 
   const onDotsAnimationComplete = React.useCallback((definition) => {
-    console.log(definition)
     if (
       // sessionStorage[SESSION_STARTED] ||
       definition === 'loading'

@@ -27,7 +27,11 @@ const Image = (props) => {
     quality,
     layout,
     className,
+    sizes,
     loadingBackground,
+    onLoadingComplete,
+    lazyBoundary,
+    priority,
   } = props
 
   layout = layout ?? 'intrinsic'
@@ -43,8 +47,10 @@ const Image = (props) => {
       }}
     >
       <NextImage
-        {...props}
         src={src.url}
+        priority={priority}
+        sizes={sizes}
+        lazyBoundary={lazyBoundary}
         loader={(image) => imageLoader(image, props)}
         layout={layout}
         objectFit={objectFit || 'cover'}
@@ -53,6 +59,7 @@ const Image = (props) => {
         width={layout === 'cover' || layout === 'fill' ? null : width}
         height={layout === 'cover' || layout === 'fill' ? null : height}
         quality={quality || 70}
+        onLoadingComplete={onLoadingComplete}
       />
     </div>
   )
