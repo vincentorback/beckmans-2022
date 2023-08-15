@@ -14,12 +14,17 @@
 
 .Video-inner {
   position: relative;
-
   overflow: hidden;
 }
 
 .Video:not(.is-inView) .Video-inner {
   aspect-ratio: var(--video-width) / var(--video-height);
+}
+
+.Video-inner > iframe {
+  aspect-ratio: var(--video-width) / var(--video-height);
+  width: 100%;
+  height: 100%;
 }
 
 .Video .plyr__video-wrapper {

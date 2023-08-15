@@ -32,11 +32,11 @@ const Header = ({ children, project, page, setFilter }) => {
     ? doc?.alternate_languages[0]
     : false
 
-  React.useEffect(() => {
-    return () => {
-      sessionStorage[SESSION_STARTED] = true
-    }
-  }, [router.asPath])
+  // React.useEffect(() => {
+  //   return () => {
+  //     sessionStorage[SESSION_STARTED] = true
+  //   }
+  // }, [router.asPath])
 
   const LanguageLinks = React.useMemo(() => {
     return (

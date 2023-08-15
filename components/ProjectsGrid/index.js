@@ -2,7 +2,7 @@ import React from 'react'
 import classNames from 'classnames'
 import Window from './Window'
 import Grid from './Grid'
-import { SESSION_STARTED } from '../../lib/constants'
+// import { SESSION_STARTED } from '../../lib/constants'
 import { m } from 'framer-motion'
 
 const ProjectsGrid = ({
@@ -30,11 +30,11 @@ const ProjectsGrid = ({
     }
   }, [dotsDone, isReady])
 
-  React.useEffect(() => {
-    if (sessionStorage[SESSION_STARTED]) {
-      setDotsDone(true)
-    }
-  }, [])
+  // React.useEffect(() => {
+  //   if (sessionStorage[SESSION_STARTED]) {
+  //     setDotsDone(true)
+  //   }
+  // }, [])
 
   const handleMouseEnter = React.useCallback(
     (item) => {
@@ -98,7 +98,11 @@ const ProjectsGrid = ({
   )
 
   const onDotsAnimationComplete = React.useCallback((definition) => {
-    if (sessionStorage[SESSION_STARTED] || definition === 'loading') {
+    console.log(definition)
+    if (
+      // sessionStorage[SESSION_STARTED] ||
+      definition === 'loading'
+    ) {
       setDotsDone(true)
     }
   }, [])
@@ -114,8 +118,8 @@ const ProjectsGrid = ({
               '--cell': Math.floor(dotIndex % 25),
             }}
             custom={dotIndex}
-            initial={sessionStorage[SESSION_STARTED] ? 'active' : 'hidden'}
-            animate={sessionStorage[SESSION_STARTED] ? '' : dotAnimation}
+            initial={'hidden'}
+            animate={dotAnimation}
             variants={dotsVariants}
             onAnimationComplete={
               dotIndex === 357

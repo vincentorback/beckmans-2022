@@ -7,43 +7,53 @@ import { getYoutubeID } from '../../lib/utilities'
 const Video = ({ slice }) => {
   const { width, height, video_id, provider_name, html } =
     slice.primary.embedURL
-  const plyrRef = React.useRef()
 
+  console.log(video_id, provider_name.toLowerCase())
+
+  const plyrRef = React.useRef()
+  const containerRef = React.useRef(null)
   const { ref, inView } = useInView({
     triggerOnce: true,
   })
+  const [hasError, setHasError] = React.useState(false)
 
   React.useEffect(() => {
-    const plyr = plyrRef?.current?.plyr
+    try {
+      if (plyrRef?.current?.plyr) {
+        const plyr = plyrRef?.current?.plyr
 
-    if (plyr && plyr?.source) {
-      const onError = (error) => {
-        console.log('Replace with iframe', error)
+        if (plyr && plyr.source) {
+          const onError = () => {
+            if (html) {
+              containerRef.current.innerHTML = `<div class="Video-inner">${html}</div>`
+              setHasError(true)
+            }
+          }
 
-        if (html) {
-          console.log(html)
+          plyr.on('error', onError)
+
+          window.addEventListener('error', onError)
+          window.addEventListener('unhandledrejection', onError)
+
+          return () => {
+            window.removeEventListener('error', onError)
+            window.removeEventListener('unhandledrejection', onError)
+
+            plyr.off('error', onError)
+          }
         }
-        // const errorMessage = e?.reason?.message || error?.message
       }
-
-      plyr.on('error', onError)
-
-      window.addEventListener('error', onError)
-      window.addEventListener('unhandledrejection', onError)
-
-      return () => {
-        window.removeEventListener('error', onError)
-        window.removeEventListener('unhandledrejection', onError)
-
-        plyr.off('error', onError)
-      }
+    } catch (err) {
+      console.error(err)
+      containerRef.current.innerHTML = `<div class="Video-inner">${html}</div>`
+      setHasError(true)
     }
-  }, [plyrRef?.current?.plyr, inView, html])
-
-  // TODO: On error, replace with {html}
+  }, [plyrRef?.current?.plyr, html, containerRef])
 
   const MemoVideo = React.useMemo(() => {
     if (!provider_name || !video_id) return null
+
+    console.log('render plyr')
 
     return (
       <Plyr
@@ -84,17 +94,20 @@ const Video = ({ slice }) => {
 
   return (
     <div
-      ref={ref}
+      ref={containerRef}
       className={classNames('Video', {
         [`is-${provider_name.toLowerCase()}`]: provider_name,
         'is-inView': inView,
+        'is-error': hasError,
       })}
       style={{
         '--video-width': `${width}`,
         '--video-height': `${height}`,
       }}
     >
-      <div className="Video-inner">{MemoVideo}</div>
+      <div ref={ref} className="Video-inner">
+        {MemoVideo}
+      </div>
     </div>
   )
 }

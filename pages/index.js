@@ -241,8 +241,6 @@ export async function getStaticProps({ locale, previewData }) {
     }),
   ]
 
-  console.log(extraProjects)
-
   content.projects = content.projects.concat(extraProjects)
 
   return {
