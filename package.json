@@ -1,5 +1,6 @@
 {
   "name": "beckmans-graduation-2022",
+  "version": "1.0.0",
   "description": "Beckmans Graduation Show 2022",
   "license": "CC-BY-SA-4.0",
   "author": {
@@ -19,27 +20,27 @@
     "@prismicio/next": "^0.1.2",
     "@prismicio/react": "2.3.0",
     "@prismicio/slice-simulator-react": "^0.2.2",
-    "classnames": "^2.3.1",
-    "framer-motion": "^6.3.3",
+    "classnames": "^2.5.1",
+    "framer-motion": "^11.1.7",
     "jump.js": "^1.0.2",
     "lodash.debounce": "^4.0.8",
     "next": "^12.1.6",
     "next-intl": "^2.7.2",
     "next-slicezone": "^0.2.6",
-    "next-translate-routes": "^1.7.1",
-    "plyr-react": "^4.0.0",
+    "next-translate-routes": "^1.10.2",
+    "plyr-react": "^5.3.0",
     "prismic-reactjs": "^1.3.4",
-    "react": "^17",
-    "react-countdown": "^2.3.2",
-    "react-dom": "^17",
-    "react-intersection-observer": "^9.1.0"
+    "react": "^18.3.1",
+    "react-countdown": "^2.3.5",
+    "react-dom": "^18.3.1",
+    "react-intersection-observer": "^9.10.1"
   },
   "devDependencies": {
-    "eslint": "^8.15.0",
-    "eslint-config-next": "^12.1.6",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "prettier": "^2.6.2",
+    "eslint": "^8",
+    "eslint-config-next": "^14.2.3",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "prettier": "^3.2.5",
     "slice-machine-ui": "^0.3.7"
   },
   "browserslist": [

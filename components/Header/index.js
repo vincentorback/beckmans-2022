@@ -2,9 +2,9 @@ import React from 'react'
 import Link from 'next-translate-routes/link'
 import Container from '../Container'
 import { useRouter } from 'next/router'
-import { SESSION_STARTED } from '../../lib/constants'
 import { capitalize } from '../../lib/utilities'
 import { linkResolver } from '../../lib/prismic'
+import { m } from 'framer-motion'
 
 const LocaleLink = ({ locale, isActive, url }) => {
   if (isActive) {
@@ -24,19 +24,13 @@ const LocaleLink = ({ locale, isActive, url }) => {
   )
 }
 
-const Header = ({ children, project, page, setFilter }) => {
+const Header = ({ children, project, page, setFilter, sessionStarted }) => {
   const router = useRouter()
 
   const doc = React.useMemo(() => page ?? project, [page, project])
   const otherLangDoc = doc?.alternate_languages?.length
     ? doc?.alternate_languages[0]
     : false
-
-  // React.useEffect(() => {
-  //   return () => {
-  //     sessionStorage[SESSION_STARTED] = true
-  //   }
-  // }, [router.asPath])
 
   const LanguageLinks = React.useMemo(() => {
     return (
@@ -75,7 +69,16 @@ const Header = ({ children, project, page, setFilter }) => {
     <header className="Header">
       <Container>
         <div className="Header-inner">
-          <div className="Header-topLeft">
+          <m.div
+            className="Header-topLeft"
+            animate={sessionStarted ? 'visible' : 'hidden'}
+            initial={sessionStarted ? 'visible' : 'hidden'}
+            variants={{
+              visible: { opacity: 1 },
+              hidden: { opacity: 0 },
+            }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
             <Link href="/" scroll={false}>
               <a>
                 <p className="Header-showText">
@@ -85,13 +88,28 @@ const Header = ({ children, project, page, setFilter }) => {
                 </p>
               </a>
             </Link>
-          </div>
+          </m.div>
 
-          <div className="Header-mid">
+          <m.div
+            className="Header-mid"
+            animate={sessionStarted ? 'visible' : 'hidden'}
+            initial={sessionStarted ? 'visible' : 'hidden'}
+            variants={{
+              visible: { opacity: 1 },
+              hidden: { opacity: 0 },
+            }}
+            transition={{ duration: 0.6 }}
+          >
             <Link href="/" scroll={false}>
-              <a
+              <m.a
                 className="Header-logo"
                 onClick={setFilter ? () => setFilter() : null}
+                animate={sessionStarted ? 'visible' : 'hidden'}
+                initial={sessionStarted ? 'visible' : 'hidden'}
+                variants={{
+                  visible: { opacity: 1 },
+                  hidden: { opacity: 0 },
+                }}
               >
                 <svg
                   className="Header-logoSymbol"
@@ -104,10 +122,19 @@ const Header = ({ children, project, page, setFilter }) => {
                     fill="currentColor"
                   />
                 </svg>
-              </a>
+              </m.a>
             </Link>
-          </div>
-          <div className="Header-topRight">
+          </m.div>
+          <m.div
+            className="Header-topRight"
+            animate={sessionStarted ? 'visible' : 'hidden'}
+            initial={sessionStarted ? 'visible' : 'hidden'}
+            variants={{
+              visible: { opacity: 1 },
+              hidden: { opacity: 0 },
+            }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
             <p className="Header-beckmans" lang="en">
               <Link href="https://beckmans.se">
                 <a target="_blank">
@@ -116,12 +143,23 @@ const Header = ({ children, project, page, setFilter }) => {
                 </a>
               </Link>
             </p>
-          </div>
-          <div className="Header-bottomRight u-printHide">{LanguageLinks}</div>
+          </m.div>
+          <m.div
+            className="Header-bottomRight u-printHide"
+            animate={sessionStarted ? 'visible' : 'hidden'}
+            initial={sessionStarted ? 'visible' : 'hidden'}
+            variants={{
+              visible: { opacity: 1 },
+              hidden: { opacity: 0 },
+            }}
+            transition={{ duration: 0.6, delay: 0.3 + 0.3 }}
+          >
+            {LanguageLinks}
+          </m.div>
           {children && (
-            <div className="Header-bottomLeft">
+            <m.div className="Header-bottomLeft">
               <div>{children}</div>
-            </div>
+            </m.div>
           )}
         </div>
       </Container>

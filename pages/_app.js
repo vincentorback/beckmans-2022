@@ -11,10 +11,16 @@ import jump from 'jump.js'
 import '../styles/index.css'
 
 const App = ({ Component, pageProps, router }) => {
+  const [sessionStarted, setSessionStarted] = React.useState(false)
+
   React.useEffect(() => {
     window.requestAnimationFrame(() => {
       document.documentElement.style.transition = 'background-color 200ms ease'
     })
+  }, [])
+
+  React.useEffect(() => {
+    setSessionStarted(true)
   }, [])
 
   React.useEffect(() => {
@@ -53,9 +59,10 @@ const App = ({ Component, pageProps, router }) => {
       >
         <PrismicPreview repositoryName={repositoryName}>
           <LazyMotion features={domAnimation} strict>
-            <AnimatePresence exitBeforeEnter>
+            <AnimatePresence mode="wait">
               <Component
                 {...pageProps}
+                sessionStarted={sessionStarted}
                 key={`${router.locale}_${router.asPath}`}
               />
             </AnimatePresence>

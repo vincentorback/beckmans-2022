@@ -2,7 +2,6 @@ import React from 'react'
 import classNames from 'classnames'
 import Window from './Window'
 import Grid from './Grid'
-// import { SESSION_STARTED } from '../../lib/constants'
 import { m } from 'framer-motion'
 
 const ProjectsGrid = ({
@@ -29,12 +28,6 @@ const ProjectsGrid = ({
       setDotAnimation('active')
     }
   }, [dotsDone, isReady])
-
-  // React.useEffect(() => {
-  //   if (sessionStorage[SESSION_STARTED]) {
-  //     setDotsDone(true)
-  //   }
-  // }, [])
 
   const handleMouseEnter = React.useCallback(
     (item) => {
@@ -99,7 +92,6 @@ const ProjectsGrid = ({
 
   const onDotsAnimationComplete = React.useCallback((definition) => {
     if (
-      // sessionStorage[SESSION_STARTED] ||
       definition === 'loading'
     ) {
       setDotsDone(true)

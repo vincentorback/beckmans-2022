@@ -179,7 +179,7 @@ const MapGrid = ({
                     rect={`${rectX},${rectY},${rectImageWidth * 2},${
                       rectImageHeight * 2
                     }`}
-                    quality={10}
+                    quality={20}
                     onLoadingComplete={() => handleImageLoad(item.uid)}
                     alt=""
                   />

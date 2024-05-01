@@ -34,7 +34,7 @@ const AnimatedItem = ({
           scale: 1,
           transition: {
             duration: 0.2,
-            delay: itemIndex * 0.02,
+            delay: itemIndex * 0.03,
           },
         },
         notActive: {
@@ -42,7 +42,7 @@ const AnimatedItem = ({
           scale: 0.75,
           transition: {
             duration: 0.2,
-            delay: itemIndex * 0.02,
+            delay: itemIndex * 0.03,
           },
         },
         exit: {
@@ -140,23 +140,12 @@ const Item = ({
                 rectImageHeight * 2 // TODO: Test x3 with production images
               }`}
               src={item?.data?.main_image}
+              quality={20}
               priority
             />
           )}
         </AnimatedItem>
       </LinkWrap>
-      {item?.data?.main_image && (
-        <Image
-          hidden
-          alt=""
-          width={Math.floor((1440 / 12) * 6)}
-          height={Math.floor((1440 / 12) * 6 * 1.1671511628)}
-          layout="responsive"
-          quality={50}
-          sizes="(max-width: 1400px) 50vw, 686px"
-          src={item?.data?.main_image}
-        />
-      )}
     </div>
   )
 }

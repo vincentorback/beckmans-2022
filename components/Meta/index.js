@@ -16,15 +16,19 @@ const Meta = ({ title, doc }) => {
     )}`
   }
 
+  let pageTitle = `Beckmans ${t('strings.show')} 19.05–24.05.2022`
+
+  if (title) {
+    pageTitle = `${title} | ${pageTitle}`
+  }
+
   return (
     <Head>
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width,initial-scale=1" />
       <meta httpEquiv="x-ua-compatible" content="ie=edge" />
 
-      <title>
-        {title && `${title} | `}Beckmans {t('strings.show')} 19.05–24.05.2022
-      </title>
+      <title>{pageTitle}</title>
 
       {router.asPath === '/' && (
         <meta name="description" content={t('description')} />
