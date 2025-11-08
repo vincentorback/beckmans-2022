@@ -58,7 +58,7 @@ const Image = (props) => {
         alt={alt || src.alt || ''}
         width={layout === 'cover' || layout === 'fill' ? null : width}
         height={layout === 'cover' || layout === 'fill' ? null : height}
-        quality={quality || 60}
+        quality={quality || 70}
         onLoadingComplete={onLoadingComplete}
       />
     </div>
