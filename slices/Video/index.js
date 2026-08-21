@@ -1,94 +1,40 @@
 import React from 'react'
 import classNames from 'classnames'
-import Plyr from 'plyr-react'
+import dynamic from 'next/dynamic'
 import { useInView } from 'react-intersection-observer'
-import { getYoutubeID } from '../../lib/utilities'
+
+// plyr touches `document` at import time, so it can only load in the browser
+const Player = dynamic(() => import('./Player'), { ssr: false })
 
 const Video = ({ slice }) => {
   const { width, height, video_id, provider_name, html } =
     slice.primary.embedURL
 
-  const plyrRef = React.useRef()
   const containerRef = React.useRef(null)
   const { ref, inView } = useInView({
     triggerOnce: true,
   })
   const [hasError, setHasError] = React.useState(false)
 
-  React.useEffect(() => {
-    try {
-      if (plyrRef?.current?.plyr) {
-        const plyr = plyrRef?.current?.plyr
-
-        if (plyr && plyr.source) {
-          const onError = () => {
-            if (html) {
-              containerRef.current.innerHTML = `<div class="Video-inner">${html}</div>`
-              setHasError(true)
-            }
-          }
-
-          plyr.on('error', onError)
-
-          window.addEventListener('error', onError)
-          window.addEventListener('unhandledrejection', onError)
-
-          return () => {
-            window.removeEventListener('error', onError)
-            window.removeEventListener('unhandledrejection', onError)
-
-            plyr.off('error', onError)
-          }
-        }
-      }
-    } catch (err) {
-      console.error(err)
+  const handleError = React.useCallback(() => {
+    if (html) {
       containerRef.current.innerHTML = `<div class="Video-inner">${html}</div>`
       setHasError(true)
     }
-  }, [plyrRef?.current?.plyr, html, containerRef])
+  }, [html])
 
   const MemoVideo = React.useMemo(() => {
     if (!provider_name || !video_id) return null
 
     return (
-      <Plyr
-        ref={plyrRef}
-        id={video_id}
-        source={{
-          type: 'video',
-          sources: [
-            {
-              src:
-                video_id ??
-                (provider_name === 'YouTube' && html
-                  ? getYoutubeID(html)
-                  : false),
-              provider: provider_name.toLowerCase(),
-            },
-          ],
-        }}
-        options={{
-          fullscreen: {
-            enabled: true,
-            fallback: true,
-            iosNative: 'force',
-            container: null,
-          },
-          controls: [
-            'play-large',
-            'play',
-            'progress',
-            'duration',
-            'mute',
-            'volume',
-            'fullscreen',
-          ],
-          youtube: { noCookie: true },
-        }}
+      <Player
+        videoId={video_id}
+        providerName={provider_name}
+        html={html}
+        onError={handleError}
       />
     )
-  }, [video_id, provider_name, html])
+  }, [video_id, provider_name, html, handleError])
 
   return (
     <div
