@@ -1,4 +1,5 @@
 import React from 'react'
+import NextLink from 'next/link'
 import Link from 'next-translate-routes/link'
 import Container from '../Container'
 import { useTranslations } from 'next-intl'
@@ -16,7 +17,7 @@ const Footer = ({ pages, settings }) => {
       may: t('may'),
       fashionShow: t('fashion-show'),
     }),
-    [t]
+    [t],
   )
 
   const MemoFooter = React.useMemo(() => {
@@ -49,16 +50,14 @@ const Footer = ({ pages, settings }) => {
               <p>
                 Beckmans {translations.schoolSubtitle}
                 <br />
-                <Link
-                  href={`https://www.google.se/maps?q=${encodeURIComponent(
-                    'Brahegatan 10 114 37 Stockholm'
-                  )}`}
+                <NextLink
+                  href={`https://www.google.se/maps?q=${encodeURIComponent('Brahegatan 10 114 37 Stockholm')}`}
                 >
                   <a target="_blank" rel="noopener noreferrer">
                     Brahegatan 10 <br />
                     114 37 Stockholm
                   </a>
-                </Link>
+                </NextLink>
               </p>
             </div>
             <div className="Footer-item">
