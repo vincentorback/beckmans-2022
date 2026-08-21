@@ -7,6 +7,16 @@ import { m } from 'framer-motion'
 import { linkResolver } from '../../lib/prismic'
 import { PrismicText } from '@prismicio/react'
 
+// Shared by Window and Preload so the preloaded URLs match the hover
+// image URLs exactly (same srcset candidates, same sizes attribute).
+export const windowImageProps = {
+  width: (1440 / 12) * 6,
+  height: (1440 / 12) * 6 * 1.1671511628,
+  quality: 50,
+  sizes: '(max-width: 1400px) 50vw, 686px',
+  layout: 'responsive',
+}
+
 const Window = ({ item, previousItem }) => {
   const [isLoaded, setIsLoaded] = React.useState(
     isEmpty(item?.data?.main_image)
@@ -73,12 +83,8 @@ const Window = ({ item, previousItem }) => {
             {previousItem?.data?.main_image?.url && (
               <Image
                 className="ProjectsGrid-windowItemImage"
-                width={(1440 / 12) * 6}
-                height={(1440 / 12) * 6 * 1.1671511628}
-                quality={50}
+                {...windowImageProps}
                 src={previousItem.data.main_image}
-                sizes="(max-width: 1400px) 50vw, 686px"
-                layout="responsive"
                 alt=""
               />
             )}
@@ -124,12 +130,9 @@ const Window = ({ item, previousItem }) => {
             {item?.data?.main_image?.url && (
               <Image
                 className="ProjectsGrid-windowItemImage"
-                width={(1440 / 12) * 6}
-                height={(1440 / 12) * 6 * 1.1671511628}
-                quality={50}
+                {...windowImageProps}
                 src={item.data.main_image}
-                sizes="(max-width: 1400px) 50vw, 686px"
-                layout="responsive"
+                priority
                 alt=""
                 onLoadingComplete={() => {
                   setIsLoaded(true)

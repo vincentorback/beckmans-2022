@@ -2,6 +2,7 @@ import React from 'react'
 import classNames from 'classnames'
 import Window from './Window'
 import Grid from './Grid'
+import Preload from './Preload'
 import { m } from 'framer-motion'
 
 const ProjectsGrid = ({
@@ -135,6 +136,7 @@ const ProjectsGrid = ({
         {Boolean(isReady && activeItem) && memoWindow}
         {memoDots}
       </div>
+      {isReady && <Preload items={items} />}
     </div>
   )
 }
