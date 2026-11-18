@@ -1,5 +1,4 @@
 import React from 'react'
-import NextLink from 'next/link'
 import Link from 'next-translate-routes/link'
 import Container from '../Container'
 import { useTranslations } from 'next-intl'
@@ -50,14 +49,12 @@ const Footer = ({ pages, settings }) => {
               <p>
                 Beckmans {translations.schoolSubtitle}
                 <br />
-                <NextLink
+                <LinkWrap
                   href={`https://www.google.se/maps?q=${encodeURIComponent('Brahegatan 10 114 37 Stockholm')}`}
                 >
-                  <a target="_blank" rel="noopener noreferrer">
-                    Brahegatan 10 <br />
-                    114 37 Stockholm
-                  </a>
-                </NextLink>
+                  Brahegatan 10 <br />
+                  114 37 Stockholm
+                </LinkWrap>
               </p>
             </div>
             <div className="Footer-item">

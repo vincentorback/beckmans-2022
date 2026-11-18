@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from 'next-translate-routes/link'
+import LinkWrap from '../LinkWrap'
 import Image from '../Image'
 import { isEmpty } from '../../lib/utilities'
 import { linkResolver } from '../../lib/prismic'
@@ -17,7 +17,7 @@ const Map = ({ items, category }) => {
       if (
         imagesLoaded.current ===
         items.filter(
-          (item) => item?.data?.category && item.data.category === category
+          (item) => item?.data?.category && item.data.category === category,
         ).length
       ) {
         setAllImagesLoaded(true)
@@ -35,7 +35,7 @@ const Map = ({ items, category }) => {
 
   const MemoTitle = React.useMemo(
     () => <p className="Map-activeTitle">{activeItem}</p>,
-    [activeItem]
+    [activeItem],
   )
 
   const MemoGrid = React.useMemo(
@@ -48,7 +48,7 @@ const Map = ({ items, category }) => {
         handleImageLoad={handleImageLoad}
       />
     ),
-    [handleMouse, items, category, allImagesLoaded, handleImageLoad]
+    [handleMouse, items, category, allImagesLoaded, handleImageLoad],
   )
 
   return (
@@ -104,18 +104,18 @@ const MapGrid = ({
         imageOriginalWidth &&
         Math.min(
           Math.floor(
-            imageOriginalWidth * (imagePositionX.replace('%', '') / 100)
+            imageOriginalWidth * (imagePositionX.replace('%', '') / 100),
           ),
-          imageOriginalWidth - rectImageWidth
+          imageOriginalWidth - rectImageWidth,
         )
 
       const rectY =
         imageOriginalHeight &&
         Math.min(
           Math.floor(
-            imageOriginalHeight * (imagePositionY.replace('%', '') / 100)
+            imageOriginalHeight * (imagePositionY.replace('%', '') / 100),
           ),
-          imageOriginalHeight - rectImageHeight
+          imageOriginalHeight - rectImageHeight,
         )
 
       return (
@@ -168,24 +168,22 @@ const MapGrid = ({
           }}
         >
           {isVisible && (
-            <Link href={linkResolver(item)} prefetch={false} scroll={false}>
-              <a className="Map-itemLink">
-                <div className="Map-itemInner">
-                  <Image
-                    className="Map-itemImage"
-                    src={item.data.main_image}
-                    width={rectImageWidth}
-                    height={rectImageHeight}
-                    rect={`${rectX},${rectY},${rectImageWidth * 2},${
-                      rectImageHeight * 2
-                    }`}
-                    quality={20}
-                    onLoadingComplete={() => handleImageLoad(item.uid)}
-                    alt=""
-                  />
-                </div>
-              </a>
-            </Link>
+            <LinkWrap href={linkResolver(item)} className="Map-itemLink">
+              <div className="Map-itemInner">
+                <Image
+                  className="Map-itemImage"
+                  src={item.data.main_image}
+                  width={rectImageWidth}
+                  height={rectImageHeight}
+                  rect={`${rectX},${rectY},${rectImageWidth * 2},${
+                    rectImageHeight * 2
+                  }`}
+                  quality={20}
+                  onLoadingComplete={() => handleImageLoad(item.uid)}
+                  alt=""
+                />
+              </div>
+            </LinkWrap>
           )}
         </m.div>
       )

@@ -1,3 +1,10 @@
+const buffer = require('buffer')
+
+// Next 12's bundled jsonwebtoken reads SlowBuffer.prototype, which Node 25+ removed.
+if (!buffer.SlowBuffer) {
+  buffer.SlowBuffer = buffer.Buffer
+}
+
 const withTranslateRoutes = require('next-translate-routes/plugin')
 
 const IS_PRODUCTION =

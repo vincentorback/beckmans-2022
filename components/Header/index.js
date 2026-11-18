@@ -1,4 +1,5 @@
 import React from 'react'
+import LinkWrap from '../LinkWrap'
 import Link from 'next-translate-routes/link'
 import Container from '../Container'
 import { useRouter } from 'next/router'
@@ -16,7 +17,7 @@ const LocaleLink = ({ locale, isActive, url }) => {
   }
 
   return (
-    <Link href={url} locale={locale} scroll={false}>
+    <Link href={url} locale={locale}>
       <a className="Header-languageLink" lang={locale}>
         <span className="Header-languageLinkText">{capitalize(locale)}</span>
       </a>
@@ -40,10 +41,10 @@ const Header = ({ children, project, page, setFilter, sessionStarted }) => {
             locale === router.locale
               ? null
               : otherLangDoc || doc
-              ? linkResolver(otherLangDoc ?? doc)
-              : router.isReady
-              ? router.asPath
-              : '/'
+                ? linkResolver(otherLangDoc ?? doc)
+                : router.isReady
+                  ? router.asPath
+                  : '/'
 
           return (
             <LocaleLink
@@ -79,15 +80,13 @@ const Header = ({ children, project, page, setFilter, sessionStarted }) => {
             }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <Link href="/" scroll={false}>
-              <a>
-                <p className="Header-showText">
-                  <span lang="en">Graduation Show</span> <br />
-                  <time dateTime="2022-05-19">19.05</time>–
-                  <time dateTime="2022-05-24">24.05.2022</time>
-                </p>
-              </a>
-            </Link>
+            <LinkWrap href="/">
+              <p className="Header-showText">
+                <span lang="en">Graduation Show</span> <br />
+                <time dateTime="2022-05-19">19.05</time>–
+                <time dateTime="2022-05-24">24.05.2022</time>
+              </p>
+            </LinkWrap>
           </m.div>
 
           <m.div
@@ -100,7 +99,7 @@ const Header = ({ children, project, page, setFilter, sessionStarted }) => {
             }}
             transition={{ duration: 0.6 }}
           >
-            <Link href="/" scroll={false}>
+            <Link href="/">
               <m.a
                 className="Header-logo"
                 onClick={setFilter ? () => setFilter() : null}
@@ -136,12 +135,10 @@ const Header = ({ children, project, page, setFilter, sessionStarted }) => {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <p className="Header-beckmans" lang="en">
-              <Link href="https://beckmans.se">
-                <a target="_blank">
-                  Beckmans <br />
-                  College of Design
-                </a>
-              </Link>
+              <LinkWrap href="https://beckmans.se">
+                Beckmans <br />
+                College of Design
+              </LinkWrap>
             </p>
           </m.div>
           <m.div
